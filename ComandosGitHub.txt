@@ -1,0 +1,33 @@
+
+git branch  -------------------// muestra la branch en la que estamos con un *
+
+git branch -a  ----------------// nos muestra todas las branches 
+
+git checkout NombreRama  ------// utilizado para movernos a la rama especificada
+
+git pull  ---------------------// baja todos los cambios a nuestro equipo. Crucial para antes de trabajar
+
+git status  -------------------// ver el estado de nuestros cambios
+
+git push origin NombreRama  ---// especifica la rama a la que subiremos los cambios, usado luego del commit
+
+git merge Nombrerama  ---------// Pullea lo de la rama especificada, hacer con el master antes de pushear para 
+                      ---------// ver posibles conflictos y solucionarlos 
+
+
+Lineamientos del repositorio:  
+-----------------------------
+
+*   Nombre de nuestra rama principal: master
+
+*   Al crear una nueva rama especificar:  (featureName)(Back/Front) ej: shoppingCartFront 
+
+*   Solucionar conflictos antes de hacer un push request
+
+*   Una vez que los cambios entren review añadirlo al trello y notificar por discord/wpp
+
+*   Ante cualquier duda o problema que surja sobre el tema de las branches/repositorio consultenme (Martin)
+    y lo tratamos de solucionar 
+
+*   refiero a los links sobre el tema: -https://vimeo.com/447008698/b02212e908  Git Branches Demo
+                                       -https://vimeo.com/567639276/e365c11ede  Best Practices + Git Flow
