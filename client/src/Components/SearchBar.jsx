@@ -3,6 +3,8 @@ import { useState } from "react";
 import {useDispatch} from "react-redux"
 import { getProductName } from "../redux/actions";
 
+import { FaSearch } from "react-icons/fa";
+
 //import { SBdiv, SBinput, SBbutton, SBimg } from "./Styles/StyledSearchBar"
 import "./SearchBar.css"
 
@@ -31,7 +33,7 @@ export default function SearchBar (){
 
                  />
                 <button className="search-btn" type="submit" onClick={(e)=> submitHandler(e)}>
-                <i className="fa fa-search"></i>
+                <FaSearch className="icon"/>
                 </button>
             </div>
         </div>

@@ -1,5 +1,28 @@
 body {
-    background: #272727;
+    background: #ffffff;
     font-family: "opens Sans";
+
+
+}
+.container{
+    display: flex;
+    flex-direction: row;
+
+}
+.search{
+    border-width: 2px;
+    border-color: buttonborder;
     
+
+}
+.search-btn{
+
+    background-color: white;
+    size:20px 20px;
+    padding: 3px 4px;
+    
+    
+}
+.icon{
+
 }
