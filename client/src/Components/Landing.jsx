@@ -1,10 +1,10 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+import Header from './Header';
 
 export default function Landing(){
     return(
         <>
-            <SearchBar/>
+            <Header/>
         </>
     ) 
 }

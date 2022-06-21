@@ -26,15 +26,16 @@ export default function SearchBar (){
     return (
         <div className="container">
             <div className="searchbox">
+                <button className="search-btn" type="submit" onClick={(e)=> submitHandler(e)}>
+                <FaSearch className="icon"/>
+                </button>
                 <input className="search"
                  type="text"
                  placeholder="Search Products by name..."
                  onChange={(e) => inputChangeHandler(e)}
 
                  />
-                <button className="search-btn" type="submit" onClick={(e)=> submitHandler(e)}>
-                <FaSearch className="icon"/>
-                </button>
+                
             </div>
         </div>
     )

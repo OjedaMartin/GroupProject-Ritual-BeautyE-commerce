@@ -1,5 +1,5 @@
 body {
-    background: #ffffff;
+    background: #f8ffd7;
     font-family: "opens Sans";
 
 
@@ -7,19 +7,25 @@ body {
 .container{
     display: flex;
     flex-direction: row;
-
+    padding-top: 30px;
 }
 .search{
+    
     border-width: 2px;
     border-color: buttonborder;
+    visibility: visible;
+    position: absolute;
     
 
 }
 .search-btn{
 
     background-color: white;
+    border-width: 0px;
     size:20px 20px;
     padding: 3px 4px;
+    font-size: 20px;
+    
     
     
 }
