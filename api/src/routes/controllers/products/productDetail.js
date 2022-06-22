@@ -1,4 +1,4 @@
-const {Product, Category} = require('../../../db')
+const {Product} = require('../../../db')
 
 
 
