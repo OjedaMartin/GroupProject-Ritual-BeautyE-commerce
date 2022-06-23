@@ -1,16 +1,18 @@
 const { Product } = require('../../../db');
 
 
-// FILTRADOS POR NOMBRE, MARCA, PRECIO, IMAGEN Y RATING
+// FILTRADOS POR NOMBRE, MARCA, PRECIO Y RATING
 
 // controlador para el filtrado por nombre
 const getName = async (req, res) => {
-	const { name } = req.params;
+	const { name, page } = req.params;
 	try {
-		const byName = await Product.findAll({
+		const byName = await Product.findAndCountAll({
 			where: {
 				name: name
-			}
+			},
+			offset: (page - 1) * 10,
+			limit: 10
 		})
 		res.status(200).send(byName);
 	} catch(error) {
@@ -22,12 +24,14 @@ const getName = async (req, res) => {
 
 // controlador para el filtrado por marca
 const getBrand = async (req, res) => {
-	const { brand } = req.params;
+	const { brand, page } = req.params;
 	try {
-		const byBrand = await Product.findAll({
+		const byBrand = await Product.findAndCountAll({
 			where: {
 				brand: brand
-			}
+			},
+			offset: (page - 1) * 10,
+			limit: 10
 		})
 		res.status(200).send(byBrand); 
 	} catch(error) {
@@ -39,12 +43,14 @@ const getBrand = async (req, res) => {
 
 // controlador para el filtrado por precio
 const getPrice = async (req, res) => {
-	const { price } = req.params;
+	const { price, page } = req.params;
 	try {
-		const byPrice = await Product.findAll({
+		const byPrice = await Product.findAndCountAll({
 			where: {
 				price: price
-			}
+			},
+			offset: (page - 1) * 10,
+			limit: 10
 		})
 		res.status(200).send(byPrice);
 	} catch(error) {
@@ -56,12 +62,14 @@ const getPrice = async (req, res) => {
 
 // controlador para filtrar productos por rating
 const getRating = async (req, res) => {
-	const { rating } = req.params;
+	const { rating, page } = req.params;
 	try {
-		const byRating = await Product.findAll({
+		const byRating = await Product.findAndCountAll({
 			where: {
 				rating: rating
-			}
+			},
+			offset: (page - 1) * 10,
+			limit: 10
 		})
 		res.status(200).send(byRating)
 	} catch(error) {

@@ -10,22 +10,22 @@ const {
 
 
 // ruta para el filtrado por name
-router.get('/:name', getName);
+router.get('/name/:name', getName);
 
 
 
 // ruta para el filtrado por brand
-router.get('/:brand', getBrand);
+router.get('/brand/:brand', getBrand);
 
 
 
 // ruta para el filtrado por price
-router.get('/:price', getPrice);
+router.get('/price/:price', getPrice);
 
 
 
 // ruta para el filtrado por rating
-router.get('/:rating', getRating);
+router.get('/rating/:rating', getRating);
 
 
 
