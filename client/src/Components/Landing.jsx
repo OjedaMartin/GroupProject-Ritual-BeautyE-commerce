@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './Header';
 import {getAllProducts} from "../redux/actions"
 import { useDispatch, useSelector } from 'react-redux';
