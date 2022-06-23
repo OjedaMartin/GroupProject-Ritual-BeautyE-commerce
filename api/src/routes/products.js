@@ -9,7 +9,7 @@ const { Router } = require('express');
  router.get('/:id', getProductById)
  router.get('/', Allproducts);
  router.get('/:id', getProductById)
- router.get('/create', createProduct)
+//  router.get('/create', createProduct)
 
 
  module.exports = router;

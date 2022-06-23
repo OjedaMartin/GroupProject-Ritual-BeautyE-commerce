@@ -1,8 +1,7 @@
 import React from "react"
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Landing from './Components/Landing.jsx';
-//import Home from './Components/Home.jsx';
-//import Detail from './Components/Detail.jsx'
+import Details from './Components/Details.jsx'
 
 
 function App() {
@@ -10,6 +9,7 @@ function App() {
     
     <BrowserRouter>            
         <Routes>        
+        <Route exact path='/details/:id' element={ <Details/>}/> 
           <Route exact path='/' element={ <Landing/>}/>         
         </Routes>     
     </BrowserRouter> 
