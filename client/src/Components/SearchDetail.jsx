@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 import {
     getProductName,
-    orderProducts,//Example
-    filterProducts//Example
+    orderProducts,
+    getFilterProducts
 } from '../redux/actions';
 import ProductCard from './ProductCard'
 import Pagination from './Pagination';
@@ -29,7 +29,7 @@ export default function SearchDetail() {
         setCurrentPage(1);
     };
     const handleFilterByProducts = (e) => {//FILTRAR POR: CATEGORIA O SUBCATEGORIA, PRODUCTO NUEVO, VER OTRAS OPCIONES. VER DESDE EL BACK!
-        dispatch(filterProducts(e.target.value));
+        dispatch(getFilterProducts(e.target.value));
         setCurrentPage(1);
     };
 
@@ -48,13 +48,17 @@ export default function SearchDetail() {
                 <div>
                     <select onChange={setOrder} name='Type'>
                         <option value='Sort by name'>Sort by price</option>
-                        <option value='Ascendent'>High to Low</option>
-                        <option value='Descendent'>Low to High</option>
+                        <option value='High to Low Price'>High to Low</option>
+                        <option value='Low to High Price'>Low to High</option>
                     </select>
                     <select onChange={setOrder} name='Type'>
                         <option value='Sort by rated'>Sort by Top Rated</option>
                     </select>
+                    <select onChange={handleFilterByProducts} name='Type'>
+                        <option value='Filter by brand'>Filter by brand</option>
+                        {}
 
+                    </select>
                 </div>
 
                 <section>

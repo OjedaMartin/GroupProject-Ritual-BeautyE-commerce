@@ -1,0 +1,55 @@
+.main { 
+    
+    
+}
+.header1 {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(226, 226, 226);
+    
+    
+}
+.title {
+    font-family: 'Source Sans Pro', sans-serif;
+    display: flex;
+
+}
+.contIcons {
+    margin-top: 30px;
+}
+.iconUser {
+    background-color: white;
+    border-width: 0px;
+    font-size: 20px;
+}
+.iconCart {
+    background-color: white;
+    border-width: 0px;
+    font-size: 20px;
+}
+.navBar {
+    padding: 5px 120px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(226, 226, 226);
+
+
+}
+.subT {
+    font-family: 'Red Hat Display', sans-serif;
+    background-color: white;
+    border-width: 0px;
+    font-size: 20px;
+
+}
+.photo{
+    
+    height: 103px;
+    width: 1360px;
+    
+}
