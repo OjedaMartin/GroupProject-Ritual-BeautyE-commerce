@@ -7,6 +7,7 @@ module.exports = (sequelize) => {
     
     id: {
       type: DataTypes.STRING,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
     },
@@ -14,7 +15,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-   
+    fromAPI:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    }
   },{
     timestamps: false
   });

@@ -4,11 +4,11 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Product', {
-    /* id: { 
+    id: { 
       type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
-    }, */
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -25,20 +25,16 @@ module.exports = (sequelize) => {
     price: {
       type: DataTypes.STRING,
       allowNull: false,
-      set(value){
-        this.setDataValue("price", "$" + value)
-      }
     },
     rating: {
       type: DataTypes.FLOAT,
   
     },
-    idcategory:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     in_Stock: {
       type: DataTypes.BOOLEAN,
+      set(value){
+        this.setDataValue("in_Stock", value ? value : true)
+      }
     }
   },{
     timestamps: false
