@@ -20,10 +20,7 @@ module.exports = (sequelize) => {
     },
     password:{
         type: DataTypes.STRING,
-        allowNull: false,
-        set(value){
-            this.setDataValue("password", hash(this.name + value));
-        }
+        allowNull: false,  
     },
     membership: {
         type: DataTypes.STRING,
