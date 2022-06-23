@@ -1,3 +1,5 @@
+const {Product, Category} = require('../../../db')
+
 
 // Modificación añadida: paginado
 const findProductByName = async (req, res) => {
@@ -19,12 +21,13 @@ const findProductByName = async (req, res) => {
         });
         const findName = await allNames.map(e => {
             return {
-                type: e.type,
                 name: e.name,
                 brand: e.brand,
                 image: e.image,
                 price: e.price,
                 rating: e.rating,
+                idcategory: e.idcategory,
+                in_Stock: e.in_Stock
               // aca van las propiedades del modelo
             }
         })
@@ -32,4 +35,8 @@ const findProductByName = async (req, res) => {
     }catch(error){
         console.log(error)
     }
+}
+
+module.exports = {
+	findProductByName
 }

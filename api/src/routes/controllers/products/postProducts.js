@@ -1,3 +1,6 @@
+const {Product, Category} = require('../../../db')
+
+
 const createProduct = async (req, res) => {
 
     const { type, name, brand, image , price, rating, category} = req.body;
@@ -12,3 +15,13 @@ const createProduct = async (req, res) => {
     res.send("Product created")
 
   }
+
+
+
+
+
+  module.exports = {
+	createProduct
+}
+
+  
