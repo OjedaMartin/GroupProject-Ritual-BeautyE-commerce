@@ -1,5 +1,6 @@
 .main { 
     
+    
 }
 .header1 {
     padding: 10px 20px;
@@ -8,6 +9,7 @@
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: rgb(226, 226, 226);
+    
     
 }
 .title {
@@ -40,4 +42,14 @@
 }
 .subT {
     font-family: 'Red Hat Display', sans-serif;
+    background-color: white;
+    border-width: 0px;
+    font-size: 20px;
+
+}
+.photo{
+    
+    height: 103px;
+    width: 1360px;
+    
 }

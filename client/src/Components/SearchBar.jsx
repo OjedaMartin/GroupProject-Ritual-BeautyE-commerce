@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import {useDispatch} from "react-redux"
 import { getProductName } from "../redux/actions";
+import { Link } from "react-router-dom";
 
 import { FaSearch } from "react-icons/fa";
 
@@ -24,16 +25,22 @@ export default function SearchBar (){
     }
 
     return (
+
+        
+
+
         <div className="container">
             <div className="searchbox">
-                <button className="search-btn" type="submit" onClick={(e)=> submitHandler(e)}>
-                <FaSearch className="icon"/>
-                </button>
+                <Link to="/"><button className="search-btn" type="submit" onClick={(e)=> submitHandler(e)}>
+                <FaSearch className="icon" aria-hidden='true' id="searchbar-icon"/>
+                </button></Link>
+
+
                 <input className="search"
                  type="text"
                  placeholder="Search Products by name..."
                  onChange={(e) => inputChangeHandler(e)}
-
+                 id="searchbar-input"
                  />
                 
             </div>
