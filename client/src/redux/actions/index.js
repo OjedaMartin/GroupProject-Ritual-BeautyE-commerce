@@ -12,3 +12,9 @@ export function getProductName(name){
              console.log(error)}
     }
 }
+export function postUser (payload){
+    return async function (dispatch){
+        let json = await axios.post("http://localhost:3001/create",payload);
+        return json;
+    }
+}

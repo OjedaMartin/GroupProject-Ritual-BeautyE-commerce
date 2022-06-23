@@ -11,7 +11,10 @@ function rootReducer (state= initialState, action){
                 products: action.payload,
                 
             } 
-
+            case 'POST_USER':
+                return{
+                    ...state,                
+                } 
         default: 
             return state;
     }
