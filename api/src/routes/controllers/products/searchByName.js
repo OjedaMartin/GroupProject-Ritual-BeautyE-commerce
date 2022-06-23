@@ -1,6 +1,8 @@
+
+// Modificación añadida: paginado
 const findProductByName = async (req, res) => {
     try{
-        const { name } = req.query;
+        const { name, page } = req.query;
         const allNames = await Product.findAll({    // el modelo puede ser Productos 
             include: [{
                 model: Category,  //puede ser categorias
@@ -11,7 +13,9 @@ const findProductByName = async (req, res) => {
             }],
             where: {
                 name :name.charAt(0).toUpperCase()+name.slice(1).toLowerCase()    // me aseguro que realize la busqueda sin importar mayusculas   
-            }
+            },
+            offset: (page - 1) * 10, // se le agrega el paginado
+            limit: 10
         });
         const findName = await allNames.map(e => {
             return {
