@@ -41,16 +41,19 @@ let cod= ['cat140006','cat150006','cat130038','cat130042']
 
 // Modificación añadida: paginado
 async function Allproducts(req,res) {
-    const { page } = req.query;
+    // const { page } = req.query;
     try {
-        if(page) {
+        // if(page)
+        {
             let resp = await Product.findAll({
-                order: ["name", "ASC"],
-                offset: (page - 1) * 10,
-                limit: 10
+                // order: ["name", "ASC"],
+                // offset: (page - 1) * 10,
+                // limit: 10
             })  
         res.status(200).json(resp)
-        } else if(!page) {
+        }
+        //  else if(!page)
+        {
             let resp = await Product.findAll({
                 order: ["name", "ASC"]
             })
