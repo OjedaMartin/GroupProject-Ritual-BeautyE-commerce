@@ -1,6 +1,6 @@
 const axios = require('axios')
 const {Product} = require('../../../db')
-const apikey = 'bf846e5427msh03fbb9d49efc324p167fb9jsn81eaa933cbe3'
+const apikey = '36d1ecb605msh442d6892ba81ed1p1462ddjsna2338c18a340'
     
 async function cargaP(id){
 let j = []
