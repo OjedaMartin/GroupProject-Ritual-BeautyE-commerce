@@ -6,6 +6,7 @@ import {
   getAllCategories,
   getAllProducts,
 } from "../redux/actions";
+import "./FormCreateComponent.css"
 // import s from "./Create.module.css";
 const inputValidate = (estado) => {
   let errors = {};
@@ -128,12 +129,14 @@ export default function AdminProduct() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className='wrapper'>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <div>
-            <label>Rating: </label>
+          <h1 className='titleForm'>Create New Product</h1>
+          <div className='divcell'>
+            <label className='label1'>Rating: </label>
             <input
+            className='input1'
               //   className={s.input}
               type="text"
               value={estado.rating}
@@ -142,9 +145,10 @@ export default function AdminProduct() {
             />
             {err.name}
           </div>
-          <div>
-            <label>name: </label>
+          <div className='divcell'>
+            <label className='label1'>Name: </label>
             <input
+            className='input1'
               //   className={s.input}
               type="text"
               value={estado.name}
@@ -153,8 +157,8 @@ export default function AdminProduct() {
             />
             {err.name}
           </div>
-          <div>
-            <label>price: </label>
+          <div className='divcell'>
+            <label className='label1'>Price: </label>
             <select onChange={(e) => handleCheckDif(e)}>
               <option value={0}>Price</option>
               {/* <option value={1} onChange={(e) => handleCheckDif(e)}>
@@ -175,9 +179,10 @@ export default function AdminProduct() {
             </select>
             {/* {err.difficult} */}
           </div>
-          <div>
-            <label>image: </label>
+          <div className='divcell'>
+            <label className='label1'>Image: </label>
             <input
+            className='input1'
               //   className={s.input}
               type="text"
               value={estado.brand}
@@ -189,21 +194,23 @@ export default function AdminProduct() {
             {err.duration && <p>{err.duration}</p>}
           </div>
           <div>
-            <label>Categories </label>
+            <label className='label1'>Categories </label>
 <br/>
-            <label>
+            <label className='label1'>
              Skincare
               <input
+              className='input1'
                 // className={s.input}
                 type="checkbox"
                 name={estado.category}
                 value="Spring"
                 onChange={(e) => handleCheck(e)}
               />
-            </label>
-            <label>
+            </label >
+            <label className='label1'>
               Hair
               <input
+              className='input1'
                 // className={s.input}
                 type="checkbox"
                 name={estado.category}
@@ -237,7 +244,7 @@ export default function AdminProduct() {
           </div>
 
           <div>
-            <label>brand: </label>
+            <label className='label1' >brand: </label>
 
             <select onChange={(e) => handleSelect(e)}>
               {products?.map((e) => (
@@ -248,7 +255,7 @@ export default function AdminProduct() {
               {err.brand}
             </select>
             <div>
-              <ul>
+              <ul className='label1'>
                 brands selected:{" "}
                 {estado.products?.map((e) => (
                   <p key={e}>{e}</p>
@@ -257,9 +264,9 @@ export default function AdminProduct() {
             </div>
           </div>
           <div>
-            <button onClick={(e) => handleSubmit(e)}>Crealo!</button>
+            <button className='btn' onClick={(e) => handleSubmit(e)}>Crealo!</button>
             <Link to="/">
-              <button>Volver</button>
+              <button className='btn'>Volver</button>
             </Link>
           </div>
         </div>
