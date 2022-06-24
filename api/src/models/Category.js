@@ -5,10 +5,8 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Category', {
     
-    id: {
+    idApi: {
       type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: true
     },
     name:{
       type: DataTypes.STRING,
