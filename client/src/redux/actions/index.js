@@ -17,18 +17,28 @@ export function getProductName(name) {
 export function getAllProducts() {
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/products");
+    console.log("getAll", json)
     return dispatch({
-      type: "GET_ALL_PRODUCTS",
+      type: "GET_ALL",
       payload: json.data,
     });
   };
 }
-
+export function getAllCategories() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/categories");
+    console.log("getAll", json)
+    return dispatch({
+      type: "GET_CAT",
+      payload: json.data,
+    });
+  };
+}
 export function getDetail(id) {
   return async function (dispatch) {
     try {
       let prod = await axios.get(`http://localhost:3001/products/${id}`);
-
+console.log("getDet", prod)
       return dispatch({
         type: "GET_DETAIL",
         payload: prod.data, //
@@ -41,3 +51,11 @@ export function getDetail(id) {
     }
   };
 }
+export function createProduct(payload) {
+  return async function (dispatch) {
+    const info = await axios.post("http://localhost:3001/product", payload);
+    console.log(info);
+    return info;
+  };
+}
+

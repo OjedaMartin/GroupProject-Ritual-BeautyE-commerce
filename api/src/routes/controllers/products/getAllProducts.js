@@ -1,7 +1,7 @@
 const axios = require('axios')
 const {Product} = require('../../../db')
-const apikey = '36d1ecb605msh442d6892ba81ed1p1462ddjsna2338c18a340'
-    
+const apikey = '31d60d4a89msh7a2c8a42c71e138p1e7691jsn6ff1ded85376'
+
 async function cargaP(id){
 let j = []
 var producto =await axios.get(`https://sephora.p.rapidapi.com/products/list?rapidapi-key=${apikey}&categoryId=${id}&pageSize=20&currentPage=1`)
