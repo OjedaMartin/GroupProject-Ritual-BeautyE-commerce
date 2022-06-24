@@ -5,7 +5,8 @@ const { Product } = require('../../../db');
 
 // controlador para el filtrado por nombre
 const getName = async (req, res) => {
-	const { name, page } = req.params;
+	const { name } = req.params;
+	const { page } = req.query;
 	try {
 		const byName = await Product.findAndCountAll({
 			where: {
@@ -24,7 +25,8 @@ const getName = async (req, res) => {
 
 // controlador para el filtrado por marca
 const getBrand = async (req, res) => {
-	const { brand, page } = req.params;
+	const { brand } = req.params;
+	const { page } = req.query;
 	try {
 		const byBrand = await Product.findAndCountAll({
 			where: {

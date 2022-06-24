@@ -1,10 +1,10 @@
-const {Product, Category} = require('../../../db')
+const {Product, Category} = require('../../../db');
+const { Op } = require('sequelize');
 
 
-// Modificación añadida: paginado
 const findProductByName = async (req, res) => {
+        const { name } = req.query;
     try{
-        const { name, page } = req.query;
         const allNames = await Product.findAll({    // el modelo puede ser Productos 
             include: [{
                 model: Category,  //puede ser categorias
@@ -14,10 +14,8 @@ const findProductByName = async (req, res) => {
                 }
             }],
             where: {
-                name :name.charAt(0).toUpperCase()+name.slice(1).toLowerCase()    // me aseguro que realize la busqueda sin importar mayusculas   
-            },
-            offset: (page - 1) * 10, // se le agrega el paginado
-            limit: 10
+                name: { [Op.iLike]: `%${name}%` } /*name.charAt(0).toUpperCase()+name.slice(1).toLowerCase()*/    // me aseguro que realize la busqueda sin importar mayusculas   
+            }
         });
         const findName = await allNames.map(e => {
             return {

@@ -19,12 +19,19 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-// const apiInfo = require('./src/routes/controllers/getAllProducts');
+const { db } = require('./src/db.js');
+const { Category, Product } =require('./src/db');
+const json1 = require('./src/data/categories.json');
+const json2 = require('./src/data/products.json');
+
+const categories = json1.data;
+const products = json2.data;
 
 // Syncing all the models at once.
-conn.sync({ force: false /*cambiar a false*/}).then(() => {
-  server.listen(3001, /*async*/() => {
-    // await apiInfo();
+conn.sync({ force: true /*cambiar a false*/}).then(() => {
+  server.listen(3001, async() => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
+    await Category.bulkCreate(categories);
+    await Product.bulkCreate(products);
   });
 });
