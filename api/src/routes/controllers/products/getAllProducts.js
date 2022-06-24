@@ -56,6 +56,37 @@ const { Product } = require('../../../db')
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 async function Allproducts(req, res) {
     const { page } = req.query;
     try {

@@ -17,23 +17,7 @@ const apikey = 'fe7a2646d5msh89e07432c535c61p1691f3jsn047b557c3dfd'
   
 //     }); 
    
-<<<<<<< HEAD
-//         for (let i = 0; i < x.length; i++) {
-//            if(x[i].id==='cat140006' || x[i].id==='cat150006' || x[i].id==='cat130038'|| x[i].id==='cat130042'){
-//                 Category.findOrCreate({
-//                   where: {id: x[i].id,
-//                           name: x[i].name,
-//                         }
-//                   })
-=======
-        for (let i = 0; i < x.length; i++) {
-           if(x[i].id==='cat140006' || x[i].id==='cat150006' || x[i].id==='cat130038'|| x[i].id==='cat130042'){
-                Category.findOrCreate({
-                  where: {idApi: x[i].id,
-                          name: x[i].name,
-                        }
-                  })
->>>>>>> 9b2d1d2c34de3c0dcdc4352ce1f03ed913c5fb6a
+
                    
 //       }}
 //   }
