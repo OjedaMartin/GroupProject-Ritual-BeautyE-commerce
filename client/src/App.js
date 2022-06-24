@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Landing from './Components/Landing.jsx';
 
 import SearchDetail from './Components/SearchDetail';
-//import Home from './Components/Home.jsx';
 import Details from './Components/Details.jsx'
 import FormCreateComponent from './Components/FormCreateComponent'
 
