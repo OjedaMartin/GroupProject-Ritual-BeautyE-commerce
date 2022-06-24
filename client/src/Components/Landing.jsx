@@ -17,7 +17,7 @@ export default function Landing(){
             <Header/>
            <button>
             <Link to="/create">Create Product</Link></button>
-            {
+            {/* {
                 products &&
                 products.map((e) => {
                   return (
@@ -34,7 +34,7 @@ export default function Landing(){
                     </NavLink>
                   );
                 })
-            }
+            } */}
         </>
     ) 
 }
