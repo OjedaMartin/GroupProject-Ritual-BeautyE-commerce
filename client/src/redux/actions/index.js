@@ -37,6 +37,22 @@ export function getAllCategories() {
     });
   };
 }
+
+export function getCategory(){
+  return async function (dispatch) {
+    try {
+      const categories = await axios.get('http://localhost:3001/categories');
+      return dispatch({
+        type: 'GET_CATEGORY',
+        payload: categories.data,
+      })
+    } catch(error){
+      console.log(error);
+    }
+  }
+  
+};
+
 export function getDetail(id) {
   return async function (dispatch) {
     try {

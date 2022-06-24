@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
 import cart from '../images/carritoIcon.png';
 
 
-export default function ProductCard({ id, name, brand, image, price }) {
-    const dispatch = useDispatch();
+
+export default function ProductCard({ name, brand, image, price, id }) {
+    //const dispatch = useDispatch();
     
     
-    const handleCart = (e) => {
-        e.preventDefault();
-    //    dispatch(addToCart(id))
-    }
+    // const handleCart = (e) => {
+    //     e.preventDefault();
+    //     dispatch(addToCart(id))
+    // }
     return (
         <div>
             <div>
@@ -26,8 +27,8 @@ export default function ProductCard({ id, name, brand, image, price }) {
                 <h3>{name}</h3>
                 <h3>{price}</h3>
             </div>
-            <button onClick={handleCart}>
-                <img src={cart}/>
+             <button>{/*onClick={handleCart} */}
+                <img src={cart} alt='Buy'/>
             </button>
         </div>
     )

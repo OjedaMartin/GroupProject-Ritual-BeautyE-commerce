@@ -3,6 +3,7 @@ const initialState = {
   products: [],
   allProducts:[],
   details:[],
+  categories: [],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
