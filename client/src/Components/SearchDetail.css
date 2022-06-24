@@ -1,0 +1,9 @@
+.division{
+    display: flex;
+    flex-direction: row;
+}
+.selectors{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 120px;
+}
