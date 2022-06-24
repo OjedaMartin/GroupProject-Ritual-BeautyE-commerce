@@ -9,6 +9,7 @@
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: rgb(226, 226, 226);
+    background-image: url("../images/BackgroundHeader.png");
     
     
 }
@@ -21,12 +22,12 @@
     margin-top: 30px;
 }
 .iconUser {
-    background-color: white;
+    background-color: none;
     border-width: 0px;
     font-size: 20px;
 }
 .iconCart {
-    background-color: white;
+    background-color: none;
     border-width: 0px;
     font-size: 20px;
 }

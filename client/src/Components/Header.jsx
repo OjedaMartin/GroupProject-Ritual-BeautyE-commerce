@@ -9,7 +9,7 @@ import "./Header.css"
 export default function Header(){
     return(
         <div className='main'>
-            <img className='photo' src={require('../images/BackgroundHeader.png')} alt="background" />
+            {/*<img className='photo' src={require('../images/BackgroundHeader.png')} alt="background" />*/}
             <div className='header1'>
                 <SearchBar/>
                 <h1 className='title'>RITUAL</h1>
