@@ -1,7 +1,4 @@
-.main { 
-   
-    
-}
+
 .header1 {
     padding: 10px 20px;
     display: flex;
@@ -59,7 +56,7 @@
     width: 1360px;
     
 }
-.btn{
+.btnH{
     border-radius: 0rem;
     border: black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);

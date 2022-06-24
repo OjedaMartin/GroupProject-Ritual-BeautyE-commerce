@@ -20,6 +20,8 @@ const orderProducts = (orderSelected, stateProducts) => {
       return stateProducts.sort((a, b) => {
         return b.rating - a.rating;
       });
+    default:
+      return stateProducts; 
   }
 }
 

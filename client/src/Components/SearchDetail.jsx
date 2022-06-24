@@ -10,6 +10,9 @@ import {
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import loaderEyes from '../images/loaderEyes.gif';
+import Header from './Header';
+import Footer from './footer';
+import './SearchDetail.css'
 
 
 
@@ -60,10 +63,10 @@ export default function SearchDetail() {
     if (currentProducts.length > 0) {
         return (
             <Fragment>
-                <main>
-                    <div>  {/* LEVANTAR LA CATEGORIA SI ES QUE VIENE DESDE AHI, O LEVANTAR LO QUE SE HAYA BUSCADO*/}
-                    </div>
-                    <div>
+                <Header/>
+                <main className="division">
+                     {/*  <div> </div>LEVANTAR LA CATEGORIA SI ES QUE VIENE DESDE AHI, O LEVANTAR LO QUE SE HAYA BUSCADO*/}
+                    <div className="selectors">
                         <select onChange={setOrder} name='Type'>
                             <option value='Sort by name'>Sort by price</option>
                             <option value='High to Low Price'>High to Low</option>
@@ -107,15 +110,18 @@ export default function SearchDetail() {
                                 </Fragment>
                             )
                         })}
-                    </section>
-                    <div>
+                     <div>
                         <Pagination
                             productsPerPage={productsPerPage}
                             amountProducts={productsResults.length}
                             paginated={paginated}
                         />
-                    </div>
+                    </div>        
+                                     
+                    </section>
+                   
                 </main>
+                <Footer/>
             </Fragment>
     
         )        

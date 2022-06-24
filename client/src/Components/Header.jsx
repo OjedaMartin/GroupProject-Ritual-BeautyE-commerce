@@ -11,7 +11,7 @@ export default function Header(){
         <div className='main'>
             
             <div className='header1'>
-                <Link to="/create" ><button className='btn'> New Product </button></Link>
+                <Link to="/create" ><button className='btnH'> New Product </button></Link>
                 <SearchBar/>
                 <h1 className='title'>RITUAL</h1>
                 <div className='contIcons'>
