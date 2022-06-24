@@ -1,6 +1,4 @@
 const {Product} = require('../../../db')
-<<<<<<< HEAD
-<<<<<<< HEAD
 // const axios = require('axios')
 // const apikey = '31d60d4a89msh7a2c8a42c71e138p1e7691jsn6ff1ded85376'
     
@@ -21,25 +19,23 @@ const {Product} = require('../../../db')
 // })
 // =======
 // const apikey = '31d60d4a89msh7a2c8a42c71e138p1e7691jsn6ff1ded85376'
-=======
-const apikey = '31d60d4a89msh7a2c8a42c71e138p1e7691jsn6ff1ded85376'
+// const apikey = '31d60d4a89msh7a2c8a42c71e138p1e7691jsn6ff1ded85376'
 
-async function cargaP(id){
-let j = []
-var producto =await axios.get(`https://sephora.p.rapidapi.com/products/list?rapidapi-key=${apikey}&categoryId=${id}&pageSize=20&currentPage=1`)
-    producto.data.products.map(e => {
-    let b = {
-        id: e.productId,
-        name: e.displayName,
-        brand: e.brandName,
-        image: e.image135,
-        price: e.currentSku.listPrice  ,
-        rating: e.rating,
-        idcat: id
-    }
-    j.push(b)
-})
->>>>>>> a2350f3b95e14a16983d92058fd548bbf7cb30ed
+// async function cargaP(id){
+// let j = []
+// var producto =await axios.get(`https://sephora.p.rapidapi.com/products/list?rapidapi-key=${apikey}&categoryId=${id}&pageSize=20&currentPage=1`)
+//     producto.data.products.map(e => {
+//     let b = {
+//         id: e.productId,
+//         name: e.displayName,
+//         brand: e.brandName,
+//         image: e.image135,
+//         price: e.currentSku.listPrice  ,
+//         rating: e.rating,
+//         idcat: id
+//     }
+//     j.push(b)
+// })
 
 // async function cargaP(id){
 // let j = []
