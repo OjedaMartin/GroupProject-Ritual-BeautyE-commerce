@@ -20,7 +20,7 @@ const cargaC = async()=> {
         for (let i = 0; i < x.length; i++) {
            if(x[i].id==='cat140006' || x[i].id==='cat150006' || x[i].id==='cat130038'|| x[i].id==='cat130042'){
                 Category.findOrCreate({
-                  where: {id: x[i].id,
+                  where: {idApi: x[i].id,
                           name: x[i].name,
                         }
                   })

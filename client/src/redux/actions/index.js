@@ -75,17 +75,6 @@ export function orderProducts(orderSelected) {
     payload: orderSelected,
   }
 }
-export function getAllCategories() {
-  return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/categories");
-    console.log("getAll", json)
-    return dispatch({
-      type: "GET_CAT",
-      payload: json.data,
-    });
-  };
-}
-
 export function createProduct(payload) {
   return async function (dispatch) {
     const info = await axios.post("http://localhost:3001/product", payload);
