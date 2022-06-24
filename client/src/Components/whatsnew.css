@@ -1,0 +1,48 @@
+.grid1 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 32% 32% 32% ;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-bottom: -200px;
+  }
+
+.gridIMG{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gridB{
+    background-color: #DBD8FD;
+    font-family: 'Cantarell', sans-serif;
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #7a7979;
+}
+
+.gridC{
+    background-color: #E8FAD0;
+    font-family: 'Cantarell', sans-serif;
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #7a7979;
+}
+
+.gridF{
+    background-color: #FFEAC1;
+    font-family: 'Cantarell', sans-serif;
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #7a7979;
+}
+
