@@ -1,4 +1,4 @@
-onst {Category} = require('../../../db')
+const {Category} = require('../../../db')
 
 async function Allcategories(req, res) {
     try {
