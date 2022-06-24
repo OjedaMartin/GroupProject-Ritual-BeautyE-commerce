@@ -5,6 +5,9 @@ import Carousel1 from './Carousel';
 import Footer from './footer';
 import WhatsNew from './whatsnew';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react'
+import { getAllProducts } from '../redux/actions';
 
 export default function Landing(){
     const dispatch = useDispatch()

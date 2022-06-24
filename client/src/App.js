@@ -4,7 +4,7 @@ import Landing from './Components/Landing.jsx';
 
 import SearchDetail from './Components/SearchDetail';
 //import Home from './Components/Home.jsx';
-//import Detail from './Components/Detail.jsx'
+import Details from './Components/Details.jsx'
 
 
 function App() {
