@@ -9,8 +9,9 @@ import "./Header.css"
 export default function Header(){
     return(
         <div className='main'>
-            <img className='photo' src={require('../images/BackgroundHeader.png')} alt="background" />
+            
             <div className='header1'>
+                <Link to="/create" ><button className='btn'> New Product </button></Link>
                 <SearchBar/>
                 <h1 className='title'>RITUAL</h1>
                 <div className='contIcons'>
@@ -19,11 +20,11 @@ export default function Header(){
                 </div>
             </div>
                 <nav className='navBar'>
-                    <Link to="/"><button className='subT'>Makeup</button></Link>
-                    <Link to="/"><button className='subT'>Skincare</button></Link>
-                    <Link to="/"><button className='subT'>Tools & Brushes</button></Link>
-                    <Link to="/"><button className='subT'>Hair</button></Link>
-                    <Link to="/"><button className='subT'>Sale</button></Link>
+                    <Link to="/SearchDetail/Makeup"><button className='subT'>Makeup</button></Link>
+                    <Link to="/SearchDetail/Skincare"><button className='subT'>Skincare</button></Link>
+                    <Link to="/SearchDetail/Hair"><button className='subT'>Tools & Brushes</button></Link>
+                    <Link to="/SearchDetail/Tools & Brushes"><button className='subT'>Hair</button></Link>
+                    <Link to="/SearchDetail/"><button className='subT'>Sale</button></Link>
                 </nav>
             
         </div>
