@@ -8,6 +8,7 @@ import WhatsNew from './whatsnew';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react'
 import { getAllProducts } from '../redux/actions';
+import { Link } from "react-router-dom";
 
 export default function Landing(){
     const dispatch = useDispatch()
@@ -17,8 +18,8 @@ export default function Landing(){
       }, [dispatch]);
     return(
         <>
-
-            <SearchBar/>
+          
+            <Header/>
             <Carousel1/>
             <WhatsNew/>
             <Footer/>

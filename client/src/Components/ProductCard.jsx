@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import cart from '../images/carritoIcon.png';
 
 
-export default function ProductCard({ name, brand, image, price }) {
+export default function ProductCard({ id, name, brand, image, price }) {
     const dispatch = useDispatch();
     
     

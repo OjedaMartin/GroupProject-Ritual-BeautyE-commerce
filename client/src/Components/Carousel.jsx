@@ -20,7 +20,7 @@ export default function Carousel1(){
         <div className='container'>
     <Carousel
             data={data}
-            time={2000}
+            time={4000}
             width="100%"
             height="450px"
             radius="10px"

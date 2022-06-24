@@ -5,6 +5,7 @@ import Landing from './Components/Landing.jsx';
 import SearchDetail from './Components/SearchDetail';
 //import Home from './Components/Home.jsx';
 import Details from './Components/Details.jsx'
+import FormCreateComponent from './Components/FormCreateComponent'
 
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
         <Route exact path='/SearchDetail/:brand' element={<SearchDetail />} />      {/* VER COMO VA A TRAER EL BRAND O CATEGORY */}
         <Route exact path='/SearchDetail/:name' element={<SearchDetail />} />      {/* VER COMO VA A TRAER EL NAME O SEARCH */}
         <Route exact path='/details/:id' element={<Details />} />
+        <Route exact path='/create' element={<FormCreateComponent/>} />
+
+
       </Routes>
     </BrowserRouter>
 
