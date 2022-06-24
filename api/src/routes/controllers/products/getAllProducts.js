@@ -55,6 +55,7 @@ const { Product } = require('../../../db')
 // Modificación añadida: paginado
 
 async function Allproducts(req, res) {
+<<<<<<< HEAD
     const { page } = req.query;
     try {
         if(page) {
@@ -64,9 +65,13 @@ async function Allproducts(req, res) {
             })
             res.status(200).json(resp)
         } else if(!page) {
+=======
+    
+    try {         
+>>>>>>> 9b2d1d2c34de3c0dcdc4352ce1f03ed913c5fb6a
             let resp = await Product.findAll()
             res.status(200).send(resp)
-        }
+        
     } catch (error) {
         res.status(404).send(error);
     }
