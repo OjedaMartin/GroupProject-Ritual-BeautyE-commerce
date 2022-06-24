@@ -1,5 +1,6 @@
 // const axios = require('axios')
 const {Product} = require('../../../db')
+
 // const apikey = '31d60d4a89msh7a2c8a42c71e138p1e7691jsn6ff1ded85376'
   
 
@@ -52,13 +53,18 @@ const {Product} = require('../../../db')
 
 
 // Modificación añadida: paginado
+
 async function Allproducts(req, res) {
     const { page } = req.query;
+
     try {
-        if(page) {
+        // if(page)
+        {
             let resp = await Product.findAll({
+
                 offset: (page - 1) * 10,
                 limit: 10
+
             })
             res.status(200).json(resp)
         } else if(!page) {

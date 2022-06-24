@@ -2,6 +2,7 @@ const {User} = require(".././db");
 const { Router } = require('express');
 const bcryptjs = require('bcryptjs');
 
+
 // Crear controladores para cada ruta, aca va solamente la direccion llamando la funcion.
 
 
@@ -20,11 +21,10 @@ router.post('/create', async (req, res) => {
 
     } catch (error) {
 
+
         res.send(error+" No se pudo crear Usuario, controlar datos ingresados")
     }
   })
-
-
 
 
   router.get('/all', async(req,res)=>{
@@ -35,8 +35,6 @@ router.post('/create', async (req, res) => {
         res.send(error, 'No se pudo mostrar usuiarios')
     }
   })
-
-
 
 
   router.get('/login', async(req,res)=>{

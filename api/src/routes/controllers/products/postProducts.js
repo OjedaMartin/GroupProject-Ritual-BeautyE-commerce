@@ -1,3 +1,4 @@
+
 const { Product, Category } = require("../../../db");
 
 const createProduct = async (req, res) => {
@@ -25,6 +26,7 @@ const createProduct = async (req, res) => {
       }
   } catch(error) {
       res.status(404).send("Error en el controlador createProduct" + error);
+
   }
 }
 
