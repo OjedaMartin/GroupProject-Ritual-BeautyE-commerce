@@ -10,7 +10,7 @@ export default function ProductCard({ name, brand, image, price }) {
     
     const handleCart = (e) => {
         e.preventDefault();
-        dispatch(addToCart(id))
+    //    dispatch(addToCart(id))
     }
     return (
         <div>
