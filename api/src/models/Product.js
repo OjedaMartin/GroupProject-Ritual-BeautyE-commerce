@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
     },
     idcategory:{
       type: DataTypes.STRING,
-      allowNull: false,
+      
     },
     in_Stock: {
       type: DataTypes.BOOLEAN,
