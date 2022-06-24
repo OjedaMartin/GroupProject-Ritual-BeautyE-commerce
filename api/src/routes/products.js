@@ -8,7 +8,12 @@ const { findProductByName } = require('./controllers/products/searchByName');
  router.get('/name', findProductByName)
  router.get('/:id', getProductById)
  router.get('/', Allproducts);
+// <<<<<<< HEAD
 //  router.get('/create', createProduct)
+// =======
+//  router.get('/:id', getProductById)
+// //  router.get('/create', postProduct)
+// >>>>>>> a2350f3b95e14a16983d92058fd548bbf7cb30ed
 
 
  module.exports = router;
