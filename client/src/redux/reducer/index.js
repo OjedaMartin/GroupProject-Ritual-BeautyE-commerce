@@ -1,6 +1,7 @@
 
 const initialState = {
   products: [],
+  categories: [],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
