@@ -5,7 +5,6 @@ import Details from './Components/Details.jsx'
 // import { createProduct } from "./redux/actions/index.js";
 import AdminProduct from "./Components/FormCreateProducts.jsx";
 
-
 function App() {
   return (
     

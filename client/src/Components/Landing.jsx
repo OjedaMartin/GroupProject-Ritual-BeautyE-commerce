@@ -3,8 +3,6 @@ import Header from './Header';
 import {getAllProducts} from "../redux/actions"
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
-// import Create from './FormCreateProducts';
-
 export default function Landing(){
     const dispatch = useDispatch()
     const products = useSelector((state)=> state.products)

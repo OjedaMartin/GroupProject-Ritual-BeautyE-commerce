@@ -2,7 +2,6 @@ const initialState = {
   products: [],
   allProducts:[],
   details:[],
-  // categories:[],
 };
 
 function rootReducer(state = initialState, action) {

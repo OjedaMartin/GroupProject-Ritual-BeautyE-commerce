@@ -1,6 +1,5 @@
 const {Product, Category} = require('../../../db')
 
-
 const createProduct = async (req, res) => {
 
     const { name, brand, image , price, rating, category} = req.body;
