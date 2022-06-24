@@ -18,9 +18,13 @@ import './SearchDetail.css'
 
 export default function SearchDetail() {
     const [,setReloadState] = useState(false);
+    const {name} = useParams();    
     const dispatch = useDispatch();
-    const { brand } = useParams();
-    const { name } = useParams();
+    //const { brand } = useParams();
+
+    console.log(name)
+    
+    
     
     const productsResults = useSelector((state) => state.products);
     const allCategories = useSelector((state) => state.categories);//Agregar llamado a Actions y el estado a redux
@@ -34,8 +38,8 @@ export default function SearchDetail() {
     useEffect(() => {
         dispatch(getProductName(name));//levantar la action que me modifica el estado segun name, pero ver si esto pisa el searchbar
         dispatch(getCategory());
-    }, [dispatch, name, brand]);
-
+    }, [dispatch, name]);
+//brand
 
     const setOrder = (e) => {
         dispatch(orderProducts(e.target.value));//LEVANTAR LA RUTA DE ORDENAMIENTO EN ACTIONS Y HACER REDUCER!

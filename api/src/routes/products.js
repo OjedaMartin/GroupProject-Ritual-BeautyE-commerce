@@ -11,13 +11,13 @@ const { Router } = require('express');
  const router = Router();
 
 
+ router.get('/', findProductByName)
  
 
 
  router.get('/', Allproducts);
  router.get('/:id', getProductById)
  router.post('/create', createProduct)
- router.get('/name', findProductByName)
 
 
 

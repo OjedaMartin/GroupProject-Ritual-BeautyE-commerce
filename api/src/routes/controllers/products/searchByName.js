@@ -1,6 +1,23 @@
 const {Product, Category} = require('../../../db')
+const { Op } = require('sequelize')
 
+const findProductByName = async(req, res) => {
+    const { name } = req.query;
+    try {
+        const product = await Product.findAll({
+            where: {
+                name: {
+                    [Op.iLike]: `%${name}%`
+                }
+            }
+        })
+        res.status(200).send(product)
+    } catch(error) {
+        res.status(404).send("Error en el controlador findProductByName: " + error);
+    }
+}
 
+/*
 // Modificación añadida: paginado
 const findProductByName = async (req, res) => {
     try{
@@ -36,7 +53,7 @@ const findProductByName = async (req, res) => {
         console.log(error)
     }
 }
-
+*/
 module.exports = {
 	findProductByName
 }
