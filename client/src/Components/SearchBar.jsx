@@ -29,7 +29,7 @@ export default function SearchBar (){
         <div className="container">
             
             <div className="searchbox">
-                <Link to= {'/SearchDetail/:' + name} ><button className="search-btn" >
+                <Link to= {'/SearchDetail/search/' + name} ><button className="search-btn" >
                 <FaSearch className="icon" aria-hidden='true' id="searchbar-icon"/>
                 </button></Link>
 

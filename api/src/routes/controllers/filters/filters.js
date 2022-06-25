@@ -24,14 +24,14 @@ const filterBrand = async (req, res) => {
 
 const filterCategories = async(req, res) => {
 	const { category } = req.params;
-	const { page } = req.query;
+	//const { page } = req.query;
 	try {
 		const byCategory = await Product.findAll({
 			where: {
 				idcategory: category
 			},
-			offset: (page - 1) * 10,
-			limit: 10
+			//offset: (page - 1) * 10,
+			//limit: 10
 		});
 		res.status(200).send(byCategory);
 	} catch(error) {

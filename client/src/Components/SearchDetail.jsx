@@ -1,11 +1,12 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import {
     getProductName,
     orderProducts,
     getCategory,
-    getFilterProducts
+    getFilterProducts,
+    getfilterCategories
 } from '../redux/actions';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
@@ -18,9 +19,17 @@ import './SearchDetail.css'
 
 export default function SearchDetail() {
     const [,setReloadState] = useState(false);
+    const {name} = useParams();   
+    const {category} = useParams();
     const dispatch = useDispatch();
-    const { brand } = useParams();
-    const { name } = useParams();
+    let location = useLocation();
+    //const { brand } = useParams();
+    //console.log(location)
+    //console.log(name)
+    //console.log(category)
+    
+    
+    
     
     const productsResults = useSelector((state) => state.products);
     const allCategories = useSelector((state) => state.categories);//Agregar llamado a Actions y el estado a redux
@@ -32,10 +41,16 @@ export default function SearchDetail() {
     const currentProducts = productsResults?.slice(indexOfFirstCard, indexOfLastCard);
 
     useEffect(() => {
+        if(location.pathname === `/SearchDetail/search/${name}`){
         dispatch(getProductName(name));//levantar la action que me modifica el estado segun name, pero ver si esto pisa el searchbar
+        } else if (location.pathname === `/SearchDetail/collection/${category}`){
+        dispatch(getfilterCategories(category));
+        }
         dispatch(getCategory());
-    }, [dispatch, name, brand]);
+        
+    }, [dispatch, name, category]);
 
+//brand
 
     const setOrder = (e) => {
         dispatch(orderProducts(e.target.value));//LEVANTAR LA RUTA DE ORDENAMIENTO EN ACTIONS Y HACER REDUCER!

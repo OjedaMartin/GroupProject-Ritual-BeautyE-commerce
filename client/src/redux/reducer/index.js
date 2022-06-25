@@ -73,6 +73,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: orderProducts(action.payload, state.products),
       };
+    case "GET_FILTER_CATEGORIES":
+      return{
+        ...state,
+        products: action.payload,
+      };
     default:
       return state;
   }

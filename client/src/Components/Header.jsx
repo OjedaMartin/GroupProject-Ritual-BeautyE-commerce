@@ -20,10 +20,10 @@ export default function Header(){
                 </div>
             </div>
                 <nav className='navBar'>
-                    <Link to="/SearchDetail/Makeup"><button className='subT'>Makeup</button></Link>
-                    <Link to="/SearchDetail/Skincare"><button className='subT'>Skincare</button></Link>
-                    <Link to="/SearchDetail/Hair"><button className='subT'>Tools & Brushes</button></Link>
-                    <Link to="/SearchDetail/Tools & Brushes"><button className='subT'>Hair</button></Link>
+                    <Link to="/SearchDetail/collection/cat140006"><button className='subT'>Makeup</button></Link>
+                    <Link to="/SearchDetail/collection/cat150006"><button className='subT'>Skincare</button></Link>
+                    <Link to="/SearchDetail/collection/cat130038"><button className='subT'>Tools & Brushes</button></Link>
+                    <Link to="/SearchDetail/collection/cat130042"><button className='subT'>Hair</button></Link>
                     <Link to="/SearchDetail/"><button className='subT'>Sale</button></Link>
                 </nav>
             
