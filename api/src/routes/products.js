@@ -15,21 +15,4 @@ router.put('/update/:id', putProduct);
 
 
 
-<<<<<<< HEAD
- const router = Router();
-
-
- router.get('/', findProductByName)
- 
-
-
- router.get('/', Allproducts);
- router.get('/:id', getProductById)
- router.post('/create', createProduct)
-
-
-
- module.exports = router;
-=======
 module.exports = router;
->>>>>>> master
