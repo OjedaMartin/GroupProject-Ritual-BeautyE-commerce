@@ -24,9 +24,9 @@ export default function SearchDetail() {
     const dispatch = useDispatch();
     let location = useLocation();
     //const { brand } = useParams();
-    console.log(location)
-    console.log(name)
-    console.log(category)
+    //console.log(location)
+    //console.log(name)
+    //console.log(category)
     
     
     
@@ -47,6 +47,7 @@ export default function SearchDetail() {
         dispatch(getfilterCategories(category));
         }
         dispatch(getCategory());
+        
     }, [dispatch, name, category]);
 
 //brand
