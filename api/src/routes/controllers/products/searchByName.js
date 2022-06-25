@@ -1,11 +1,12 @@
-const { Product, Category } = require('../../../db');
-const { Op } = require('sequelize');
+const {Product, Category} = require('../../../db')
+const { Op } = require('sequelize')
+
 
 
 
 const findProductByName = async(req, res) => {
     const { name } = req.query;
-    const { page } = req.query;
+   // const { page } = req.query;
     try {
         const product = await Product.findAll({
             where: {
@@ -13,8 +14,8 @@ const findProductByName = async(req, res) => {
                     [Op.iLike]: `%${name}%`
                 }
             },
-            offset: (page - 1) * 10,
-            limit: 10
+      //      offset: (page - 1) * 10,
+    //        limit: 10
         })
         res.status(200).send(product)
     } catch(error) {
@@ -29,21 +30,6 @@ const findProductByName = async(req, res) => {
 
 
 
-/*const findProductByName = async(req, res) => {
-    const { name } = req.query;
-    try {
-        const product = await Product.findAll({
-            where: {
-                name: {
-                    [Op.iLike]: `%${name}%`
-                }
-            }
-        })
-        res.status(200).send(product)
-    } catch(error) {
-        res.status(404).send("Error en el controlador findProductByName: " + error);
-    }
-}*/
 
 /*
 // Modificación añadida: paginado

@@ -5,7 +5,8 @@ import {
     getProductName,
     orderProducts,
     getCategory,
-    getFilterProducts
+    getFilterProducts,
+    getfilterCategories
 } from '../redux/actions';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
@@ -18,12 +19,15 @@ import './SearchDetail.css'
 
 export default function SearchDetail() {
     const [,setReloadState] = useState(false);
-    const {params} = useParams();    
+    const {name} = useParams();   
+    const {category} = useParams();
     const dispatch = useDispatch();
     let location = useLocation();
     //const { brand } = useParams();
     console.log(location)
     console.log(name)
+    console.log(category)
+    
     
     
     
@@ -37,13 +41,14 @@ export default function SearchDetail() {
     const currentProducts = productsResults?.slice(indexOfFirstCard, indexOfLastCard);
 
     useEffect(() => {
-        if(location.pathname === `/SearchDetail/search/${params}`){
-        dispatch(getProductName(params));//levantar la action que me modifica el estado segun name, pero ver si esto pisa el searchbar
-        } else if (location.pathname === `/SearchDetail/collection/${params}`){
-        dispatch(getProductName(params));
+        if(location.pathname === `/SearchDetail/search/${name}`){
+        dispatch(getProductName(name));//levantar la action que me modifica el estado segun name, pero ver si esto pisa el searchbar
+        } else if (location.pathname === `/SearchDetail/collection/${category}`){
+        dispatch(getfilterCategories(category));
         }
         dispatch(getCategory());
-    }, [dispatch, params]);
+    }, [dispatch, name, category]);
+
 //brand
 
     const setOrder = (e) => {

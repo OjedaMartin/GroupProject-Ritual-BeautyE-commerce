@@ -4,7 +4,7 @@ export function getProductName(name) {
 
   return async function (dispatch) {
     try {
-      let json = await axios.get("http://localhost:3001/products?name=" + name)
+      let json = await axios.get("http://localhost:3001/products/search?name=" + name)
       return dispatch({
         type: 'GET_PRODUCT_NAME',
         payload: json.data
@@ -97,4 +97,19 @@ export function createProduct(payload) {
     console.log(info);
     return info;
   };
+}
+
+
+export function getfilterCategories(params) {
+  return async function (dispatch) {
+    try{
+    const json = await axios.get(`http://localhost:3001/filters/category/${params}`)
+    return dispatch({
+      type: 'GET_FILTER_CATEGORIES',
+      payload: json.data
+    })
+  } catch (error) {
+    console.log(error)
+   }
+  }
 }
