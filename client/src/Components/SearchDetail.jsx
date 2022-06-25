@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import {
     getProductName,
     orderProducts,
@@ -18,10 +18,11 @@ import './SearchDetail.css'
 
 export default function SearchDetail() {
     const [,setReloadState] = useState(false);
-    const {name} = useParams();    
+    const {params} = useParams();    
     const dispatch = useDispatch();
+    let location = useLocation();
     //const { brand } = useParams();
-
+    console.log(location)
     console.log(name)
     
     
@@ -36,9 +37,13 @@ export default function SearchDetail() {
     const currentProducts = productsResults?.slice(indexOfFirstCard, indexOfLastCard);
 
     useEffect(() => {
-        dispatch(getProductName(name));//levantar la action que me modifica el estado segun name, pero ver si esto pisa el searchbar
+        if(location.pathname === `/SearchDetail/search/${params}`){
+        dispatch(getProductName(params));//levantar la action que me modifica el estado segun name, pero ver si esto pisa el searchbar
+        } else if (location.pathname === `/SearchDetail/collection/${params}`){
+        dispatch(getProductName(params));
+        }
         dispatch(getCategory());
-    }, [dispatch, name]);
+    }, [dispatch, params]);
 //brand
 
     const setOrder = (e) => {
