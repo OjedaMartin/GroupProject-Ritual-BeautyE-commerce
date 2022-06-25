@@ -5,13 +5,16 @@ const { Op } = require('sequelize');
 
 const findProductByName = async(req, res) => {
     const { name } = req.query;
+    const { page } = req.query;
     try {
         const product = await Product.findAll({
             where: {
                 name: {
                     [Op.iLike]: `%${name}%`
                 }
-            }
+            },
+            offset: (page - 1) * 10,
+            limit: 10
         })
         res.status(200).send(product)
     } catch(error) {
