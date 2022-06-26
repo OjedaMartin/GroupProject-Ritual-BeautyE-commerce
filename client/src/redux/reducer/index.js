@@ -53,7 +53,9 @@ function rootReducer(state = initialState, action) {
           products: action.payload,
           allProducts: action.payload
         }
-  
+
+      
+
     case "GET_PRODUCT_BY_FILTER":
       return {
         ...state,
@@ -69,6 +71,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
+      case "GET_FILTER_BRAND":
+      return{
+        ...state,
+        products: action.payload,
+      };
+
     default:
       return state;
   }

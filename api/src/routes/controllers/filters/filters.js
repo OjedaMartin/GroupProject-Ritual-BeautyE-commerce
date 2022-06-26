@@ -5,14 +5,14 @@ const { Product } = require('../../../db');
 // controlador para el filtrado por marca
 const filterBrand = async (req, res) => {
 	const { brand } = req.params;
-	const { page } = req.query;
+	//const { page } = req.query;
 	try {
 		const byBrand = await Product.findAll({
 			where: {
 				brand: brand
 			},
-			offset: (page - 1) * 10,
-			limit: 10
+			// offset: (page - 1) * 10,
+			// limit: 10
 		})
 		res.status(200).send(byBrand); 
 	} catch(error) {

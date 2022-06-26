@@ -55,21 +55,6 @@ console.log("getDet", prod)
     }
   };
 }
-
-export function getFilterProducts(filterSelected) {
-
-  return async function (dispatch) {
-    try {
-      const productsByFilter = await axios.get(`http://localhost:3001/filters/:${filterSelected}`);
-      return dispatch({
-        type: 'GET_PRODUCT_BY_FILTER',
-        payload: productsByFilter.data,
-      })
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
 export function orderProducts(orderSelected) {
   return {
     type: 'ORDER_PRODUCTS',
@@ -94,6 +79,19 @@ export function getfilterCategories(params) {
     const json = await axios.get(`http://localhost:3001/filters/category/${params}`)
     return dispatch({
       type: 'GET_FILTER_CATEGORIES',
+      payload: json.data
+    })
+  } catch (error) {
+    console.log(error)
+   }
+  }
+}
+export function getfilterBrand(params) {
+  return async function (dispatch) {
+    try{
+    const json = await axios.get(`http://localhost:3001/filters/brand/${params}`)
+    return dispatch({
+      type: 'GET_FILTER_BRAND',
       payload: json.data
     })
   } catch (error) {

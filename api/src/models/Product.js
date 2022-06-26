@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       set(value){
-        this.setDataValue("price", "$" + value)
+        this.setDataValue("price",value)
       }
     },
     rating: {
