@@ -1,12 +1,13 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";//, useLocation 
 import {
-    getProductName,
     orderProducts,
-    getCategory,
-    getFilterProducts,
-    getfilterCategories
+    getAllProducts,
+    getProductName,
+    getAllCategories,
+    getfilterCategories,
+    getfilterBrand
 } from '../redux/actions';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
@@ -18,94 +19,105 @@ import './SearchDetail.css'
 
 
 export default function SearchDetail() {
-    const [,setReloadState] = useState(false);
-    const {name} = useParams();   
-    const {category} = useParams();
+    const [, setReloadState] = useState(false);
+    const { name } = useParams();
+    const { category } = useParams();
     const dispatch = useDispatch();
-    let location = useLocation();
+
+    //let location = useLocation();
     //const { brand } = useParams();
     //console.log(location)
-    //console.log(name)
-    //console.log(category)
-    
-    
-    
-    
+
+    console.log('NAMEEE', name)
+    console.log('CATEGORY', category)
+
     const productsResults = useSelector((state) => state.products);
-    const allCategories = useSelector((state) => state.categories);//Agregar llamado a Actions y el estado a redux
-    
+    //const allCategories = useSelector((state) => state.categories);//Agregar llamado a Actions y el estado a redux
+
     const [currentPage, setCurrentPage] = useState(1);//pag selected
     const [productsPerPage] = useState(10);//cards x page
     const indexOfLastCard = currentPage * productsPerPage;
     const indexOfFirstCard = indexOfLastCard - productsPerPage;
     const currentProducts = productsResults?.slice(indexOfFirstCard, indexOfLastCard);
 
+    const productsBrand = [];
+
+    currentProducts.map((e) => productsBrand.push(e.brand));
+    console.log('productsBrand',productsBrand);
+
+    const newData = [...new Set(productsBrand)];
+    console.log('newData',newData);
+
+
+   
+    
+    //console.log('currentProducts',currentProducts);
     useEffect(() => {
-        if(location.pathname === `/SearchDetail/search/${name}`){
-        dispatch(getProductName(name));//levantar la action que me modifica el estado segun name, pero ver si esto pisa el searchbar
-        } else if (location.pathname === `/SearchDetail/collection/${category}`){
-        dispatch(getfilterCategories(category));
-        }
-        dispatch(getCategory());
-        
+        dispatch(getAllCategories());
+        if (name) { dispatch(getProductName(name)) }
+        else if (category) { dispatch(getfilterCategories(category)) }
     }, [dispatch, name, category]);
+    // if(location.pathname === `/SearchDetail/search/${name}`){
+    //if (location.pathname === `/SearchDetail/collection/${category}`){
 
-//brand
-
+    const objectCat = {
+        cat140006: 'Makeup',
+        cat150006: 'Skincare',
+        cat130042: 'Tools & Brushes',
+        cat130038: 'Hair',
+    }
+    //console.log('acaaa--->', objectCat[category])
     const setOrder = (e) => {
-        dispatch(orderProducts(e.target.value));//LEVANTAR LA RUTA DE ORDENAMIENTO EN ACTIONS Y HACER REDUCER!
-        setReloadState((state)=>!state);
-        setCurrentPage(1);
-    };
-    const handleFilterByProducts = (e) => {//FILTRAR POR: CATEGORIA O SUBCATEGORIA, PRODUCTO NUEVO, VER OTRAS OPCIONES. VER DESDE EL BACK!
-        dispatch(getFilterProducts(e.target.value));
-        setReloadState((state)=>!state);//depende de como venga en el back
+        dispatch(orderProducts(e.target.value));
+        setReloadState((state) => !state);
         setCurrentPage(1);
     };
 
     const handleFilterByCategory = (e) => {
-       // dispatch(filterByCategories(e.target.value));
-        setReloadState((state)=>!state);
+        dispatch(getfilterCategories(e.target.value));
+        setReloadState((state) => !state);
         setCurrentPage(1);
     }
 
+    const handleFilterByBrand = (e) => {
+        dispatch(getfilterBrand(e.target.value));
+        setCurrentPage(1);
+        setReloadState((state) => !state);
+    }
 
     const paginated = (pageNum) => {
         setCurrentPage(pageNum)
     };
-
-
-    if (currentProducts.length > 0) {
+    //currentProducts.length > 0
+    if (currentProducts.length > 0 || name || category) {
+        if (currentProducts.length === 0) {
+            getAllProducts()
+        }
         return (
             <Fragment>
-                <Header/>
+                <Header />
                 <main className="division">
-                     {/*  <div> </div>LEVANTAR LA CATEGORIA SI ES QUE VIENE DESDE AHI, O LEVANTAR LO QUE SE HAYA BUSCADO*/}
+                    <div className="params">
+                        {name ? <h1>{name}</h1> : <h1>{objectCat[category]}</h1>}
+                    </div>
                     <div className="selectors">
                         <select onChange={setOrder} name='Type'>
-                            <option value='Sort by name'>Sort by price</option>
+                            <option value='Sort'>Sort</option>
                             <option value='High to Low Price'>High to Low</option>
                             <option value='Low to High Price'>Low to High</option>
+                            <option value='Sort by rated'>Top Rated</option>
                         </select>
-                        <select onChange={setOrder} name='Type'>
-                            <option value='Sort by rated'>Sort by Top Rated</option>
+                        <select onChange={handleFilterByCategory} name='Type'>
+                            <option>Category</option>
+                            <option value='cat140006'>Makeup</option>
+                            <option value='cat150006'>Skincare</option>
+                            <option value='cat130042'>Tools & Brushes</option>
+                            <option value='cat130038'>Hair</option>
                         </select>
-                        <select onChange={handleFilterByProducts} name='Type'>
-                            <option value='Filter by brand'>Filter by brand</option>
-    
-                            {/* ACA LEVANTARIA EL FILTRADO DE CATEGORIA O BRAND, O PODRIAMOS HACER UN RANGO DE PRECIO PERO NO ES OBLIGATORIO */}
-    
-                        </select>
-                        <select onChange={ handleFilterByCategory} name='Type'>
-                            <option value='Filter by Category'>
-                                Category
-                            </option>
-                            {allCategories?.map((categories) => (
-                                <option
-                                    key={categories.name}
-                                    value={categories.name}>
-                                    {categories.name}
-                                </option>
+                        <select onChange={handleFilterByBrand}>
+                            <option value='brand'>Brand</option>
+                            {newData?.map((e) => (
+                                <option key={e} value={e}>{e}</option>
                             ))}
                         </select>
                     </div>
@@ -115,36 +127,37 @@ export default function SearchDetail() {
                                 <Fragment key={e.name}>
                                     <div>
                                         <ProductCard
-                                            key={e.idcategory}
+                                            key={e.parameteregory}
                                             name={e.name}
                                             brand={e.brand}
                                             image={e.image}
                                             price={e.price}
+                                            id={e.id}
                                         />
                                     </div>
                                 </Fragment>
                             )
                         })}
-                     <div>
-                        <Pagination
-                            productsPerPage={productsPerPage}
-                            amountProducts={productsResults.length}
-                            paginated={paginated}
-                        />
-                    </div>        
-                                     
+                        <div>
+                            <Pagination
+                                productsPerPage={productsPerPage}
+                                amountProducts={productsResults.length}
+                                paginated={paginated}
+                            />
+                        </div>
+
                     </section>
-                   
+
                 </main>
-                <Footer/>
+                <Footer />
             </Fragment>
-    
-        )        
+
+        )
     } else {
         return (
-            <div> <img alt="loading" src={loaderEyes}/></div>
+            <div> <img alt="loading" src={loaderEyes} /></div>
         )
     }
-    
+
 
 }
