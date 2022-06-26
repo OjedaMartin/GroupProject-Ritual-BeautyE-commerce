@@ -1,22 +1,43 @@
-.backg{
+.back{
     background-image: url("https://thumbs.dreamstime.com/b/fondo-abstracto-minimalista-con-hojas-negras-outline-situadas-en-los-laterales-de-la-plantilla-213088892.jpg");
 
 }
-.wrapper{
+.manzana{
     background-color: #d3d3d38c;
+
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    /* padding: 10px; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    margin: 10px;
+
     margin-right: auto;
     margin-left:  auto;
 
     max-width: 960px;
 
     padding: 20px 40px;
-
+    height: 100vh;
+    width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
-.titleForm{
-    font-family: 'Source Sans Pro', sans-serif;
-    
+.divInfo{
+    padding: 20px 80px;
 }
+.titles{
+    font-family: 'Source Sans Pro', sans-serif;
+    /* position: relative; */
+    /* justify-content:center; */
+}
+.img{
+    padding: 100px;
+}
+img{
+    width: 20vw;
+    border-radius: 40px;
+    align-content: center;
+    }
 .btn{
 border-radius: 0rem;
 border: black;
@@ -28,21 +49,13 @@ font-weight: 700;
 padding: 15px 60px;
 background-color:black ;
 color:white;
-margin: 20px;
+margin: 50px;
+
 
 }
-.label1{
-    
+.label{
+    /* position: relative; */
 
     font-family: 'Vazirmatn', sans-serif;
     margin: 10px;
-}
-.input1{
-    font-family: 'Vazirmatn', sans-serif;
-}
-.divcell{
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-
 }

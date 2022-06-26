@@ -4,7 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import {
     getProductName,
     orderProducts,
-    getCategory,
+    getAllCategories,
     getFilterProducts,
     getfilterCategories
 } from '../redux/actions';
@@ -46,7 +46,7 @@ export default function SearchDetail() {
         } else if (location.pathname === `/SearchDetail/collection/${category}`){
         dispatch(getfilterCategories(category));
         }
-        dispatch(getCategory());
+        dispatch(getAllCategories());
         
     }, [dispatch, name, category]);
 
@@ -105,6 +105,7 @@ export default function SearchDetail() {
                                     key={categories.name}
                                     value={categories.name}>
                                     {categories.name}
+                                    {categories.id}
                                 </option>
                             ))}
                         </select>
@@ -120,6 +121,7 @@ export default function SearchDetail() {
                                             brand={e.brand}
                                             image={e.image}
                                             price={e.price}
+                                            id= {e.id}
                                         />
                                     </div>
                                 </Fragment>
