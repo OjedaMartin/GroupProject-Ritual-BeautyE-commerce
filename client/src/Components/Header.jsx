@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 
 import { FaAdn, FaShoppingCart } from "react-icons/fa"
 

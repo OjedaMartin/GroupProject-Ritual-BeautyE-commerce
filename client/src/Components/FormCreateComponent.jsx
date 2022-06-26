@@ -6,56 +6,57 @@ import {
   getAllCategories,
   getAllProducts,
 } from "../redux/actions";
-import "./FormCreateComponent.css"
-// import s from "./Create.module.css";
+import "./FormCreateComponent.css";
 const inputValidate = (estado) => {
   let errors = {};
-  if (!isNaN(Number(estado.name))) {
-    errors.name = "The name of the Activities cannot contain only numbers";
-  }
-  if (estado.name === "") {
-    errors.name = "The name is required";
-  }
-  if (estado.name.length < 2) {
-    errors.name = "Name must contain at least four (2) characters";
-  }
-  if (!estado.difficult.length) {
-    errors.difficult = `Difficult is required`;
-  }
-  if (estado.season.length === 0) {
-    errors.season = "You must select at least one season";
-  }
-  if (!estado.duration || estado.duration === "") {
-    errors.duration = `Duration is required`;
-  }
-  if (estado.countries.length === 0) {
-    errors.countries = "You must select at least one country";
-  }
-  console.log("error", errors);
-  return errors;
+  if(!isNaN(Number(estado.name))) {
+  errors.name = 'The name of the Activities cannot contain only numbers';
+} if(estado.name === "") {
+  errors.name = 'The name is required';
+} if(estado.name.length <2) {
+  errors.name = 'Name must contain at least four (2) characters';
+} 
+if(!estado.price.length) {
+  errors.difficult = `Difficult is required`;
+} 
+ if(estado.idcategory.length === 0) {
+  errors.idcategory = 'You must select at least one category';
+} if(!estado.rating || estado.rating === "") {
+  errors.rating = `Rating is required`;
+} if(estado.brand.length === 0) {
+  errors.brand = 'You must select at least one brand';
+}if(estado.category.length === 0) {
+  errors.category = 'You must select at least one category';
+}
+console.log("error", errors)
+return errors;
 };
 
 export default function AdminProduct() {
   const dispatch = useDispatch();
-  //   const navigate = useNavigate();
-  //   const countries = useSelector((state) => state.country);
   const products = useSelector((state) => state.products);
-  //   const countries = useSelector((state) => state.country);
-  const setArr = [];
-
-  //   products.map((e) => e.products?.map((e) => setArr.push(e)));
-  //   let newData = [...new Set(setArr)];
-
+  const category = useSelector((state) => state.category);
+  console.log("2",products);
+  const [err, SetErr] = useState({});
   const [estado, setEstado] = useState({
     name: "",
     brand: "",
     image: "",
     price: "",
     rating: "",
-    category: [],
+    idcategory: "",
+    category: "",
   });
-  console.log(estado);
-  const [err, SetErr] = useState({});
+  console.log("estado",estado);
+  // const [err, SetErr] = useState({});
+  const setArr = [];
+  products.map((e) =>setArr.push(e.idcategory));
+  let newData = [...new Set(setArr)];
+
+  const setBrand = [];
+  products.map((e) =>setBrand.push(e.brand));
+  let newDatas = [...new Set(setBrand)];
+
 
   function handleChange(e) {
     e.preventDefault();
@@ -68,57 +69,49 @@ export default function AdminProduct() {
   function handleSelect(e) {
     setEstado({
       ...estado,
-      products: [...estado.countries, e.target.value],
+      idcategory: [...estado.idcategory, e.target.value],
     });
-    SetErr(
-      inputValidate({
-        ...estado,
-        products: [...estado.products, e.target.products],
-      })
-    );
+    SetErr(inputValidate({
+      ...estado,
+      idcategory: [...estado.idcategory, e.target.value]
+    }));
   }
-  function handleCheck(e) {
-    if (e.target.checked) {
-      setEstado({
-        ...estado,
-        categories: [...estado.season, e.target.value],
-      });
-    } else {
-      setEstado({
-        ...estado,
-        rating: estado.rating?.filter((s) => s !== e.target.value),
-      });
-    }
-  }
-  function handleCheckDif(e) {
-    e.preventDefault();
+  function handleSelectCat(e) {
     setEstado({
       ...estado,
-      difficult: e.target.value,
+      category: [...estado.category, e.target.value],
     });
-    SetErr(
-      inputValidate({
-        ...estado,
-        difficult: [...estado.difficult, e.target.value],
-      })
-    );
+    SetErr(inputValidate({
+      ...estado,
+      category: [...estado.category, e.target.value]
+    }));
+  }
+  function handleSelectBrand(e) {
+    setEstado({
+      ...estado,
+      brand: [...estado.brand, e.target.value],
+    });
+    SetErr(inputValidate({
+      ...estado,
+      brand: [...estado.brand, e.target.value]
+    }));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (Object.keys(err).length) {
-      return alert("Faltan datos");
-    }
+    if (Object.keys(err).length)
+{return alert("Faltan datos")}
     dispatch(createProduct(estado));
     dispatch(estado);
     alert("Actividad Añadida");
-    SetErr({});
     setEstado({
       name: "",
-      difficult: "",
-      duration: [],
-      season: [],
-      countries: [],
+      brand: "",
+      image: "",
+      price: "",
+      rating: "",
+      idcategory: "",
+      category: "",
     });
   }
   useEffect(() => {
@@ -129,148 +122,137 @@ export default function AdminProduct() {
   }, [dispatch]);
 
   return (
-    <div className='wrapper'>
+    <div className="backg">
+    <div className="wrapper">
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <h1 className='titleForm'>Create New Product</h1>
-          <div className='divcell'>
-            <label className='label1'>Rating: </label>
+          <h1 className="titleForm">Create New Product</h1>
+          <div className="divcell">
+            <label className="label1">Rating: </label>
             <input
-            className='input1'
-              //   className={s.input}
-              type="text"
+              className="input1"
+              type="number"
               value={estado.rating}
-              name="name"
-              // onChange={(e) => handleChange(e)}
+              min="0"
+              max="1000"
+              name="rating"
+              onChange={(e) => handleChange(e)}
+              required
             />
-            {err.name}
+            {err.rating}
           </div>
-          <div className='divcell'>
-            <label className='label1'>Name: </label>
+          <div className="divcell">
+            <label className="label1">Name: </label>
             <input
-            className='input1'
-              //   className={s.input}
+              className="input1"
               type="text"
               value={estado.name}
               name="name"
               onChange={(e) => handleChange(e)}
+              required
             />
             {err.name}
           </div>
-          <div className='divcell'>
-            <label className='label1'>Price: </label>
-            <select onChange={(e) => handleCheckDif(e)}>
-              <option value={0}>Price</option>
-              {/* <option value={1} onChange={(e) => handleCheckDif(e)}>
-                1
-              </option>
-              <option value={2} onChange={(e) => handleCheckDif(e)}>
-                2
-              </option>
-              <option value={3} onChange={(e) => handleCheckDif(e)}>
-                3
-              </option>
-              <option value={4} onChange={(e) => handleCheckDif(e)}>
-                4
-              </option>
-              <option value={5} onChange={(e) => handleCheckDif(e)}>
-                5
-              </option> */}
-            </select>
-            {/* {err.difficult} */}
-          </div>
-          <div className='divcell'>
-            <label className='label1'>Image: </label>
+          <div className="divcell">
+            <label className="label1">Price: </label>
             <input
-            className='input1'
-              //   className={s.input}
-              type="text"
-              value={estado.brand}
-              name="duration"
-              //   className={s.body}
+              className="input1"
+              type="number"
+              value={estado.price}
+              min="0"
+              max="1000"
+              name="price"
               onChange={(e) => handleChange(e)}
-              // required="se te olvido algo"
+              required
             />
-            {err.duration && <p>{err.duration}</p>}
+            {err.price}
+          </div>
+          <div className="divcell">
+            <label className="label1">Image: </label>
+            <input
+              className="input1"
+              // key="image"
+              type="text"
+              value={estado.image}
+              name="image"
+              onChange={(e) => handleChange(e)}
+              required
+            />
+            {err.image}
           </div>
           <div>
-            <label className='label1'>Categories </label>
-<br/>
-            <label className='label1'>
-             Skincare
-              <input
-              className='input1'
-                // className={s.input}
-                type="checkbox"
-                name={estado.category}
-                value="Spring"
-                onChange={(e) => handleCheck(e)}
-              />
-            </label >
-            <label className='label1'>
-              Hair
-              <input
-              className='input1'
-                // className={s.input}
-                type="checkbox"
-                name={estado.category}
-                value="Summer"
-                onChange={(e) => handleCheck(e)}
-              />
-            </label>
-            {/* <label>
-              Otoño:
-              <input
-                className={s.input}
-                type="checkbox"
-                name={estado.season}
-                value="Autumn"
-                onChange={(e) => handleCheck(e)}
-              />{" "}
-            </label>
-            <label>
-              Invierno:
-              <input
-                className={s.input}
-                type="checkbox"
-                name={estado.season}
-                value="Winter"
-                onChange={(e) => handleCheck(e)}
-              />{" "}
-            </label> */}
-            {err.category && <p>{err.category}</p>}
-
-            {/* {err.rating && <p>{err.rating}</p>} */}
-          </div>
-
-          <div>
-            <label className='label1' >brand: </label>
-
-            <select onChange={(e) => handleSelect(e)}>
-              {products?.map((e) => (
-                <option key={e.name} value={e.name}>
-                  {e.name}
-                </option>
-              ))}
-              {err.brand}
-            </select>
             <div>
-              <ul className='label1'>
-                brands selected:{" "}
-                {estado.products?.map((e) => (
-                  <p key={e}>{e}</p>
+              <label className="label1">Id: </label>
+
+              <select className="input1" onChange={(e) => handleSelect(e)}>
+                {newData?.map((e) => (
+                  <option className="input1"  key={e} value={e}>
+                    {e}
+                  </option>
                 ))}
-              </ul>
+              </select>
+              {err.idcategory}
+              <div>
+                <ul className="label1">
+                  selected:{" "}
+                 {estado.idcategory}
+                </ul>
+              </div>
             </div>
-          </div>
-          <div>
-            <button className='btn' onClick={(e) => handleSubmit(e)}>Crealo!</button>
-            <Link to="/">
-              <button className='btn'>Volver</button>
-            </Link>
+
+            <div>
+              <label className="label1">Brand: </label>
+
+              <select className="input1" onChange={(e) => handleSelectBrand(e)}>
+                {newDatas?.map((e) => (
+                  <option className="input1" key={e} value={e}>
+                    {e}
+                  </option>
+                ))}
+              </select>
+              {err.brand}
+              <div>
+                <ul className="label1">
+                  Selected:{" "}
+                  {estado.brand}
+                 
+                </ul>
+                
+              </div>
+            </div>
+
+            <div>
+              <label className="label1">Category: </label>
+
+              <select className="input1" onChange={(e) => handleSelectCat(e)}>
+                {category?.map((e) => (
+                  <option className="input1" key={e} value={e.name}>
+                    {e.name}
+                  </option>
+                ))}
+                {err.category}
+              </select>
+              <div>
+                <ul className="label1">
+                  Selected:{" "}
+                  {estado.category}
+                 
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <button className="btn" onClick={(e) => handleSubmit(e)}>
+                Crealo!
+              </button>
+              <Link to="/">
+                <button className="btn">Volver</button>
+              </Link>
+            </div>
           </div>
         </div>
       </form>
+    </div>
     </div>
   );
 }

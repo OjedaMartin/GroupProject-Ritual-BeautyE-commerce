@@ -5,16 +5,18 @@
     justify-content: space-between;
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    border-bottom-color: rgb(226, 226, 226);
+    border-bottom-color: rgb(248, 237, 237);
     background-image: url('../images/BackgroundHeader.png');
     
     
 }
 .title {
+    font-size: 50px;
     position: absolute;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.027);
     margin: 30px 615px;
     font-family: 'Source Sans Pro', sans-serif;
+    
     
 
 }

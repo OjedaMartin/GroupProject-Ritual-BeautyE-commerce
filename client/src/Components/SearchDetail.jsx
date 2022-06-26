@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";//, useLocation 
 import {
     orderProducts,
+
     getAllProducts,
     getProductName,
     getAllCategories,
     getfilterCategories,
     getfilterBrand
+
 } from '../redux/actions';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
@@ -53,9 +55,11 @@ export default function SearchDetail() {
     
     //console.log('currentProducts',currentProducts);
     useEffect(() => {
+
         dispatch(getAllCategories());
         if (name) { dispatch(getProductName(name)) }
         else if (category) { dispatch(getfilterCategories(category)) }
+
     }, [dispatch, name, category]);
     // if(location.pathname === `/SearchDetail/search/${name}`){
     //if (location.pathname === `/SearchDetail/collection/${category}`){
@@ -114,10 +118,12 @@ export default function SearchDetail() {
                             <option value='cat130042'>Tools & Brushes</option>
                             <option value='cat130038'>Hair</option>
                         </select>
+
                         <select onChange={handleFilterByBrand}>
                             <option value='brand'>Brand</option>
                             {newData?.map((e) => (
                                 <option key={e} value={e}>{e}</option>
+
                             ))}
                         </select>
                     </div>
@@ -132,7 +138,9 @@ export default function SearchDetail() {
                                             brand={e.brand}
                                             image={e.image}
                                             price={e.price}
+
                                             id={e.id}
+
                                         />
                                     </div>
                                 </Fragment>

@@ -38,21 +38,6 @@ export function getAllCategories() {
   };
 }
 
-export function getCategory(){
-  return async function (dispatch) {
-    try {
-      const categories = await axios.get('http://localhost:3001/categories');
-      return dispatch({
-        type: 'GET_CATEGORY',
-        payload: categories.data,
-      })
-    } catch(error){
-      console.log(error);
-    }
-  }
-  
-};
-
 export function getDetail(id) {
   return async function (dispatch) {
     try {
@@ -78,9 +63,12 @@ export function orderProducts(orderSelected) {
 }
 export function createProduct(payload) {
   return async function (dispatch) {
-    const info = await axios.post("http://localhost:3001/product", payload);
-    console.log(info);
-    return info;
+    const info = await axios.post("http://localhost:3001/products/create", payload);
+    console.log("info action", info);
+    return{
+type:"CREATE_PRODUCTS",
+info
+    } 
   };
 }
 

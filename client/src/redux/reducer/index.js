@@ -3,7 +3,7 @@ const initialState = {
   products: [],
   allProducts:[],
   details:[],
-  categories: [],
+  category: [],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -32,15 +32,15 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
-      case "CREATE_ACT":
+      case "CREATE_PRODUCTS":
         return {
           ...state,
-          activity: action.payload,
+         
         }
         case "GET_CAT":
           return {
             ...state,
-            categories: action.payload,
+            category: action.payload,
           }
     case "GET_DETAIL":
       return {
@@ -53,6 +53,9 @@ function rootReducer(state = initialState, action) {
           products: action.payload,
           allProducts: action.payload
         }
+
+      
+
     case "GET_PRODUCT_BY_FILTER":
       return {
         ...state,

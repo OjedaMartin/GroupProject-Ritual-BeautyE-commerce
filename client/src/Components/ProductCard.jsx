@@ -16,9 +16,11 @@ export default function ProductCard({ name, brand, image, price, id }) {
     // }
     return (
         <div className='container1'>
+
             <div>
                 <Link to={`/details/${id}`}>
                     <div className='prodImg'>
+
                         <img src={image} alt='Img not found!' />
                     </div>
                 </Link>
@@ -29,6 +31,8 @@ export default function ProductCard({ name, brand, image, price, id }) {
                 <div>{name.length>30? <h3>{(name.slice(0,39)).concat('...')}</h3> : <h3>{name}</h3>}</div>
                
                 <h3>{price}</h3>
+                <h3>{id}</h3>
+
             </div>
              {/*<button className='cartBtn'>onClick={handleCart} */}
                 <img className='photo' src={cart} alt='Buy'/>
