@@ -7,13 +7,17 @@ import {getDetail} from "../redux/actions/index";
 
 export default function Detail() {
   const dispatch = useDispatch();
-  const { id } = useParams();
-  console.log(id)
+  const {id} = useParams();
+  console.log("id",id)
   const product = useSelector((state) => state.details);
-  // console.log("state product", product)
+  console.log("state product", product)
+  // useEffect(() => {
+  //   dispatch(getDetail(id));
+  // }, [dispatch, id]);
 
   useEffect(() => {
     dispatch(getDetail(id));
+    console.log("asdas",id)
   }, [dispatch, id]);
 
 
@@ -28,6 +32,8 @@ export default function Detail() {
               <h4>  brand: {product.map((e)=>e.brand)} </h4>
               <h4> rating:{product.map((e)=>e.rating)} </h4>
               <h4> {product.map((e)=>e.idcategory)}</h4>
+              {/* <h4> {product.map((e)=>e.category)}</h4> */}
+
             </div>
           
       

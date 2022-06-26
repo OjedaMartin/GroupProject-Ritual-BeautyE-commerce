@@ -54,9 +54,10 @@ export function getCategory(){
 };
 
 export function getDetail(id) {
+  console.log("id getdDetail",id)
   return async function (dispatch) {
     try {
-      let prod = await axios.get(`http://localhost:3001/products/${id}`);
+      let prod = await axios.get(`http://localhost:3001/products/` + id);
 console.log("getDet", prod)
       return dispatch({
         type: "GET_DETAIL",
@@ -93,7 +94,7 @@ export function orderProducts(orderSelected) {
 }
 export function createProduct(payload) {
   return async function (dispatch) {
-    const info = await axios.post("http://localhost:3001/product", payload);
+    const info = await axios.post("http://localhost:3001/products/create", payload);
     console.log(info);
     return info;
   };

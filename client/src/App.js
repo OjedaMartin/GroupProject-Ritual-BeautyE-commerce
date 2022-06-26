@@ -15,7 +15,7 @@ function App() {
         <Route exact path='/' element={<Landing />} />
         <Route exact path='/SearchDetail/:brand' element={<SearchDetail />} />      {/* VER COMO VA A TRAER EL BRAND O CATEGORY */}
         <Route exact path='/SearchDetail/:name' element={<SearchDetail />} />      {/* VER COMO VA A TRAER EL NAME O SEARCH */}
-        <Route exact path='/details/:id' element={<Details />} />
+        <Route exact path='/detail/:id' element={<Details />} />
         <Route exact path='/create' element={<FormCreateComponent/>} />
 
 

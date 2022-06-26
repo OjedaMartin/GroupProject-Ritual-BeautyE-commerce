@@ -7,7 +7,7 @@ import './ProductCard.css'
 
 
 export default function ProductCard({ name, brand, image, price, id }) {
-    //const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     
     
     // const handleCart = (e) => {
@@ -17,7 +17,7 @@ export default function ProductCard({ name, brand, image, price, id }) {
     return (
         <div className='container1'>
             <div className='prodImg'>
-                <Link to={`/details/:${id}`}>{/*VER COMO VA A SER LA RUTA DETAIL*/}
+                <Link to={`/detail/${id}`} key= {id}>{/*VER COMO VA A SER LA RUTA DETAIL*/}
                     <div>
                         <img src={image} alt='Img not found!' />
                     </div>

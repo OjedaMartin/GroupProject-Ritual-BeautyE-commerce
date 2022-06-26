@@ -105,6 +105,7 @@ export default function SearchDetail() {
                                             brand={e.brand}
                                             image={e.image}
                                             price={e.price}
+                                            id={e.id}
                                         />
                                     </div>
                                 </Fragment>
