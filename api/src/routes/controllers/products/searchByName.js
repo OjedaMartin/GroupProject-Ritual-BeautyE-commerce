@@ -14,6 +14,7 @@ const findProductByName = async(req, res) => {
                     [Op.iLike]: `%${name}%`
                 }
             },
+            include: Category
       //      offset: (page - 1) * 10,
     //        limit: 10
         })

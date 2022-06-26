@@ -14,14 +14,14 @@ const createProduct = async (req, res) => {
               rating,
               idcategory
           });
-          let productCategory = await Category.findAll({
+          let productCategory = await Category.findOne({
               where: {
                   name: category
               }
           });
-          console.log(JSON.stringify(newProduct) + " asdasd")
-          await newProduct.addCategory(productCategory);
-          res.status(200).json('Product created successfully!')
+          // console.log(JSON.stringify(newProduct) + " asdasd")
+          const product = await newProduct.addCategory(productCategory);
+          res.status(200).json({ msg: `Creado!` })
       } else {
           res.status(404).json({ msg: "Faltan datos" })
       }
