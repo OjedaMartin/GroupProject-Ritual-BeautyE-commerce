@@ -17,7 +17,7 @@ export default function Carousel1(){
         }
     ]
     return (
-        <div className='container'>
+        <div className='containerCarousel'>
     <Carousel
             data={data}
             time={2000}
