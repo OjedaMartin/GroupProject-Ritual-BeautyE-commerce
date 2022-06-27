@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       set(value){
-        this.setDataValue("price", "$" + value)
+        this.setDataValue("price",value)
       }
     },
     rating: {
@@ -35,8 +35,11 @@ module.exports = (sequelize) => {
     },
     idcategory:{
       type: DataTypes.STRING,
-      allowNull: false,
+      
     },
+/*    category: {
+      type: DataTypes.STRING
+    },*/
     in_Stock: {
       type: DataTypes.BOOLEAN,
     }

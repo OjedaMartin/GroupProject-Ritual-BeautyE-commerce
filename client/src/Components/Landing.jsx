@@ -13,18 +13,26 @@ import Carousel from './CardsFront';
 
 
 export default function Landing(){
+
     const dispatch = useDispatch()
     const products = useSelector((state)=> state.products)
+    
+
     console.log(products)
+
     useEffect(() => {
         dispatch(getAllProducts());
       }, [dispatch]);
+
     return(
         <>
             <Header/>
            <button>
             <Link to="/create">Create Product</Link></button>
             <SearchBar/>
+
+          
+            <Header/>
             <Carousel1/>
             <Carousel/>
             <WhatsNew/>

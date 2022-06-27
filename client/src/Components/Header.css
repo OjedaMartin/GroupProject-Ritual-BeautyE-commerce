@@ -1,32 +1,37 @@
-.main { 
-    
-    
-}
+
 .header1 {
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    border-bottom-color: rgb(226, 226, 226);
+    border-bottom-color: rgb(248, 237, 237);
+    background-image: url('../images/BackgroundHeader.png');
     
     
 }
 .title {
+    font-size: 50px;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.027);
+    margin: 30px 615px;
     font-family: 'Source Sans Pro', sans-serif;
-    display: flex;
+    
+    
 
 }
 .contIcons {
     margin-top: 30px;
+    display: flex;
+
 }
 .iconUser {
-    background-color: white;
+    background-color: #ffffff00;
     border-width: 0px;
     font-size: 20px;
 }
 .iconCart {
-    background-color: white;
+    background-color: #ffffff00;
     border-width: 0px;
     font-size: 20px;
 }
@@ -52,4 +57,18 @@
     height: 103px;
     width: 1360px;
     
+}
+.btnH{
+    border-radius: 0rem;
+    border: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 10px 10px;
+    background-color:black ;
+    color:white;
+    margin: 20px;
+
 }

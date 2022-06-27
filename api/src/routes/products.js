@@ -1,15 +1,18 @@
 const { Router } = require('express');
+const { Allproducts } = require('./controllers/products/getAllProducts');
+const { getProductById } =require('./controllers/products/productDetail');
+const { createProduct } = require('./controllers/products/postProducts');
+const { findProductByName } = require('./controllers/products/searchByName');
+const { putProduct } = require('./controllers/products/updateProduct');
 
- const { Allproducts } = require('./controllers/products/getAllProducts')
+const router = Router();
 
- const { getProductById } = require('./controllers/products/productDetail')
-
-
- const router = Router();
- router.get('/:id', getProductById)
- router.get('/', Allproducts);
- router.get('/:id', getProductById)
-//  router.get('/create', postProduct)
+router.get('/search', findProductByName);
+router.get('/', Allproducts);
+router.get('/:id', getProductById);
+router.post('/create', createProduct);
+router.put('/update/:id', putProduct);
 
 
- module.exports = router;
+
+module.exports = router;

@@ -1,47 +1,27 @@
-const {User} = require(".././db");
 const { Router } = require('express');
-const bcryptjs = require('bcryptjs');
-
-
 const router = Router()
+const { createUser } = require('./controllers/users/createUsers');
+const { getUsers } = require('./controllers/users/getUsers');
+const { loginUser } = require('./controllers/users/login');
+const { deleteUser } = require('./controllers/users/deleteUsers');
 
 
-router.post('/create', async (req, res) => {
+// Ruta para crear usuario
+router.post('/create', createUser);
 
-    try {
-        let { name,email,password,membership,points,address} = req.body;
-       password = await bcryptjs.hash(password, 8)
-       
-        User.create({ name, email, password, membership, points, address })
 
-        res.send("User created")
+// Ruta para obtener usuarios (sólo para debugueo)
+router.get('/', getUsers);
 
-    } catch (error) {
-        
-        res.send(error+" No se pudo crear Usuario, controlar datos ingresados")
-    }
-  })
-  router.get('/all', async(req,res)=>{
-    try {let resp = await User.findAll()
-        res.json(resp)
 
-    } catch (error) {
-        res.send(error, 'No se pudo mostrar usuiarios')
-    }
-  })
-  router.get('/login', async(req,res)=>{
-    try {
-        let {email, password} = req.body
-        password = await bcryptjs.hash(password, 8)
-        let resp = User.findOne({where: {email:email}})
-        if(resp){
-            let resp1 = User.findOne({where: {password:password}})
-            if(resp1) {res.send(' Sesion Iniciada ')} 
-            else{res.send('Contraseña Incorrecta')}
-            
-        }else {res.send('Usuario no existente')}
-    } catch (error) {
-        res.send(error, 'Verificar codigo login')
-    }
-})
-  module.exports = router
+// Ruta para loguear un usuario existente (hay que arreglar el controlador)
+router.get('/login', loginUser);
+
+
+// Ruta para eliminar usuario
+router.delete('/delete/:id', deleteUser);
+
+
+
+
+module.exports = router

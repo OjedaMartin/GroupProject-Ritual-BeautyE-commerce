@@ -1,13 +1,10 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import {useDispatch} from "react-redux"
-import { getProductName } from "../redux/actions";
+//import { getProductName } from "../redux/actions";
 import { Link } from "react-router-dom";
-
 import { FaSearch } from "react-icons/fa";
-
-//import { SBdiv, SBinput, SBbutton, SBimg } from "./Styles/StyledSearchBar"
 import "./SearchBar.css"
+
 
 export default function SearchBar (){
     const dispatch = useDispatch()
@@ -19,23 +16,24 @@ export default function SearchBar (){
     
     }
 
-    function submitHandler(e){
-        e.preventDefault()
-        dispatch(getProductName(name))    
-    }
-
+   // function submitHandler(e){
+   //     e.preventDefault()
+   //     dispatch(getProductName(name))    
+   // }
+   //type="submit" onClick={(e)=> submitHandler(e)}
     return (
 
         
 
 
         <div className="container">
+            
             <div className="searchbox">
-                <Link to="/"><button className="search-btn" type="submit" onClick={(e)=> submitHandler(e)}>
+                <Link to= {'/SearchDetail/search/' + name} ><button className="search-btn" >
                 <FaSearch className="icon" aria-hidden='true' id="searchbar-icon"/>
                 </button></Link>
 
-
+                
                 <input className="search"
                  type="text"
                  placeholder="Search Products by name..."
@@ -47,4 +45,3 @@ export default function SearchBar (){
         </div>
     )
 }
-//<img src={require('../images/searchBarIcon.png')} alt="Search Bar" width='2%' height='2%'/>

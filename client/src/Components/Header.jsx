@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 
 import { FaAdn, FaShoppingCart } from "react-icons/fa"
 
@@ -9,8 +9,9 @@ import "./Header.css"
 export default function Header(){
     return(
         <div className='main'>
-            <img className='photo' src={require('../images/BackgroundHeader.png')} alt="background" />
+            
             <div className='header1'>
+                <Link to="/create" ><button className='btnH'> New Product </button></Link>
                 <SearchBar/>
                 <h1 className='title'>RITUAL</h1>
                 <div className='contIcons'>
@@ -19,11 +20,11 @@ export default function Header(){
                 </div>
             </div>
                 <nav className='navBar'>
-                    <Link to="/"><button className='subT'>Makeup</button></Link>
-                    <Link to="/"><button className='subT'>Skincare</button></Link>
-                    <Link to="/"><button className='subT'>Tools & Brushes</button></Link>
-                    <Link to="/"><button className='subT'>Hair</button></Link>
-                    <Link to="/"><button className='subT'>Sale</button></Link>
+                    <Link to="/SearchDetail/collection/cat140006"><button className='subT'>Makeup</button></Link>
+                    <Link to="/SearchDetail/collection/cat150006"><button className='subT'>Skincare</button></Link>
+                    <Link to="/SearchDetail/collection/cat130042"><button className='subT'>Tools & Brushes</button></Link>
+                    <Link to="/SearchDetail/collection/cat130038"><button className='subT'>Hair</button></Link>
+                    <Link to="/SearchDetail/"><button className='subT'>Sale</button></Link>
                 </nav>
             
         </div>

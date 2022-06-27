@@ -5,6 +5,7 @@ const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
+// console.log(DB_USER, DB_PASSWORD, DB_HOST)
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pghenry`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -34,8 +35,8 @@ const { Product, Category, User, Review, Cart, Order } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Category.hasMany(Product)
-Product.belongsTo(Category)
+Category.belongsToMany(Product, { through: "Product_Category" })
+Product.belongsToMany(Category, { through: "Product_Category" })
 
 Product.hasMany(Review)
 Review.belongsTo(Product)
