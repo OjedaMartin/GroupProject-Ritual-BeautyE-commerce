@@ -25,7 +25,7 @@ export default function Detail() {
     <div className="back">
       <div className="manzana">
         <div className="img">
-          <img src={product.map(e => e.image)} width="100%" height="100%" alt='Img not found!'/>
+          <img className="imgdetail" src={product.map(e => e.image)} width="100%" height="100%" alt='Img not found!'/>
         </div>
         <div className="divInfo">
           <h1 className="titles">  {product.map(e => e.name)} </h1>
