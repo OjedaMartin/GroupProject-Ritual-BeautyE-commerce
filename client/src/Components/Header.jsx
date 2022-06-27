@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import {Link, NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import { FaAdn, FaShoppingCart } from "react-icons/fa"
 
@@ -13,7 +13,7 @@ export default function Header(){
             <div className='header1'>
                 <Link to="/create" ><button className='btnH'> New Product </button></Link>
                 <SearchBar/>
-                <h1 className='title'>RITUAL</h1>
+                <h1 className='title'><Link to="/" style={{ textDecoration: 'none', color: 'black'  }} >RITUAL</Link></h1>
                 <div className='contIcons'>
                     <Link to="/"><button className='iconUser'><FaAdn/></button></Link>
                     <Link to="/"><button className='iconCart'><FaShoppingCart/></button></Link>
@@ -24,7 +24,7 @@ export default function Header(){
                     <Link to="/SearchDetail/collection/cat150006"><button className='subT'>Skincare</button></Link>
                     <Link to="/SearchDetail/collection/cat130042"><button className='subT'>Tools & Brushes</button></Link>
                     <Link to="/SearchDetail/collection/cat130038"><button className='subT'>Hair</button></Link>
-                    <Link to="/SearchDetail/"><button className='subT'>Sale</button></Link>
+                    {/* <Link to="/SearchDetail/"><button className='subT'>Sale</button></Link> */}
                 </nav>
             
         </div>
