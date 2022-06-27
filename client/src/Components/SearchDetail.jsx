@@ -26,12 +26,8 @@ export default function SearchDetail() {
     const { category } = useParams();
     const dispatch = useDispatch();
 
-    //let location = useLocation();
-    //const { brand } = useParams();
-    //console.log(location)
-
-    console.log('NAMEEE', name)
-    console.log('CATEGORY', category)
+    console.log('NAME',name);
+    console.log('CATEGORY',category)
 
     const productsResults = useSelector((state) => state.products);
     //const allCategories = useSelector((state) => state.categories);//Agregar llamado a Actions y el estado a redux
@@ -41,19 +37,12 @@ export default function SearchDetail() {
     const indexOfLastCard = currentPage * productsPerPage;
     const indexOfFirstCard = indexOfLastCard - productsPerPage;
     const currentProducts = productsResults?.slice(indexOfFirstCard, indexOfLastCard);
-
+    //-----------------------------ME GUARDO TODAS LAS BRANDS Y ELIMINO LAS REPETIDAS--------
     const productsBrand = [];
-
     currentProducts.map((e) => productsBrand.push(e.brand));
-    console.log('productsBrand',productsBrand);
-
     const newData = [...new Set(productsBrand)];
-    console.log('newData',newData);
+    //---------------------------------------------------------------------------------------
 
-
-   
-    
-    //console.log('currentProducts',currentProducts);
     useEffect(() => {
 
         dispatch(getAllCategories());
@@ -70,23 +59,24 @@ export default function SearchDetail() {
         cat130042: 'Tools & Brushes',
         cat130038: 'Hair',
     }
-    //console.log('acaaa--->', objectCat[category])
+
     const setOrder = (e) => {
         dispatch(orderProducts(e.target.value));
         setReloadState((state) => !state);
         setCurrentPage(1);
     };
 
-    const handleFilterByCategory = (e) => {
-        dispatch(getfilterCategories(e.target.value));
-        setReloadState((state) => !state);
-        setCurrentPage(1);
-    }
+    // const handleFilterByCategory = (e) => {
+    //     dispatch(getfilterCategories(e.target.value));
+    //     setReloadState((state) => !state);
+    //     setCurrentPage(1);
+    // }
 
     const handleFilterByBrand = (e) => {
         dispatch(getfilterBrand(e.target.value));
+        //setReloadState((state) => !state);
         setCurrentPage(1);
-        setReloadState((state) => !state);
+
     }
 
     const paginated = (pageNum) => {
@@ -101,31 +91,33 @@ export default function SearchDetail() {
             <Fragment>
                 <Header />
                 <main className="division">
-                    <div className="params">
-                        {name ? <h1>{name}</h1> : <h1>{objectCat[category]}</h1>}
-                    </div>
-                    <div className="selectors">
-                        <select onChange={setOrder} name='Type'>
-                            <option value='Sort'>Sort</option>
-                            <option value='High to Low Price'>High to Low</option>
-                            <option value='Low to High Price'>Low to High</option>
-                            <option value='Sort by rated'>Top Rated</option>
-                        </select>
-                        <select onChange={handleFilterByCategory} name='Type'>
-                            <option>Category</option>
+                    <div className="todo">
+                        <div className="params">
+                            {name ? <h1>{name}</h1> : <h1>{objectCat[category]}</h1>}
+                        </div>
+                        <div className="selectors">
+                            <select onChange={setOrder} name='Type' className="select" >
+                                <option value='Sort' className="select">Sort</option>
+                                <option value='High to Low Price' className="select">High to Low</option>
+                                <option value='Low to High Price' className="select">Low to High</option>
+                                <option value='Sort by rated' className="select">Top Rated</option>
+                            </select>
+                            {/* <select onChange={handleFilterByCategory} name='CategoryType'>
+                            <option value='Origin'>Category</option>
                             <option value='cat140006'>Makeup</option>
                             <option value='cat150006'>Skincare</option>
                             <option value='cat130042'>Tools & Brushes</option>
                             <option value='cat130038'>Hair</option>
-                        </select>
+                        </select> */}
 
-                        <select onChange={handleFilterByBrand}>
-                            <option value='brand'>Brand</option>
-                            {newData?.map((e) => (
-                                <option key={e} value={e}>{e}</option>
+                            <select onChange={handleFilterByBrand} name='BrandType' className="select">
+                                <option value='brand'>Brand</option>
+                                {newData?.map((e) => (
+                                    <option key={e} value={e} className="select">{e}</option>
 
-                            ))}
-                        </select>
+                                ))}
+                            </select>
+                        </div>
                     </div>
                     <section>
                         {currentProducts.map((e) => {

@@ -4,17 +4,30 @@ const initialState = {
   allProducts:[],
   details:[],
   category: [],
+
+  //----------------------
+  // makeup: [],
+  // skincare: [],
+  // ToolsAndBrushes: [],
+  // Hair: [],
 };
+
+// const objectCat = {
+//   cat140006: 'Makeup',
+//   cat150006: 'Skincare',
+//   cat130042: 'Tools & Brushes',
+//   cat130038: 'Hair',
+// }
 
 const orderProducts = (orderSelected, stateProducts) => {
   switch (orderSelected) {
     case 'High to Low Price':
       return stateProducts.sort((a, b) => {
-        return b.price - a.price;
+        return parseInt((b.price).slice(1,b.price.length)) - parseInt((a.price).slice(1,a.price.length));
       });
     case 'Low to High Price':
       return stateProducts.sort((a, b) => {
-        return a.price - b.price;
+        return parseInt((a.price).slice(1,a.price.length)) - parseInt((b.price).slice(1,b.price.length));
       })
     case 'Sort by rated':
       return stateProducts.sort((a, b) => {
@@ -24,6 +37,12 @@ const orderProducts = (orderSelected, stateProducts) => {
       return stateProducts; 
   }
 }
+
+//------------------------
+
+
+
+//------------------------
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -54,8 +73,6 @@ function rootReducer(state = initialState, action) {
           allProducts: action.payload
         }
 
-      
-
     case "GET_PRODUCT_BY_FILTER":
       return {
         ...state,
@@ -71,6 +88,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
+      
       case "GET_FILTER_BRAND":
       return{
         ...state,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useDispatch} from "react-redux"
+//import {useDispatch} from "react-redux"
 //import { getProductName } from "../redux/actions";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
@@ -7,7 +7,7 @@ import "./SearchBar.css"
 
 
 export default function SearchBar (){
-    const dispatch = useDispatch()
+    //const dispatch = useDispatch()
     const [name,setName] = useState("")
 
     function inputChangeHandler(e){

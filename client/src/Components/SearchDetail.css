@@ -1,9 +1,28 @@
 .division{
     display: flex;
     flex-direction: row;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.todo{
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+
 }
 .selectors{
     display: flex;
     flex-direction: column;
-    padding: 20px 120px;
+    /* padding: 20px 100px; */
+    justify-content: flex-start;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-right: 50px;
+    
+}
+.select{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Red Hat Display', sans-serif ;
+    width: 250px;
+    font-weight: bold;
+    
 }

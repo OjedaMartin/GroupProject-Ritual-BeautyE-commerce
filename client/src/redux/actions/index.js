@@ -14,13 +14,10 @@ export function getProductName(name) {
     }
   }
 }
-
-
-
 export function getAllProducts() {
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/products");
-    console.log("getAll", json)
+    //console.log("getAll", json)
     return dispatch({
       type: "GET_ALL",
       payload: json.data,
@@ -42,15 +39,15 @@ export function getDetail(id) {
   return async function (dispatch) {
     try {
       let prod = await axios.get(`http://localhost:3001/products/${id}`);
-console.log("getDet", prod)
+      console.log("getDet", prod)
       return dispatch({
         type: "GET_DETAIL",
-        payload: prod.data, //
+        payload: prod.data, 
       });
     } catch (error) {
       return dispatch({
         type: "GET_DETAIL",
-        payload: error.name, //
+        payload: error.name, 
       });
     }
   };
