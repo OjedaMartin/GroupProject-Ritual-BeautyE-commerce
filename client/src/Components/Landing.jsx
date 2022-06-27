@@ -30,15 +30,10 @@ export default function Landing(){
            <button>
             <Link to="/create">Create Product</Link></button>
             <SearchBar/>
-
-          
-            <Header/>
             <Carousel1/>
             <Carousel/>
             <WhatsNew/>
             <Footer/>
-
-
         </>
     ) 
 }
