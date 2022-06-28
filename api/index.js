@@ -20,19 +20,22 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { db } = require('./src/db.js');
-const { Category, Product } = require('./src/db');
+const { Category, Product, User } = require('./src/db');
 const categoryProduct = Category.hasMany(Product)
 const json1 = require('./src/data/categories.json');
 const json2 = require('./src/data/products.json');
+const json3 = require('./src/data/users.json');
 
 const categories = json1.data;
 const products = json2.data;
+const users = json3.users;
 
 // Syncing all the models at once.
 
 conn.sync({ force: true }).then(() => {
   server.listen(3001, async() => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
+    await User.bulkCreate(users)
     let arrayPromises = [];
     let productsFiltered
     for(let category of categories){

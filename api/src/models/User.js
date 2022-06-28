@@ -24,9 +24,7 @@ module.exports = (sequelize) => {
     },
     membership: {
         type: DataTypes.STRING,
-        set(value){
-            this.setDataValue("membership", value ? value : "Basic");
-        }
+        defaultValue: "Basic"
     },
     points: {
         type: DataTypes.INTEGER,

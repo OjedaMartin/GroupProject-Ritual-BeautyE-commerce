@@ -5,6 +5,7 @@ const products = require('./products')
 const categories= require('./categories')
 const filters = require('./filters')
 const users = require('./users')
+const cart = require('./cart');
 // const products = require('./products')
 
 const router = Router();
@@ -12,10 +13,12 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+
 router.use('/products', products);
 router.use('/categories', categories);
 router.use('/filters', filters);
 router.use('/users', users);
+router.use('/cart', cart)
 // router.use('/products', products);
 
 
