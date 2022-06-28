@@ -34,8 +34,8 @@ module.exports = (sequelize) => {
       }
     },
     in_Stock: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
+      type: DataTypes.INTEGER,
+      defaultValue: 100,
     }
   },{
     timestamps: false
