@@ -1,49 +1,30 @@
 
 const initialState = {
   products: [],
-  allProducts:[],
-  details:[],
+  allProducts: [],
+  details: [],
   category: [],
-
-  //----------------------
-  // makeup: [],
-  // skincare: [],
-  // ToolsAndBrushes: [],
-  // Hair: [],
+  productsAux: [],
 };
-
-// const objectCat = {
-//   cat140006: 'Makeup',
-//   cat150006: 'Skincare',
-//   cat130042: 'Tools & Brushes',
-//   cat130038: 'Hair',
-// }
 
 const orderProducts = (orderSelected, stateProducts) => {
   switch (orderSelected) {
     case 'High to Low Price':
       return stateProducts.sort((a, b) => {
-        return parseInt((b.price).slice(1,b.price.length)) - parseInt((a.price).slice(1,a.price.length));
+        return parseInt((b.price).slice(1, b.price.length)) - parseInt((a.price).slice(1, a.price.length));
       });
     case 'Low to High Price':
       return stateProducts.sort((a, b) => {
-        return parseInt((a.price).slice(1,a.price.length)) - parseInt((b.price).slice(1,b.price.length));
+        return parseInt((a.price).slice(1, a.price.length)) - parseInt((b.price).slice(1, b.price.length));
       })
     case 'Sort by rated':
       return stateProducts.sort((a, b) => {
         return b.rating - a.rating;
       });
     default:
-      return stateProducts; 
+      return stateProducts;
   }
 }
-
-//------------------------
-
-
-
-//------------------------
-
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_PRODUCT_NAME":
@@ -51,27 +32,27 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
-      case "CREATE_PRODUCTS":
-        return {
-          ...state,
-         
-        }
-        case "GET_CAT":
-          return {
-            ...state,
-            category: action.payload,
-          }
+    case "CREATE_PRODUCTS":
+      return {
+        ...state,
+      }
+    case "GET_CAT":
+      return {
+        ...state,
+        category: action.payload,
+      }
     case "GET_DETAIL":
       return {
         ...state,
         details: action.payload,
       };
     case "GET_ALL":
-        return{
-          ...state,
-          products: action.payload,
-          allProducts: action.payload
-        }
+      return {
+        ...state,
+        products: action.payload,
+        allProducts: action.payload,
+        productsAux: action.payload
+      }
 
     case "GET_PRODUCT_BY_FILTER":
       return {
@@ -84,13 +65,14 @@ function rootReducer(state = initialState, action) {
         products: orderProducts(action.payload, state.products),
       };
     case "GET_FILTER_CATEGORIES":
-      return{
+      return {
         ...state,
         products: action.payload,
+        productsAux: action.payload,
       };
-      
-      case "GET_FILTER_BRAND":
-      return{
+
+    case "GET_FILTER_BRAND":
+      return {
         ...state,
         products: action.payload,
       };
