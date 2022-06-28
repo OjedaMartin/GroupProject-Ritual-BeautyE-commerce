@@ -36,6 +36,9 @@ module.exports = (sequelize) => {
     in_Stock: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
+    },
+    idcategory:{
+      type: DataTypes.STRING,
     }
   },{
     timestamps: false
