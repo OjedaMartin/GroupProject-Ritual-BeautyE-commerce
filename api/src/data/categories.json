@@ -1,19 +1,15 @@
 {
     "data": [
         {
-            "id": "cat140006",
             "name": "Makeup"
         },
         {
-            "id": "cat150006",
             "name": "Skincare"
         },
         {
-            "id": "cat130038",
             "name": "Hair"
         },
         {
-            "id": "cat130042",
             "name": "Tools & Brushes"
         }
     ]
