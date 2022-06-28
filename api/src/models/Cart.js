@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
+    state:{
+      type: DataTypes.STRING,
+      defaultValue: "Active",
+    }
   },{
     timestamps: false
   });
