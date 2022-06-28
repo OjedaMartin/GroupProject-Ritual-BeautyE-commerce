@@ -43,10 +43,10 @@ Review.belongsTo(Product)
 User.hasMany(Review)
 Review.belongsTo(User)
 
-User.hasOne(Cart)
+User.hasMany(Cart)
 Cart.belongsTo(User)
-Cart.hasMany(Product)
-Product.belongsTo(Cart)
+Cart.belongsToMany(Product, {through: "Cart_Product"})
+Product.belongsToMany(Cart, {through: "Cart_Product"})
 
 User.hasOne(Order)
 Order.belongsTo(User)
