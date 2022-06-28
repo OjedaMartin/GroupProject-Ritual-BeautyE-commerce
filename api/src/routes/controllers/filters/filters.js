@@ -28,7 +28,7 @@ const filterCategories = async(req, res) => {
 	try {
 		const byCategory = await Product.findAll({
 			where: {
-				idcategory: category
+				CategoryId: category
 			},
 			//offset: (page - 1) * 10,
 			//limit: 10
