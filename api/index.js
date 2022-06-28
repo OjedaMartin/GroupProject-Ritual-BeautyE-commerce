@@ -21,6 +21,7 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { db } = require('./src/db.js');
 const { Category, Product, User } = require('./src/db');
+const categoryProduct = Category.hasMany(Product)
 const json1 = require('./src/data/categories.json');
 const json2 = require('./src/data/products.json');
 const json3 = require('./src/data/users.json');
@@ -34,8 +35,20 @@ const users = json3.users;
 conn.sync({ force: true }).then(() => {
   server.listen(3001, async() => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
-    await Category.bulkCreate(categories);
-    await Product.bulkCreate(products);
-    await User.bulkCreate(users);
+    await User.bulkCreate(users)
+    let arrayPromises = [];
+    let productsFiltered
+    for(let category of categories){
+      productsFiltered = products.filter(prod => prod.idcategory === category.id);
+      arrayPromises.push(Category.create({
+        id: category.id,
+        name: category.name,
+        Products: productsFiltered,
+      },{
+        include: [ categoryProduct ]
+      }
+      ))
+    }
+    await Promise.all(arrayPromises);
   });
 });
