@@ -1,0 +1,18 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    
+}
+.element{
+    margin: 10px 10px 10px 10px;
+}
+.tabletop{
+    display: flex;
+    justify-content: space-around;
+}
+.createButton{
+    
+    background-color: rgb(136, 231, 136);
+}

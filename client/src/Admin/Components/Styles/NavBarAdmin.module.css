@@ -1,0 +1,17 @@
+.NavContainer{
+    
+    display: flex;
+    background-color: black;
+    align-items: center;
+    justify-content: space-around;
+    
+    
+    
+}
+.NavLink{
+    background-color: rgba(181, 250, 227, 0.842);
+    width: 100%;
+
+
+
+}
