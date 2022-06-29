@@ -6,7 +6,7 @@ import {
   getAllCategories,
   getAllProducts,
 } from "../redux/actions";
-import "./FormCreateComponent.css";
+import style from "./FormCreateComponent.module.css";
 const inputValidate = (estado) => {
   let errors = {};
   if(!isNaN(Number(estado.name))) {
@@ -122,15 +122,15 @@ export default function AdminProduct() {
   }, [dispatch]);
 
   return (
-    <div className="backg">
-    <div className="wrapper">
+    <div className={style.backg}>
+    <div className={style.wrapper}>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <h1 className="titleForm">Create New Product</h1>
-          <div className="divcell">
-            <label className="label1">Rating: </label>
+          <h1 className={style.titleForm}>Create New Product</h1>
+          <div className={style. divcell}>
+            <label className={style.label1}>Rating: </label>
             <input
-              className="input1"
+              className={style.input1}
               type="number"
               value={estado.rating}
               min="0"
@@ -141,10 +141,10 @@ export default function AdminProduct() {
             />
             {err.rating}
           </div>
-          <div className="divcell">
-            <label className="label1">Name: </label>
+          <div className={style.divcell}>
+            <label className={style.label1}>Name: </label>
             <input
-              className="input1"
+              className={style.input1}
               type="text"
               value={estado.name}
               name="name"
@@ -153,10 +153,10 @@ export default function AdminProduct() {
             />
             {err.name}
           </div>
-          <div className="divcell">
-            <label className="label1">Price: </label>
+          <div className={style.divcell}>
+            <label className={style.label1}>Price: </label>
             <input
-              className="input1"
+              className={style.input1}
               type="number"
               value={estado.price}
               min="0"
@@ -167,10 +167,10 @@ export default function AdminProduct() {
             />
             {err.price}
           </div>
-          <div className="divcell">
-            <label className="label1">Image: </label>
+          <div className={style.divcell}>
+            <label className={style.label1}>Image: </label>
             <input
-              className="input1"
+              className={style.input1}
               // key="image"
               type="text"
               value={estado.image}
@@ -182,18 +182,18 @@ export default function AdminProduct() {
           </div>
           <div>
             <div>
-              <label className="label1">Id: </label>
+              <label className={style.label1}>Id: </label>
 
-              <select className="input1" onChange={(e) => handleSelect(e)}>
+              <select className={style.input1} onChange={(e) => handleSelect(e)}>
                 {newData?.map((e) => (
-                  <option className="input1"  key={e} value={e}>
+                  <option className={style.input1}  key={e} value={e}>
                     {e}
                   </option>
                 ))}
               </select>
               {err.idcategory}
               <div>
-                <ul className="label1">
+                <ul className={style.label1}>
                   selected:{" "}
                  {estado.idcategory}
                 </ul>
@@ -201,18 +201,18 @@ export default function AdminProduct() {
             </div>
 
             <div>
-              <label className="label1">Brand: </label>
+              <label className={style.label1}>Brand: </label>
 
-              <select className="input1" onChange={(e) => handleSelectBrand(e)}>
+              <select className={style.input1} onChange={(e) => handleSelectBrand(e)}>
                 {newDatas?.map((e) => (
-                  <option className="input1" key={e} value={e}>
+                  <option className={style.input1} key={e} value={e}>
                     {e}
                   </option>
                 ))}
               </select>
               {err.brand}
               <div>
-                <ul className="label1">
+                <ul className={style.label1}>
                   Selected:{" "}
                   {estado.brand}
                  
@@ -222,18 +222,18 @@ export default function AdminProduct() {
             </div>
 
             <div>
-              <label className="label1">Category: </label>
+              <label className={style.label1}>Category: </label>
 
-              <select className="input1" onChange={(e) => handleSelectCat(e)}>
+              <select className={style.input1} onChange={(e) => handleSelectCat(e)}>
                 {category?.map((e) => (
-                  <option className="input1" key={e} value={e.name}>
+                  <option className={style.input1} key={e} value={e.name}>
                     {e.name}
                   </option>
                 ))}
                 {err.category}
               </select>
               <div>
-                <ul className="label1">
+                <ul className={style.label1}>
                   Selected:{" "}
                   {estado.category}
                  
@@ -242,11 +242,11 @@ export default function AdminProduct() {
             </div>
 
             <div>
-              <button className="btn" onClick={(e) => handleSubmit(e)}>
+              <button className={style.btn} onClick={(e) => handleSubmit(e)}>
                 Crealo!
               </button>
               <Link to="/">
-                <button className="btn">Volver</button>
+                <button className={style.btn}>Volver</button>
               </Link>
             </div>
           </div>
