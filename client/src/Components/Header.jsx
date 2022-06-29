@@ -4,26 +4,26 @@ import {Link} from 'react-router-dom'
 
 import { FaAdn, FaShoppingCart } from "react-icons/fa"
 
-import "./Header.css"
+import Style from "./Header.module.css"
 
 export default function Header(){
     return(
-        <div className='main'>
+        <div className={Style.main}>
             
-            <div className='header1'>
-                <Link to="/create" ><button className='btnH'> New Product </button></Link>
+            <div className={Style.header}>
+                <Link to="/create" ><button className={Style.btnH}> New Product </button></Link>
                 <SearchBar/>
-                <h1 className='title'><Link to="/" style={{ textDecoration: 'none', color: 'black'  }} >RITUAL</Link></h1>
+                <h1 className={Style.title}><Link to="/" style={{ textDecoration: 'none', color: 'black'  }} >RITUAL</Link></h1>
                 <div className='contIcons'>
-                    <Link to="/"><button className='iconUser'><FaAdn/></button></Link>
-                    <Link to="/"><button className='iconCart'><FaShoppingCart/></button></Link>
+                    <Link to="/"><button className={Style.iconUser}><FaAdn/></button></Link>
+                    <Link to="/"><button className={Style.iconCart}><FaShoppingCart/></button></Link>
                 </div>
             </div>
-                <nav className='navBar'>
-                    <Link to="/SearchDetail/collection/cat140006"><button className='subT'>Makeup</button></Link>
-                    <Link to="/SearchDetail/collection/cat150006"><button className='subT'>Skincare</button></Link>
-                    <Link to="/SearchDetail/collection/cat130042"><button className='subT'>Tools & Brushes</button></Link>
-                    <Link to="/SearchDetail/collection/cat130038"><button className='subT'>Hair</button></Link>
+                <nav className={Style.Navbar}>
+                    <Link to="/SearchDetail/collection/cat140006"><button className={Style.subT}>Makeup</button></Link>
+                    <Link to="/SearchDetail/collection/cat150006"><button className={Style.subT}>Skincare</button></Link>
+                    <Link to="/SearchDetail/collection/cat130042"><button className={Style.subT}>Tools & Brushes</button></Link>
+                    <Link to="/SearchDetail/collection/cat130038"><button className={Style.subT}>Hair</button></Link>
                     {/* <Link to="/SearchDetail/"><button className='subT'>Sale</button></Link> */}
                 </nav>
             
