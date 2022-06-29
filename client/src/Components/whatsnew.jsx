@@ -2,6 +2,7 @@ import './whatsnew.css'
 import image1 from '../images/img1.webp'
 import image2 from '../images/img2.webp'
 import image3 from '../images/img3.jpeg'
+import { NavLink } from 'react-router-dom';
 
 export default function WhatsNew(){
     return(
@@ -17,7 +18,10 @@ export default function WhatsNew(){
                 A daily primer that leaves a dewy, glowy finish and preps skin for makeup,  <br />
                 with SPF protection and major hydration — now in two radiant shades!
                 </p>
+                <NavLink to ={'details/' + 54} className = 'decorationTW' >
                 <p>SHOP NOW</p>
+                </NavLink>
+
             </div>
             <div className='gridC'>
                 <h4>RADIANT CREAMY CONCEALER</h4>
@@ -27,7 +31,9 @@ export default function WhatsNew(){
                 and light diffusing technology, it instantly obscures imperfections and diminishes  <br />
                 fine lines and signs of fatigue.  <br />
                 </p>
+                <NavLink to ={'details/' + 66} className = 'decorationTW' >
                 <p>SHOP NOW</p>
+                </NavLink>
             </div>
             <div>
             <img src={`${image2}`} alt="not found" className='gridIMG'/>
@@ -43,7 +49,9 @@ export default function WhatsNew(){
             water-repellent "raincoat." It ensures sleek, glossy, glassy texture that's "immune" <br />
             to frizz and lasts up to three shampoos.<br />
                 </p>
+                <NavLink to ={'details/' + 15} className = 'decorationTW' >
                 <p>SHOP NOW</p>
+                </NavLink>
             </div>
         </div>
         </div>

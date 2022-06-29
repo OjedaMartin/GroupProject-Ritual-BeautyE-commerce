@@ -37,7 +37,7 @@ conn.sync({ force: true }).then(() => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
     await User.bulkCreate(users)
     let arrayPromises = [];
-    let productsFiltered
+    let productsFiltered 
     for(let category of categories){
       productsFiltered = products.filter(prod => prod.idcategory === category.id);
       arrayPromises.push(Category.create({
