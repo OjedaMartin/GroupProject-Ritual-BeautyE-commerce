@@ -10,6 +10,14 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
+    prod:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    quantity:{
+      type: DataTypes.INTEGER,
+      defaultValue: 1,
+    },
     state:{
       type: DataTypes.STRING,
       defaultValue: "Active",
