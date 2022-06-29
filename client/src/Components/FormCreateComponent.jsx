@@ -19,15 +19,18 @@ const inputValidate = (estado) => {
 if(!estado.price.length) {
   errors.difficult = `Difficult is required`;
 } 
- if(estado.idcategory.length === 0) {
-  errors.idcategory = 'You must select at least one category';
-} if(!estado.rating || estado.rating === "") {
-  errors.rating = `Rating is required`;
-} if(estado.brand.length === 0) {
+ if(estado.CategoryId.length === 0) {
+  errors.CategoryId = 'You must select at least one category';
+} 
+// if(!estado.rating || estado.rating === "") {
+//   errors.rating = `Rating is required`;
+// }
+if(estado.brand.length === 0) {
   errors.brand = 'You must select at least one brand';
-}if(estado.category.length === 0) {
-  errors.category = 'You must select at least one category';
 }
+// if(estado.category.length === 0) {
+//   errors.category = 'You must select at least one category';
+// }
 console.log("error", errors)
 return errors;
 };
@@ -43,9 +46,7 @@ export default function AdminProduct() {
     brand: "",
     image: "",
     price: "",
-    rating: "",
-    idcategory: "",
-    category: "",
+    CategoryId: "",
   });
   console.log("estado",estado);
   // const [err, SetErr] = useState({});
@@ -69,23 +70,23 @@ export default function AdminProduct() {
   function handleSelect(e) {
     setEstado({
       ...estado,
-      idcategory: [...estado.idcategory, e.target.value],
+      CategoryId: [...estado.CategoryId, e.target.value],
     });
     SetErr(inputValidate({
       ...estado,
-      idcategory: [...estado.idcategory, e.target.value]
+      CategoryId: [...estado.CategoryId, e.target.value]
     }));
   }
-  function handleSelectCat(e) {
-    setEstado({
-      ...estado,
-      category: [...estado.category, e.target.value],
-    });
-    SetErr(inputValidate({
-      ...estado,
-      category: [...estado.category, e.target.value]
-    }));
-  }
+  // function handleSelectCat(e) {
+  //   setEstado({
+  //     ...estado,
+  //     category: [...estado.category, e.target.value],
+  //   });
+  //   SetErr(inputValidate({
+  //     ...estado,
+  //     category: [...estado.category, e.target.value]
+  //   }));
+  // }
   function handleSelectBrand(e) {
     setEstado({
       ...estado,
@@ -109,9 +110,7 @@ export default function AdminProduct() {
       brand: "",
       image: "",
       price: "",
-      rating: "",
-      idcategory: "",
-      category: "",
+      CategoryId: "",
     });
   }
   useEffect(() => {
@@ -127,7 +126,7 @@ export default function AdminProduct() {
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <h1 className="titleForm">Create New Product</h1>
-          <div className="divcell">
+          {/* <div className="divcell">
             <label className="label1">Rating: </label>
             <input
               className="input1"
@@ -140,7 +139,7 @@ export default function AdminProduct() {
               required
             />
             {err.rating}
-          </div>
+          </div> */}
           <div className="divcell">
             <label className="label1">Name: </label>
             <input
@@ -191,11 +190,11 @@ export default function AdminProduct() {
                   </option>
                 ))}
               </select>
-              {err.idcategory}
+              {err.CategoryId}
               <div>
                 <ul className="label1">
                   selected:{" "}
-                 {estado.idcategory}
+                 {estado.CategoryId}
                 </ul>
               </div>
             </div>
@@ -221,7 +220,7 @@ export default function AdminProduct() {
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <label className="label1">Category: </label>
 
               <select className="input1" onChange={(e) => handleSelectCat(e)}>
@@ -239,7 +238,7 @@ export default function AdminProduct() {
                  
                 </ul>
               </div>
-            </div>
+            </div> */}
 
             <div>
               <button className="btn" onClick={(e) => handleSubmit(e)}>
