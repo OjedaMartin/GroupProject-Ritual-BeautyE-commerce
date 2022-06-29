@@ -1,19 +1,16 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router-dom";//, useLocation 
+import { useParams } from "react-router-dom";
 import {
     orderProducts,
     getProductName,
     getAllCategories,
     getfilterCategories,
-    getfilterBrand
-
+    getfilterBrand    
 } from '../redux/actions';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import loaderEyes from '../images/loaderEyes.gif';
-import Header from './Header';
-import Footer from './footer';
 import ClassesSearchDetail from './SearchDetail.module.css'
 
 
@@ -21,7 +18,7 @@ import ClassesSearchDetail from './SearchDetail.module.css'
 export default function SearchDetail() {
     const [, setReloadState] = useState(false);
     const { name } = useParams();
-    const { CategoryId } = useParams();
+    const { category } = useParams();
     const dispatch = useDispatch();
 
     const productsResults = useSelector((state) => state.products);
@@ -45,9 +42,9 @@ export default function SearchDetail() {
 
         dispatch(getAllCategories());
         if (name) { dispatch(getProductName(name)) }
-        else if (CategoryId) { dispatch(getfilterCategories(CategoryId)) }
+        else if (category) { dispatch(getfilterCategories(category)) }
 
-    }, [dispatch, name, CategoryId]);
+    }, [dispatch, name, category]);
 
     const objectCat = {
         cat140006: 'Makeup',
@@ -82,11 +79,10 @@ export default function SearchDetail() {
     if (currentProducts.length > 0) {
         return (
             <Fragment>
-                <Header />
                 <main className={ClassesSearchDetail.division}>
                     <div className={ClassesSearchDetail.todo}>
                         <div className={ClassesSearchDetail.params}>
-                            {name ? <h1>{name}</h1> : <h1>{objectCat[CategoryId]}</h1>}
+                            {name ? <h1>{name}</h1> : <h1>{objectCat[category]}</h1>}
                         </div>
                         <div className={ClassesSearchDetail.selectors}>
                             <select onChange={setOrder} name='Type' className={ClassesSearchDetail.select} >
@@ -132,7 +128,7 @@ export default function SearchDetail() {
                     </section>
 
                 </main>
-                <Footer />
+                
             </Fragment>
 
         )

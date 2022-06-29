@@ -1,0 +1,38 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    
+}
+.element{
+    margin: 10px 10px 10px 10px;
+}
+.tabletop{
+    display: flex;
+    justify-content: space-around;
+}
+.createButton{
+    
+    background-color: rgb(136, 231, 136);
+}
+.DelBtn{
+    background-color: rgba(230, 64, 64, 0.658);
+}
+.ModBtn{
+    background-color: rgba(245, 245, 39, 0.747);
+}
+.stockBtn{
+    background-color: rgba(153, 228, 233, 0.747);
+}
+.categoryAdder{
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+.secondaryBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+}

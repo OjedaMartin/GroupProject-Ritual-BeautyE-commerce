@@ -29,7 +29,7 @@ export default function ProductCard({ name, brand, image, price, id }) {
             </div>
           
             <div className={ClassesProductCard.name} >
-                <h3>{name.length>30? <h3 key={id}>{(name.slice(0,30)).concat('...')}</h3> : {name}}</h3> 
+                <h3>{name}</h3> 
             </div>
             <div className={ClassesProductCard.priceAndcart}>
                 <h4>{price}</h4>

@@ -32,15 +32,21 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
-    case "CREATE_PRODUCTS":
-      return {
-        ...state,
-      }
-    case "GET_CAT":
-      return {
-        ...state,
-        category: action.payload,
-      }
+      case "CREATE_PRODUCTS":
+        return {
+          ...state,
+         
+        }
+        case "CREATE_CATEGORY":
+        return {
+          ...state,
+         
+        }
+        case "GET_CAT":
+          return {
+            ...state,
+            category: action.payload,
+          }
     case "GET_DETAIL":
       return {
         ...state,
