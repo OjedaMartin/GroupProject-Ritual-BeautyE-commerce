@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, Link } from "react-router-dom";
 import style from "./Styles/ProductsAdmin.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import {getAllProducts, postCategory} from "C:/Users/marti/OneDrive/Documentos/GitHub/Proyecto-Grupal-Henry-Cohorte25a---Grupo-19/client/src/redux/actions/index.js"
+import {getAllProducts, postCategory} from "../../redux/actions/index"
 
 
 
