@@ -96,3 +96,15 @@ export function getfilterBrand(params) {
    }
   }
 }
+export function postCategory(payload) {
+  return async function (dispatch) {
+    const info = await axios.post("http://localhost:3001/categories/create", payload);
+    console.log("info action", info);
+    return{
+type:"CREATE_CATEGORY",
+info
+    } 
+  };
+}
+
+
