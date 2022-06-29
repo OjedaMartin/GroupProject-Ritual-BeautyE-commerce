@@ -13,7 +13,7 @@ import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import loaderEyes from '../images/loaderEyes.gif';
 
-import './SearchDetail.css'
+import style from'./SearchDetail.module.css'
 
 
 
@@ -87,17 +87,17 @@ export default function SearchDetail() {
         return (
             <Fragment>
                 
-                <main className="division">
-                    <div className="todo">
-                        <div className="params">
+                <main className={style.division}>
+                    <div className={style.todo}>
+                        <div className={style.params}>
                             {name ? <h1>{name}</h1> : <h1>{objectCat[category]}</h1>}
                         </div>
-                        <div className="selectors">
-                            <select onChange={setOrder} name='Type' className="select" >
-                                <option value='Sort' className="select">Sort</option>
-                                <option value='High to Low Price' className="select">High to Low</option>
-                                <option value='Low to High Price' className="select">Low to High</option>
-                                <option value='Sort by rated' className="select">Top Rated</option>
+                        <div className={style.selectors}>
+                            <select onChange={setOrder} name='Type' className={style.select} >
+                                <option value='Sort' className={style.select}>Sort</option>
+                                <option value='High to Low Price' className={style.select}>High to Low</option>
+                                <option value='Low to High Price' className={style.select}>Low to High</option>
+                                <option value='Sort by rated' className={style.select}>Top Rated</option>
                             </select>
                             {/* <select onChange={handleFilterByCategory} name='CategoryType'>
                             <option value='Origin'>Category</option>
@@ -107,10 +107,10 @@ export default function SearchDetail() {
                             <option value='cat130038'>Hair</option>
                         </select> */}
 
-                            <select onChange={handleFilterByBrand} name='BrandType' className="select">
+                            <select onChange={handleFilterByBrand} name='BrandType' className={style.select}>
                                 <option value='brand'>Brand</option>
                                 {newData?.map((e) => (
-                                    <option key={e} value={e} className="select">{e}</option>
+                                    <option key={e} value={e} className={style.select}>{e}</option>
 
                                 ))}
                             </select>
