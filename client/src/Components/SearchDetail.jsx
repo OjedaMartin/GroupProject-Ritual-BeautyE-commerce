@@ -1,21 +1,18 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router-dom";//, useLocation 
+import { useParams } from "react-router-dom";
 import {
     orderProducts,
-
     getAllProducts,
     getProductName,
     getAllCategories,
     getfilterCategories,
-    getfilterBrand
-
+    getfilterBrand    
 } from '../redux/actions';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import loaderEyes from '../images/loaderEyes.gif';
-import Header from './Header';
-import Footer from './footer';
+
 import './SearchDetail.css'
 
 
@@ -89,7 +86,7 @@ export default function SearchDetail() {
         }
         return (
             <Fragment>
-                <Header />
+                
                 <main className="division">
                     <div className="todo">
                         <div className="params">
@@ -149,7 +146,7 @@ export default function SearchDetail() {
                     </section>
 
                 </main>
-                <Footer />
+                
             </Fragment>
 
         )

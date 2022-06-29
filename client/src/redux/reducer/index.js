@@ -56,6 +56,11 @@ function rootReducer(state = initialState, action) {
           ...state,
          
         }
+        case "CREATE_CATEGORY":
+        return {
+          ...state,
+         
+        }
         case "GET_CAT":
           return {
             ...state,
