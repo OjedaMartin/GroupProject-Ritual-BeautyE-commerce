@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 import {
     orderProducts,
-    getAllProducts,
     getProductName,
     getAllCategories,
     getfilterCategories,
@@ -12,8 +11,7 @@ import {
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import loaderEyes from '../images/loaderEyes.gif';
-
-import style from'./SearchDetail.module.css'
+import ClassesSearchDetail from './SearchDetail.module.css'
 
 
 
@@ -23,23 +21,23 @@ export default function SearchDetail() {
     const { category } = useParams();
     const dispatch = useDispatch();
 
-    console.log('NAME',name);
-    console.log('CATEGORY',category)
-
     const productsResults = useSelector((state) => state.products);
-    //const allCategories = useSelector((state) => state.categories);//Agregar llamado a Actions y el estado a redux
-
+    const productsAuxResults = useSelector((state) => state.productsAux);
+    const allCategories = useSelector((state) => state.categories);//Agregar llamado a Actions y el estado a redux
+    console.log('allCategories',allCategories)
     const [currentPage, setCurrentPage] = useState(1);//pag selected
-    const [productsPerPage] = useState(10);//cards x page
+    const [productsPerPage] = useState(9);//cards x page
     const indexOfLastCard = currentPage * productsPerPage;
     const indexOfFirstCard = indexOfLastCard - productsPerPage;
     const currentProducts = productsResults?.slice(indexOfFirstCard, indexOfLastCard);
     //-----------------------------ME GUARDO TODAS LAS BRANDS Y ELIMINO LAS REPETIDAS--------
     const productsBrand = [];
-    currentProducts.map((e) => productsBrand.push(e.brand));
+    productsAuxResults.map((e) => productsBrand.push(e.brand));
     const newData = [...new Set(productsBrand)];
+    //console.log('newData',newData)
+    
     //---------------------------------------------------------------------------------------
-
+    
     useEffect(() => {
 
         dispatch(getAllCategories());
@@ -47,8 +45,6 @@ export default function SearchDetail() {
         else if (category) { dispatch(getfilterCategories(category)) }
 
     }, [dispatch, name, category]);
-    // if(location.pathname === `/SearchDetail/search/${name}`){
-    //if (location.pathname === `/SearchDetail/collection/${category}`){
 
     const objectCat = {
         cat140006: 'Makeup',
@@ -71,7 +67,7 @@ export default function SearchDetail() {
 
     const handleFilterByBrand = (e) => {
         dispatch(getfilterBrand(e.target.value));
-        //setReloadState((state) => !state);
+        setReloadState((state) => !state);
         setCurrentPage(1);
 
     }
@@ -79,57 +75,43 @@ export default function SearchDetail() {
     const paginated = (pageNum) => {
         setCurrentPage(pageNum)
     };
-    //currentProducts.length > 0
-    if (currentProducts.length > 0 || name || category) {
-        if (currentProducts.length === 0) {
-            getAllProducts()
-        }
+ 
+    if (currentProducts.length > 0) {
         return (
             <Fragment>
-                
-                <main className={style.division}>
-                    <div className={style.todo}>
-                        <div className={style.params}>
+                <main className={ClassesSearchDetail.division}>
+                    <div className={ClassesSearchDetail.todo}>
+                        <div className={ClassesSearchDetail.params}>
                             {name ? <h1>{name}</h1> : <h1>{objectCat[category]}</h1>}
                         </div>
-                        <div className={style.selectors}>
-                            <select onChange={setOrder} name='Type' className={style.select} >
-                                <option value='Sort' className={style.select}>Sort</option>
-                                <option value='High to Low Price' className={style.select}>High to Low</option>
-                                <option value='Low to High Price' className={style.select}>Low to High</option>
-                                <option value='Sort by rated' className={style.select}>Top Rated</option>
+                        <div className={ClassesSearchDetail.selectors}>
+                            <select onChange={setOrder} name='Type' className={ClassesSearchDetail.select} >
+                                <option value='Sort' className={ClassesSearchDetail.select}>Sort</option>
+                                <option value='High to Low Price' className={ClassesSearchDetail.select}>High to Low</option>
+                                <option value='Low to High Price' className={ClassesSearchDetail.select}>Low to High</option>
+                                <option value='Sort by rated' className={ClassesSearchDetail.select}>Top Rated</option>
                             </select>
-                            {/* <select onChange={handleFilterByCategory} name='CategoryType'>
-                            <option value='Origin'>Category</option>
-                            <option value='cat140006'>Makeup</option>
-                            <option value='cat150006'>Skincare</option>
-                            <option value='cat130042'>Tools & Brushes</option>
-                            <option value='cat130038'>Hair</option>
-                        </select> */}
-
-                            <select onChange={handleFilterByBrand} name='BrandType' className={style.select}>
+                            <select onChange={handleFilterByBrand} name='BrandType' className={ClassesSearchDetail.select}>
                                 <option value='brand'>Brand</option>
                                 {newData?.map((e) => (
-                                    <option key={e} value={e} className={style.select}>{e}</option>
+                                    <option key={e} value={e} className={ClassesSearchDetail.select}>{e}</option>
 
                                 ))}
                             </select>
                         </div>
                     </div>
-                    <section>
+                    <section className={ClassesSearchDetail.sectionFlex}>
                         {currentProducts.map((e) => {
                             return (
-                                <Fragment key={e.name}>
+                                <Fragment key={e.id}>
                                     <div>
                                         <ProductCard
-                                            key={e.parameteregory}
+                                            key={e.id}
                                             name={e.name}
                                             brand={e.brand}
                                             image={e.image}
                                             price={e.price}
-
                                             id={e.id}
-
                                         />
                                     </div>
                                 </Fragment>
