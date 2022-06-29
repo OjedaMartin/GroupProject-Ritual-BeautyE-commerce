@@ -4,7 +4,7 @@
       "name": "Airwrap™ Complete Styler",
       "brand": "Dyson",
       "image": "https://www.sephora.com/productimages/sku/s2162493-main-grid.jpg?pb=allure-best-2021-badge",
-      "price": "$599.00",
+      "price": 599.00,
       "rating": 4.3019,
       "idcategory": "cat130038"
     },
@@ -12,7 +12,7 @@
       "name": "Airwrap™ Multi-Styler Complete Long",
       "brand": "Dyson",
       "image": "https://www.sephora.com/productimages/sku/s2540201-main-grid.jpg",
-      "price": "$599.00",
+      "price": 599.00,
       "rating": 3.9808,
       "idcategory": "cat130038"
     },
@@ -20,7 +20,7 @@
       "name": "No. 5 Bond Maintenance™ Conditioner",
       "brand": "Olaplex",
       "image": "https://www.sephora.com/productimages/sku/s2118875-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$28.00",
+      "price": 28.00,
       "rating": 4.1148,
       "idcategory": "cat130038"
     },
@@ -28,7 +28,7 @@
       "name": "No. 4 Bond Maintenance™ Shampoo",
       "brand": "Olaplex",
       "image": "https://www.sephora.com/productimages/sku/s2118867-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$28.00",
+      "price": 28.00,
       "rating": 3.8588,
       "idcategory": "cat130038"
     },
@@ -36,7 +36,7 @@
       "name": "Leave-In Molecular Repair Hair Mask",
       "brand": "K18 Biomimetic Hairscience",
       "image": "https://www.sephora.com/productimages/sku/s2547248-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$75.00",
+      "price": 75.00,
       "rating": 4.3715,
       "idcategory": "cat130038"
     },
@@ -44,7 +44,7 @@
       "name": "Supersonic™ Hair Dryer",
       "brand": "Dyson",
       "image": "https://www.sephora.com/productimages/sku/s2585420-main-grid.jpg?pb=allure-best-2021-badge",
-      "price": "$429.00",
+      "price": 429.00,
       "rating": 3.55,
       "idcategory": "cat130038"
     },
@@ -52,7 +52,7 @@
       "name": "No. 3 Hair Repair Perfector",
       "brand": "Olaplex",
       "image": "https://www.sephora.com/productimages/sku/s2033264-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$28.00",
+      "price": 28.00,
       "rating": 4.3592,
       "idcategory": "cat130038"
     },
@@ -60,7 +60,7 @@
       "name": "No. 7 Bonding Hair Oil",
       "brand": "Olaplex",
       "image": "https://www.sephora.com/productimages/sku/s2266765-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$28.00",
+      "price": 28.00,
       "rating": 4.123,
       "idcategory": "cat130038"
     },
@@ -68,7 +68,7 @@
       "name": "Moroccanoil Treatment",
       "brand": "Moroccanoil",
       "image": "https://www.sephora.com/productimages/sku/s2030286-main-grid.jpg",
-      "price": "$48.00",
+      "price": 48.00,
       "rating": 4.6231,
       "idcategory": "cat130038"
     },
@@ -76,7 +76,7 @@
       "name": "Limited Edition Supersonic™ Hair Dryer Gift Set",
       "brand": "Dyson",
       "image": "https://www.sephora.com/productimages/sku/s2540227-main-grid.jpg",
-      "price": "$429.00",
+      "price": 429.00,
       "rating": 4.3446,
       "idcategory": "cat130038"
     },
@@ -84,7 +84,7 @@
       "name": "Hair Shampoo & Conditioner Bar with Bamboo Holder Set",
       "brand": "Viori",
       "image": "https://www.sephora.com/productimages/sku/s2593895-main-grid.jpg?pb=clean-planet-positive-badge-2021",
-      "price": "$35.00",
+      "price": 35.00,
       "rating": 4.9489,
       "idcategory": "cat130038"
     },
@@ -92,7 +92,7 @@
       "name": "Detox Shampoo",
       "brand": "OUAI",
       "image": "https://www.sephora.com/productimages/sku/s2319820-main-grid.jpg",
-      "price": "$60.00",
+      "price": 60.00,
       "rating": 4.5596,
       "idcategory": "cat130038"
     },
@@ -100,7 +100,7 @@
       "name": "Multi-Peptide Serum for Hair Density",
       "brand": "The Ordinary",
       "image": "https://www.sephora.com/productimages/sku/s2210722-main-grid.jpg",
-      "price": "$17.90",
+      "price": 17.90,
       "rating": 3.9144,
       "idcategory": "cat130038"
     },
@@ -108,7 +108,7 @@
       "name": "No. 6 Bond Smoother Reparative Styling Creme",
       "brand": "Olaplex",
       "image": "https://www.sephora.com/productimages/sku/s2539302-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$28.00",
+      "price": 28.00,
       "rating": 4.3522,
       "idcategory": "cat130038"
     },
@@ -116,7 +116,7 @@
       "name": "Dream Coat Supernatural Spray Anti-Frizz Treatment",
       "brand": "COLOR WOW",
       "image": "https://www.sephora.com/productimages/sku/s2437267-main-grid.jpg",
-      "price": "$28.00",
+      "price": 28.00,
       "rating": 4.0832,
       "idcategory": "cat130038"
     },
@@ -124,7 +124,7 @@
       "name": "Gold Lust Repair & Restore Conditioner",
       "brand": "Oribe",
       "image": "https://www.sephora.com/productimages/sku/s2438471-main-grid.jpg",
-      "price": "$182.00",
+      "price": 182.00,
       "rating": 4.3137,
       "idcategory": "cat130038"
     },
@@ -140,7 +140,7 @@
       "name": "Perfect hair Day (PhD) Dry Shampoo",
       "brand": "Living Proof",
       "image": "https://www.sephora.com/productimages/sku/s2343051-main-grid.jpg",
-      "price": "$41.00",
+      "price": 41.00,
       "rating": 4.3248,
       "idcategory": "cat130038"
     },
@@ -148,7 +148,7 @@
       "name": "Original Styler - 1\" Flat Iron",
       "brand": "ghd",
       "image": "https://www.sephora.com/productimages/sku/s2539138-main-grid.jpg",
-      "price": "$169.00",
+      "price": 169.00,
       "rating": 4.6895,
       "idcategory": "cat130038"
     },
@@ -156,7 +156,7 @@
       "name": "Brazilian Joia ™ Milky Leave-In Conditioner",
       "brand": "Sol de Janeiro",
       "image": "https://www.sephora.com/productimages/sku/s2578037-main-grid.jpg",
-      "price": "$28.00",
+      "price": 28.00,
       "rating": 4.6667,
       "idcategory": "cat130038"
     },
@@ -164,7 +164,7 @@
       "name": "Airwrap™ Multi-Styler Complete Long",
       "brand": "Dyson",
       "image": "https://www.sephora.com/productimages/sku/s2540201-main-grid.jpg",
-      "price": "$599.00",
+      "price": 599.00,
       "rating": 3.9808,
       "idcategory": "cat130042"
     },
@@ -172,7 +172,7 @@
       "name": "Supersonic™ Hair Dryer",
       "brand": "Dyson",
       "image": "https://www.sephora.com/productimages/sku/s2585420-main-grid.jpg?pb=allure-best-2021-badge",
-      "price": "$429.00",
+      "price": 429.00,
       "rating": 3.55,
       "idcategory": "cat130042"
     },
@@ -180,7 +180,7 @@
       "name": "ORIGINAL BEAUTYBLENDER Makeup Sponge",
       "brand": "beautyblender",
       "image": "https://www.sephora.com/productimages/sku/s2230829-main-grid.jpg",
-      "price": "$20.00",
+      "price": 20.00,
       "rating": 4.4753,
       "idcategory": "cat130042"
     },
@@ -188,7 +188,7 @@
       "name": "Platinum+ Styler - 1\" Flat Iron",
       "brand": "ghd",
       "image": "https://www.sephora.com/productimages/sku/s2126241-main-grid.jpg?pb=allure-best-2020",
-      "price": "$279.00",
+      "price": 279.00,
       "rating": 3.8278,
       "idcategory": "cat130042"
     },
@@ -196,7 +196,7 @@
       "name": "Eyelash Curler",
       "brand": "Shiseido",
       "image": "https://www.sephora.com/productimages/sku/s1201474-main-grid.jpg?pb=2020-03-allure-best-2018",
-      "price": "$23.00",
+      "price": 23.00,
       "rating": 4.3841,
       "idcategory": "cat130042"
     },
@@ -204,7 +204,7 @@
       "name": "Deluxe Brush Set",
       "brand": "SEPHORA COLLECTION",
       "image": "https://www.sephora.com/productimages/sku/s2398022-main-grid.jpg?pb=2020-03-sephora-value-2020",
-      "price": "$69.00",
+      "price": 69.00,
       "rating": 4.7913,
       "idcategory": "cat130042"
     },
@@ -212,7 +212,7 @@
       "name": "Corrale™ Hair Straightener",
       "brand": "Dyson",
       "image": "https://www.sephora.com/productimages/sku/s2585438-main-grid.jpg",
-      "price": "$499.00",
+      "price": 499.00,
       "rating": 3.6014,
       "idcategory": "cat130042"
     },
@@ -220,7 +220,7 @@
       "name": "Complete Brush Set",
       "brand": "SEPHORA COLLECTION",
       "image": "https://www.sephora.com/productimages/sku/s2398014-main-grid.jpg?pb=2020-03-sephora-value-2020",
-      "price": "$49.00",
+      "price": 49.00,
       "rating": 4.7903,
       "idcategory": "cat130042"
     },
@@ -228,7 +228,7 @@
       "name": "Silk Pillowcase - Standard/Queen",
       "brand": "Slip",
       "image": "https://www.sephora.com/productimages/sku/s1771260-main-grid.jpg",
-      "price": "$89.00",
+      "price": 89.00,
       "rating": 4,
       "idcategory": "cat130042"
     },
@@ -236,7 +236,7 @@
       "name": "Silicone Scalp Massager",
       "brand": "SEPHORA COLLECTION",
       "image": "https://www.sephora.com/productimages/sku/s2414555-main-grid.jpg?pb=2020-03-sephora-value-2020",
-      "price": "$12.00",
+      "price": 12.00,
       "rating": 4.8776,
       "idcategory": "cat130042"
     },
@@ -244,7 +244,7 @@
       "name": "PRO Foundation Brush #70",
       "brand": "SEPHORA COLLECTION",
       "image": "https://www.sephora.com/productimages/sku/s2290039-main-grid.jpg?pb=2020-03-sephora-value-2020",
-      "price": "$30.00",
+      "price": 30.00,
       "rating": 4.5475,
       "idcategory": "cat130042"
     },
@@ -252,7 +252,7 @@
       "name": "Trinity Facial Toning Device",
       "brand": "NuFACE",
       "image": "https://www.sephora.com/productimages/sku/s1572270-main-grid.jpg?pb=allure-best-2021-badge",
-      "price": "$339.00",
+      "price": 339.00,
       "rating": 4.0373,
       "idcategory": "cat130042"
     },
@@ -260,7 +260,7 @@
       "name": "AireLuxe Hair Dryer",
       "brand": "T3",
       "image": "https://www.sephora.com/productimages/sku/s2579233-main-grid.jpg",
-      "price": "$199.99",
+      "price": 199.99,
       "rating": 4.8908,
       "idcategory": "cat130042"
     },
@@ -268,7 +268,7 @@
       "name": "DRx SpectraLite™ FaceWare Pro",
       "brand": "Dr. Dennis Gross Skincare",
       "image": "https://www.sephora.com/productimages/sku/s2109718-main-grid.jpg",
-      "price": "$435.00",
+      "price": 435.00,
       "rating": 3.4485,
       "idcategory": "cat130042"
     },
@@ -276,7 +276,7 @@
       "name": "Makeup Brush Cleaner",
       "brand": "Cinema Secrets",
       "image": "https://www.sephora.com/productimages/sku/s1662154-main-grid.jpg",
-      "price": "$45.00",
+      "price": 45.00,
       "rating": 4.3448,
       "idcategory": "cat130042"
     },
@@ -284,7 +284,7 @@
       "name": "Liquid Touch Foundation Brush",
       "brand": "Rare Beauty by Selena Gomez",
       "image": "https://www.sephora.com/productimages/sku/s2362408-main-grid.jpg",
-      "price": "$28.00",
+      "price": 28.00,
       "rating": 4.5678,
       "idcategory": "cat130042"
     },
@@ -292,7 +292,7 @@
       "name": "PRO Foundation Brush #56",
       "brand": "SEPHORA COLLECTION",
       "image": "https://www.sephora.com/productimages/sku/s2290526-main-grid.jpg?pb=2020-03-sephora-value-2020",
-      "price": "$30.00",
+      "price": 30.00,
       "rating": 4.695,
       "idcategory": "cat130042"
     },
@@ -300,7 +300,7 @@
       "name": "beautyblender® pro",
       "brand": "beautyblender",
       "image": "https://www.sephora.com/productimages/sku/s2275782-main-grid.jpg",
-      "price": "$20.00",
+      "price": 20.00,
       "rating": 4.4821,
       "idcategory": "cat130042"
     },
@@ -308,7 +308,7 @@
       "name": "SinglePass Curl 1.25” Professional Ceramic Curling Iron",
       "brand": "T3",
       "image": "https://www.sephora.com/productimages/sku/s2045755-main-grid.jpg",
-      "price": "$169.99",
+      "price": 169.99,
       "rating": 3.5543,
       "idcategory": "cat130042"
     },
@@ -316,7 +316,7 @@
       "name": "High Tide Deep Wave Hair Crimper",
       "brand": "amika",
       "image": "https://www.sephora.com/productimages/sku/s2190171-main-grid.jpg?pb=2020-03-allure-best-2019",
-      "price": "$120.00",
+      "price": 120.00,
       "rating": 4,
       "idcategory": "cat130042"
     },
@@ -324,7 +324,7 @@
       "name": "Afterglow Lip Shine Gloss",
       "brand": "NARS",
       "image": "https://www.sephora.com/productimages/sku/s2514909-main-grid.jpg",
-      "price": "$26.00",
+      "price": 26.00,
       "rating": 4.6269,
       "idcategory": "cat140006"
     },
@@ -332,7 +332,7 @@
       "name": "Vitamin Enriched Face Base Priming Moisturizer",
       "brand": "Bobbi Brown",
       "image": "https://www.sephora.com/productimages/sku/s1292820-main-grid.jpg",
-      "price": "$95.00",
+      "price": 95.00,
       "rating": 4.5405,
       "idcategory": "cat140006"
     },
@@ -340,7 +340,7 @@
       "name": "Unseen Sunscreen SPF 40 PA+++",
       "brand": "Supergoop!",
       "image": "https://www.sephora.com/productimages/sku/s2421584-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$44.00",
+      "price": 44.00,
       "rating": 4.3067,
       "idcategory": "cat140006"
     },
@@ -348,7 +348,7 @@
       "name": "Airbrush Flawless Finish Setting Powder",
       "brand": "Charlotte Tilbury",
       "image": "https://www.sephora.com/productimages/sku/s2116333-main-grid.jpg",
-      "price": "$45.00",
+      "price": 45.0,
       "rating": 4.1926,
       "idcategory": "cat140006"
     },
@@ -356,7 +356,7 @@
       "name": "Dior Addict Lip Glow",
       "brand": "Dior",
       "image": "https://www.sephora.com/productimages/sku/s2579340-main-grid.jpg",
-      "price": "$35.00",
+      "price": 35.00,
       "rating": 4.3969,
       "idcategory": "cat140006"
     },
@@ -364,7 +364,7 @@
       "name": "Protini™ Polypeptide Firming Moisturizer",
       "brand": "Drunk Elephant",
       "image": "https://www.sephora.com/productimages/sku/s2404739-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$98.00",
+      "price": 98.00,
       "rating": 3.9801,
       "idcategory": "cat150006"
     },
@@ -372,7 +372,7 @@
       "name": "The Dewy Skin Cream Plumping & Hydrating Moisturizer",
       "brand": "Tatcha",
       "image": "https://www.sephora.com/productimages/sku/s2181006-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$82.00",
+      "price": 82.00,
       "rating": 4.1636,
       "idcategory": "cat150006"
     },
@@ -380,7 +380,7 @@
       "name": "Brazilian Crush Cheirosa ’62 Bum Bum Hair & Body Fragrance Mist",
       "brand": "Sol de Janeiro",
       "image": "https://www.sephora.com/productimages/sku/s1930759-main-grid.jpg",
-      "price": "$35.00",
+      "price": 35.00,
       "rating": 4.2656,
       "idcategory": "cat150006"
     },
@@ -388,7 +388,7 @@
       "name": "Skin Perfecting 2% BHA Liquid Exfoliant",
       "brand": "Paula's Choice",
       "image": "https://www.sephora.com/productimages/sku/s2421360-main-grid.jpg",
-      "price": "$32.00",
+      "price":32.00,
       "rating": 4.5028,
       "idcategory": "cat150006"
     },
@@ -396,7 +396,7 @@
       "name": "Hollywood Flawless Filter",
       "brand": "Charlotte Tilbury",
       "image": "https://www.sephora.com/productimages/sku/s2419786-main-grid.jpg",
-      "price": "$44.00",
+      "price":44.00,
       "rating": 4.4125,
       "idcategory": "cat140006"
     },
@@ -404,7 +404,7 @@
       "name": "Luminous Silk Perfect Glow Flawless Oil-Free Foundation",
       "brand": "Armani Beauty",
       "image": "https://www.sephora.com/productimages/sku/s1491380-main-grid.jpg?pb=2020-03-allure-best-2018",
-      "price": "$65.00",
+      "price": 65.00,
       "rating": 4.2386,
       "idcategory": "cat140006"
     },
@@ -412,7 +412,7 @@
       "name": "GrandeLASH - MD Lash Enhancing Serum",
       "brand": "Grande Cosmetics",
       "image": "https://www.sephora.com/productimages/sku/s1923275-main-grid.jpg",
-      "price": "$125.00",
+      "price": 125.00,
       "rating": 4.3153,
       "idcategory": "cat140006"
     },
@@ -420,7 +420,7 @@
       "name": "All Nighter Long-Lasting Makeup Setting Spray",
       "brand": "Urban Decay",
       "image": "https://www.sephora.com/productimages/sku/s1900000-main-grid.jpg?pb=allure-best-2020",
-      "price": "$33.00",
+      "price": 33.00,
       "rating": 4.4505,
       "idcategory": "cat140006"
     },
@@ -428,7 +428,7 @@
       "name": "Glowscreen Sunscreen SPF 40 PA+++ with Hyaluronic Acid + Niacinamide",
       "brand": "Supergoop!",
       "image": "https://www.sephora.com/productimages/sku/s2535656-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$46.00",
+      "price": 46.00,
       "rating": 4.1769,
       "idcategory": "cat150006"
     },
@@ -436,7 +436,7 @@
       "name": "Super Serum Skin Tint SPF 40 Foundation",
       "brand": "ILIA",
       "image": "https://www.sephora.com/productimages/sku/s2333607-main-grid.jpg?pb=allure-clean-2020",
-      "price": "$48.00",
+      "price": 48.00,
       "rating": 3.7283,
       "idcategory": "cat150006"
     },
@@ -444,7 +444,7 @@
       "name": "Barrier+ Triple Lipid-Peptide Face Cream",
       "brand": "Skinfix",
       "image": "https://www.sephora.com/productimages/sku/s2215945-main-grid.jpg?pb=2020-03-allure-clean-2019",
-      "price": "$52.00",
+      "price": 52.00,
       "rating": 4.3924,
       "idcategory": "cat150006"
     },
@@ -452,7 +452,7 @@
       "name": "The Water Cream Oil-Free Pore Minimizing Moisturizer",
       "brand": "Tatcha",
       "image": "https://www.sephora.com/productimages/sku/s1932920-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$82.00",
+      "price": 82.00,
       "rating": 4.0473,
       "idcategory": "cat150006"
     },
@@ -460,7 +460,7 @@
       "name": "Soft Pinch Liquid Blush",
       "brand": "Rare Beauty by Selena Gomez",
       "image": "https://www.sephora.com/productimages/sku/s2518959-main-grid.jpg",
-      "price": "$20.00",
+      "price": 20.00,
       "rating": 4.5046,
       "idcategory": "cat140006"
     },
@@ -468,7 +468,7 @@
       "name": "Super Serum Skin Tint SPF 40 Foundation",
       "brand": "ILIA",
       "image": "https://www.sephora.com/productimages/sku/s2333607-main-grid.jpg?pb=allure-clean-2020",
-      "price": "$48.00",
+      "price": 48.00,
       "rating": 3.7283,
       "idcategory": "cat140006"
     },
@@ -476,7 +476,7 @@
       "name": "Double Wear Stay-in-Place Foundation",
       "brand": "Estée Lauder",
       "image": "https://www.sephora.com/productimages/sku/s2112167-main-grid.jpg?pb=2020-03-allure-best-2018",
-      "price": "$46.00",
+      "price": 46.00,
       "rating": 4.3801,
       "idcategory": "cat140006"
     },
@@ -484,7 +484,7 @@
       "name": "Airbrush Flawless Setting Spray",
       "brand": "Charlotte Tilbury",
       "image": "https://www.sephora.com/productimages/sku/s2368439-main-grid.jpg",
-      "price": "$35.00",
+      "price": 35.00,
       "rating": 4.412,
       "idcategory": "cat140006"
     },
@@ -492,7 +492,7 @@
       "name": "Niacinamide 10% + Zinc 1% Oil Control Serum",
       "brand": "The Ordinary",
       "image": "https://www.sephora.com/productimages/sku/s2031391-main-grid.jpg",
-      "price": "$11.70",
+      "price": 11.70,
       "rating": 4.2529,
       "idcategory": "cat150006"
     },
@@ -500,7 +500,7 @@
       "name": "Hyaluronic Acid 2% + B5 Hydrating Serum",
       "brand": "The Ordinary",
       "image": "https://www.sephora.com/productimages/sku/s2031375-main-grid.jpg?pb=2020-03-allure-best-2019",
-      "price": "$13.50",
+      "price": 13.50,
       "rating": 4.2149,
       "idcategory": "cat150006"
     },
@@ -508,7 +508,7 @@
       "name": "Superfood Antioxidant Cleanser",
       "brand": "Youth To The People",
       "image": "https://www.sephora.com/productimages/sku/s1863588-main-grid.jpg?pb=clean-planet-positive-badge-2021",
-      "price": "$64.00",
+      "price": 64.00,
       "rating": 4.2408,
       "idcategory": "cat150006"
     },
@@ -516,7 +516,7 @@
       "name": "Alpha Beta® Extra Strength Daily Peel",
       "brand": "Dr. Dennis Gross Skincare",
       "image": "https://www.sephora.com/productimages/sku/s1499482-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$150.00",
+      "price": 150.00,
       "rating": 4.5496,
       "idcategory": "cat150006"
     },
@@ -524,7 +524,7 @@
       "name": "Radiant Creamy Concealer",
       "brand": "NARS",
       "image": "https://www.sephora.com/productimages/sku/s2172310-main-grid.jpg",
-      "price": "$31.00",
+      "price": 31.00,
       "rating": 4.3091,
       "idcategory": "cat140006"
     },
@@ -532,7 +532,7 @@
       "name": "Lock-It Refillable Mattifying Pressed Finishing Powder",
       "brand": "KVD Beauty",
       "image": "https://www.sephora.com/productimages/sku/s1914472-main-grid.jpg",
-      "price": "$33.00",
+      "price": 33.00,
       "rating": 4.2154,
       "idcategory": "cat140006"
     },
@@ -540,7 +540,7 @@
       "name": "Brow Wiz® Ultra-Slim Precision Brow Pencil",
       "brand": "Anastasia Beverly Hills",
       "image": "https://www.sephora.com/productimages/sku/s2372530-main-grid.jpg",
-      "price": "$23.00",
+      "price": 23.00,
       "rating": 4.4093,
       "idcategory": "cat140006"
     },
@@ -548,7 +548,7 @@
       "name": "Light Reflecting Advanced Skincare Foundation",
       "brand": "NARS",
       "image": "https://www.sephora.com/productimages/sku/s2514586-main-grid.jpg",
-      "price": "$49.00",
+      "price": 49.00,
       "rating": 4.2285,
       "idcategory": "cat140006"
     },
@@ -556,7 +556,7 @@
       "name": "Vitamin Enriched Face Base Priming Moisturizer",
       "brand": "Bobbi Brown",
       "image": "https://www.sephora.com/productimages/sku/s1292820-main-grid.jpg",
-      "price": "$95.00",
+      "price": 95.00,
       "rating": 4.5405,
       "idcategory": "cat150006"
     },
@@ -564,7 +564,7 @@
       "name": "Unseen Sunscreen SPF 40 PA+++",
       "brand": "Supergoop!",
       "image": "https://www.sephora.com/productimages/sku/s2421584-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$44.00",
+      "price": 44.00,
       "rating": 4.3067,
       "idcategory": "cat150006"
     },
@@ -572,7 +572,7 @@
       "name": "That Overnight Hustle AHA + BHA Resurfacer",
       "brand": "JLo Beauty",
       "image": "https://www.sephora.com/productimages/sku/s2535474-main-grid.jpg",
-      "price": "$58.00",
+      "price": 58.00,
       "rating": 4.7179,
       "idcategory": "cat150006"
     },
@@ -580,7 +580,7 @@
       "name": "Abeille Royale Double R Anti-Aging Skincare Set",
       "brand": "GUERLAIN",
       "image": "https://www.sephora.com/productimages/sku/s2535011-main-grid.jpg?pb=2020-03-sephora-clean-2019",
-      "price": "$245.00",
+      "price": 245.00,
       "rating": 5,
       "idcategory": "cat150006"
     },
@@ -588,7 +588,7 @@
       "name": "Multi-Peptide Lash and Brow Serum",
       "brand": "The Ordinary",
       "image": "https://www.sephora.com/productimages/sku/s2532588-main-grid.jpg",
-      "price": "$14.50",
+      "price": 14.50,
       "rating": 4.1767,
       "idcategory": "cat140006"
     },
@@ -596,7 +596,7 @@
       "name": "Translucent Loose Setting Powder",
       "brand": "Laura Mercier",
       "image": "https://www.sephora.com/productimages/sku/s870618-main-grid.jpg",
-      "price": "$24.00 - $40.00",
+      "price":40.00,
       "rating": 4.5127,
       "idcategory": "cat140006"
     },
@@ -604,7 +604,7 @@
       "name": "Revealer Super Creamy + Brightening Concealer and Daytime Eye Cream",
       "brand": "Kosas",
       "image": "https://www.sephora.com/productimages/sku/s2333771-main-grid.jpg?pb=clean-planet-positive-badge-2021",
-      "price": "$28.00",
+      "price": 28.00,
       "rating": 4.1738,
       "idcategory": "cat140006"
     },
@@ -612,7 +612,7 @@
       "name": "Brazilian Bum Bum Body Cream",
       "brand": "Sol de Janeiro",
       "image": "https://www.sephora.com/productimages/sku/s1802412-main-grid.jpg",
-      "price": "$48.00",
+      "price": 48.00,
       "rating": 4.3096,
       "idcategory": "cat150006"
     },
@@ -620,7 +620,7 @@
       "name": "AHA 30% + BHA 2% Exfoliating Peeling Solution",
       "brand": "The Ordinary",
       "image": "https://www.sephora.com/productimages/sku/s2210607-main-grid.jpg",
-      "price": "$8.00",
+      "price": 8.00,
       "rating": 4.6071,
       "idcategory": "cat150006"
     },
@@ -628,7 +628,7 @@
       "name": "Dior Addict Lip Glow",
       "brand": "Dior",
       "image": "https://www.sephora.com/productimages/sku/s2579340-main-grid.jpg",
-      "price": "$35.00",
+      "price": 35.00,
       "rating": 4.3969,
       "idcategory": "cat150006"
     },
@@ -636,7 +636,7 @@
       "name": "Vitamin Enriched Face Base Jumbo",
       "brand": "Bobbi Brown",
       "image": "https://www.sephora.com/productimages/sku/s2421840-main-grid.jpg",
-      "price": "$95.00",
+      "price": 95.00,
       "rating": 4.8462,
       "idcategory": "cat150006"
     }
