@@ -32,7 +32,7 @@ export default function ProductCard({ name, brand, image, price, id }) {
                 <h3>{name}</h3> 
             </div>
             <div className={ClassesProductCard.priceAndcart}>
-                <h4>{price}</h4>
+                <h4>{`$${price}`}</h4>
                 <button className={ClassesProductCard.cartBtn}>{/*onClick={handleCart} */}
                     <img src={cart} alt='Buy' />
                 </button>

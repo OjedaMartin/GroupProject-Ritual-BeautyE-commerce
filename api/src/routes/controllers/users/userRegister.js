@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+const { User } = require('../../../db');
+const jwt = require('jsonwebtoken');
 
 
 // Regitro
@@ -6,7 +8,7 @@ const userRegister = async(req, res) => {
     try {
         let password = bcrypt.hashSync(req.body.password, 10)
         // Creamos el usuario
-        const newUser = await User.create({
+        await User.create({
             name: req.body.name,
             email: req.body.email,
             password: req.body.password
@@ -18,7 +20,7 @@ const userRegister = async(req, res) => {
             res.status(200).json({ user, token })
         });
     } catch(err) {
-        res.sendStatus(403);
+        res.status(404).send(`Error en el controller userRegister: ${err}`);
     }
 }
 

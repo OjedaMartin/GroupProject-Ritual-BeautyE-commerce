@@ -2,20 +2,19 @@
 const { Product, Category } = require("../../../db");
 
 const createProduct = async (req, res) => {
-  const { name, brand, image, price, rating, idcategory } = req.body;
+  const { name, brand, image, price, CategoryId } = req.body;
   try {
-      console.log("post", name, brand, image, price, rating, idcategory);
-      if(name && brand && image && price && rating && idcategory) {
+      console.log("post", name, brand, image, price, CategoryId);
+      if(name && brand && image && price && CategoryId) {
           const newProduct = await Product.create({
               name,
               brand,
               image,
-              price,
-              rating,
+              price
           });
           let productCategory = await Category.findOne({
               where: {
-                  id: idcategory,
+                  id: CategoryId,
               }
           });
           // console.log(JSON.stringify(newProduct) + " asdasd")

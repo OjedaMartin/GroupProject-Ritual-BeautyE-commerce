@@ -11,10 +11,10 @@ export default function Header(){
         <div className={Style.main}>
             
             <div className={Style.header}>
-                <Link to="/create" ><button className={Style.btnH}> New Product </button></Link>
+                {/*<Link to="/create" ><button className={Style.btnH}> New Product </button></Link>*/}
                 <SearchBar/>
                 <h1 className={Style.title}><Link to="/" style={{ textDecoration: 'none', color: 'black'  }} >RITUAL</Link></h1>
-                <div className='contIcons'>
+                <div className={Style.contIcons}>
                     <Link to="/"><button className={Style.iconUser}><FaAdn/></button></Link>
                     <Link to="/"><button className={Style.iconCart}><FaShoppingCart/></button></Link>
                 </div>

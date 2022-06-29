@@ -11,11 +11,11 @@ const orderProducts = (orderSelected, stateProducts) => {
   switch (orderSelected) {
     case 'High to Low Price':
       return stateProducts.sort((a, b) => {
-        return parseInt((b.price).slice(1, b.price.length)) - parseInt((a.price).slice(1, a.price.length));
+        return b.price - a.price;
       });
     case 'Low to High Price':
       return stateProducts.sort((a, b) => {
-        return parseInt((a.price).slice(1, a.price.length)) - parseInt((b.price).slice(1, b.price.length));
+        return a.price - b.price;
       })
     case 'Sort by rated':
       return stateProducts.sort((a, b) => {
