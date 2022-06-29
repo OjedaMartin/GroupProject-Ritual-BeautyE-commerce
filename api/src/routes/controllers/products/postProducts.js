@@ -14,7 +14,7 @@ const createProduct = async (req, res) => {
           });
           let productCategory = await Category.findOne({
               where: {
-                  name: CategoryId,
+                  id: CategoryId,
               }
           });
           // console.log(JSON.stringify(newProduct) + " asdasd")
