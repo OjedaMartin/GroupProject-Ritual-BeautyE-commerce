@@ -14,48 +14,74 @@
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-direction: column;
-    width: 250px;
+    width: 260px;
+    height: 360px;
     background-color: #faf8f8;
     box-shadow: 2px 5px 10px -1px rgba(0, 0, 0, 0.75);
+    font-family: 'Cantarell', sans-serif;
 
     
 }
-/* .container1:hover{
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
-} */
-.alldata{
-    margin-left: 19%;
-    font-family: 'Cantarell', sans-serif;
-}
-/* .prodImg img {
-} */
-
-
-.prodInfo h3 {
-    font-family: 'Cantarell', sans-serif;
-}
-.prodInfo h4 {
-    font-family: 'Cantarell', sans-serif;
-    font-size:larger;
-    justify-content: center;
-}
-
-
-.cartBtn {
-    border: 1px solid #00000093;
-    border-radius: 80px;
-    width: 40px;
-    height: 40px;
-    background-color: #a3e9c08f;
-}
-
-.photo {
-    /* margin-right: 50px; */
+.top{
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    font-size: 14px;
+    background-color: #d0ee9f98;
+    height: 10%;
+    width: 100%;
     display: flex;
     justify-content: center;
-    
+    align-items: center;
+    border-bottom: 3px solid rgba(80, 121, 85, 0.342);
+}
 
-    width: 30px;
-    height: 30px;
+.ImgDiv{
+    margin-top: 5px;
+}
+.prodImg img{
+    max-width: 150px;   
+}
+.name {
+    border-top: 1px solid rgba(146, 146, 146, 0.5);
+    margin: 15px;
+    font-size: 12px;
+
+}
+.priceAndcart{
+    display: flex;
+    justify-content:center;
+    position: relative;
+    align-self: auto;
+    width: 100%;
+    
+}
+.priceAndcart h4 {
+    position: relative;
+    bottom: 30px;
+    font-size: 20px;
+
+}
+.cartBtn{
+    position: relative;
+    bottom: 10px;
+    margin-left: 87px;
+    border: 1px solid #00000093;
+    border-radius: 80px;
+    width: 35px;
+    height: 35px;
+    background-color: #a3e9c08f;
+    
+    transition: 0.2s all ease-in-out;
+}
+.cartBtn img{
+    display: flex;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+.cartBtn:hover{
+    transform: scale(1.2);
 }

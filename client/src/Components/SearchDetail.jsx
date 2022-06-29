@@ -21,15 +21,15 @@ import ClassesSearchDetail from './SearchDetail.module.css'
 export default function SearchDetail() {
     const [, setReloadState] = useState(false);
     const { name } = useParams();
-    const { category } = useParams();
+    const { CategoryId } = useParams();
     const dispatch = useDispatch();
 
     const productsResults = useSelector((state) => state.products);
     const productsAuxResults = useSelector((state) => state.productsAux);
-    //const allCategories = useSelector((state) => state.categories);//Agregar llamado a Actions y el estado a redux
-
+    const allCategories = useSelector((state) => state.categories);//Agregar llamado a Actions y el estado a redux
+    console.log('allCategories',allCategories)
     const [currentPage, setCurrentPage] = useState(1);//pag selected
-    const [productsPerPage] = useState(10);//cards x page
+    const [productsPerPage] = useState(9);//cards x page
     const indexOfLastCard = currentPage * productsPerPage;
     const indexOfFirstCard = indexOfLastCard - productsPerPage;
     const currentProducts = productsResults?.slice(indexOfFirstCard, indexOfLastCard);
@@ -45,9 +45,9 @@ export default function SearchDetail() {
 
         dispatch(getAllCategories());
         if (name) { dispatch(getProductName(name)) }
-        else if (category) { dispatch(getfilterCategories(category)) }
+        else if (CategoryId) { dispatch(getfilterCategories(CategoryId)) }
 
-    }, [dispatch, name, category]);
+    }, [dispatch, name, CategoryId]);
 
     const objectCat = {
         cat140006: 'Makeup',
@@ -86,7 +86,7 @@ export default function SearchDetail() {
                 <main className={ClassesSearchDetail.division}>
                     <div className={ClassesSearchDetail.todo}>
                         <div className={ClassesSearchDetail.params}>
-                            {name ? <h1>{name}</h1> : <h1>{objectCat[category]}</h1>}
+                            {name ? <h1>{name}</h1> : <h1>{objectCat[CategoryId]}</h1>}
                         </div>
                         <div className={ClassesSearchDetail.selectors}>
                             <select onChange={setOrder} name='Type' className={ClassesSearchDetail.select} >
@@ -95,14 +95,6 @@ export default function SearchDetail() {
                                 <option value='Low to High Price' className={ClassesSearchDetail.select}>Low to High</option>
                                 <option value='Sort by rated' className={ClassesSearchDetail.select}>Top Rated</option>
                             </select>
-                            {/* <select onChange={handleFilterByCategory} name='CategoryType'>
-                            <option value='Origin'>Category</option>
-                            <option value='cat140006'>Makeup</option>
-                            <option value='cat150006'>Skincare</option>
-                            <option value='cat130042'>Tools & Brushes</option>
-                            <option value='cat130038'>Hair</option>
-                        </select> */}
-
                             <select onChange={handleFilterByBrand} name='BrandType' className={ClassesSearchDetail.select}>
                                 <option value='brand'>Brand</option>
                                 {newData?.map((e) => (
@@ -112,7 +104,7 @@ export default function SearchDetail() {
                             </select>
                         </div>
                     </div>
-                    <section>
+                    <section className={ClassesSearchDetail.sectionFlex}>
                         {currentProducts.map((e) => {
                             return (
                                 <Fragment key={e.id}>

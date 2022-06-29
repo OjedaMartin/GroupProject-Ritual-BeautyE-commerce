@@ -50,7 +50,7 @@ export default function AdminProduct() {
   console.log("estado",estado);
   // const [err, SetErr] = useState({});
   const setArr = [];
-  products.map((e) =>setArr.push(e.idcategory));
+  category.map((e) =>setArr.push(e.id));
   let newData = [...new Set(setArr)];
 
   const setBrand = [];

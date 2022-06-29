@@ -1,0 +1,44 @@
+{
+    "users": [
+        {
+            "name": "guille1",
+            "email": "tomas@gmail.com",
+            "password": "12345678910"
+        },
+        {
+            "name": "agus2",
+            "email": "agus@gmail.com",
+            "password": "12345678910"
+        },
+        {
+            "name": "gaston3",
+            "email": "gaston@gmail.com",
+            "password": "12345678910"
+        },
+        {
+            "name": "ivan4",
+            "email": "ivan@gmail.com",
+            "password": "12345678910"
+        },
+        {
+            "name": "alberto5",
+            "email": "alberto@gmail.com",
+            "password": "12345678910"
+        },
+        {
+            "name": "maru6",
+            "email": "maru6@gmail.com",
+            "password": "12345678910"
+        },
+        {
+            "name": "rafa7",
+            "email": "rafa@gmail.com",
+            "password": "12345678910"
+        },
+        {
+            "name": "matias8",
+            "email": "matias@gmail.com",
+            "password": "12345678910"
+        }
+    ]
+}

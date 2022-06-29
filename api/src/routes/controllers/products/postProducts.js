@@ -2,26 +2,24 @@
 const { Product, Category } = require("../../../db");
 
 const createProduct = async (req, res) => {
-  const { name, brand, image, price, rating, idcategory, category } = req.body;
+  const { name, brand, image, price, rating, idcategory } = req.body;
   try {
-      console.log("post", name, brand, image, price, rating, idcategory, category);
-      if(name && brand && image && price && rating && idcategory && category) {
+      console.log("post", name, brand, image, price, rating, idcategory);
+      if(name && brand && image && price && rating && idcategory) {
           const newProduct = await Product.create({
               name,
-              brand:brand[0],
+              brand,
               image,
               price,
               rating,
-              idcategory:idcategory[0]
           });
           let productCategory = await Category.findOne({
               where: {
-                  name: category[0]
+                  id: idcategory,
               }
           });
           // console.log(JSON.stringify(newProduct) + " asdasd")
-          const product = await newProduct.addCategory(productCategory);
-          console.log("pr", product)    
+          const product = await newProduct.setCategory(productCategory);
           res.status(200).json({ msg: `Creado!` })
       } else {
           res.status(404).json({ msg: "Faltan datos" })

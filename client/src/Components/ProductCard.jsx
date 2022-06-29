@@ -16,25 +16,28 @@ export default function ProductCard({ name, brand, image, price, id }) {
     // }
     return (
         <div className={ClassesProductCard.container1}>
-            <div className={ClassesProductCard.alldata}>
-                <div>
-                    <h2>{brand}</h2>
-                </div>
-                <div>
-                    <Link to={'/details/' + id}>
-                        <div className={ClassesProductCard.prodImg}>
-                            <img src={image} alt='Img not found!' />
-                        </div>
-                    </Link>
-                </div>
-                <div className={ClassesProductCard.prodInfo}>
-                    <h3>{name}</h3> {/*{name.length>30? <h3>{(name.slice(0,45)).concat('...')}</h3> :  */}
-                    <h4>{price}</h4>
-                </div>
+            <div className={ClassesProductCard.top}>
+                <h2>{brand}</h2>
+            </div>
+
+            <div className={ClassesProductCard.ImgDiv}>
+                <Link to={'/details/' + id}>
+                    <div className={ClassesProductCard.prodImg}>
+                        <img src={image} alt='Img not found!' />
+                    </div>
+                </Link>
+            </div>
+          
+            <div className={ClassesProductCard.name} >
+                <h3>{name.length>30? <h3 key={id}>{(name.slice(0,30)).concat('...')}</h3> : {name}}</h3> 
+            </div>
+            <div className={ClassesProductCard.priceAndcart}>
+                <h4>{price}</h4>
                 <button className={ClassesProductCard.cartBtn}>{/*onClick={handleCart} */}
-                    <img className={ClassesProductCard.photo} src={cart} alt='Buy' />
+                    <img src={cart} alt='Buy' />
                 </button>
             </div>
+
         </div>
     )
 }
