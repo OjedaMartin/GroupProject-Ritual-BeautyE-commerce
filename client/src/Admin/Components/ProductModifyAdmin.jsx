@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   createProduct,
   getAllCategories,
   getAllProducts,
 } from "../../redux/actions";
 
-import style from "./Styles/ProductCreateAdmin.module.css";
+import style from "./Styles/ProductModifyAdmin.module.css";
 
 
 const inputValidate = (estado) => {
@@ -39,6 +40,7 @@ export default function AdminProduct() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const category = useSelector((state) => state.category);
+  const {id} = useParams()
   console.log("2",products);
   const [err, SetErr] = useState({});
   const [estado, setEstado] = useState({
@@ -60,7 +62,9 @@ export default function AdminProduct() {
   products.map((e) =>setBrand.push(e.brand));
   let newDatas = [...new Set(setBrand)];
 
-
+  let prodToModify = products.filter((e)=> e.id === id)
+ 
+  
   function handleChange(e) {
     e.preventDefault();
     setEstado({
@@ -129,7 +133,7 @@ export default function AdminProduct() {
     <div className={style.wrapper}>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <h1 className={style.titleform}>Create New Product</h1>
+          <h1 className={style.titleform}>Modify Product</h1>
           <div className={style.divcell}>
             <label className={style.label1}>Rating: </label>
             <input
@@ -246,7 +250,7 @@ export default function AdminProduct() {
 
             <div>
               <button className={style.btn} onClick={(e) => handleSubmit(e)}>
-                Create
+                Modify
               </button>
               <Link to="/admin/products">
                 <button className={style.btn}>Go Back</button>

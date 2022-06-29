@@ -7,8 +7,7 @@ import {
     getProductName,
     getAllCategories,
     getfilterCategories,
-    getfilterBrand
-
+    getfilterBrand    
 } from '../redux/actions';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
