@@ -32,7 +32,7 @@ export default function Detail() {
           <h4 className="label"> price: {product.map((e) => e.price)} </h4>
           <h4 className="label">  brand: {product.map((e) => e.brand)} </h4>
           <h4 className="label"> rating:{product.map((e) => e.rating)} </h4>
-          <h4 className="label"> {objectCat[product?.map((e) => e.idcategory)]}</h4>
+          <h4 className="label"> {objectCat[product?.map((e) => e.CategoryId)]}</h4>
           <Link to="/">
             <button className="btn" > Back to Home </button>
           </Link>

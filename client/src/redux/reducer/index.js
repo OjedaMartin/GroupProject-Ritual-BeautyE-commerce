@@ -4,20 +4,11 @@ const initialState = {
   allProducts:[],
   details:[],
   category: [],
+  profile:[],
 
-  //----------------------
-  // makeup: [],
-  // skincare: [],
-  // ToolsAndBrushes: [],
-  // Hair: [],
+ 
 };
 
-// const objectCat = {
-//   cat140006: 'Makeup',
-//   cat150006: 'Skincare',
-//   cat130042: 'Tools & Brushes',
-//   cat130038: 'Hair',
-// }
 
 const orderProducts = (orderSelected, stateProducts) => {
   switch (orderSelected) {
@@ -71,6 +62,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         details: action.payload,
       };
+      case "GET_PROFILE":
+        return {
+          ...state,
+          profile: action.payload,
+        };
     case "GET_ALL":
         return{
           ...state,
