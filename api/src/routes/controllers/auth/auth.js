@@ -13,7 +13,7 @@ const isAuth = async(req, res, next) => {
         let token = req.headers.authorization.split(" ")[1]
         jwt.verify(token, 'secretkey', (err, decoded) => {
             if(err) {
-                // res.redirect('http://localhost:3000/login')
+                res.redirect('http://localhost:3000/login')
                 res.status(401).json({ msg: "Ahora es momento de redireccionar a la ruta de logueo" })
             } else {
                 User.findOne({where: {email: email}}).then(user => {
