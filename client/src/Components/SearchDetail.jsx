@@ -6,7 +6,8 @@ import {
     getProductName,
     getAllCategories,
     getfilterCategories,
-    getfilterBrand    
+    getfilterBrand,
+    getAllProducts
 } from '../redux/actions';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
@@ -19,12 +20,14 @@ export default function SearchDetail() {
     const [, setReloadState] = useState(false);
     const { name } = useParams();
     const { category } = useParams();
+    const { allProducts } = useParams();
+    
     const dispatch = useDispatch();
 
     const productsResults = useSelector((state) => state.products);
     const productsAuxResults = useSelector((state) => state.productsAux);
-    const allCategories = useSelector((state) => state.categories);//Agregar llamado a Actions y el estado a redux
-    console.log('allCategories',allCategories)
+    const allCategories = useSelector((state) => state.category);
+
     const [currentPage, setCurrentPage] = useState(1);//pag selected
     const [productsPerPage] = useState(9);//cards x page
     const indexOfLastCard = currentPage * productsPerPage;
@@ -34,24 +37,19 @@ export default function SearchDetail() {
     const productsBrand = [];
     productsAuxResults.map((e) => productsBrand.push(e.brand));
     const newData = [...new Set(productsBrand)];
-    //console.log('newData',newData)
-    
-    //---------------------------------------------------------------------------------------
-    
-    useEffect(() => {
 
+    //---------------------------------------------------------------------------------------
+    const catNameAux = category? allCategories.filter((e) => e.id === category) : false;
+    //---------------------------------------------------------------------------------------    
+    useEffect(() => {
         dispatch(getAllCategories());
         if (name) { dispatch(getProductName(name)) }
-        else if (category) { dispatch(getfilterCategories(category)) }
+        else if (category) {
+            dispatch(getfilterCategories(category));
+        }
+        else if (allProducts) { dispatch(getAllProducts()) }
 
-    }, [dispatch, name, category]);
-
-    const objectCat = {
-        cat140006: 'Makeup',
-        cat150006: 'Skincare',
-        cat130042: 'Tools & Brushes',
-        cat130038: 'Hair',
-    }
+    }, [dispatch, name, category, allProducts]);
 
     const setOrder = (e) => {
         dispatch(orderProducts(e.target.value));
@@ -59,30 +57,29 @@ export default function SearchDetail() {
         setCurrentPage(1);
     };
 
-    // const handleFilterByCategory = (e) => {
-    //     dispatch(getfilterCategories(e.target.value));
-    //     setReloadState((state) => !state);
-    //     setCurrentPage(1);
-    // }
+    const handleFilterByCategory = (e) => {
+        dispatch(getfilterCategories(e.target.value));
+        setReloadState((state) => !state);
+        setCurrentPage(1);
+    }
 
     const handleFilterByBrand = (e) => {
         dispatch(getfilterBrand(e.target.value));
         setReloadState((state) => !state);
         setCurrentPage(1);
-
     }
 
     const paginated = (pageNum) => {
         setCurrentPage(pageNum)
     };
- 
+
     if (currentProducts.length > 0) {
         return (
             <Fragment>
                 <main className={ClassesSearchDetail.division}>
                     <div className={ClassesSearchDetail.todo}>
                         <div className={ClassesSearchDetail.params}>
-                            {name ? <h1>{name}</h1> : <h1>{objectCat[category]}</h1>}
+                            <h1>{catNameAux?catNameAux[0].name:name?name:'Products' }</h1>
                         </div>
                         <div className={ClassesSearchDetail.selectors}>
                             <select onChange={setOrder} name='Type' className={ClassesSearchDetail.select} >
@@ -97,6 +94,10 @@ export default function SearchDetail() {
                                     <option key={e} value={e} className={ClassesSearchDetail.select}>{e}</option>
 
                                 ))}
+                            </select>
+                            <select onChange={handleFilterByCategory} name='CatType' className={ClassesSearchDetail.select}>
+                                <option value='category'>Category</option>
+                                {allCategories?.map((e) => (<option key={e.name} value={e.id} className={ClassesSearchDetail.select}>{e.name}</option>))}
                             </select>
                         </div>
                     </div>
@@ -128,7 +129,7 @@ export default function SearchDetail() {
                     </section>
 
                 </main>
-                
+
             </Fragment>
 
         )

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {getAllProducts} from "../redux/actions"
+import {getAllProducts, getAllCategories} from "../redux/actions"
 import { useDispatch, useSelector } from 'react-redux';
 
 import Carousel1 from './Carousel';
@@ -16,6 +16,7 @@ export default function Landing(){
     console.log(products)
 
     useEffect(() => {
+        dispatch(getAllCategories());
         dispatch(getAllProducts());
       }, [dispatch]);
 

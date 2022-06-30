@@ -82,7 +82,10 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
-
+    case "ADD_TO_CART":
+      return{
+        ...state,
+      };
     default:
       return state;
   }

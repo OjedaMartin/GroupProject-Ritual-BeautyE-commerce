@@ -127,7 +127,7 @@ export default function AdminProduct() {
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <h1 className={style.titleForm}>Create New Product</h1>
-          <div className={style. divcell}>
+          <div className={style.divcell}>
             <label className={style.label1}>Rating: </label>
             <input
               className={style.input1}

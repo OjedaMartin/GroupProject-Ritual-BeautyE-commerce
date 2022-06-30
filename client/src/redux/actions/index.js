@@ -107,4 +107,12 @@ export function postCategory(payload) {
   };
 }
 
-
+export function addToCart (productId,cant,email) {
+  return async function(dispatch){
+    const json = await axios.post(`http://localhost:3001/cart/add/${productId}/${email}/${cant}`);
+    console.log('json action addToCart',json);
+    return{
+      type: "ADD_TO_CART"
+    }
+  }
+}

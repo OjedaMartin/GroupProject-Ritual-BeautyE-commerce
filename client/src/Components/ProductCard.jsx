@@ -1,23 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//import { useDispatch } from 'react-redux';
+import {addToCart} from '../redux/actions'
+import { useDispatch } from 'react-redux';
 import cart from '../images/carritoIcon.png';
 import ClassesProductCard from './ProductCard.module.css'
 
 
 
 export default function ProductCard({ name, brand, image, price, id }) {
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
 
-    // const handleCart = (e) => {
-    //     e.preventDefault();
-    //     dispatch(addToCart(id))
-    // }
+    const handleAddCart = (e) => {
+        e.preventDefault();
+        dispatch(addToCart(id,1,"agus@gmail.com"))
+    }
     return (
         <div className={ClassesProductCard.container1}>
             <div className={ClassesProductCard.top}>
-                <h2>{brand}</h2>
+                <h2>{brand.length > 18? brand.slice(0, 15).concat('...'): brand}</h2>
             </div>
 
             <div className={ClassesProductCard.ImgDiv}>
@@ -33,7 +34,7 @@ export default function ProductCard({ name, brand, image, price, id }) {
             </div>
             <div className={ClassesProductCard.priceAndcart}>
                 <h4>{`$${price}`}</h4>
-                <button className={ClassesProductCard.cartBtn}>{/*onClick={handleCart} */}
+                <button onClick={handleAddCart} className={ClassesProductCard.cartBtn}>
                     <img src={cart} alt='Buy' />
                 </button>
             </div>
