@@ -7,7 +7,7 @@ const router = Router();
 
 router.post('/add/:productId/:email/:cant', addProductCart);
 router.get('/all', carts);
-router.delete('/delete/:productId/:email', deleteProd);
+router.delete('/delete/:productId', deleteProd);
 
 
 module.exports = router;
