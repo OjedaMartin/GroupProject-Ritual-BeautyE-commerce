@@ -1,6 +1,5 @@
 import React from "react"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
 import Landing from './Components/Landing.jsx';
 import SearchDetail from './Components/SearchDetail';
 import Detail from './Components/Detail.jsx'
@@ -9,7 +8,7 @@ import AboutUs from './Components/AboutUs.jsx'
 import Admin from './Admin/Admin'
 import Header from "./Components/Header.jsx";
 import Footer from "./Components/footer.jsx";
-
+import { LoginButton } from "./Users/LogIn.jsx";
 
 function App() {
   return (
@@ -29,6 +28,8 @@ function App() {
         <Route exact path='/privacypolicy' element={<AboutUs />} />
         <Route exact path='/termsofuse' element={<AboutUs />} />
         <Route path='/admin/*' element={<Admin/>} />
+        <Route path='/login' element={<LoginButton/>} />
+
       </Routes>
       <Footer/>
     </BrowserRouter>
