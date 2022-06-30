@@ -34,6 +34,15 @@ export function getAllCategories() {
     });
   };
 }
+export function getAllUsers() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/users");    
+    return dispatch({
+      type: "GET_USERS",
+      payload: json.data,
+    });
+  };
+}
 
 export function getDetail(id) {
   return async function (dispatch) {

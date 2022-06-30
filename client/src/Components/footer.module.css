@@ -18,7 +18,7 @@
     margin: 15px;
 }
 
-.textTitle{
+.texttitle{
     font-family: 'Courier New', Courier, monospace;
     color: #515151;
     font-size: medium;
@@ -28,7 +28,7 @@
     font-size: small;
 }
 
-.textTitle2{
+.texttitle2{
     color: #7a7979;
     font-size:15px;
     font-weight:600;

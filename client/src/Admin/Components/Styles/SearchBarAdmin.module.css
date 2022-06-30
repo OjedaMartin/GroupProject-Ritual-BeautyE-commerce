@@ -21,14 +21,6 @@ body {
 }
 .search:focus 		{ outline:none; }
 
-.search:hover {
-    background-color: #ffffff00 ;
-    border-top: #ffffff00 ;
-    border-left: #ffffff00 ;
-    border-right: #ffffff00 ; ;
-}
-
-
 #searchbar-input{
     background-color: #ffffff00 ;
     border-top: #ff0c0c ;

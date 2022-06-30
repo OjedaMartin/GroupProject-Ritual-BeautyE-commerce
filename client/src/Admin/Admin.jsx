@@ -9,6 +9,8 @@ import ProductsAdmin from "./Components/ProductsAdmin";
 import OrdersAdmin from "./Components/OrdersAdmin";
 import ProductCreateAdmin from "./Components/ProductCreateAdmin";
 import ProductModifyAdmin from "./Components/ProductModifyAdmin";
+import CategoriesAdmin from "./Components/CategoriesAdmin";
+import ReviewsAdmin from "./Components/ReviewsAdmin";
 
 
 function Admin() {
@@ -23,10 +25,13 @@ function Admin() {
 
                             <Route path={"/users"} element={<UsersAdmin/>}/>
 
+                            <Route path={"/reviews"} element={<ReviewsAdmin/>}/>
+
                             <Route exact path={"/products"} element={<ProductsAdmin/>}/>
                             <Route exact path={"/products/create"} element={<ProductCreateAdmin/>}/>
                             <Route exact path={"/products/modify/:id"} element={<ProductModifyAdmin/>}/>
 
+                            <Route exact path={"/categories"} element={<CategoriesAdmin/>}/>
 
                             <Route path={"/orders"} element={<OrdersAdmin/>}/>                          
 
