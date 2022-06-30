@@ -53,7 +53,7 @@ function handleSubmit(e) {
             <h2>Mostrar productos en lista, poder crear productos, "eliminar" y tambien modificar, agregar categorias, gestionar stock</h2>
             <div className={style.secondaryBar}>
 
-              <Link to="/admin/products/create"><button className={style.createButton}>New Product</button> </Link>
+              <Link to="/admin/products/create"><button className={style.createButton}>New Product</button></Link>
 
               <div className={style.categoryAdder}>
                 <h3>Addcategory:</h3>
@@ -62,8 +62,10 @@ function handleSubmit(e) {
               </div>
 
             </div>
-            <div className={style.tabletop}>
+            <div className={style.card}>
                 <p>Del</p>
+                <p>MOD</p>
+                <p>Stock</p>
                 <p>Product Name</p>
                 <p>Brand</p>
                 <p>Image</p>
