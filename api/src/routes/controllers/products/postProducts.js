@@ -8,16 +8,16 @@ const createProduct = async (req, res) => {
       if(name && brand && image && price && CategoryId) {
           const newProduct = await Product.create({
               name,
-              brand,
+              brand:brand[0],
               image,
-              price
+              price,
+             
           });
           let productCategory = await Category.findOne({
               where: {
                   id: CategoryId,
               }
           });
-          // console.log(JSON.stringify(newProduct) + " asdasd")
           const product = await newProduct.setCategory(productCategory);
           res.status(200).json({ msg: `Creado!` })
       } else {
