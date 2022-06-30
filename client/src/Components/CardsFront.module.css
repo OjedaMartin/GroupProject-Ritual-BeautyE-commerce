@@ -1,0 +1,42 @@
+.titleCardF{
+    font-family: 'Red Hat Display', sans-serif;
+    font-size:x-large;
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 50px;
+    font-weight: bold;
+}
+
+.textShop{
+    font-family: 'Cantarell', sans-serif;
+    font-size: medium;
+    text-align: center;
+}
+.textInfo{
+    font-family: 'Cantarell', sans-serif;
+    font-size: small;
+    text-align: center;
+    margin-top: -10px;
+}
+
+.itemCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemCard:hover{
+    transform: scale(1.02);
+  }
+
+.imgCarouselB{
+    margin-top: 5px;
+    border-radius: 50%;
+    width : 250px;
+    height:250px;
+}
+
+.decorationT{
+    text-decoration: none;
+    color:black
+}

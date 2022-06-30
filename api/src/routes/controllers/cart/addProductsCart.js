@@ -1,32 +1,32 @@
-const { Product, User } = require('../../../db')
+const { Product, Cart ,Cart_Product} = require('../../../db')
 
 
 const addProductCart = async(req, res )=>{
-    const { productId, userEmail } = req.body
     
+    var {productId,cant,email} = req.params
+    let prodInfo = await Product.findOne({where:{id:productId}})
+    
+    if(email){
    
-    await Product.findOne({
-        where: {
-            id: productId
-        }
-    }).then( async product => {
-        await User.findOne({
-            where: {
-                email: userEmail
-            }
-        }).then( async user => {
-            await user.addProduct(product)
-                await user.getProducts({ attributes: ["id", "name", "brand", "price"] }).then(list => {
-                    res.send({msg: list})
-                }) 
-        } )
-    }).catch(error => {
-        res.send({ msg: `Error en el controler addProductCart: ${error}` })
-        
-    })
-   
-
+    const prod = await Cart_Product.findOne({ where: {ProductId : productId } })
+        if(prod){ 
+            let carro = await Cart.findOne({where:{id:prod.CartId}})
+            let sum= parseInt(cant) + carro.quantity
+            if(sum <= prodInfo.in_Stock){
+            await Cart.update({quantity:sum},{where:{id:prod.CartId}})
+            res.send("Producto añadido al carrito")
+            }else{res.send("Cantidad de stock insuficiente!!")}
+         }else {
+            
+            let newprodcart = await Cart.create({quantity:cant})
+            newprodcart.addProduct(prodInfo)
+            res.send("Producto añadido al carrito")
+         }
+ } 
 }
+async function carts(req,res) {
+    let resp = await Cart.findAll()
+    res.json(resp)
+}  
 
-
-module.exports = { addProductCart } 
+module.exports = { addProductCart,carts } 

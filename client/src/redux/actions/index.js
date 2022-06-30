@@ -27,6 +27,10 @@ export function getAllProducts() {
 export function getAllCategories() {
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/categories");
+<<<<<<< HEAD
+=======
+    //console.log("getAll", json)
+>>>>>>> c30791d7befe2681c64f864a77baa6dfd38bc0d2
     return dispatch({
       type: "GET_CAT",
       payload: json.data,
@@ -41,12 +45,12 @@ export function getDetail(id) {
       console.log("getDet", prod)
       return dispatch({
         type: "GET_DETAIL",
-        payload: prod.data, 
+        payload: prod.data,
       });
     } catch (error) {
       return dispatch({
         type: "GET_DETAIL",
-        payload: error.name, 
+        payload: error.name,
       });
     }
   };
@@ -61,38 +65,38 @@ export function createProduct(payload) {
   return async function (dispatch) {
     const info = await axios.post("http://localhost:3001/products/create", payload);
     console.log("info action", info);
-    return{
-type:"CREATE_PRODUCTS",
-info
-    } 
+    return {
+      type: "CREATE_PRODUCTS",
+      info
+    }
   };
 }
 
 
 export function getfilterCategories(params) {
   return async function (dispatch) {
-    try{
-    const json = await axios.get(`http://localhost:3001/filters/category/${params}`)
-    return dispatch({
-      type: 'GET_FILTER_CATEGORIES',
-      payload: json.data
-    })
-  } catch (error) {
-    console.log(error)
-   }
+    try {
+      const json = await axios.get(`http://localhost:3001/filters/category/${params}`)
+      return dispatch({
+        type: 'GET_FILTER_CATEGORIES',
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 export function getfilterBrand(params) {
   return async function (dispatch) {
-    try{
-    const json = await axios.get(`http://localhost:3001/filters/brand/${params}`)
-    return dispatch({
-      type: 'GET_FILTER_BRAND',
-      payload: json.data
-    })
-  } catch (error) {
-    console.log(error)
-   }
+    try {
+      const json = await axios.get(`http://localhost:3001/filters/brand/${params}`)
+      return dispatch({
+        type: 'GET_FILTER_BRAND',
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 export function getProfile(params) {
@@ -126,10 +130,10 @@ export function postCategory(payload) {
   return async function (dispatch) {
     const info = await axios.post("http://localhost:3001/categories/create", payload);
     console.log("info action", info);
-    return{
-type:"CREATE_CATEGORY",
-info
-    } 
+    return {
+      type: "CREATE_CATEGORY",
+      info
+    }
   };
 }
 

@@ -2,7 +2,7 @@ import { Carousel } from 'react-carousel-minimal';
 import img1 from '../images/1.png'
 import img2 from '../images/2.jpeg'
 import img3 from '../images/3.webp'
-import './Carousel.css'
+import style from'./Carousel.module.css'
 
 export default function Carousel1(){
     const data = [
@@ -17,7 +17,7 @@ export default function Carousel1(){
         }
     ]
     return (
-        <div className='container'>
+        <div className={style.containerCarousel}>
     <Carousel
             data={data}
             time={4000}

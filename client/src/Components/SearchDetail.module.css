@@ -26,3 +26,9 @@
     font-weight: bold;
     
 }
+.sectionFlex{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: center;
+}
