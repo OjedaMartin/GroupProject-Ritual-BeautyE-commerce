@@ -4,11 +4,11 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Product', {
-    /* id: { 
-      type: DataTypes.STRING,
-      allowNull: false,
+    id: { 
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-    }, */
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -23,25 +23,19 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     price: {
-      type: DataTypes.STRING,
+      type: DataTypes.FLOAT,
       allowNull: false,
-      set(value){
-        this.setDataValue("price",value)
-      }
     },
     rating: {
       type: DataTypes.FLOAT,
-  
+      set(value){
+        let rating = value.toString()
+        this.setDataValue("rating", rating.length > 2 ? value = parseFloat(rating.slice(0,3)) : value)
+      }
     },
-    idcategory:{
-      type: DataTypes.STRING,
-      
-    },
-/*    category: {
-      type: DataTypes.STRING
-    },*/
     in_Stock: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.INTEGER,
+      defaultValue: 100,
     }
   },{
     timestamps: false

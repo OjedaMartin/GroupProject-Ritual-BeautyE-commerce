@@ -2,11 +2,11 @@ import { Carousel } from 'react-carousel-minimal';
 import img1 from '../images/4.png'
 import img2 from '../images/3.png'
 import img3 from '../images/2.png'
-import './Carousel.css'
+import style from './Carousel.module.css'
 
 export default function Carousel1(){
     return (
-        <div className='containerCarousel'>
+        <div className={style.containerCarousel}>
     <Carousel
             data={[{
               image: img1

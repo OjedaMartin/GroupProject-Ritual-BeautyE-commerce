@@ -1,25 +1,24 @@
 const { Router } = require('express');
-const router = Router()
-const { createUser } = require('./controllers/users/createUsers');
+const { userLogin } = require('./controllers/users/userLogin');
+const { userRegister } = require('./controllers/users/userRegister');
 const { getUsers } = require('./controllers/users/getUsers');
-const { loginUser } = require('./controllers/users/login');
-const { deleteUser } = require('./controllers/users/deleteUsers');
+const { isAuth } = require('./controllers/auth/auth');
+const { userLogout } = require('./controllers/users/userLogout');
 
 
-// Ruta para crear usuario
-router.post('/create', createUser);
+const router = Router()
 
+// Ruta para loguear un usuario:
+router.post('/login', userLogin);
 
-// Ruta para obtener usuarios (sólo para debugueo)
-router.get('/', getUsers);
+// Ruta para regisrar un nuevo usuario y cargarlo a la db
+router.post('/register', userRegister);
 
+// Ruta para obtener todos los usuarios
+router.get('/', isAuth, getUsers)
 
-// Ruta para loguear un usuario existente (hay que arreglar el controlador)
-router.get('/login', loginUser);
-
-
-// Ruta para eliminar usuario
-router.delete('/delete/:id', deleteUser);
+// Ruta para desloguearse
+router.post('/logout', userLogout);
 
 
 

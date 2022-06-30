@@ -1,4 +1,4 @@
-import './footer.css'
+import style from './footer.module.css'
 import { FaInstagram, FaPinterestP, FaTiktok, FaFacebookF } from "react-icons/fa";
 import React, { useState } from "react";
 import swal from 'sweetalert';
@@ -58,10 +58,10 @@ export default function Footer(){
                 1 -234-56780
             </div>
 
-            <div className='textTitle2 spaceFollow'>
+            <div className={style.textTitle2} spaceFollow>
                 Follow Us
             </div>
-            <div className='iconsSize'>
+            <div className={style.iconsSize}>
                 <FaInstagram/> <FaPinterestP/> <FaTiktok/> <FaFacebookF/>
             </div>
 
