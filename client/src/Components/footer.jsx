@@ -1,12 +1,12 @@
-import './footer.css'
+import style from './footer.module.css'
 import { FaInstagram, FaPinterestP, FaTiktok, FaFacebookF } from "react-icons/fa";
 
 export default function Footer(){
     return(
-        <div className="bgfooter textTitle " >
+        <div className={style.bgfooter} textTitle  >
 
-        <div className='divAlign '>
-            <div className='textTitle2'>
+        <div className={style.divAlign}>
+            <div className={style.textTitle2}>
                 Company
             </div>
             <div>
@@ -18,7 +18,7 @@ export default function Footer(){
             <div>
                 Returns
             </div>
-            <div className='textTitle2 spaceFollow'>
+            <div className={style.textTitle2} spaceFollow>
                 Legal
             </div>
             <div>
@@ -32,8 +32,8 @@ export default function Footer(){
             </div>
         </div>
 
-        <div className='divAlign'>
-            <div className='textTitle2'>
+        <div className={style.divAlign}>
+            <div className={style.textTitle2}>
                 Contact Us
             </div>
             <div>
@@ -43,18 +43,18 @@ export default function Footer(){
                 1 -234-56780
             </div>
 
-            <div className='textTitle2 spaceFollow'>
+            <div className={style.textTitle2} spaceFollow>
                 Follow Us
             </div>
-            <div className='iconsSize'>
+            <div className={style.iconsSize}>
                 <FaInstagram/> <FaPinterestP/> <FaTiktok/> <FaFacebookF/>
             </div>
 
         </div>
-        <div className='divAlign'>
-            <label className='textTitle2'>Stay in touch</label>
-            <input type = 'text' placeholder='Email address' className='inputBox'></input>
-            <p className='textinfosize'>
+        <div className={style.divAlign}>
+            <label className={style.textTitle2}>Stay in touch</label>
+            <input type = 'text' placeholder='Email address' className={style.inputBox}></input>
+            <p className={style.textinfosize}>
                 By subscribing to Ritual, you consent to <br></br>
                 receive recurring automated promotional <br></br>
                 and personalized marketing messages<br></br>
