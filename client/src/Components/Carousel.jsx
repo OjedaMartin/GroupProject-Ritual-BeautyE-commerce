@@ -1,32 +1,28 @@
 import { Carousel } from 'react-carousel-minimal';
-import img1 from '../images/1.png'
-import img2 from '../images/2.jpeg'
-import img3 from '../images/3.webp'
+import img1 from '../images/4.png'
+import img2 from '../images/3.png'
+import img3 from '../images/2.png'
 import './Carousel.css'
 
 export default function Carousel1(){
-    const data = [
-        {
-          image: img1
-        },
-        {
-          image: img2
-        },
-        {
-          image: img3
-        }
-    ]
     return (
         <div className='containerCarousel'>
     <Carousel
-            data={data}
+            data={[{
+              image: img1
+            },
+            {
+              image: img2,
+            },
+            {
+              image: img3
+            }]}
             time={4000}
             width="100%"
             height="450px"
             radius="10px"
             captionPosition="bottom"
             automatic={true}
-            dots={true}
             pauseIconColor="white"
             pauseIconSize="40px"
             slideBackgroundColor="darkgrey"
