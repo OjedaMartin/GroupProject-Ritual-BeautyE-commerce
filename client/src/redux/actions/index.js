@@ -105,6 +105,33 @@ export function getfilterBrand(params) {
     }
   }
 }
+export function getProfile(params) {
+  return async function (dispatch) {
+    try{
+    const json = await axios.get(``)
+    return dispatch({
+      type: 'GET_PROFILE',
+      payload: json.data
+    })
+  } catch (error) {
+    console.log(error)
+   }
+  }
+}
+export function logIn(params) {
+  return async function (dispatch) {
+    try{
+    const json = await axios.get(`http://localhost:3001/users/login`)
+    return dispatch({
+      type: 'GET_PROFILE',
+      payload: json.data
+    })
+  } catch (error) {
+    console.log(error)
+   }
+  }
+}
+
 export function postCategory(payload) {
   return async function (dispatch) {
     const info = await axios.post("http://localhost:3001/categories/create", payload);

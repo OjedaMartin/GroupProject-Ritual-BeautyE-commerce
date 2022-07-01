@@ -3,42 +3,50 @@
         {
             "name": "guille1",
             "email": "tomas@gmail.com",
-            "password": "12345678910"
+            "password": "123456",
+            "membership": "Basic"
         },
         {
             "name": "agus2",
             "email": "agus@gmail.com",
-            "password": "12345678910"
+            "password": "123456",
+            "membership": "Admin"
         },
         {
             "name": "gaston3",
             "email": "gaston@gmail.com",
-            "password": "12345678910"
+            "password": "123456",
+            "membership": "Basic"
         },
         {
             "name": "ivan4",
             "email": "ivan@gmail.com",
-            "password": "12345678910"
+            "password": "123456",
+            "membership": "Basic"
         },
         {
             "name": "alberto5",
             "email": "alberto@gmail.com",
-            "password": "12345678910"
+            "password": "123456",
+            "membership": "Basic"
         },
         {
             "name": "maru6",
             "email": "maru6@gmail.com",
-            "password": "12345678910"
+            "password": "123456",
+            "membership": "Basic"
         },
         {
             "name": "rafa7",
             "email": "rafa@gmail.com",
-            "password": "12345678910"
+            "password": "123456",
+            "membership": "Basic"
         },
         {
             "name": "matias8",
             "email": "matias@gmail.com",
-            "password": "12345678910"
+            "password": "123456",
+            "membership": "Basic"
         }
     ]
 }

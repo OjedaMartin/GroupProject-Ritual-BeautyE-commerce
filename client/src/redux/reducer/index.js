@@ -4,6 +4,7 @@ const initialState = {
   allProducts: [],
   details: [],
   category: [],
+  profile:[],
   productsAux: [],
   users: [],
 };
@@ -58,6 +59,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         details: action.payload,
       };
+      case "GET_PROFILE":
+        return {
+          ...state,
+          profile: action.payload,
+        };
     case "GET_ALL":
       return {
         ...state,
