@@ -27,12 +27,18 @@ export function getAllProducts() {
 export function getAllCategories() {
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/categories");
-<<<<<<< HEAD
-=======
     //console.log("getAll", json)
->>>>>>> c30791d7befe2681c64f864a77baa6dfd38bc0d2
     return dispatch({
       type: "GET_CAT",
+      payload: json.data,
+    });
+  };
+}
+export function getAllUsers() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/users");    
+    return dispatch({
+      type: "GET_USERS",
       payload: json.data,
     });
   };

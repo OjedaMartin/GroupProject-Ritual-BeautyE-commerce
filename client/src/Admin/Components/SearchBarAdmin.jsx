@@ -3,7 +3,7 @@ import React, { useState } from "react";
 //import { getProductName } from "../redux/actions";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-import style from "./SearchBar.module.css"
+import style from "./Styles/SearchBarAdmin.module.css"
 
 
 export default function SearchBar (){
@@ -21,6 +21,7 @@ export default function SearchBar (){
    //     dispatch(getProductName(name))    
    // }
    //type="submit" onClick={(e)=> submitHandler(e)}
+   
     return (
 
         
@@ -29,19 +30,18 @@ export default function SearchBar (){
         <div className={style.container}>
             
             <div className={style.searchbox}>
-                <form >
-                <Link to= {'/SearchDetail/search/' + name} ><button className={style.searchbtn} >
+                <button className={style.searchbtn} type="submit" >
                 <FaSearch className={style.icon} aria-hidden='true' id="searchbar-icon"/>
-                </button></Link>
+                </button>
 
                 
                 <input className={style.search}
                  type="text"
-                 placeholder="Search Products by name..."
-                 onChange={(e) => inputChangeHandler(e)}
+                 placeholder="Search Users by name..."
+                 onChange={(e) => inputChangeHandler(e)}                                     
                  id="searchbar-input"
                  />
-                </form>
+                
             </div>
         </div>
     )
