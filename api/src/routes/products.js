@@ -15,7 +15,7 @@ router.get('/', isAuth, Allproducts);
 router.get('/:id', getProductById);
 router.post('/create', createProduct);
 router.put('/update/:id', putProduct);
-router.put('/stock/:id',updateStock)
+router.put('/stock/:id', updateStock)
 
 
 
