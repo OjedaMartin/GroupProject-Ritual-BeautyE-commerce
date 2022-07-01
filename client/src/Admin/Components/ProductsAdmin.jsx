@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, Link } from "react-router-dom";
 import style from "./Styles/ProductsAdmin.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import {getAllProducts, postCategory} from "../../redux/actions/index"
+import {getAllProducts } from "../../redux/actions/index"
+import { ImCross } from "react-icons/im"
+import { BiPlusMedical } from "react-icons/bi"
+import { HiPencilAlt } from "react-icons/hi"
 
 
 
@@ -23,47 +26,19 @@ dispatch(getAllProducts());
 }, [dispatch]);
 
 
-function handleChange(e) {
-  e.preventDefault();
-  setEstado({
-    ...estado,
-    [e.target.name]: e.target.value,
-  });
-//  SetErr(inputValidate({ ...estado, [e.target.name]: e.target.value }));
-}
-
-function handleSubmit(e) {
-  e.preventDefault();
-//  if (Object.keys(err).length)
-//{return alert("Faltan datos")}
-  dispatch(postCategory(estado));
-  dispatch(estado); //?
-  alert("Category added successfully");
-  setEstado({    
-    category: "",
-  });
-}
-
-
 
 
   return (
           <div className={style.container}>
             
-            <h2>Mostrar productos en lista, poder crear productos, "eliminar" y tambien modificar, agregar categorias, gestionar stock</h2>
             <div className={style.secondaryBar}>
-
-              <Link to="/admin/products/create"><button className={style.createButton}>New Product</button> </Link>
-
-              <div className={style.categoryAdder}>
-                <h3>Addcategory:</h3>
-                <input type="text" value={estado.category} name="category" onChange={(e) => handleChange(e)} />
-                <button onClick={(e) => handleSubmit(e)}>+</button>
-              </div>
+              
+              <Link to="/admin/products/create"><button className={style.addbtn}><h3>Create New Product</h3><BiPlusMedical/></button></Link>
+              
 
             </div>
-            <div className={style.tabletop}>
-                <p>Del</p>
+            <div className={style.cardinfo}>
+                
                 <p>Product Name</p>
                 <p>Brand</p>
                 <p>Image</p>
@@ -77,13 +52,13 @@ function handleSubmit(e) {
             {products.map(e=> {
                 return(
                         <div className={style.card} key={e.id}>
-                            <button className={style.DelBtn}>X</button>
-                            <Link to= {'/admin/products/modify/' + e.id} ><button className={style.ModBtn}>MOD</button></Link>
-                            <button className={style.stockBtn}>Stock</button>
+                            <button className={style.DelBtn}><ImCross/></button>
+                            <button className={style.ModBtn}><HiPencilAlt/></button>
+                            <button className={style.stockBtn}>Restock</button>
                             <p className={style.element}>{e.name}</p>
                             <p className={style.element}>{e.brand}</p>
-                            <p className={style.element}>{e.image}</p>
-                            <p className={style.element}>{e.price}</p>
+                            <p className={style.element}><img className={style.img} src={e.image} alt={e.id} /></p>
+                            <p className={style.element}>${e.price}</p>
                             <p className={style.element}>{e.rating}</p>
                             <p className={style.element}>{e.CategoryId}</p>
                             <p className={style.element}>{e.in_Stock}</p>                       

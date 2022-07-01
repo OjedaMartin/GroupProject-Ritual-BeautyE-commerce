@@ -3,7 +3,9 @@ const { User } = require('../../../db');
 
 const getUsers = async(req, res) => {
     try {
-        const users = await User.findAll();
+        const users = await User.findAll({
+            attributes: ["name", "email", "password", "membership"]
+        });
         res.send(users)
     } catch(error) {
         res.send(error)

@@ -1,14 +1,14 @@
 body {
     background: #ffffff;
     font-family: "opens Sans";
-
+ 
 
 
 }
 .searchbox {
     
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
 }
 
@@ -19,6 +19,7 @@ body {
     border-right: #ffffff00 ;
 
 }
+.search:focus 		{ outline:none; }
 
 .search:hover {
     background-color: #ffffff00 ;

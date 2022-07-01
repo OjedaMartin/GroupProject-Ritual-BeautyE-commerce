@@ -1,0 +1,84 @@
+.container{
+    margin-left: 100px;  
+    margin-right: 100px;
+    margin-top: 50px;
+}
+
+
+.card{
+
+    display: grid;
+    grid-template-columns: 50px 300px 150px;
+    grid-auto-rows: auto;  
+   
+
+    border-bottom: 0.5px solid rgba(129, 129, 129, 0.514) ;
+
+    font-family: 'Cantarell', sans-serif;
+    margin: 5px 5px 5px 5px;  
+    
+}
+.element{
+    margin: 10px 10px 10px 10px;
+    font-family: 'Cantarell', sans-serif;
+    
+    
+}
+
+
+.DelBtn{
+    background-color: rgba(230, 64, 64, 0);
+    font-family: 'Cantarell', sans-serif;
+    border-color: rgba(240, 248, 255, 0);
+}
+.DelBtn:hover{
+    color: rgba(206, 37, 37, 0.815);    
+    font-family: 'Cantarell', sans-serif;
+    transform: scale(1.2);
+}
+
+.categoryAdder{
+    
+    padding: 10px 00px 40px 00px;
+    font-family: 'Cantarell', sans-serif;
+    border-bottom: 0.5px solid rgba(129, 129, 129, 0.514) ;
+    margin-bottom: 50px;
+
+    
+}
+.inputadd{
+    border:0;
+    box-shadow: 0 0 5px  rgba(0, 0, 0, 0.596);
+    margin: 10px;
+}
+.inputadd:focus 		{ outline:none; }
+
+.font{
+    font-family: 'Cantarell', sans-serif;
+    
+}
+.addbtn{
+    background-color: rgba(230, 64, 64, 0);   
+    border-color: rgba(240, 248, 255, 0);
+    font-size: 15px;
+}
+.addbtn:hover{
+    color: rgba(43, 206, 37, 0.815);
+    transform: scale(1.2);
+    
+}
+.gridinfoname{
+    font-family: 'Cantarell', sans-serif;
+    padding-left: 225px;
+
+}
+.gridinfoid{
+    font-family: 'Cantarell', sans-serif;
+
+}
+.gridinfocont{
+    display: flex;
+    align-items: center;
+    margin-left: 90px;
+
+}

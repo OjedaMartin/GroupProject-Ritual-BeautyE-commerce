@@ -5,41 +5,36 @@ import {
   createProduct,
   getAllCategories,
   getAllProducts,
-} from "../redux/actions";
+} from "../redux/actions/index";
 import style from "./FormCreateComponent.module.css";
 const inputValidate = (estado) => {
   let errors = {};
-  if(!isNaN(Number(estado.name))) {
-  errors.name = 'The name of the Activities cannot contain only numbers';
-} if(estado.name === "") {
-  errors.name = 'The name is required';
-} if(estado.name.length <2) {
-  errors.name = 'Name must contain at least four (2) characters';
-} 
-if(!estado.price.length) {
-  errors.difficult = `Difficult is required`;
-} 
- if(estado.CategoryId.length === 0) {
-  errors.CategoryId = 'You must select at least one category';
-} 
-// if(!estado.rating || estado.rating === "") {
-//   errors.rating = `Rating is required`;
-// }
-if(estado.brand.length === 0) {
-  errors.brand = 'You must select at least one brand';
-}
-// if(estado.category.length === 0) {
-//   errors.category = 'You must select at least one category';
-// }
-console.log("error", errors)
-return errors;
+  if (!isNaN(Number(estado.name))) {
+    errors.name = "The name of the Activities cannot contain only numbers";
+  }
+  if (estado.name === "") {
+    errors.name = "The name is required";
+  }
+  if (estado.name.length < 2) {
+    errors.name = "Name must contain at least four (2) characters";
+  }
+  if (!estado.price.length) {
+    errors.price = `Price is required`;
+  }
+  if (estado.CategoryId.length === 0) {
+    errors.CategoryId = "You must select at least one category";
+  }
+  if (estado.brand.length === 0) {
+    errors.brand = "You must select at least one brand";
+  }
+
+  return errors;
 };
 
 export default function AdminProduct() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const category = useSelector((state) => state.category);
-  console.log("2",products);
   const [err, SetErr] = useState({});
   const [estado, setEstado] = useState({
     name: "",
@@ -48,16 +43,13 @@ export default function AdminProduct() {
     price: "",
     CategoryId: "",
   });
-  console.log("estado",estado);
-  // const [err, SetErr] = useState({});
   const setArr = [];
-  category.map((e) =>setArr.push(e.id));
+  category.map((e) => setArr.push(e.id));
   let newData = [...new Set(setArr)];
 
   const setBrand = [];
-  products.map((e) =>setBrand.push(e.brand));
+  products.map((e) => setBrand.push(e.brand));
   let newDatas = [...new Set(setBrand)];
-
 
   function handleChange(e) {
     e.preventDefault();
@@ -77,28 +69,30 @@ export default function AdminProduct() {
       CategoryId: [...estado.CategoryId, e.target.value]
     }));
   }
-  // function handleSelectCat(e) {
-  //   setEstado({
-  //     ...estado,
-  //     category: [...estado.category, e.target.value],
-  //   });
-  //   SetErr(inputValidate({
-  //     ...estado,
-  //     category: [...estado.category, e.target.value]
-  //   }));
-  // }
+   function handleSelectCat(e) {
+     setEstado({
+       ...estado,
+       category: [...estado.category, e.target.value],
+     });
+     SetErr(inputValidate({
+       ...estado,
+       category: [...estado.category, e.target.value]
+     }));
+   }
   function handleSelectBrand(e) {
     setEstado({
       ...estado,
       brand: [...estado.brand, e.target.value],
     });
-    SetErr(inputValidate({
-      ...estado,
-      brand: [...estado.brand, e.target.value]
-    }));
+    SetErr(
+      inputValidate({
+        ...estado,
+        brand: [...estado.brand, e.target.value],
+      })
+    );
   }
 
-  function handleSubmit(e) {
+  function handleCreate(e) {
     e.preventDefault();
     if (Object.keys(err).length)
 {return alert("Faltan datos")}
@@ -123,7 +117,7 @@ export default function AdminProduct() {
   return (
     <div className={style.backg}>
     <div className={style.wrapper}>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleCreate(e)}>
         <div>
           <h1 className={style.titleForm}>Create New Product</h1>
           <div className={style. divcell}>
@@ -198,7 +192,6 @@ export default function AdminProduct() {
                 </ul>
               </div>
             </div>
-
             <div>
               <label className={style.label1}>Brand: </label>
 
@@ -238,20 +231,20 @@ export default function AdminProduct() {
                  
                 </ul>
               </div>
-            </div>
 
-            <div>
-              <button className={style.btn} onClick={(e) => handleSubmit(e)}>
-                Crealo!
-              </button>
-              <Link to="/">
-                <button className={style.btn}>Volver</button>
-              </Link>
+              <div>
+                <button className={style.btn} onClick={(e) => handleCreate(e)}>
+                  Create
+                </button>
+                <Link to="/">
+                  <button className={style.btn}>Back to Home</button>
+                </Link>
+              </div>
             </div>
+           </div>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -39,8 +39,8 @@ Product.belongsTo(Category)
 
 Product.hasMany(Review)
 Review.belongsTo(Product)
-User.hasMany(Review)
-Review.belongsTo(User)
+User.belongsToMany(Review, {through: "Product_Review"})
+Review.belongsToMany(User, {through: "Product_Review"})
 
 User.hasMany(Cart)
 Cart.belongsTo(User)

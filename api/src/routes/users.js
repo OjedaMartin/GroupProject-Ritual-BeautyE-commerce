@@ -2,6 +2,8 @@ const { Router } = require('express');
 const { userLogin } = require('./controllers/users/userLogin');
 const { userRegister } = require('./controllers/users/userRegister');
 const { getUsers } = require('./controllers/users/getUsers');
+const { isAuth } = require('./controllers/auth/auth');
+const { userLogout } = require('./controllers/users/userLogout');
 
 
 const router = Router()
@@ -13,7 +15,10 @@ router.post('/login', userLogin);
 router.post('/register', userRegister);
 
 // Ruta para obtener todos los usuarios
-router.get('/', getUsers)
+router.get('/', isAuth, getUsers)
+
+// Ruta para desloguearse
+router.post('/logout', userLogout);
 
 
 
