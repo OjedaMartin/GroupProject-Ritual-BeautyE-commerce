@@ -1,7 +1,7 @@
 const {Category} = require('../../../db')
 
 
-async function postCategory(req,res){
+async function postCategories(req,res){
 
 try {
     let name = req.body.category
@@ -12,4 +12,4 @@ try {
     res.status(400).send(error, "controlar ruta post category")
 }
 } 
-module.exports={postCategory}
+module.exports={postCategories}
