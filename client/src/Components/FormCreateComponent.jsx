@@ -64,32 +64,21 @@ export default function AdminProduct() {
       ...estado,
       CategoryId: [...estado.CategoryId, e.target.value],
     });
-<<<<<<< HEAD
-    SetErr(
-      inputValidate({
-        ...estado,
-        CategoryId: [...estado.CategoryId, e.target.value],
-      })
-    );
-  }
-
-=======
     SetErr(inputValidate({
       ...estado,
       CategoryId: [...estado.CategoryId, e.target.value]
     }));
   }
-  // function handleSelectCat(e) {
-  //   setEstado({
-  //     ...estado,
-  //     category: [...estado.category, e.target.value],
-  //   });
-  //   SetErr(inputValidate({
-  //     ...estado,
-  //     category: [...estado.category, e.target.value]
-  //   }));
-  // }
->>>>>>> c30791d7befe2681c64f864a77baa6dfd38bc0d2
+   function handleSelectCat(e) {
+     setEstado({
+       ...estado,
+       category: [...estado.category, e.target.value],
+     });
+     SetErr(inputValidate({
+       ...estado,
+       category: [...estado.category, e.target.value]
+     }));
+   }
   function handleSelectBrand(e) {
     setEstado({
       ...estado,
@@ -105,22 +94,6 @@ export default function AdminProduct() {
 
   function handleCreate(e) {
     e.preventDefault();
-<<<<<<< HEAD
-    if(Object.keys(err).length)alert("Faltan datos")
-      else{
-        dispatch(createProduct(estado))
-        alert("Actividad Añadida");
-      setEstado({
-        name: "",
-        brand: "",
-        image: "",
-        price: "",
-        CategoryId: "",
-      });
-      }
-      
-    // dispatch(estado);
-=======
     if (Object.keys(err).length)
 {return alert("Faltan datos")}
     dispatch(createProduct(estado));
@@ -133,7 +106,6 @@ export default function AdminProduct() {
       price: "",
       CategoryId: "",
     });
->>>>>>> c30791d7befe2681c64f864a77baa6dfd38bc0d2
   }
   useEffect(() => {
     dispatch(getAllProducts());
@@ -144,53 +116,8 @@ export default function AdminProduct() {
 
   return (
     <div className={style.backg}>
-<<<<<<< HEAD
-      <div className={style.wrapper}>
-        <form onSubmit={(e) => handleCreate(e)}>
-          <div>
-            <h1 className={style.titleForm}>Create New Product</h1>
-
-            <div className={style.divcell}>
-              <label className={style.label1}>Name: </label>
-              <input
-                className={style.input1}
-                type="text"
-                value={estado.name}
-                name="name"
-                onChange={(e) => handleChange(e)}
-                required
-              />
-              {err.name}
-            </div>
-            <div className={style.divcell}>
-              <label className={style.label1}>Price: </label>
-              <input
-                className={style.input1}
-                type="number"
-                value={estado.price}
-                min="0"
-                max="1000"
-                name="price"
-                onChange={(e) => handleChange(e)}
-                required
-              />
-              {err.price}
-            </div>
-            <div className={style.divcell}>
-              <label className={style.label1}>Image: </label>
-              <input
-                className={style.input1}
-                // key="image"
-                type="text"
-                value={estado.image}
-                name="image"
-                onChange={(e) => handleChange(e)}
-                required
-              />
-              {err.image}
-=======
     <div className={style.wrapper}>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleCreate(e)}>
         <div>
           <h1 className={style.titleForm}>Create New Product</h1>
           <div className={style. divcell}>
@@ -264,49 +191,8 @@ export default function AdminProduct() {
                  {estado.CategoryId}
                 </ul>
               </div>
->>>>>>> c30791d7befe2681c64f864a77baa6dfd38bc0d2
             </div>
             <div>
-<<<<<<< HEAD
-              <div>
-                <label className={style.label1}>Id: </label>
-
-                <select
-                  className={style.input1}
-                  onChange={(e) => handleSelect(e)}
-                >
-                  {newData?.map((e) => (
-                    <option className={style.input1} key={e} value={e}>
-                      {e}
-                    </option>
-                  ))}
-                </select>
-                {err.CategoryId}
-                <div>
-                  <ul className={style.label1}>
-                    selected: {estado.CategoryId}
-                  </ul>
-                </div>
-              </div>
-
-              <div>
-                <label className={style.label1}>Brand: </label>
-
-                <select
-                  className={style.label1}
-                  onChange={(e) => handleSelectBrand(e)}
-                >
-                  {newDatas?.map((e) => (
-                    <option className={style.input1} key={e} value={e}>
-                      {e}
-                    </option>
-                  ))}
-                </select>
-                {err.brand}
-                <div>
-                  <ul className={style.label1}>Selected: {estado.brand}</ul>
-                </div>
-=======
               <label className={style.label1}>Brand: </label>
 
               <select className={style.input1} onChange={(e) => handleSelectBrand(e)}>
@@ -344,10 +230,8 @@ export default function AdminProduct() {
                   {estado.category}
                  
                 </ul>
->>>>>>> c30791d7befe2681c64f864a77baa6dfd38bc0d2
               </div>
 
-<<<<<<< HEAD
               <div>
                 <button className={style.btn} onClick={(e) => handleCreate(e)}>
                   Create
@@ -356,16 +240,8 @@ export default function AdminProduct() {
                   <button className={style.btn}>Back to Home</button>
                 </Link>
               </div>
-=======
-            <div>
-              <button className={style.btn} onClick={(e) => handleSubmit(e)}>
-                Crealo!
-              </button>
-              <Link to="/">
-                <button className={style.btn}>Volver</button>
-              </Link>
->>>>>>> c30791d7befe2681c64f864a77baa6dfd38bc0d2
             </div>
+           </div>
           </div>
         </form>
       </div>
