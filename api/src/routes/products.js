@@ -11,7 +11,7 @@ const {updateStock} = require('./controllers/products/updateStock')
 const router = Router();
 
 router.get('/search', findProductByName);
-router.get('/', isAuth, Allproducts);
+router.get('/', Allproducts);
 router.get('/:id', getProductById);
 router.post('/create', createProduct);
 router.put('/update/:id', putProduct);
