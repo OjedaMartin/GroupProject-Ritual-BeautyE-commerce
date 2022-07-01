@@ -15,7 +15,6 @@ import loaderEyes from '../images/loaderEyes.gif';
 import ClassesSearchDetail from './SearchDetail.module.css'
 
 
-
 export default function SearchDetail() {
     const [, setReloadState] = useState(false);
     const { name } = useParams();
@@ -41,6 +40,9 @@ export default function SearchDetail() {
     //---------------------------------------------------------------------------------------
     const catNameAux = category? allCategories.filter((e) => e.id === category) : false;
     //---------------------------------------------------------------------------------------    
+
+     
+
     useEffect(() => {
         dispatch(getAllCategories());
         if (name) { dispatch(getProductName(name)) }

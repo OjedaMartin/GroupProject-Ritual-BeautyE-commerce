@@ -77,7 +77,7 @@ export default function AdminProduct() {
       CategoryId: [...estado.CategoryId, e.target.value]
     }));
   }
-  // function handleSelectCat(e) {
+  function handleSelectCat(e) {
   //   setEstado({
   //     ...estado,
   //     category: [...estado.category, e.target.value],
@@ -86,7 +86,7 @@ export default function AdminProduct() {
   //     ...estado,
   //     category: [...estado.category, e.target.value]
   //   }));
-  // }
+  }
   function handleSelectBrand(e) {
     setEstado({
       ...estado,

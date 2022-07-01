@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { FaAdn, FaShoppingCart } from "react-icons/fa"
 
 import Style from "./Header.module.css"
+import { CartCard } from './CartCard';
 
 export default function Header() {
     return (
@@ -16,7 +17,7 @@ export default function Header() {
                 <h1 className={Style.title}><Link to="/" style={{ textDecoration: 'none', color: 'black' }} >RITUAL</Link></h1>
                 <div className={Style.contIcons}>
                     <Link to="/"><button className={Style.iconUser}><FaAdn /></button></Link>
-                    <Link to="/"><button className={Style.iconCart}><FaShoppingCart /></button></Link>
+                    <Link to="/"><button className={Style.iconCart}><CartCard/><FaShoppingCart /></button></Link>
                 </div>
             </div>
             <nav className={Style.Navbar}>

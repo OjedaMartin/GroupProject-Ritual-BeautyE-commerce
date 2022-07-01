@@ -111,8 +111,30 @@ export function addToCart (productId,cant,email) {
   return async function(dispatch){
     const json = await axios.post(`http://localhost:3001/cart/add/${productId}/${email}/${cant}`);
     console.log('json action addToCart',json);
-    return{
+    return dispatch({
       type: "ADD_TO_CART"
-    }
+    })
   }
 }
+
+export function getAllCart (productId,cant,email){
+  return async function (dispatch) {
+    const json = await axios.get(`http://localhost:3001/cart/all${productId}/${email}/${cant}`);
+    console.log('json action getAllCart',json);
+    return dispatch({
+      type: "GET_CART",
+      payload: json.data,
+    })
+  }
+}
+
+export function deleteProductCart (productId){//DEBERIA HABER ALGO PARA IDENTIFICAR DE QUE CART BORRAR
+  return async function (dispatch) {
+    const json = await axios.delete(`http://localhost:3001/cart/delete/${productId}`);
+    console.log('json action deleteProductCart',json);
+    return dispatch({
+      type: "DELETE_PRODUCT_CART",
+    });
+  }
+}
+//OTRA RUTA PARA ACTUALIZAR CART

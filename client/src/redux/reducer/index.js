@@ -1,3 +1,4 @@
+//import { FaAcquisitionsIncorporated } from "react-icons/fa";
 
 const initialState = {
   products: [],
@@ -5,6 +6,7 @@ const initialState = {
   details: [],
   category: [],
   productsAux: [],
+  productsCart: [],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -83,6 +85,15 @@ function rootReducer(state = initialState, action) {
         products: action.payload,
       };
     case "ADD_TO_CART":
+      return{
+        ...state,
+      };
+    case "GET_CART":
+      return {
+        ...state,
+        productsCart: action.payload,
+      };
+    case "DELETE_PRODUCT_CART":
       return{
         ...state,
       };

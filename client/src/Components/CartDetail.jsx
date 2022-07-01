@@ -7,10 +7,20 @@ import {
     getAllProducts
 } from '../redux/actions';
 import ProductCard from './ProductCard';
-import Pagination from './Pagination';
 import ClassesCartDetail from './SearchDetail.module.css'
 
-
+//---------------------------------------------------------------------------------------   
+// if (typeof (Storage)!== undefined){
+//     console.log('Storage',Storage);
+//     let arr = ["hola","mi","nombre","es","Rafa"];
+//     localStorage.setItem("saludo", JSON.stringify(arr));
+//     //localStorage.canal="probandoAsignar valor a llave"
+//     let mostrar =JSON.parse(localStorage.getItem("saludo"));
+//     console.log("mostrarparse--->",mostrar)
+// } else{
+//     alert('Storage no es soportado por el navegador')
+//}
+//---------------------------------------------------------------------------------------  
 
 export default function SearchDetail() {
     const [, setReloadState] = useState(false);
@@ -61,13 +71,7 @@ export default function SearchDetail() {
                                 </Fragment>
                             )
                         })}
-                        <div>
-                            <Pagination
-                                productsPerPage={productsPerPage}
-                                amountProducts={productsResults.length}
-                                paginated={paginated}
-                            />
-                        </div>
+                       
 
                     </section>
 
