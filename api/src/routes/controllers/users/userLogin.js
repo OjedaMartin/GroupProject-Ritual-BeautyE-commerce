@@ -20,13 +20,15 @@ const userLogin = async (req, res) => {
                 const userForToken = {
                     id: user.id,
                     email: user.email,
+                    membership: user.membership
                 }
         
                 const token = jwt.sign({ userForToken }, 'secretkey')
         
-                res.status(200).send({
+                res.status(200).json({
                     name: user.name,
                     email: user.email,
+                    membership: user.membership,
                     token: token
                 });
             }

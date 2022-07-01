@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { userLogin } = require('./controllers/users/userLogin');
 const { userRegister } = require('./controllers/users/userRegister');
 const { getUsers } = require('./controllers/users/getUsers');
-const { isAuth } = require('./controllers/auth/auth');
+const { isAuth } = require('./controllers/middlewares/auth');
 const { userLogout } = require('./controllers/users/userLogout');
 const { getUserByEmail } = require('./controllers/users/getUserByUser');
 
