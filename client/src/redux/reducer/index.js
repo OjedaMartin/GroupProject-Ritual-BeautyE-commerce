@@ -4,18 +4,12 @@ const initialState = {
   allProducts: [],
   details: [],
   category: [],
-<<<<<<< HEAD
   profile:[],
 
  
 };
 
 
-=======
-  productsAux: [],
-};
-
->>>>>>> c30791d7befe2681c64f864a77baa6dfd38bc0d2
 const orderProducts = (orderSelected, stateProducts) => {
   switch (orderSelected) {
     case 'High to Low Price':
@@ -46,6 +40,11 @@ function rootReducer(state = initialState, action) {
           ...state,
          
         }
+        case "CREATE_USER":
+          return {
+            ...state,
+           
+          }
         case "CREATE_CATEGORY":
         return {
           ...state,
