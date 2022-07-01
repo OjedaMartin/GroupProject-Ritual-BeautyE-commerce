@@ -7,7 +7,7 @@ import styles from'./AboutUs.module.css'
 export default function AboutUs (){
     return(
         <>
-        <Header/>
+        
         <div>About Ritual</div>
         <p className={styles.aboutText}>
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <br/>
@@ -33,7 +33,7 @@ export default function AboutUs (){
         <div>
             <NavLink to = '/'>Back to Jom</NavLink>
         </div>
-        <Footer/>
+        
         </>
     )
 }
