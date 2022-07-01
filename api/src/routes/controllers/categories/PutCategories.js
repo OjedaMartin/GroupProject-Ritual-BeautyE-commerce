@@ -14,6 +14,7 @@ const putCategories = async (req, res) => {
                 }}
             )
             res.status(200).send('Category updated')
+            
         } else{
             res.status(400).send('Updating error')
         }
