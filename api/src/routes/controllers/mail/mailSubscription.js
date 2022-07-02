@@ -10,7 +10,6 @@ async function subscriptionChange(req, res, next){
                 id: userID,
             }
         })
-        console.log(user)
 
         await transporter.sendMail({
             from: '"Membership changed!"<ritual.makeup.commerce@gmail.com>',
