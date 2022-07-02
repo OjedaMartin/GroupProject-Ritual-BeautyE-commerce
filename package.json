@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-floating-action-button": "^1.0.5",
+    "reactstrap": "^9.1.1"
+  }
+}

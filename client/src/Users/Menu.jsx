@@ -1,16 +1,33 @@
 import React from "react";
-import { Link} from "react-router-dom";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, NavLink } from "reactstrap";
+import s from "./Menues.module.css"
+import { Link } from "react-router-dom";
 const Menu = () => {
+  const { user } = useAuth0();
+console.log("user", user)
   return (
     <div>
-      <ul className="menuLink">
-        <li>
-          <Link exact to="/user/settings" >Profile</Link>
-        </li>
-        <li>
-          <Link exact to="/user/myorders">My Orders</Link>
-        </li>
+      <ul className={s.Menu}>
+        <img className={s.pic} src={user.picture} alt={user.name} />
+<br/>
+
+{user.name}
+<br/>
+{user.email}
+        <div  >
+          <Link exact to="/user/settings">
+            <Button >
+              Profile
+            </Button>
+          </Link>
+
+          <Link  exact to="/user/myorders">
+          <Button >
+              My Orders
+              </Button>
+            </Link>
+        </div>
       </ul>
     </div>
   );

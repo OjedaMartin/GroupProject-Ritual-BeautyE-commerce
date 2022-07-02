@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button, Modal, ModalBody } from "reactstrap";
-import Review from "../ProductDetails/Reviews.jsx";
+// import Review from "../ProductDetails/Reviews.jsx";
 
 import NumberFormat from "react-number-format";
 
@@ -45,13 +45,13 @@ export const MyOrders = () => {
                 {e?.productCart?.map((el) => (
                   <div >
                     <li >
-                      <img src={el.image} alt="not found" width="100px" />
+                      <img src={el.picture} alt="not found" width="100px" />
                       <p>{el.name}</p>
                     </li>
                     <Button onClick={toggle}>Add Comment</Button>
                     <Modal isOpen={comment} toggle={toggle}>
                       <ModalBody>
-                        <Review productProductId={el.ProductId} />
+                        {/* <Review productProductId={el.ProductId} /> */}
                       </ModalBody>
                     </Modal>
                   </div>

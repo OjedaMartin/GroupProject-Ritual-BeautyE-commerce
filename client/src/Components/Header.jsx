@@ -21,16 +21,21 @@ export default function Header(){
                 <SearchBar/>
                 <h1 className={Style.title}><Link to="/" style={{ textDecoration: 'none', color: 'black'  }} >RITUAL</Link></h1>
                 <div className={Style.contIcons}>
-                    <Link to="/"><button className={Style.iconUser}><FaAdn/></button></Link>
-                    <Link to="/"><button className={Style.iconCart}><FaShoppingCart/></button></Link>
                     {isAuthenticated ? (
           <>
-            <Profile />
+           
             <Logout />
+            
           </>
         ) : (
-          <LoginButton />
+            <>
+            <Link to="/"><button className={Style.iconCart}><FaShoppingCart/></button></Link>
+            <LoginButton />
+            </>
+         
         )}
+                    
+
                 </div>
             </div>
                 <nav className={Style.Navbar}>
