@@ -15,6 +15,7 @@ import { BiPlusMedical } from "react-icons/bi"
 
 function CategoriesAdmin(){
 
+
 let navigate = useNavigate();
 const dispatch = useDispatch()
 const categories = useSelector((state)=> state.category)

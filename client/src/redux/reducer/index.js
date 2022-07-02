@@ -1,32 +1,33 @@
-
 const initialState = {
   products: [],
   allProducts: [],
   details: [],
   category: [],
-  profile:[],
+  profile: [],
+  currentUser: { carts: [{ productCart: [] }] },
+  cart: {},
   productsAux: [],
   users: [],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
   switch (orderSelected) {
-    case 'High to Low Price':
+    case "High to Low Price":
       return stateProducts.sort((a, b) => {
         return b.price - a.price;
       });
-    case 'Low to High Price':
+    case "Low to High Price":
       return stateProducts.sort((a, b) => {
         return a.price - b.price;
-      })
-    case 'Sort by rated':
+      });
+    case "Sort by rated":
       return stateProducts.sort((a, b) => {
         return b.rating - a.rating;
       });
     default:
       return stateProducts;
   }
-}
+};
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_PRODUCT_NAME":
@@ -34,43 +35,51 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
-      case "CREATE_PRODUCTS":
-        return {
-          ...state,
-         
-        }
-        case "CREATE_CATEGORY":
-        return {
-          ...state,
-         
-        }
-        case "GET_CAT":
-          return {
-            ...state,
-            category: action.payload,
-          }
-          case "GET_USERS":
-          return {
-            ...state,
-            users: action.payload,
-          }
+    case "CREATE_PRODUCTS":
+      return {
+        ...state,
+      };
+    case "CREATE_USER":
+      return {
+        ...state,
+      };
+    case "CREATE_CATEGORY":
+      return {
+        ...state,
+      };
+    case "GET_CAT":
+      return {
+        ...state,
+        category: action.payload,
+      };
     case "GET_DETAIL":
       return {
         ...state,
         details: action.payload,
       };
-      case "GET_PROFILE":
-        return {
-          ...state,
-          profile: action.payload,
-        };
+    case "GET_PROFILE":
+      return {
+        ...state,
+        profile: action.payload,
+      };
+    case " GET_ALL_USER":
+      return {
+        ...state,
+        users: action.payload,
+      };
+    case "GET_USERS":
+      return {
+        ...state,
+        users: action.payload,
+      };
+
     case "GET_ALL":
       return {
         ...state,
         products: action.payload,
         allProducts: action.payload,
-        productsAux: action.payload
-      }
+        productsAux: action.payload,
+      };
 
     case "GET_PRODUCT_BY_FILTER":
       return {

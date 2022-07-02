@@ -32,7 +32,7 @@ export default function SearchDetail() {
     const currentProducts = productsResults?.slice(indexOfFirstCard, indexOfLastCard);
     //-----------------------------ME GUARDO TODAS LAS BRANDS Y ELIMINO LAS REPETIDAS--------
     const productsBrand = [];
-    productsAuxResults.map((e) => productsBrand.push(e.brand));
+    productsAuxResults?.map((e) => productsBrand.push(e.brand));
     const newData = [...new Set(productsBrand)];
     //console.log('newData',newData)
     
