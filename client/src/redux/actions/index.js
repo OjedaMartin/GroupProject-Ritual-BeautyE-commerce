@@ -33,6 +33,15 @@ export function getAllCategories() {
     });
   };
 }
+export function getAllUsers() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/users");    
+    return dispatch({
+      type: "GET_USERS",
+      payload: json.data,
+    });
+  };
+}
 
 export function getDetail(id) {
   return async function (dispatch) {
@@ -157,19 +166,19 @@ export function getUser(payload){
       }
   }
 }
-export function getAllUsers(){
-  return async function (dispatch){
-      try {
-          const json = await axios.get("http://localhost:3001/users/" )
-          return dispatch({
-              type: "GET_ALL_USERS",
-              payload: json.data
-          })
-      } catch(err){
-          console.log(err)
-      }
-  }
-}
+// export function getAllUsers(){
+//   return async function (dispatch){
+//       try {
+//           const json = await axios.get("http://localhost:3001/users/" )
+//           return dispatch({
+//               type: "GET_ALL_USERS",
+//               payload: json.data
+//           })
+//       } catch(err){
+//           console.log(err)
+//       }
+//   }
+// }
 export const putUser = async (payload) => {
   return await axios.put("http://localhost:3001/users/update", payload)
   .then(function (response) {})

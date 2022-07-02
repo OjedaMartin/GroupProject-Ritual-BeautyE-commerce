@@ -6,7 +6,7 @@ function DashBoard(){
   return (
           <div className={style.container}>
             
-            <h2>Manage all your models frome here!</h2>
+            <h2>Manage all your models from here!</h2>
             
           </div>
   );

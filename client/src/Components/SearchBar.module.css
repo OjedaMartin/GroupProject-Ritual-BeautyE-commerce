@@ -19,6 +19,7 @@ body {
     border-right: #ffffff00 ;
 
 }
+.search:focus 		{ outline:none; }
 
 .search:hover {
     background-color: #ffffff00 ;

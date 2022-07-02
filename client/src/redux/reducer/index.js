@@ -6,6 +6,7 @@ const initialState = {
   profile: [],
   currentUser: { carts: [{ productCart: [] }] },
   cart: {},
+  productsAux: [],
   users: [],
 };
 

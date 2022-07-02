@@ -1,9 +1,8 @@
 .NavContainer{
     
-    display: flex;
-    background-color: black;
-    align-items: center;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
     
     
     

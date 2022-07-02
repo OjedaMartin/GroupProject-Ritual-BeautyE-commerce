@@ -1,29 +1,24 @@
-const { Product, Cart ,Cart_Product} = require('../../../db')
+const { Product, Cart,User} = require('../../../db')
 
 
 const addProductCart = async(req, res )=>{
     
-    var {productId,cant,email} = req.params
-    let prodInfo = await Product.findOne({where:{id:productId}})
+    var {productsId,email} = req.body
     
-    if(email){
-   
-    const prod = await Cart_Product.findOne({ where: {ProductId : productId } })
-        if(prod){ 
-            let carro = await Cart.findOne({where:{id:prod.CartId}})
-            let sum= parseInt(cant) + carro.quantity
-            if(sum <= prodInfo.in_Stock){
-            await Cart.update({quantity:sum},{where:{id:prod.CartId}})
+    let emailValido= await User.findOne({where:{email}})
+   if (emailValido) {
+    const prod = await Product.findAll({ where: {id : productsId } }) 
+            let cart = await Cart.create()
+          await  cart.addProduct(prod)
+          await  emailValido.addCart(cart)
             res.send("Producto añadido al carrito")
-            }else{res.send("Cantidad de stock insuficiente!!")}
-         }else {
-            
-            let newprodcart = await Cart.create({quantity:cant})
-            newprodcart.addProduct(prodInfo)
-            res.send("Producto añadido al carrito")
+   }else {
+    res.send("usuario debe loguearse")
+   }
+    
          }
- } 
-}
+ 
+
 async function carts(req,res) {
     let resp = await Cart.findAll()
     res.json(resp)
