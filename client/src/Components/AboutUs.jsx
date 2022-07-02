@@ -1,5 +1,3 @@
-import Header from './Header';
-import Footer from './footer';
 import { NavLink } from 'react-router-dom';
 import styles from'./AboutUs.module.css'
 

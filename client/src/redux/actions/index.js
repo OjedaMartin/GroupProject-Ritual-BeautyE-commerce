@@ -144,3 +144,13 @@ export function postCategory(payload) {
 }
 
 
+export function deleteStock(id, payload) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/products/stock/${id}`, payload);
+    console.log("info action", info);
+    return {
+      type: "DELETE_STOCK",
+      info
+    }
+  };
+}

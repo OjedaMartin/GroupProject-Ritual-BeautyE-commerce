@@ -15,7 +15,8 @@ router.post('/login', userLogin);
 router.post('/register', userRegister);
 
 // Ruta para obtener todos los usuarios
-router.get('/', isAuth, getUsers)
+// isauth
+router.get('/', getUsers)
 
 // Ruta para desloguearse
 router.post('/logout', userLogout);

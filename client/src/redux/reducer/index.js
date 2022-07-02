@@ -44,6 +44,11 @@ function rootReducer(state = initialState, action) {
           ...state,
          
         }
+        case "DELETE_STOCK":
+        return {
+          ...state,
+         
+        }
         case "GET_CAT":
           return {
             ...state,
@@ -59,6 +64,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         details: action.payload,
       };
+      
       case "GET_PROFILE":
         return {
           ...state,
