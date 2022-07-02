@@ -9,6 +9,9 @@ import Admin from './Admin/Admin'
 import Header from "./Components/Header.jsx";
 import Footer from "./Components/footer.jsx";
 import { LoginButton } from "./Users/LogIn.jsx";
+import Menu from "./Users/Menu.jsx";
+import { Settings } from "./Users/Settings.jsx";
+import { MyOrders } from "./Users/Orders.jsx";
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
         <Route exact path='/termsofuse' element={<AboutUs />} />
         <Route path='/admin/*' element={<Admin/>} />
         <Route path='/login' element={<LoginButton/>} />
+        <Route path='/user' element={<Menu/>} />
+        <Route path="/user/settings" element={<Settings/>} />
+        <Route path="/user/myorders" element={<MyOrders/>} />
 
       </Routes>
       <Footer/>

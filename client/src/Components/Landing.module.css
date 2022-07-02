@@ -1,0 +1,65 @@
+.body {
+    font-size: 1em;
+    background: #333;
+    font-family: 'Roboto', Arial, Verdana, sans-serif;
+}
+ .side {
+    width:16em;
+    height: auto;
+    margin:12em auto 0;
+    font-size: 1em;
+    line-height: 4em;
+    color: #fff;
+    font-weight:700;
+    text-transform:uppercase;
+    position:fixed;
+    top:0; 
+    bottom:0;
+    right: -11em;
+}
+ .side ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ .side ul li {
+  display:block;
+  border-radius: 5px;
+    background-color: rgba(51, 51, 51, 0.575);
+    height: 3em;
+    padding-top: -.5em;
+    padding-bottom: 60px;
+    padding-left: 1em;
+    position: relative;
+    -webkit-transition: -webkit-transform 0.5s,     background-color .5s, color .5s;
+    transition: transform .5s, background-color .5s, color .5s;
+}
+/*the colors of the different columns*/
+ .side ul li:nth-child(1) { background-color: #5aa1bbd2;}
+ .side ul li:nth-child(2) { background-color: #4a5f8a88;}
+ .side ul li:nth-child(3) { background-color: #859e85d0;}
+ .side ul li:nth-child(4) { background-color: #2e835686;}
+
+ .side ul li:hover {
+    background-color: #36693ab4; /*you can make different colors depending on the nth-child like above*/
+    -webkit-transform: translateX(10em);
+    transform: translateX(-10em);/*equal to left in the  .side*/
+}
+ .side ul li a {
+  display:block;
+    color: #FFF;
+    text-decoration: none;
+}
+ .side ul li span {
+    display:block;
+    position: absolute;
+    font-size:1em;
+    line-height: 2em;
+    height:2em;
+    top:0; 
+    bottom:0;
+    margin:0 auto;
+    padding:1em 1.5em;
+    right: 0.16666666666667em;
+    color: #F8F6FF;
+}

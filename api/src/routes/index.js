@@ -7,7 +7,9 @@ const filters = require('./filters')
 const users = require('./users')
 const cart = require('./cart');
 const review = require('./review')
+const mail = require("./mail")
 const order = require('./order')
+
 // const products = require('./products')
 
 const router = Router();
@@ -20,9 +22,11 @@ router.use('/products', products);
 router.use('/categories', categories);
 router.use('/filters', filters);
 router.use('/users', users);
-router.use('/cart', cart)
+router.use('/cart', cart);
+router.use('/review', review);
+router.use("/mail", mail);
 router.use('/order', order)
-router.use('/review', review)
+
 // router.use('/products', products);
 
 

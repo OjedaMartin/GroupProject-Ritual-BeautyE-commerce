@@ -1,14 +1,12 @@
-const { Cart_Product,Cart} = require('../../../db')
+const { Cart_Product} = require('../../../db')
 
 
-async function deleteProd(req,res) {
-    let {productId} = req.params
-    let idcarro =await Cart_Product.findOne({where: {ProductId:productId}})
-    await Cart_Product.destroy({where: {ProductId:productId}})
-    await Cart.destroy({where:{id:idcarro.CartId}})
+async function deleteProd(req,res){
+    let {CartId,ProductId} = req.params
+    
+    await Cart_Product.destroy({where:{CartId,ProductId}})
     res.send("Producto eliminado del carrito!!")
   
 }  
-
 
 module.exports={deleteProd}

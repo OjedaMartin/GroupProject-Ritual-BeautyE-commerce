@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import style from "./Styles/ProductsAdmin.module.css";
 import { useDispatch, useSelector } from 'react-redux';
 import {getAllProducts, deleteStock } from "../../redux/actions/index"

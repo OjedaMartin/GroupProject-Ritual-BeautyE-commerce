@@ -9,16 +9,22 @@
     "@testing-library/user-event": "^13.5.0",
     "@trendyol-js/react-carousel": "^3.0.0",
     "axios": "^0.27.2",
+    "bootstrap": "^5.2.0-beta1",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.6.1",
     "react-carousel-minimal": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-multi-carousel": "^2.8.2",
+    "react-number-format": "^4.9.3",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+<<<<<<< HEAD
     "react-sliding-side-panel": "^2.0.3",
+=======
+    "reactstrap": "^9.1.1",
+>>>>>>> master
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
@@ -49,5 +55,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.1.4"
   }
 }
