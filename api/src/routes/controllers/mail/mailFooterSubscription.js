@@ -1,22 +1,20 @@
 const nodemailer = require("nodemailer");
-const {User} = require("../../../db")
+const {FooterUser} = require("../../../db")
 const {transporter} = require("./transporter")
 
-async function userCreated(req, res, next){
-    let { userID } = req.body;
+async function footerSubscription (req, res, next){
+    let { email } = req.body;
     try{
-        let user = await User.findOne({
-            where:{
-                id: userID,
-            }
+        let newUser = await FooterUser.create({
+            email: email,
         })
 
         await transporter.sendMail({
-            from: '"User created!"<ritual.makeup.commerce@gmail.com>',
-            to: user.email,
-            subject: `Thank you for signing up to Ritual Make-up Shop`,
+            from: '"Ritual Make-up Commerce team"<ritual.makeup.commerce@gmail.com>',
+            to: email,
+            subject: `Successful registration to Ritual Make-up's notification program!`,
             html:`<h4>Welcome!</h4>
-            <p>User ${user.name} has been created successfully.
+            <p>You've successfully activated notifications for Ritual Make-up commerce!.
             Explore new deals and our extensive catalogue of products at <a href="http://localhost:3000/">Ritual</a>!</p>    `
           }, (err, info) => {
             if (err) {
@@ -29,4 +27,4 @@ async function userCreated(req, res, next){
     }
 }
 
-module.exports = { userCreated }
+module.exports = { footerSubscription };
