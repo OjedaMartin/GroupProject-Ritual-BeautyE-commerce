@@ -12,7 +12,7 @@ import { Profile } from '../Users/Profile';
 export default function Header(){
 
     const { isAuthenticated } = useAuth0();
-    console.log("header", isAuthenticated )
+    
     return(
         <div className={Style.main}>
            

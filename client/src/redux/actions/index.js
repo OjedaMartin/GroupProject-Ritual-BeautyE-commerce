@@ -142,7 +142,6 @@ export function postCategory(payload) {
   };
 }
 
-<<<<<<< HEAD
 
 export function deleteStock(id, payload) {
   return async function (dispatch) {
@@ -154,7 +153,6 @@ export function deleteStock(id, payload) {
     }
   };
 }
-=======
 ///USUARIOS: RUTA DE CREACION, BUSQEDA Y LISTA DE USUARIOS
 export function createUser(payload) {
   return async function (dispatch) {
@@ -197,4 +195,3 @@ export const putUser = async (payload) => {
   .then(function (response) {})
   .catch(function (error) {});
 };
->>>>>>> master
