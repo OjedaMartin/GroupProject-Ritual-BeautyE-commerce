@@ -15,24 +15,41 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 15px;
 }
 
 .textTitleFooter{
     font-family: 'Courier New', Courier, monospace;
     color: #515151;
     font-size: medium;
+    font-weight: bold;
 }
 
-.textinfosize{
+.textTitleFooter2{
+    font-family: 'Courier New', Courier, monospace;
+    color: #515151;
+    font-size: medium;
+    text-decoration: none;
+}
+
+.textTitleFooter2:hover{
+    text-decoration:underline;
+  }
+
+  a.textTitleFooter2.active {
+    background-color: transparent;
+}
+
+.textTitleFooterinfoSize{
+    font-family: 'Courier New', Courier, monospace;
+    color: #515151;
     font-size: small;
 }
 
 .texttitle2{
-    color: #7a7979;
-    font-size:15px;
-    font-weight:600;
-    margin-bottom: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #515151;
+    font-size: medium;
+    text-decoration: none;
 }
 
 .iconsSize{
@@ -41,9 +58,6 @@
     color: #7a7979;
 }
 
-.spaceFollow{
-    margin-top: 10px;
-}
 
 .inputBox{
     background-color: transparent;
@@ -59,18 +73,10 @@
     color:#7a7979;
 } 
 
-
-.textTitleFooter2{
-    font-family: 'Courier New', Courier, monospace;
-    color: #515151;
-    font-size: medium;
-    text-decoration: none;
-}
-
 .textTitleFooter2:hover{
     text-decoration:underline;
   }
 
-  a.textTitleFooter2.active {
+a.textTitleFooter2.active {
     background-color: transparent;
 }

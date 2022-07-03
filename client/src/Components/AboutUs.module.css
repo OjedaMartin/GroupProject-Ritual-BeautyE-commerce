@@ -1,6 +1,27 @@
 .aboutText{
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Cantarell', sans-serif;
     color: #515151;
-    font-size: large;
+    font-size: medium;
     text-decoration: none;
+    text-align: center;
+}
+
+.aboutTitle{
+    font-family: 'Cantarell', sans-serif;
+    color: #515151;
+    font-size: x-large;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.backtohome{
+    font-family: 'Cantarell', sans-serif;
+    color: #515151;
+    font-size: medium;
+    text-decoration: underline;
+}
+
+.marginDiv{
+    margin-top: 30px;
+    text-align: center;
 }
