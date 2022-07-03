@@ -34,6 +34,15 @@ export function getAllCategories() {
     });
   };
 }
+export function getAllUsers() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/users");    
+    return dispatch({
+      type: "GET_USERS",
+      payload: json.data,
+    });
+  };
+}
 
 export function getDetail(id) {
   return async function (dispatch) {
@@ -96,6 +105,33 @@ export function getfilterBrand(params) {
     }
   }
 }
+export function getProfile(params) {
+  return async function (dispatch) {
+    try{
+    const json = await axios.get(``)
+    return dispatch({
+      type: 'GET_PROFILE',
+      payload: json.data
+    })
+  } catch (error) {
+    console.log(error)
+   }
+  }
+}
+export function logIn(params) {
+  return async function (dispatch) {
+    try{
+    const json = await axios.get(`http://localhost:3001/users/login`)
+    return dispatch({
+      type: 'GET_PROFILE',
+      payload: json.data
+    })
+  } catch (error) {
+    console.log(error)
+   }
+  }
+}
+
 export function postCategory(payload) {
   return async function (dispatch) {
     const info = await axios.post("http://localhost:3001/categories/create", payload);
@@ -137,4 +173,25 @@ export function deleteProductCart (productId){//DEBERIA HABER ALGO PARA IDENTIFI
     });
   }
 }
-//OTRA RUTA PARA ACTUALIZAR CART
+
+export function addProdToCart (product){
+  console.log('PROD ACTIONS--> ADD',product)
+  return ({
+    type:'ADD_PROD_TO_CART', 
+    payload: product,
+  })
+}
+
+export function removeProdFromCart (product){
+  console.log('PROD ACTIONS--> REMOVE',product)
+  return ({
+    type:'REMOVE_PROD_FROM_CART', 
+    payload:product,
+  })
+}
+
+export function clearCart (){
+  return ({
+    type:'CLEAR_CART',
+  })
+}

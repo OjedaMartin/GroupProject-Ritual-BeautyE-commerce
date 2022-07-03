@@ -20,7 +20,7 @@ export default function SearchDetail() {
     const { name } = useParams();
     const { category } = useParams();
     const { allProducts } = useParams();
-    
+
     const dispatch = useDispatch();
 
     const productsResults = useSelector((state) => state.products);
@@ -38,11 +38,22 @@ export default function SearchDetail() {
     const newData = [...new Set(productsBrand)];
 
     //---------------------------------------------------------------------------------------
-    const catNameAux = category? allCategories.filter((e) => e.id === category) : false;
+    const catNameAux = category ? allCategories.filter((e) => e.id === category) : false;
     //---------------------------------------------------------------------------------------    
+    // const prodCart = useSelector((state) => state.prodCart);
+    //------------------------------------------------------------------------------------------
+    // const prueba = prodCart.find((eCart) => eCart.id === e.id) ? prodCart.quantity : 0
+    //console.log('A VEEER', prueba)
+    // for (let i = 0; i<aux2.length; i++){
+    //     if (aux2[i] !== undefined){
+    //         aux2[i]=aux2[i].quantity;
+    //     }
+    // }
 
-     
 
+
+
+    //----------------------------------------------------------------------------------------------
     useEffect(() => {
         dispatch(getAllCategories());
         if (name) { dispatch(getProductName(name)) }
@@ -78,10 +89,18 @@ export default function SearchDetail() {
     if (currentProducts.length > 0) {
         return (
             <Fragment>
+                <div>
+                    <Pagination
+                        productsPerPage={productsPerPage}
+                        amountProducts={productsResults.length}
+                        paginated={paginated}
+                    />
+                </div>
                 <main className={ClassesSearchDetail.division}>
+
                     <div className={ClassesSearchDetail.todo}>
                         <div className={ClassesSearchDetail.params}>
-                            <h1>{catNameAux?catNameAux[0].name:name?name:'Products' }</h1>
+                            <h1>{catNameAux ? catNameAux[0].name : name ? name : 'Products'}</h1>
                         </div>
                         <div className={ClassesSearchDetail.selectors}>
                             <select onChange={setOrder} name='Type' className={ClassesSearchDetail.select} >
@@ -115,18 +134,16 @@ export default function SearchDetail() {
                                             image={e.image}
                                             price={e.price}
                                             id={e.id}
+                                            in_Stock={e.in_Stock}
+                                            CategoryId={e.CategoryId}
+                                            rating={e.rating}
+                                        //qty={(prodCart.map((eCart) => eCart.id === e.id)) ? prodCart.quantity : 0}
                                         />
                                     </div>
                                 </Fragment>
                             )
                         })}
-                        <div>
-                            <Pagination
-                                productsPerPage={productsPerPage}
-                                amountProducts={productsResults.length}
-                                paginated={paginated}
-                            />
-                        </div>
+
 
                     </section>
 
@@ -143,3 +160,4 @@ export default function SearchDetail() {
 
 
 }
+

@@ -1,28 +1,15 @@
-const { User, Review } = require('../../../db')
+const { Product_Review, Review } = require('../../../db')
 
 
-const deleteReview = async (req, res) =>{
-    const { email, productName } = req.body
+
+const deleteReview = async (req, res) => {
     try{
-        const user = await User.findOne({where:{email}});
+        const reviewId = req.params.id;
 
-        if(!user) {
-            res.status(404).json('User didnt found')
-        } else {
-            const products = await user.getReviews();
+        await Review.destroy({where :{id: reviewId}})
+        await Product_Review.destroy({where:{ReviewId : reviewId}})
+        res.send('Review Eliminado');
 
-            if(!products){
-                res.status(404).json('Product has no comments')
-            } else {
-                const nProduct = nProduct.map(prod => prod.productName)
-                if(nProduct.includes(productName)) {
-                    const review = await Review.destroy({where: {productName: productName, userName: userName}})
-                    res.status(200).json('Review Deleted')
-                } else {
-                    res.status(404).json('Review didnt found')
-                }
-            }
-        }
     }catch(error){
         console.log(error)
     }

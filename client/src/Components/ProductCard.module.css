@@ -56,11 +56,18 @@
     align-self: auto;
     width: 100%;
     
+    
 }
 .priceAndcart h4 {
     position: relative;
     bottom: 30px;
     font-size: 20px;
+}
+.priceAndcart h3 {
+    position: relative;
+    bottom: 30px;
+    font-size: 20px;
+    left: 20px;
 
 }
 .cartBtn{

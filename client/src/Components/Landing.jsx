@@ -10,10 +10,10 @@ import Carousel from './CardsFront';
 export default function Landing(){
 
     const dispatch = useDispatch()
-    const products = useSelector((state)=> state.products)
+    //const products = useSelector((state)=> state.products)
     
 
-    console.log(products)
+   // console.log(products)
 
     useEffect(() => {
         dispatch(getAllCategories());

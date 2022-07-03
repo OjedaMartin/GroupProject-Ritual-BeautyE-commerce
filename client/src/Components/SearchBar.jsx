@@ -29,6 +29,7 @@ export default function SearchBar (){
         <div className={style.container}>
             
             <div className={style.searchbox}>
+                <form >
                 <Link to= {'/SearchDetail/search/' + name} ><button className={style.searchbtn} >
                 <FaSearch className={style.icon} aria-hidden='true' id="searchbar-icon"/>
                 </button></Link>
@@ -40,7 +41,7 @@ export default function SearchBar (){
                  onChange={(e) => inputChangeHandler(e)}
                  id="searchbar-input"
                  />
-                
+                </form>
             </div>
         </div>
     )

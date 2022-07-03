@@ -4,15 +4,18 @@ const { getProductById } =require('./controllers/products/productDetail');
 const { createProduct } = require('./controllers/products/postProducts');
 const { findProductByName } = require('./controllers/products/searchByName');
 const { putProduct } = require('./controllers/products/updateProduct');
-const auth = require('./controllers/auth/auth');
+const { isAuth } = require('./controllers/auth/auth');
+const {updateStock} = require('./controllers/products/updateStock')
+
 
 const router = Router();
 
 router.get('/search', findProductByName);
 router.get('/', Allproducts);
 router.get('/:id', getProductById);
-router.post('/create', auth, createProduct);
+router.post('/create', createProduct);
 router.put('/update/:id', putProduct);
+router.put('/stock/:id',updateStock)
 
 
 

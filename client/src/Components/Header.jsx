@@ -1,23 +1,38 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import { Link } from 'react-router-dom'
-
+import {Link} from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 import { FaAdn, FaShoppingCart } from "react-icons/fa"
 
 import Style from "./Header.module.css"
-import { CartCard } from './CartCard';
+import { LoginButton } from '../Users/LogIn';
+import { Logout } from '../Users/LogOut';
+import { Profile } from '../Users/Profile';
 
-export default function Header() {
-    return (
+import CartCard from './CartCard';
+
+export default function Header(){
+    const { isAuthenticated } = useAuth0();
+    //console.log("header", isAuthenticated )
+    return(
         <div className={Style.main}>
-
+           
             <div className={Style.header}>
                 {/*<Link to="/create" ><button className={Style.btnH}> New Product </button></Link>*/}
                 <SearchBar />
                 <h1 className={Style.title}><Link to="/" style={{ textDecoration: 'none', color: 'black' }} >RITUAL</Link></h1>
                 <div className={Style.contIcons}>
-                    <Link to="/"><button className={Style.iconUser}><FaAdn /></button></Link>
-                    <Link to="/"><button className={Style.iconCart}><CartCard/><FaShoppingCart /></button></Link>
+                    <Link to="/"><button className={Style.iconUser}><FaAdn/></button></Link>
+                    <Link to="/cart"><button className={Style.iconCart}><FaShoppingCart></FaShoppingCart></button></Link> 
+                    {/* </FaShoppingCart> */}
+                    {isAuthenticated ? (
+          <>
+            <Profile />
+            <Logout />
+          </>
+        ) : (
+          <LoginButton />
+        )}
                 </div>
             </div>
             <nav className={Style.Navbar}>

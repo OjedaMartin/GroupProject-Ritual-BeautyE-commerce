@@ -1,0 +1,150 @@
+.container {
+  align-items: center;
+  background-image: url("https://thumbs.dreamstime.com/b/fondo-abstracto-minimalista-con-hojas-negras-outline-situadas-en-los-laterales-de-la-plantilla-213088892.jpg");
+  min-height: 100vh;
+  /* padding-top: 64px;
+  padding-right: 64px; */
+  position: relative;
+  background-size: contain;
+  box-shadow: 5px 5px 10px rgba(0, 40, 0, 0.5);
+}
+
+.grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
+  margin: 0 auto;
+
+} 
+
+
+.cardContainer {
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px rgba(0, 40, 0, 0.5);
+  transition: 1.5s;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 30px;
+  padding-left: 15px;
+  padding-right: 20px;
+
+  /* width: 9rem; */
+  /* object-fit: contain; */
+  /* border-radius: 6px; */
+  /* margin-right: 20px; */
+
+}
+/* 
+.cardContainer:hover {
+  transform: scale(1.05, 1.05);
+
+} */
+
+.price {
+  font-size: 24px;
+}
+.subTotal {
+  font-size: 24px;
+}
+
+
+.btnvolver {
+  cursor: pointer;
+  border: 2px solid var(--tertiary-color);
+  background: var(--tertiary-color);
+  border-radius: 50px;
+  font-family: var(--primary-font);
+  padding: 12px 28px;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  font-size: var(--btn-font-size);
+  line-height: 21px;
+  color: var(--secondary-color);
+  transition-duration: 0.7s;
+  align-items: center;
+  margin-left: 45%;
+  margin-top: 20px;
+}
+
+.vaciarCarrito {
+
+
+  cursor: pointer;
+  border: 2px solid rgba(0, 0, 0, 0.397);
+  background: rgb(209, 209, 209);
+  border-radius: 30px;
+  font-family: 'Source Sans Pro', sans-serif bold;
+  padding: 12px 28px;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  font-size: var(--btn-font-size);
+  line-height: 8px;
+  color: var(--secondary-color);
+  transition-duration: 0.7s;
+  align-items: center;
+  margin-left: 45%;
+  margin-top: 20px;
+}
+
+.total {
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  color: rgba(0, 0, 0, 0.856);
+  background-color: rgba(97, 97, 97, 0.507);
+}
+.buyCart {
+  position: relative;
+  display: flex;
+  left: 0px;
+  cursor: pointer;
+  border: 2px solid rgba(20, 88, 14, 0.582);
+  background: rgb(186, 250, 189);
+  border-radius: 30px;
+  font-family: 'Source Sans Pro', sans-serif bold;
+  padding: 12px 28px;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  font-size: var(--btn-font-size);
+  line-height: 8px;
+  color: var(--secondary-color);
+  transition-duration: 0.7s;
+  align-items: center;
+  margin-left: 45%;
+  margin-top: 20px;
+}
+.buttonContainer{
+ 
+
+}
+.title{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-family: 'Source Sans Pro', sans-serif bold;
+  color: rgba(0, 0, 0, 0.808);
+}
+/* .goHome{
+  position: relative;
+  display: flex;
+  left: 0px;
+  cursor: pointer;
+  border: 2px solid rgba(20, 88, 14, 0.582);
+  background: rgb(186, 250, 189);
+  border-radius: 30px;
+  font-family: 'Source Sans Pro', sans-serif bold;
+  padding: 12px 28px;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  font-size: var(--btn-font-size);
+  line-height: 8px;
+  color: var(--secondary-color);
+  transition-duration: 0.7s;
+  align-items: center;
+  margin-left: 45%;
+  margin-top: 20px;
+} */

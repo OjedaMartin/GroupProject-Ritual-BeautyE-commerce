@@ -5,8 +5,10 @@ const initialState = {
   allProducts: [],
   details: [],
   category: [],
+  profile: [],
   productsAux: [],
-  productsCart: [],
+  users: [],
+  prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -34,25 +36,35 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
-      case "CREATE_PRODUCTS":
-        return {
-          ...state,
-         
-        }
-        case "CREATE_CATEGORY":
-        return {
-          ...state,
-         
-        }
-        case "GET_CAT":
-          return {
-            ...state,
-            category: action.payload,
-          }
+    case "CREATE_PRODUCTS":
+      return {
+        ...state,
+
+      }
+    case "CREATE_CATEGORY":
+      return {
+        ...state,
+
+      }
+    case "GET_CAT":
+      return {
+        ...state,
+        category: action.payload,
+      }
+    case "GET_USERS":
+      return {
+        ...state,
+        users: action.payload,
+      }
     case "GET_DETAIL":
       return {
         ...state,
         details: action.payload,
+      };
+    case "GET_PROFILE":
+      return {
+        ...state,
+        profile: action.payload,
       };
     case "GET_ALL":
       return {
@@ -84,19 +96,58 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
-    case "ADD_TO_CART":
-      return{
-        ...state,
-      };
-    case "GET_CART":
+    // case "ADD_TO_CART":
+    //   return {
+    //     ...state,
+    //   };
+    // case "GET_CART":
+    //   return {
+    //     ...state,
+    //     prodCart: action.payload,
+    //   };
+    // case "DELETE_PRODUCT_CART":
+    //   return {
+    //     ...state,
+    //   };
+    case 'ADD_PROD_TO_CART':
+      const newProd = action.payload;
+      const itemsInCart = state.prodCart?.find((e) => e.id === newProd.id);
+      const cartItems = itemsInCart
+        ?.quantity < newProd.in_Stock//Ver si funca!
+        ? state.prodCart.map((it) => it.id === newProd.id
+          ? { ...it, quantity: it.quantity + 1 }
+          : it)
+        : [...state.prodCart, { ...newProd, quantity: 1 }];
+      localStorage.setItem('prodCart', JSON.stringify(cartItems));
+
       return {
         ...state,
-        productsCart: action.payload,
+        prodCart: cartItems,
       };
-    case "DELETE_PRODUCT_CART":
-      return{
+    case 'REMOVE_PROD_FROM_CART':
+      const prodToRemove = state.prodCart?.find((e) => e.id === action.payload.id);
+      const cartUpgrade = prodToRemove?.quantity > 1
+        ? state.prodCart.map((it) => it.id === prodToRemove.id
+          ? { ...it, quantity: it.quantity - 1 }
+          : it)
+        : state.prodCart.filter((upgrade) => upgrade.id !== action.payload.id);
+      cartUpgrade.length > 0
+        ? localStorage.setItem('prodCart', JSON.stringify(cartUpgrade))
+        :  localStorage.setItem('prodCart', JSON.stringify([]))
+      console.log('cartUpgrade',cartUpgrade)
+     
+      
+      return {
         ...state,
+        prodCart: cartUpgrade,
+      }
+    case 'CLEAR_CART':
+      localStorage.removeItem('prodCart')
+      return {
+        ...state,
+        prodCart: [],
       };
+
     default:
       return state;
   }
