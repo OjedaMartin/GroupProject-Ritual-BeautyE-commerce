@@ -32,9 +32,10 @@ const users = json3.users;
 
 // Syncing all the models at once.
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, async() => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
+  async function carga (){
     await User.bulkCreate(users)
     let arrayPromises = [];
     let productsFiltered 
@@ -50,5 +51,8 @@ conn.sync({ force: true }).then(() => {
       ))
     }
     await Promise.all(arrayPromises);
+  }
+let a = await Product.findAll()
+if(!a) carga()
   });
 });
