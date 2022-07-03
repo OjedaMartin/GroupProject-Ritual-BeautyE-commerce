@@ -3,16 +3,16 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Cart', {
+  sequelize.define('FooterUser', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
     },
-    state:{
+    email:{
       type: DataTypes.STRING,
-      defaultValue: "Active",
+      allowNull: false,
     }
   },{
     timestamps: false

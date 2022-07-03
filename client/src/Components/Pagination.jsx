@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-
+// import s from "./Pagination.module.css"
 export default function Pagination({ productsPerPage, amountProducts, paginated }) {
     const pagesNumbers = [];
 
@@ -10,6 +10,7 @@ export default function Pagination({ productsPerPage, amountProducts, paginated 
 
     return (
         <Fragment>
+            <div>
             <nav>
                 <ul>
                     {pagesNumbers.map((page) => {
@@ -19,6 +20,7 @@ export default function Pagination({ productsPerPage, amountProducts, paginated 
                     })}
                 </ul>
             </nav>
+            </div>
         </Fragment>
     )
 }
