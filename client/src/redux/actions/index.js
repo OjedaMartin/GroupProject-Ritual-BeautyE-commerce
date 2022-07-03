@@ -14,6 +14,43 @@ export function getProductName(name) {
     }
   }
 }
+export function UserLogin(payload) {
+	return async function (dispatch) {
+		try {
+			const userLogin = await axios.post("http://localhost:3001/users/login", payload);
+			return dispatch({
+				type: "GET_USER_DATA",
+				payload: userLogin.data,
+			});
+		} catch (error) {
+			console.log("ERROOOOOOOOOORRRRR", error.name);
+			return dispatch({
+				type: "GET_USER_DATA",
+				payload: error,
+			});
+		}
+	};
+}
+export function loggedOut() {
+	return {
+		type: "LOGGED_OUT",
+	};
+}
+export function getAllClientsUserEmail() {
+	return async function (dispatch) {
+		const { data } = await axios.get("/findUserByUsername");
+		return dispatch({
+			type: "GET_ALL_CLIENTS_USER_EMAIL",
+			payload: data,
+		});
+	};
+}
+export function createNewUser(payload) {
+	return async function (dispatch) {
+		const newUser = await axios.post("http://localhost:3001/products/create", payload);
+		return newUser;
+	};
+}
 export function getAllProducts() {
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/products");
@@ -104,32 +141,32 @@ export function getfilterBrand(params) {
     }
   }
 }
-export function getProfile(params) {
-  return async function (dispatch) {
-    try{
-    const json = await axios.get(``)
-    return dispatch({
-      type: 'GET_PROFILE',
-      payload: json.data
-    })
-  } catch (error) {
-    console.log(error)
-   }
-  }
-}
-export function logIn(params) {
-  return async function (dispatch) {
-    try{
-    const json = await axios.get(`http://localhost:3001/users/login`)
-    return dispatch({
-      type: 'GET_PROFILE',
-      payload: json.data
-    })
-  } catch (error) {
-    console.log(error)
-   }
-  }
-}
+// export function getProfile(params) {
+//   return async function (dispatch) {
+//     try{
+//     const json = await axios.get(``)
+//     return dispatch({
+//       type: 'GET_PROFILE',
+//       payload: json.data
+//     })
+//   } catch (error) {
+//     console.log(error)
+//    }
+//   }
+// }
+// export function logIn(params) {
+//   return async function (dispatch) {
+//     try{
+//     const json = await axios.get(`http://localhost:3001/users/login`)
+//     return dispatch({
+//       type: 'GET_PROFILE',
+//       payload: json.data
+//     })
+//   } catch (error) {
+//     console.log(error)
+//    }
+//   }
+// }
 
 export function postCategory(payload) {
   return async function (dispatch) {
