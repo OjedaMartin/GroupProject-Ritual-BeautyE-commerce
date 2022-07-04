@@ -76,6 +76,16 @@ export function createProduct(payload) {
     }
   };
 }
+export function Log(payload) {
+  return async function (dispatch) {
+    const info = await axios.post("http://localhost:3001/users/login", payload);
+    console.log("info action", info);
+    return {
+      type: "LOG",
+      info
+    }
+  };
+}
 
 
 export function getfilterCategories(params) {
@@ -107,20 +117,7 @@ export function getfilterBrand(params) {
 export function getProfile(params) {
   return async function (dispatch) {
     try{
-    const json = await axios.get(``)
-    return dispatch({
-      type: 'GET_PROFILE',
-      payload: json.data
-    })
-  } catch (error) {
-    console.log(error)
-   }
-  }
-}
-export function logIn(params) {
-  return async function (dispatch) {
-    try{
-    const json = await axios.get(`http://localhost:3001/users/login`)
+    const json = await axios.get(`http://localhost:3001/users/name`, params)
     return dispatch({
       type: 'GET_PROFILE',
       payload: json.data
@@ -251,6 +248,11 @@ export const putUser = async (payload) => {
   .then(function (response) {})
   .catch(function (error) {});
 };
+
+  
+
+
+// =======
 export function getUserByName(name) {
 
   return async function (dispatch) {
@@ -265,3 +267,4 @@ export function getUserByName(name) {
     }
   }
 }
+// >>>>>>> 5572d2f4f28285aa1b84cf893bccc1bcdb9cdc63
