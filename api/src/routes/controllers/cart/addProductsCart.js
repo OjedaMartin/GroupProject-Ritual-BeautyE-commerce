@@ -5,6 +5,9 @@ const addProductCart = async(req, res )=>{
     
     var {productsId,email} = req.body
     
+    // console.log('productsId---->',productsId)
+    // console.log('email---->',email)
+    
     let emailValido= await User.findOne({where:{email}})
    if (emailValido) {
 

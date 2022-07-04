@@ -29,9 +29,9 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Link to="/">
+              <Link to="/cart">
                 <button className={Style.iconCart}>
-                  <FaShoppingCart />
+                  <FaShoppingCart/> 
                 </button>
               </Link>
               
