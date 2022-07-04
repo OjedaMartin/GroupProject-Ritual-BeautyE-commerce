@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-//import {useDispatch} from "react-redux"
-//import { getProductName } from "../redux/actions";
+import {useDispatch} from "react-redux"
+import { getUserByName } from "../../redux/actions/index";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import style from "./Styles/SearchBarAdmin.module.css"
 
 
 export default function SearchBar (){
-    //const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const [name,setName] = useState("")
 
     function inputChangeHandler(e){
@@ -16,11 +16,11 @@ export default function SearchBar (){
     
     }
 
-   // function submitHandler(e){
-   //     e.preventDefault()
-   //     dispatch(getProductName(name))    
-   // }
-   //type="submit" onClick={(e)=> submitHandler(e)}
+    function submitHandler(e){
+        e.preventDefault()
+        dispatch(getUserByName(name))    
+    }
+   
    
     return (
 
@@ -29,8 +29,8 @@ export default function SearchBar (){
 
         <div className={style.container}>
             
-            <div className={style.searchbox}>
-                <button className={style.searchbtn} type="submit" >
+            <form className={style.searchbox}>
+                <button className={style.searchbtn} type="submit" onClick={(e)=> submitHandler(e)}>
                 <FaSearch className={style.icon} aria-hidden='true' id="searchbar-icon"/>
                 </button>
 
@@ -42,7 +42,7 @@ export default function SearchBar (){
                  id="searchbar-input"
                  />
                 
-            </div>
+            </form>
         </div>
     )
 }

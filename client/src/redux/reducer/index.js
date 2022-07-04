@@ -8,6 +8,7 @@ const initialState = {
   cart: {},
   productsAux: [],
   users: [],
+  searchedUsers:[],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -39,11 +40,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    case "CREATE_USER":
+    case "CREATE_CATEGORY":
       return {
         ...state,
       };
-    case "CREATE_CATEGORY":
+    case "DELETE_STOCK":
       return {
         ...state,
       };
@@ -51,6 +52,15 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         category: action.payload,
+      };
+    case "GET_USERS":
+      return {
+        ...state,
+        users: action.payload,
+      };
+    case "CREATE_USER":
+      return {
+        ...state,
       };
     case "GET_DETAIL":
       return {
@@ -67,12 +77,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-    case "GET_USERS":
-      return {
-        ...state,
-        users: action.payload,
-      };
-
     case "GET_ALL":
       return {
         ...state,
@@ -102,6 +106,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         products: action.payload,
+      };
+    case 'GET_USER_BY_NAME':
+      return {
+        ...state,
+        searchedUsers: action.payload,
       };
 
     default:

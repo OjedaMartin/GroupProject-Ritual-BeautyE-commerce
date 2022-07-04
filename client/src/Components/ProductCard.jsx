@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 //import { useDispatch } from 'react-redux';
-import cart from '../images/carritoIcon.png';
+import {AiFillPlusSquare} from "react-icons/ai";
 import ClassesProductCard from './ProductCard.module.css'
 
 
@@ -34,7 +34,7 @@ export default function ProductCard({ name, brand, image, price, id }) {
             <div className={ClassesProductCard.priceAndcart}>
                 <h4>{`$${price}`}</h4>
                 <button className={ClassesProductCard.cartBtn}>{/*onClick={handleCart} */}
-                    <img src={cart} alt='Buy' />
+                    <button><AiFillPlusSquare/></button>
                 </button>
             </div>
 
