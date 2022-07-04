@@ -9,6 +9,11 @@ import Admin from './Admin/Admin'
 import Header from "./Components/Header.jsx";
 import Footer from "./Components/footer.jsx";
 import { LoginButton } from "./Users/LogIn.jsx";
+import Faq from './Components/FAQ.jsx'
+import Returns from './Components/Returns.jsx'
+import TermsandC from "./Components/TermsandC.jsx";
+import TermsOfUse from "./Components/TermsOfUse.jsx";
+import PrivacyPolicy from "./Components/PrivacyPolicy.jsx";
 import Menu from "./Users/Menu.jsx";
 import { Settings } from "./Users/Settings.jsx";
 import { MyOrders } from "./Users/Orders.jsx";
@@ -25,11 +30,11 @@ function App() {
         <Route exact path='/details/:id' element={<Detail />} />
         <Route exact path='/create' element={<FormCreateComponent/>} />
         <Route exact path='/aboutus' element={<AboutUs />} />
-        <Route exact path='/faq' element={<AboutUs />} />
-        <Route exact path='/returns' element={<AboutUs />} />
-        <Route exact path='/termsandconditions' element={<AboutUs />} />
-        <Route exact path='/privacypolicy' element={<AboutUs />} />
-        <Route exact path='/termsofuse' element={<AboutUs />} />
+        <Route exact path='/faq' element={<Faq />} />
+        <Route exact path='/returns' element={<Returns />} />
+        <Route exact path='/termsandconditions' element={<TermsandC />} />
+        <Route exact path='/privacypolicy' element={<PrivacyPolicy />} />
+        <Route exact path='/termsofuse' element={<TermsOfUse />} />
         <Route path='/admin/*' element={<Admin/>} />
         <Route path='/login' element={<LoginButton/>} />
         <Route path='/user' element={<Menu/>} />
