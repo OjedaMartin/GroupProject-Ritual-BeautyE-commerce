@@ -18,7 +18,7 @@ const responsive = {
 
 const items = [
     <div className={style.itemCard}>
-        <NavLink to ={'details/' + 6} className = {style.decorationT}>
+        <NavLink to ={'details/b1061d09-0f2e-43b7-becd-869117cb296f'} className = {style.decorationT}>
       <img src={`${img4}`} alt="fff"className={style.imgCarouselB} />
       <p className={style.textShop}>DYSON</p>
        <p className={style.textInfo}>Supersonic™ Hair Dryer</p>
@@ -26,7 +26,7 @@ const items = [
        </NavLink>
     </div>,
     <div className={style.itemCard}>
-        <NavLink to ={'details/' + 7} className = {style.decorationT}>
+        <NavLink to ={'details/ad232939-9770-44f8-893f-24a5d20a84e2'} className = {style.decorationT}>
        <img src={`${img5}`} alt="fff"className={style.imgCarouselB}/>
        <p className={style.textShop}>OLAPLEX</p>
        <p className={style.textInfo}>No. 3 Hair Repair Perfector</p>
@@ -35,7 +35,7 @@ const items = [
        
     </div>, 
     <div className={style.itemCard} >
-        <NavLink to ={'details/' + 32} className = {style.decorationT}>
+        <NavLink to ={'details/c81ddc79-5906-44a8-98ca-a1bf53603ee4'} className = {style.decorationT}>
       <img src={`${img7}`} alt="fff"className={style.imgCarouselB}/>
       <p className={style.textShop}>NuFACE</p>
        <p className={style.textInfo}>Trinity Facial Toning Device</p>
@@ -43,7 +43,7 @@ const items = [
        </NavLink>
     </div>,
     <div className={style.itemCard} >
-        <NavLink to ={'details/' + 20} className = {style.decorationT}>
+        <NavLink to ={'details/409db126-c841-47ce-b783-716643ecb8af'} className = {style.decorationT}>
        <img src={`${img6}`} alt="fff"className={style.imgCarouselB}/>
        <p className={style.textShop}>SOL DE JANEIRO</p>
        <p className={style.textInfo}>Brazilian Joia ™ Milky Leave-In Conditioner</p>
@@ -51,15 +51,15 @@ const items = [
        </NavLink>
     </div>,
     <div className={style.itemCard} >
-        <NavLink to ={'details/' + 80} className = {style.decorationT}>
+        <NavLink to ={'details/b0431205-be78-433e-8554-1dc8a5350056'} className = {style.decorationT}>
        <img src={`${img8}`} alt="fff"className={style.imgCarouselB}/>
        <p className={style.textShop}>BOBBI BROWN</p>
-       <p className={style.textInfo}>Vitamin Enriched Face Base Jumbo</p>
+       <p className={style.textInfo}>Vitamin Enriched Face Base Priming Moisturizer</p>
        <p className={style.textInfo}>$95.00</p>
        </NavLink>
     </div>, 
     <div className={style.itemCard} >
-        <NavLink to ={'details/' + 45} className = {style.decorationT}>
+        <NavLink to ={'details/ed509bd1-e134-439d-862f-f02efd441401'} className = {style.decorationT}>
        <img src={`${img9}`} alt="fff"className={style.imgCarouselB}/>
        <p className={style.textShop}>DIOR</p>
        <p className={style.textInfo}>Dior Addict Lip Glow</p>
