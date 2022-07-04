@@ -1,23 +1,57 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-//import { useDispatch } from 'react-redux';
-import {AiFillPlusSquare} from "react-icons/ai";
+import { addProdToCart, removeProdFromCart } from '../redux/actions'
+// import { useDispatch } from 'react-redux';
+// import cart from '../images/carritoIcon.png';
 import ClassesProductCard from './ProductCard.module.css'
+import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
+import swal from 'sweetalert'
+
+
+export default function ProductCard({ name, brand, image, price, id, in_Stock, CategoryId, rating }) {
+    const dispatch = useDispatch();
+    const prodCart = useSelector((state) => state.prodCart);
+
+    const data = prodCart.length > 0 ? prodCart.find((e) => e.id === id) : undefined;
+    const quantity = data !== undefined ? data.quantity : 0;
 
 
 
-export default function ProductCard({ name, brand, image, price, id }) {
-    //const dispatch = useDispatch();
 
 
-    // const handleCart = (e) => {
-    //     e.preventDefault();
-    //     dispatch(addToCart(id))
-    // }
+    const handleAddCart = (e) => {
+        dispatch(addProdToCart({
+            id: id,
+            name: name,
+            image: image,
+            price: price,
+            brand: brand,
+            in_Stock: in_Stock,
+            CategoryId: CategoryId,
+            rating: rating,
+            quantity: quantity,
+        }));
+        if (quantity === 0) {
+            swal(`Added to cart`);
+        }
+    }
+
+    const handleRemoveCart = (e) => {
+        dispatch(removeProdFromCart({
+            id: id,
+            quantity: quantity,
+        }));
+        
+        if (quantity === 1) {
+            swal(`Removed of cart`);
+        }
+    }
+    
     return (
         <div className={ClassesProductCard.container1}>
             <div className={ClassesProductCard.top}>
-                <h2>{brand}</h2>
+                <h5>{brand.length > 18 ? brand.slice(0, 15).concat('...') : brand}</h5>
             </div>
 
             <div className={ClassesProductCard.ImgDiv}>
@@ -27,16 +61,17 @@ export default function ProductCard({ name, brand, image, price, id }) {
                     </div>
                 </Link>
             </div>
-          
-            <div className={ClassesProductCard.name} >
-                <h3>{name}</h3> 
+
+            <div className={ClassesProductCard.names} >
+                <p>{name.length > 28 ? (name.slice(0, 25)).concat('...') : name}</p>
             </div>
+            <p>{`$${price}`}</p>
             <div className={ClassesProductCard.priceAndcart}>
-                <h4>{`$${price}`}</h4>
-                <button className={ClassesProductCard.cartBtn}>{/*onClick={handleCart} */}
-                    <button><AiFillPlusSquare/></button>
-                </button>
+                {quantity > 0 ? <AiFillMinusSquare className={ClassesProductCard.btn} onClick={handleRemoveCart} /> : ""}
+                <p>{quantity > 0 ? quantity : ""}</p>
+                <AiFillPlusSquare className={ClassesProductCard.btn} onClick={handleAddCart} />
             </div>
+
 
         </div>
     )

@@ -47,7 +47,7 @@ export function getDetail(id) {
   return async function (dispatch) {
     try {
       let prod = await axios.get(`http://localhost:3001/products/${id}`);
-      console.log("getDet", prod)
+     //console.log("getDet", prod)
       return dispatch({
         type: "GET_DETAIL",
         payload: prod.data,
@@ -142,6 +142,62 @@ export function postCategory(payload) {
   };
 }
 
+export function addToCart (productId,cant,email) {
+  return async function(dispatch){
+    const json = await axios.post(`http://localhost:3001/cart/add/${productId}/${email}/${cant}`);
+    console.log('json action addToCart',json);
+    return dispatch({
+      type: "ADD_TO_CART"
+    })
+  }
+}
+
+export function getAllCart (productId,cant,email){
+  return async function (dispatch) {
+    const json = await axios.get(`http://localhost:3001/cart/all${productId}/${email}/${cant}`);
+    console.log('json action getAllCart',json);
+    return dispatch({
+      type: "GET_CART",
+      payload: json.data,
+    })
+  }
+}
+
+export function deleteProductCart (productId){//DEBERIA HABER ALGO PARA IDENTIFICAR DE QUE CART BORRAR
+  return async function (dispatch) {
+    const json = await axios.delete(`http://localhost:3001/cart/delete/${productId}`);
+    console.log('json action deleteProductCart',json);
+    return dispatch({
+      type: "DELETE_PRODUCT_CART",
+    });
+  }
+}
+
+export function addProdToCart (product){
+  return ({
+    type:'ADD_PROD_TO_CART', 
+    payload: product,
+  })
+}
+
+export function removeProdFromCart (product){
+  return ({
+    type:'REMOVE_PROD_FROM_CART', 
+    payload:product,
+  })
+}
+export function removeAllOneProdToCart (product){
+  console.log('PROD ACTIONS--> REMOVE',product)
+  return ({
+    type:'REMOVE_ALL_PRODUCTS_BYID', 
+    payload:product,
+  })
+}
+
+export function clearCart (){
+  return ({
+    type:'CLEAR_CART',
+  })}
 
 export function deleteStock(id, payload) {
   return async function (dispatch) {

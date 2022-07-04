@@ -1,5 +1,5 @@
 .back{
-    background-image: url("https://thumbs.dreamstime.com/b/fondo-abstracto-minimalista-con-hojas-negras-outline-situadas-en-los-laterales-de-la-plantilla-213088892.jpg");
+    background-image: url('../images/fondoDetail.jpg');
 
 }
 .manzana{
@@ -47,9 +47,10 @@ font-family: 'Vazirmatn', sans-serif;
 font-size: 16px;
 font-weight: 700;
 padding: 15px 60px;
-background-color:black ;
+background-color:rgba(0, 0, 0, 0.733) ;
 color:white;
 margin: 50px;
+
 
 
 }
@@ -58,4 +59,24 @@ margin: 50px;
 
     font-family: 'Vazirmatn', sans-serif;
     margin: 10px;
+}
+
+.btnAddToCart{
+    display: grid;
+    grid-template-columns: 50px 50px 50px ;
+    grid-auto-rows: auto;
+    margin-bottom: 15px;
+    height: 30px;
+    justify-items: center;
+}
+.btnAddToCart h4{
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 30px;
+}
+
+.btn2{
+    border: 0px solid #00000093;
+    font-size: 30px;
+    
+    transition: 0.2s all ease-in-out;
 }
