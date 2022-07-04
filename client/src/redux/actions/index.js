@@ -142,7 +142,7 @@ export function postCategory(payload) {
 export function addCartToBack (payload) {
   return async function(dispatch){
     const json = await axios.post('http://localhost:3001/cart/add/',payload);
-    // console.log('json action addCartToBack',json.data);
+    console.log('json action addCartToBack',json.data);
     return dispatch({
       type: "ADD_CART_TO_BACK"
     })

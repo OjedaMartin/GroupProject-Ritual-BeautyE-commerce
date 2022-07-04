@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 //import SlidingPanel from 'react-sliding-side-panel';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaRegSadCry } from "react-icons/fa";
-import { addProdToCart, removeProdFromCart, clearCart, getUser,removeAllOneProdToCart,addCartToBack} from '../redux/actions';
+import { addProdToCart, removeProdFromCart, clearCart,removeAllOneProdToCart,addCartToBack} from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
 //import { useAuth0 } from '@auth0/auth0-react';
 // import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
@@ -48,20 +48,23 @@ export default function CartCard() {
     const handleAddCart = (e) => {
         e.preventDefault();
         const filter = prodCart.find((item) => item.id === e.target.value);
-
-        dispatch(addProdToCart(
-            {
-                id: filter.id,
-                name: filter.name,
-                image: filter.image,
-                price: filter.price,
-                brand: filter.brand,
-                in_Stock: filter.in_Stock,
-                CategoryId: filter.CategoryId,
-                rating: filter.rating,
-                quantity: filter.quantity,
-            }
-        ));
+        if(filter.quantity < filter.in_Stock){
+            dispatch(addProdToCart(
+                {
+                    id: filter.id,
+                    name: filter.name,
+                    image: filter.image,
+                    price: filter.price,
+                    brand: filter.brand,
+                    in_Stock: filter.in_Stock,
+                    CategoryId: filter.CategoryId,
+                    rating: filter.rating,
+                    quantity: filter.quantity,
+                }
+            ));
+        } else {
+            swal(`Insufficient stock in: ${filter.name}`);
+        }
     }
 
     const handleRemoveCart = (e) => {
@@ -88,9 +91,7 @@ export default function CartCard() {
             navigate('/');
             dispatch(clearCart());
         } else {swal('User not found!')};
-        console.log('dataBody',dataBody)
-        // 
-        // var {productsId,email} = req.body   [{id:adsfasdf-asdfasdf-asdf564-555,cant:5},{id:adsfasdf-asdfasdf-asdf564-555,cant:5},{id:adsfasdf-asdfasdf-asdf564-555,cant:5},{}]
+        // console.log('dataBody',dataBody)
     }
 
     const handleDelete = (e) => {
@@ -144,7 +145,7 @@ export default function CartCard() {
                                 )
                             })}
                             {/* <img src={trashIcon} alt='Icon not found!' width='30px' /> */}
-                            {prodCart.length > 0 ? <h1 className={Classes.total}>Total: {totalAmount}</h1> : ""}
+                            {prodCart.length > 0 ? <h1 className={Classes.total}>Total: {`$${totalAmount}`}</h1> : ""}
                         </div>
 
                     </div>

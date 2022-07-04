@@ -126,18 +126,39 @@ function rootReducer(state = initialState, action) {
     case 'ADD_PROD_TO_CART':
       const newProd = action.payload;
       const itemsInCart = state.prodCart?.find((e) => e.id === newProd.id);
-      const cartItems = itemsInCart
-        ?.quantity < newProd.in_Stock//Ver si funca!
-        ? state.prodCart.map((it) => it.id === newProd.id
-          ? { ...it, quantity: it.quantity + 1 }
-          : it)
-        : [...state.prodCart, { ...newProd, quantity: 1 }];
-      localStorage.setItem('prodCart', JSON.stringify(cartItems));
 
-      return {
-        ...state,
-        prodCart: cartItems,
-      };
+      if (newProd.quantity < newProd.in_Stock) {
+        const cartItems = itemsInCart
+          ? state.prodCart.map((it) => it.id === newProd.id
+            ? { ...it, quantity: it.quantity + 1 }
+            : it)
+          : [...state.prodCart, { ...newProd, quantity: 1 }];
+        localStorage.setItem('prodCart', JSON.stringify(cartItems));
+        return {
+          ...state,
+          prodCart: cartItems,
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
+
+
+    // const newProd = action.payload;
+    // const itemsInCart = state.prodCart?.find((e) => e.id === newProd.id);
+    // const cartItems = itemsInCart
+    //   ?.quantity < newProd.in_Stock
+    //   ? state.prodCart.map((it) => it.id === newProd.id
+    //     ? { ...it, quantity: it.quantity + 1 }
+    //     : it)
+    //   : [...state.prodCart, { ...newProd, quantity: 1 }];
+    // localStorage.setItem('prodCart', JSON.stringify(cartItems));
+
+    // return {
+    //   ...state,
+    //   prodCart: cartItems,
+    // };
     case 'REMOVE_PROD_FROM_CART':
       const prodToRemove = state.prodCart?.find((e) => e.id === action.payload.id);
       const cartUpgrade = prodToRemove?.quantity > 1
