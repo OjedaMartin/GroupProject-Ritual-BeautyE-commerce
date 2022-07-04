@@ -8,6 +8,7 @@ const initialState = {
   cart: {},
   productsAux: [],
   users: [],
+  searchedUsers:[],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -76,12 +77,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-    case "GET_USERS":
-      return {
-        ...state,
-        users: action.payload,
-      };
-
     case "GET_ALL":
       return {
         ...state,
@@ -111,6 +106,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         products: action.payload,
+      };
+    case 'GET_USER_BY_NAME':
+      return {
+        ...state,
+        searchedUsers: action.payload,
       };
 
     default:

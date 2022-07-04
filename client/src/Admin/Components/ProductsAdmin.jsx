@@ -101,7 +101,7 @@ function deleteHandler(e){
                                 <HiPencilAlt/>
                               </Link>
                             </button>
-                            <div>
+                            <div className={style.stockdiv}>
                               <button className={style.stockBtn} id={e.id} onClick={()=>StockHandler(e)}>                              
                                  Restock                              
                               </button>

@@ -195,3 +195,17 @@ export const putUser = async (payload) => {
   .then(function (response) {})
   .catch(function (error) {});
 };
+export function getUserByName(name) {
+
+  return async function (dispatch) {
+    try {
+      let json = await axios.get("http://localhost:3001/users/" + name)
+      return dispatch({
+        type: 'GET_USER_BY_NAME',
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
