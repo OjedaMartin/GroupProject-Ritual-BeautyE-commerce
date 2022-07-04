@@ -209,10 +209,10 @@ export function deleteStock(id, payload) {
 ///USUARIOS: RUTA DE CREACION, BUSQEDA Y LISTA DE USUARIOS
 export function createUser(payload) {
   return async function (dispatch) {
-    const info = await axios.post("http://localhost:3001/users", payload);
+    const info = await axios.post("http://localhost:3001/users/register", payload);
     console.log("info action", info);
     return {
-      type: "CREATE_USER",
+      type: "REGISTER",
       info
     }
   };

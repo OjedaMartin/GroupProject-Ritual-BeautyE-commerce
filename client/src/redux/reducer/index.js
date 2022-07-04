@@ -61,7 +61,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-    case "CREATE_USER":
+    case "REGISTER":
       return {
         ...state,
       };

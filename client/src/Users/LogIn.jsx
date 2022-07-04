@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import {useDispatch} from "react-redux"
 import { Log } from "../redux/actions";
 export function Login() {
@@ -88,8 +88,12 @@ export function Login() {
                         Recordarme
                       </label>
                     </div>
-                    <button type="submit" className="btn btn-primary ms-auto">
+                    <button type="submit" className="btn btn-outline-primary">
                       <i className="bi bi-box-arrow-in-right"></i> Ingresar
+                    </button>
+                   <br/>
+                    <button  className="btn">
+                      <i></i> <Link  to="/register" className="btn btn-outline-primary" style= {{textDecoration: 'none'}}>Register</Link> 
                     </button>
                   </div>
                 </form>
