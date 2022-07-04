@@ -25,7 +25,7 @@ export default function Carousel1(){
             automatic={true}
             pauseIconColor="white"
             pauseIconSize="40px"
-            slideBackgroundColor="darkgrey"
+            slideBackgroundColor="transparent"
             slideImageFit="cover"
             thumbnailWidth="100px"
             style={{

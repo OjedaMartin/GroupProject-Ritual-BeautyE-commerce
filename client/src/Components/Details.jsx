@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getDetail } from "../redux/actions/index";
+import { getDetail, getAllCategories } from "../redux/actions/index";
 import "./Detail.css"
 
 export default function Detail() {
@@ -11,8 +11,10 @@ export default function Detail() {
 
   
   const product = useSelector((state) => state.details);
+  // const allCategories = useSelector((state) => state.category);
   useEffect(() => {
     dispatch(getDetail(id));
+    dispatch(getAllCategories());
   }, [dispatch, id]);
 
   const objectCat = {
@@ -21,6 +23,7 @@ export default function Detail() {
     cat130042: 'Tools & Brushes',
     cat130038: 'Hair',
   }
+
   return (
     <div className="back">
       <div className="manzana">

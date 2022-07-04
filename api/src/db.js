@@ -5,7 +5,6 @@ const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
-// console.log(DB_USER, DB_PASSWORD, DB_HOST)
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pghenry`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -31,7 +30,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Product, Category, User, Review, Cart, Order } = sequelize.models;
+const { Product, Category, User, Review, Cart, Order, FooterUser } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);

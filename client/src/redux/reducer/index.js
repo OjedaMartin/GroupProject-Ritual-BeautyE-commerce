@@ -1,34 +1,36 @@
-//import { FaAcquisitionsIncorporated } from "react-icons/fa";
-
 const initialState = {
   products: [],
   allProducts: [],
   details: [],
   category: [],
   profile: [],
+  //-----------------VER QUE SON ESTOS ESTADOS!
+  currentUser: { carts: [{ productCart: [] }] },
+  cart: {},
   productsAux: [],
+  //-------------
   users: [],
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
   switch (orderSelected) {
-    case 'High to Low Price':
+    case "High to Low Price":
       return stateProducts.sort((a, b) => {
         return b.price - a.price;
       });
-    case 'Low to High Price':
+    case "Low to High Price":
       return stateProducts.sort((a, b) => {
         return a.price - b.price;
-      })
-    case 'Sort by rated':
+      });
+    case "Sort by rated":
       return stateProducts.sort((a, b) => {
         return b.rating - a.rating;
       });
     default:
       return stateProducts;
   }
-}
+};
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_PRODUCT_NAME":
@@ -39,13 +41,15 @@ function rootReducer(state = initialState, action) {
     case "CREATE_PRODUCTS":
       return {
         ...state,
-
-      }
+      };
+    case "CREATE_USER":
+      return {
+        ...state,
+      };
     case "CREATE_CATEGORY":
       return {
         ...state,
-
-      }
+      };
     case "GET_CAT":
       return {
         ...state,
@@ -55,7 +59,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         users: action.payload,
-      }
+      };
     case "GET_DETAIL":
       return {
         ...state,
@@ -66,13 +70,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         profile: action.payload,
       };
+    case " GET_ALL_USER":
+      return {
+        ...state,
+        users: action.payload,
+      };
     case "GET_ALL":
       return {
         ...state,
         products: action.payload,
         allProducts: action.payload,
-        productsAux: action.payload
-      }
+        productsAux: action.payload,
+      };
 
     case "GET_PRODUCT_BY_FILTER":
       return {
@@ -133,14 +142,23 @@ function rootReducer(state = initialState, action) {
         : state.prodCart.filter((upgrade) => upgrade.id !== action.payload.id);
       cartUpgrade.length > 0
         ? localStorage.setItem('prodCart', JSON.stringify(cartUpgrade))
-        :  localStorage.setItem('prodCart', JSON.stringify([]))
-      console.log('cartUpgrade',cartUpgrade)
-     
-      
+        : localStorage.setItem('prodCart', JSON.stringify([]))
+      console.log('cartUpgrade', cartUpgrade)
+
+
       return {
         ...state,
         prodCart: cartUpgrade,
-      }
+      };
+    case 'REMOVE_ALL_PRODUCTS_BYID':
+      const prodToRemoveAll = state.prodCart?.filter((e) => e.id !== action.payload.id);
+      prodToRemoveAll.length>0
+      ? localStorage.setItem('prodCart', JSON.stringify(prodToRemoveAll))
+      : localStorage.setItem('prodCart', JSON.stringify([]))
+      return {
+        ...state,
+        prodCart: prodToRemoveAll,        
+      };
     case 'CLEAR_CART':
       localStorage.removeItem('prodCart')
       return {

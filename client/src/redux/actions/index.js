@@ -27,7 +27,6 @@ export function getAllProducts() {
 export function getAllCategories() {
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/categories");
-    //console.log("getAll", json)
     return dispatch({
       type: "GET_CAT",
       payload: json.data,
@@ -48,7 +47,7 @@ export function getDetail(id) {
   return async function (dispatch) {
     try {
       let prod = await axios.get(`http://localhost:3001/products/${id}`);
-      console.log("getDet", prod)
+     //console.log("getDet", prod)
       return dispatch({
         type: "GET_DETAIL",
         payload: prod.data,
@@ -175,7 +174,6 @@ export function deleteProductCart (productId){//DEBERIA HABER ALGO PARA IDENTIFI
 }
 
 export function addProdToCart (product){
-  console.log('PROD ACTIONS--> ADD',product)
   return ({
     type:'ADD_PROD_TO_CART', 
     payload: product,
@@ -183,9 +181,15 @@ export function addProdToCart (product){
 }
 
 export function removeProdFromCart (product){
-  console.log('PROD ACTIONS--> REMOVE',product)
   return ({
     type:'REMOVE_PROD_FROM_CART', 
+    payload:product,
+  })
+}
+export function removeAllOneProdToCart (product){
+  console.log('PROD ACTIONS--> REMOVE',product)
+  return ({
+    type:'REMOVE_ALL_PRODUCTS_BYID', 
     payload:product,
   })
 }
@@ -195,3 +199,45 @@ export function clearCart (){
     type:'CLEAR_CART',
   })
 }
+///USUARIOS: RUTA DE CREACION, BUSQEDA Y LISTA DE USUARIOS
+export function createUser(payload) {
+  return async function (dispatch) {
+    const info = await axios.post("http://localhost:3001/users", payload);
+    console.log("info action", info);
+    return {
+      type: "CREATE_USER",
+      info
+    }
+  };
+}
+export function getUser(payload){
+  return async function (dispatch){
+      try {
+          const json = await axios.get("http://localhost:3001/users/" + payload)
+          return dispatch({
+              type: "GET_USER",
+              payload: json.data
+          })
+      } catch(err){
+          console.log(err)
+      }
+  }
+}
+// export function getAllUsers(){
+//   return async function (dispatch){
+//       try {
+//           const json = await axios.get("http://localhost:3001/users/" )
+//           return dispatch({
+//               type: "GET_ALL_USERS",
+//               payload: json.data
+//           })
+//       } catch(err){
+//           console.log(err)
+//       }
+//   }
+// }
+export const putUser = async (payload) => {
+  return await axios.put("http://localhost:3001/users/update", payload)
+  .then(function (response) {})
+  .catch(function (error) {});
+};

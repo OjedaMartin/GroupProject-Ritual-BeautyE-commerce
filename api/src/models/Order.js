@@ -11,16 +11,17 @@ module.exports = (sequelize) => {
         primaryKey: true
     },
     state:{
-        type: DataTypes.STRING,
-        set(value){
-            this.setDataValue("state", value ? value : "Created");
-        }
+      type: DataTypes.ENUM,
+      values: ['Created', 'Dispatched', 'Arrived', 'Cancelled'],
+      defaultValue: 'Created',
     },
     address:{
         type: DataTypes.STRING,
         allowNull: false,
     },
   },{
-    timestamps: false
+    timestamps: true,
+    createdAt: true,
+    updatedAt: false,
   });
 };

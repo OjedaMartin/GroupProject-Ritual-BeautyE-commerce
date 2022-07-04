@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addProdToCart, removeProdFromCart } from '../redux/actions'
 // import { useDispatch } from 'react-redux';
 import cart from '../images/carritoIcon.png';
 import ClassesProductCard from './ProductCard.module.css'
+import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
+import swal from 'sweetalert'
 
 
 export default function ProductCard({ name, brand, image, price, id, in_Stock, CategoryId, rating, qty }) {
     const dispatch = useDispatch();
     const prodCart = useSelector((state) => state.prodCart);
 
-    const data = prodCart.length>0?prodCart.find((e) => e.id === id):undefined;
+    const data = prodCart.length > 0 ? prodCart.find((e) => e.id === id) : undefined;
     const quantity = data !== undefined ? data.quantity : 0;
 
 
@@ -30,7 +32,9 @@ export default function ProductCard({ name, brand, image, price, id, in_Stock, C
             rating: rating,
             quantity: quantity,
         }));
-        alert(`${name}  added to cart`);
+        if (quantity === 0) {
+            swal(`Added to cart`);
+        }
     }
 
     const handleRemoveCart = (e) => {
@@ -38,12 +42,16 @@ export default function ProductCard({ name, brand, image, price, id, in_Stock, C
             id: id,
             quantity: quantity,
         }));
-        alert(`${name}  removed of cart`);
+        
+        if (quantity === 1) {
+            swal(`Removed of cart`);
+        }
     }
+    
     return (
         <div className={ClassesProductCard.container1}>
             <div className={ClassesProductCard.top}>
-                <h2>{brand.length > 18 ? brand.slice(0, 15).concat('...') : brand}</h2>
+                <h5>{brand.length > 18 ? brand.slice(0, 15).concat('...') : brand}</h5>
             </div>
 
             <div className={ClassesProductCard.ImgDiv}>
@@ -54,21 +62,16 @@ export default function ProductCard({ name, brand, image, price, id, in_Stock, C
                 </Link>
             </div>
 
-            <div className={ClassesProductCard.name} >
-                <h3>{name}</h3>
+            <div className={ClassesProductCard.names} >
+                <p>{name.length > 28 ? (name.slice(0, 25)).concat('...') : name}</p>
             </div>
+            <p>{`$${price}`}</p>
             <div className={ClassesProductCard.priceAndcart}>
-                <h4>{`$${price}`}</h4>
-                <button onClick={handleAddCart} className={ClassesProductCard.cartBtn}>
-                    <img src={cart} alt='Buy' />
-                </button>
-                <h3>{quantity>0?quantity:""}</h3>
-                {/* <button onClick={handleRemoveCart} className={ClassesProductCard.cartBtn}>{quantity>0? "-" :" "}</button> */}
-                {quantity>0?<button onClick={handleRemoveCart} className={ClassesProductCard.cartBtn}>-</button>:""}
+                {quantity > 0 ? <AiFillMinusSquare className={ClassesProductCard.btn} onClick={handleRemoveCart} /> : ""}
+                <p>{quantity > 0 ? quantity : ""}</p>
+                <AiFillPlusSquare className={ClassesProductCard.btn} onClick={handleAddCart} />
             </div>
-            <div>
-                <h3>{qty}</h3>
-            </div>
+
 
         </div>
     )

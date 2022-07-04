@@ -11,7 +11,7 @@ import {
 } from '../redux/actions';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
-import loaderEyes from '../images/loaderEyes.gif';
+import loaderEyes2prueba from '../images/loaderEyes2prueba.gif';
 import ClassesSearchDetail from './SearchDetail.module.css'
 
 
@@ -34,7 +34,7 @@ export default function SearchDetail() {
     const currentProducts = productsResults?.slice(indexOfFirstCard, indexOfLastCard);
     //-----------------------------ME GUARDO TODAS LAS BRANDS Y ELIMINO LAS REPETIDAS--------
     const productsBrand = [];
-    productsAuxResults.map((e) => productsBrand.push(e.brand));
+    productsAuxResults?.map((e) => productsBrand.push(e.brand));
     const newData = [...new Set(productsBrand)];
 
     //---------------------------------------------------------------------------------------
@@ -42,14 +42,6 @@ export default function SearchDetail() {
     //---------------------------------------------------------------------------------------    
     // const prodCart = useSelector((state) => state.prodCart);
     //------------------------------------------------------------------------------------------
-    // const prueba = prodCart.find((eCart) => eCart.id === e.id) ? prodCart.quantity : 0
-    //console.log('A VEEER', prueba)
-    // for (let i = 0; i<aux2.length; i++){
-    //     if (aux2[i] !== undefined){
-    //         aux2[i]=aux2[i].quantity;
-    //     }
-    // }
-
 
 
 
@@ -89,7 +81,7 @@ export default function SearchDetail() {
     if (currentProducts.length > 0) {
         return (
             <Fragment>
-                <div>
+                <div className={ClassesSearchDetail.paginate}>
                     <Pagination
                         productsPerPage={productsPerPage}
                         amountProducts={productsResults.length}
@@ -137,7 +129,6 @@ export default function SearchDetail() {
                                             in_Stock={e.in_Stock}
                                             CategoryId={e.CategoryId}
                                             rating={e.rating}
-                                        //qty={(prodCart.map((eCart) => eCart.id === e.id)) ? prodCart.quantity : 0}
                                         />
                                     </div>
                                 </Fragment>
@@ -154,7 +145,9 @@ export default function SearchDetail() {
         )
     } else {
         return (
-            <div> <img alt="loading" src={loaderEyes} /></div>
+            <div className={ClassesSearchDetail.loading}> 
+            <img alt="loading" src={loaderEyes2prueba} />
+            </div>
         )
     }
 
