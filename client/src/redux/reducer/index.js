@@ -11,7 +11,7 @@ const initialState = {
   //-------------
   users: [],
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
-  searchedUsers:[],
+  searchedUsers: [],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -110,10 +110,10 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
-    // case "ADD_TO_CART":
-    //   return {
-    //     ...state,
-    //   };
+    case "ADD_CART_TO_BACK":
+      return {
+        ...state,
+      };
     // case "GET_CART":
     //   return {
     //     ...state,
@@ -157,19 +157,19 @@ function rootReducer(state = initialState, action) {
       };
     case 'REMOVE_ALL_PRODUCTS_BYID':
       const prodToRemoveAll = state.prodCart?.filter((e) => e.id !== action.payload.id);
-      prodToRemoveAll.length>0
-      ? localStorage.setItem('prodCart', JSON.stringify(prodToRemoveAll))
-      : localStorage.setItem('prodCart', JSON.stringify([]))
+      prodToRemoveAll.length > 0
+        ? localStorage.setItem('prodCart', JSON.stringify(prodToRemoveAll))
+        : localStorage.setItem('prodCart', JSON.stringify([]))
       return {
         ...state,
-        prodCart: prodToRemoveAll,        
+        prodCart: prodToRemoveAll,
       };
     case 'CLEAR_CART':
       localStorage.removeItem('prodCart')
       return {
         ...state,
         prodCart: [],
-      }; 
+      };
     case 'GET_USER_BY_NAME':
       return {
         ...state,

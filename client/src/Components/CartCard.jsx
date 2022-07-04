@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 //import SlidingPanel from 'react-sliding-side-panel';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaRegSadCry } from "react-icons/fa";
-import { addProdToCart, removeProdFromCart, clearCart, getUser,removeAllOneProdToCart} from '../redux/actions';
+import { addProdToCart, removeProdFromCart, clearCart, getUser,removeAllOneProdToCart,addCartToBack} from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
 //import { useAuth0 } from '@auth0/auth0-react';
 // import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 import Classes from './CartCard.module.css';
 import trashIcon from '../images/trash.png';
+import swal from 'sweetalert'
 
 export default function CartCard() {
     const prodCart = useSelector((state) => state.prodCart);
@@ -69,11 +70,27 @@ export default function CartCard() {
     }
 
     const handleBuy = (e) => {
-        // e.preventDefault();
-        // isAuthenticated?{
-        //     dispatch()
-        // }:{alert('User not found!')}
-
+        e.preventDefault();
+        const dataBody=[];
+        prodCart?.map((prod)=>{
+            return(
+                dataBody.push({
+                    id:prod.id,
+                    cant:prod.quantity,
+                })
+            )
+        });
+        const email = "agus@gmail.com";
+        const bodyFinsh = {productsId:dataBody,email:email}
+        if (true){
+            dispatch(addCartToBack(bodyFinsh));
+            swal('¡Succes! Your cart is ready.');
+            navigate('/');
+            dispatch(clearCart());
+        } else {swal('User not found!')};
+        console.log('dataBody',dataBody)
+        // 
+        // var {productsId,email} = req.body   [{id:adsfasdf-asdfasdf-asdf564-555,cant:5},{id:adsfasdf-asdfasdf-asdf564-555,cant:5},{id:adsfasdf-asdfasdf-asdf564-555,cant:5},{}]
     }
 
     const handleDelete = (e) => {
