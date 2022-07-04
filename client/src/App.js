@@ -18,7 +18,7 @@ import Menu from "./Users/Menu.jsx";
 import { Settings } from "./Users/Settings.jsx";
 import { MyOrders } from "./Users/Orders.jsx";
 import CartCard from "../src/Components/CartCard.jsx";
-import Prueba from "../src/Components/Prueba.jsx";
+// import Prueba from "../src/Components/Prueba.jsx";
 
 function App() {
   return (
@@ -55,7 +55,7 @@ function App() {
         <Route path="/user/settings" element={<Settings />} />
         <Route path="/user/myorders" element={<MyOrders />} />
         <Route exact path="/cart" element={<CartCard />} />
-        <Route exact path="/Prueba" element={<Prueba />} />
+        {/* <Route exact path="/Prueba" element={<Prueba />} /> */}
       </Routes>
       <Footer />
     </BrowserRouter>

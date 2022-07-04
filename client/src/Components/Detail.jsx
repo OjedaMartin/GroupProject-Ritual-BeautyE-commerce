@@ -24,28 +24,33 @@ export default function Detail() {
     cat130042: 'Tools & Brushes',
     cat130038: 'Hair',
   }
-  console.log('id----->', id)
+ // console.log('id----->', id)
 
   const data = prodCart.length > 0 ? prodCart.find((e) => e.id === product[0].id) : undefined;
   const quantity = data !== undefined ? data.quantity : 0;
 
-  console.log('quantity--->', quantity)
+  //console.log('quantity--->', quantity)
 
   const handleAddCart = (e) => {
-    dispatch(addProdToCart({
-      id: product[0].id,
-      name: product[0].name,
-      image: product[0].image,
-      price: product[0].price,
-      brand: product[0].brand,
-      in_Stock: product[0].in_Stock,
-      CategoryId: product[0].CategoryId,
-      rating: product[0].rating,
-      quantity: quantity,
-    }));
     if (quantity === 0) {
       swal(`Added to cart`);
     }
+    if (quantity < product[0].in_Stock) {
+      dispatch(addProdToCart({
+        id: product[0].id,
+        name: product[0].name,
+        image: product[0].image,
+        price: product[0].price,
+        brand: product[0].brand,
+        in_Stock: product[0].in_Stock,
+        CategoryId: product[0].CategoryId,
+        rating: product[0].rating,
+        quantity: quantity,
+      }));
+    } else {
+      swal(`Insufficient stock in: ${product[0].name}`);
+    }
+
   }
   const handleRemoveCart = (e) => {
     dispatch(removeProdFromCart({
@@ -64,7 +69,7 @@ export default function Detail() {
           <img className={style.imgdetail} src={product?.map(e => e.image)} width="100%" height="100%" alt='Img not found!' />
         </div>
         <div className={style.divInfo}>
-          <h1 className={style.titles}>  {product?.map(e => e.name === 'Glowscreen Sunscreen SPF 40 PA+++ with Hyaluronic Acid + Niacinamide' ? e.name.slice(0, 20) : e.name)} </h1>
+          <h1 className={style.titles}>  {product?.map(e => e.name.length > 20 ? e.name.slice(0, 20).concat('...') : e.name)} </h1>
           <h4 className={style.label}> price: {product?.map((e) => e.price)} </h4>
           <h4 className={style.label}>  brand: {product?.map((e) => e.brand)} </h4>
           <h4 className={style.label}> rating:{product?.map((e) => e.rating)} </h4>

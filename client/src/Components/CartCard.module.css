@@ -76,14 +76,12 @@
 }
 
 .vaciarCarrito {
-
-
   cursor: pointer;
   border: 2px solid rgba(0, 0, 0, 0.397);
   background: rgb(209, 209, 209);
   border-radius: 30px;
   font-family: 'Source Sans Pro', sans-serif bold;
-  padding: 12px 28px;
+  padding: 8px 20px;
   font-style: normal;
   font-weight: var(--font-weight);
   font-size: var(--btn-font-size);
@@ -91,8 +89,9 @@
   color: var(--secondary-color);
   transition-duration: 0.7s;
   align-items: center;
-  margin-left: 45%;
+  margin-left: 44.7%;
   margin-top: 20px;
+  margin-bottom: 15px;
 }
 
 .total {
