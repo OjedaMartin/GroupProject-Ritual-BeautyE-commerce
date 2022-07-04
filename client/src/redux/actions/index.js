@@ -253,18 +253,18 @@ export const putUser = async (payload) => {
 
 
 // =======
-// export function getUserByName(name) {
+export function getUserByName(name) {
 
-//   return async function (dispatch) {
-//     try {
-//       let json = await axios.get("http://localhost:3001/users/" + name)
-//       return dispatch({
-//         type: 'GET_USER_BY_NAME',
-//         payload: json.data
-//       })
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
-// }
+  return async function (dispatch) {
+    try {
+      let json = await axios.get("http://localhost:3001/users/" + name)
+      return dispatch({
+        type: 'GET_USER_BY_NAME',
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 // >>>>>>> 5572d2f4f28285aa1b84cf893bccc1bcdb9cdc63
