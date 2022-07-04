@@ -197,7 +197,17 @@ export function removeAllOneProdToCart (product){
 export function clearCart (){
   return ({
     type:'CLEAR_CART',
-  })
+  })}
+
+export function deleteStock(id, payload) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/products/stock/${id}`, payload);
+    console.log("info action", info);
+    return {
+      type: "DELETE_STOCK",
+      info
+    }
+  };
 }
 ///USUARIOS: RUTA DE CREACION, BUSQEDA Y LISTA DE USUARIOS
 export function createUser(payload) {
@@ -241,3 +251,17 @@ export const putUser = async (payload) => {
   .then(function (response) {})
   .catch(function (error) {});
 };
+export function getUserByName(name) {
+
+  return async function (dispatch) {
+    try {
+      let json = await axios.get("http://localhost:3001/users/" + name)
+      return dispatch({
+        type: 'GET_USER_BY_NAME',
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}

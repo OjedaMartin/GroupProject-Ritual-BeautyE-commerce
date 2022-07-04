@@ -8,58 +8,58 @@ import { NavLink } from 'react-router-dom';
 export default function Footer(){
     const [mail, setmail] = useState('')
     return(
-        <div className={style.bgfooter} texttitle  >
-
-        <div className={style.divAlign}>
-            <div className={style.texttitle2}>
+        <div className={style.bgfooter} >
+        <div >
+            <div className={style.textTitleFooter}>
                 Company
             </div>
-            <div>
-                <NavLink className={style.textTitleFooter2} to ='/aboutus'>
+            <div >
+                <NavLink to ='/aboutus' className={`${style.textTitleFooter2}`}>
                 About us
                 </NavLink>
             </div>
             <div>
-                <NavLink className={style.textTitleFooter2} to ='/faq'>
+                <NavLink to ='/faq'  className={`${style.textTitleFooter2}`}>
                 FAQ
                 </NavLink>
             </div>
             <div>
-                <NavLink className={style.textTitleFooter2} to ='/returns'/>
+                <NavLink to ='/returns' className={`${style.textTitleFooter2}`}>
                 Returns
+                </NavLink>
             </div>
-            <div className={style.texttitle2} spaceFollow>
+            <div className={style.textTitleFooter}>
                 Legal
             </div>
             <div>
-                <NavLink className={style.textTitleFooter2} to ='/termsandconditions'>
+                <NavLink to ='/termsandconditions' className={`${style.textTitleFooter2}`}>
                 Terms and conditions
                 </NavLink>
             </div>
             <div>
-                <NavLink className={style.textTitleFooter2} to ='/privacypolicy'>
+                <NavLink to ='/privacypolicy' className={`${style.textTitleFooter2}`}>
                 Privacy Policy
                 </NavLink>
             </div>
             <div>
-                <NavLink className={style.textTitleFooter2} to ='/terms'>
+                <NavLink  to ='/termsofuse' className={`${style.textTitleFooter2}`}>
                 Terms of use
                 </NavLink>
             </div>
         </div>
 
         <div className={style.divAlign}>
-            <div className={style.texttitle2}>
+            <div className={style.textTitleFooter}>
                 Contact Us
             </div>
-            <div>
+            <div className={style.texttitle2}>
                 info@ritual.com
             </div>
-            <div>
+            <div className={style.texttitle2} >
                 1 -234-56780
             </div>
 
-            <div className={style.texttitle2} spaceFollow>
+            <div className={style.textTitleFooter}>
                 Follow Us
             </div>
             <div className={style.iconsSize}>
@@ -67,8 +67,8 @@ export default function Footer(){
             </div>
 
         </div>
-        <div className={style.divAlign}>
-            <label className={style.textTitle2}>Stay in touch</label>
+        <div >
+            <label className={style.textTitleFooter} >Stay in touch</label>
             <form
             onSubmit={(e) => {
                 e.preventDefault();
@@ -93,7 +93,7 @@ export default function Footer(){
             className={style.inputbtn}
             />
             </form>
-            <p className={style.textinfosize}>
+            <p className={style.textTitleFooterinfoSize}>
                 By subscribing to Ritual, you consent to <br></br>
                 receive recurring automated promotional <br></br>
                 and personalized marketing messages<br></br>

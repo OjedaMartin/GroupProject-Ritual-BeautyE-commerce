@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addProdToCart, removeProdFromCart } from '../redux/actions'
 // import { useDispatch } from 'react-redux';
-import cart from '../images/carritoIcon.png';
+// import cart from '../images/carritoIcon.png';
 import ClassesProductCard from './ProductCard.module.css'
 import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 import swal from 'sweetalert'
 
 
-export default function ProductCard({ name, brand, image, price, id, in_Stock, CategoryId, rating, qty }) {
+export default function ProductCard({ name, brand, image, price, id, in_Stock, CategoryId, rating }) {
     const dispatch = useDispatch();
     const prodCart = useSelector((state) => state.prodCart);
 

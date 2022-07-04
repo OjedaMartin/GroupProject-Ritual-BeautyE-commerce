@@ -2,19 +2,17 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
-import { FaAdn, FaShoppingCart } from "react-icons/fa"
+// import { FaAdn, FaShoppingCart } from "react-icons/fa"
 
 import Style from "./Header.module.css"
 import { LoginButton } from '../Users/LogIn';
 import { Logout } from '../Users/LogOut';
-import { Profile } from '../Users/Profile';
-
-import CartCard from './CartCard';
+// import { Profile } from '../Users/Profile';
 
 export default function Header() {
     const { isAuthenticated } = useAuth0();
-    //console.log("header", isAuthenticated )
-    return (
+    
+    return(
         <div className={Style.main}>
 
             <div className={Style.header}>

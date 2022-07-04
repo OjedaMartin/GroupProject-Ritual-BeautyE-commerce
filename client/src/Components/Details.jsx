@@ -3,11 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getDetail, getAllCategories } from "../redux/actions/index";
-import "./Detail.css"
+import "./Detail.module.css"
 
 export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  console.log('id----->',id)
 
   
   const product = useSelector((state) => state.details);
@@ -31,7 +32,7 @@ export default function Detail() {
           <img className="imgdetail" src={product.map(e => e.image)} width="100%" height="100%" alt='Img not found!'/>
         </div>
         <div className="divInfo">
-          <h1 className="titles">  {product.map(e => e.name)} </h1>
+          <h4 className="titles">  {product.map(e => e.name)} </h4>
           <h4 className="label"> price: {product.map((e) => e.price)} </h4>
           <h4 className="label">  brand: {product.map((e) => e.brand)} </h4>
           <h4 className="label"> rating:{product.map((e) => e.rating)} </h4>

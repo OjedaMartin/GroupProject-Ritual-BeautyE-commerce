@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getDetail, addProdToCart, removeProdFromCart } from "../redux/actions/index";
 import style from "./Detail.module.css"
+//---------------------------------------
 import swal from 'sweetalert'
 import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
+//--------------------------------------
 export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -22,6 +24,7 @@ export default function Detail() {
     cat130042: 'Tools & Brushes',
     cat130038: 'Hair',
   }
+  console.log('id----->', id)
 
   const data = prodCart.length > 0 ? prodCart.find((e) => e.id === product[0].id) : undefined;
   const quantity = data !== undefined ? data.quantity : 0;
@@ -61,7 +64,7 @@ export default function Detail() {
           <img className={style.imgdetail} src={product?.map(e => e.image)} width="100%" height="100%" alt='Img not found!' />
         </div>
         <div className={style.divInfo}>
-          <h1 className={style.titles}>  {product?.map(e => e.name)} </h1>
+          <h1 className={style.titles}>  {product?.map(e => e.name === 'Glowscreen Sunscreen SPF 40 PA+++ with Hyaluronic Acid + Niacinamide' ? e.name.slice(0, 20) : e.name)} </h1>
           <h4 className={style.label}> price: {product?.map((e) => e.price)} </h4>
           <h4 className={style.label}>  brand: {product?.map((e) => e.brand)} </h4>
           <h4 className={style.label}> rating:{product?.map((e) => e.rating)} </h4>

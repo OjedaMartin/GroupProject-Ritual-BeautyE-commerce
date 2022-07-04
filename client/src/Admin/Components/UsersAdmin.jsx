@@ -18,6 +18,7 @@ function UsersAdmin(){
 
 const dispatch = useDispatch()
 const users = useSelector((state)=> state.users)
+const searchedUsers = useSelector((state)=> state.searchedUsers)
 const [estado, setEstado] = useState({  
   category: "",
 });
@@ -26,7 +27,7 @@ useEffect(() => {
 dispatch(getAllUsers());
 }, [dispatch]);
 
-
+//<SearchBarAdmin/>
 
 
   return (
@@ -35,7 +36,7 @@ dispatch(getAllUsers());
 
             <div className={style.secondaryBar}>
               
-                   <SearchBarAdmin/>
+                   
 
             </div>
             <div className={style.cardinfo}>
@@ -47,6 +48,20 @@ dispatch(getAllUsers());
                 
                 
             </div>
+            {searchedUsers.length>0? searchedUsers.map((e=> {
+                return(
+                        <div className={style.card} key={e.id}>
+                            <button className={style.DelBtn}><ImCross/></button>
+                            <button className={style.ModBtn}><GiUpgrade/></button>
+                            <button className={style.stockBtn}><MdPassword/></button>
+                            <p className={style.element}>{e.id}</p>
+                            <p className={style.element}>{e.name}</p>
+                            <p className={style.element}>{e.email}</p>
+                            <p className={style.element}>{e.membership}</p>
+                                            
+                        </div>)})) : <>----</>}
+
+
 
             {users.map(e=> {
                 return(
@@ -65,7 +80,8 @@ dispatch(getAllUsers());
 
 
                 )
-            } )}
+            } )
+          }
 
             
           </div>
