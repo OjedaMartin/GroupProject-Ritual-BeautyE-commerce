@@ -243,10 +243,18 @@ export function getUser(payload){
 //       }
 //   }
 // }
-export const putUser = async (payload) => {
-  return await axios.put("http://localhost:3001/users/update", payload)
-  .then(function (response) {})
-  .catch(function (error) {});
+export const putUser =(payload) => {
+  return async function(dispatch){
+    let profile= await axios.put("http://localhost:3001/users/update", payload)
+    return dispatch(
+      {
+        type: "PUT",
+        payload: profile.data
+      }
+    )
+
+  }
+  
 };
 
   
