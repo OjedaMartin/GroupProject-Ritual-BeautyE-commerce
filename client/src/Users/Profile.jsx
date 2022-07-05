@@ -1,44 +1,51 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import s from "./profile.module.css"
-import { Link} from "react-router-dom";
-import { useNavigate } from "react-router"; 
-import { useDispatch, useSelector } from "react-redux";
-import { createUser, getUser } from "../redux/actions";
-export const Profile = () => {
+import { getUser } from "../redux/actions";
+import { useDispatch } from "react-redux";
+import { Settings } from "./Settings";
+import { MyOrders } from "./Orders";
+import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
+const Profile = () => {
+  const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useAuth0();
+  // const[profile,setProfile] = useState("");
+  // if (isAuthenticated){ dispatch(getUser(user),{
+  //   name:user.name,
+  //   email:user.email,
+  //   image:user.picture
+  // })}
   
-  const dispatch=useDispatch();
-  const navigate=useNavigate();
-  const actualUser = useSelector((store) => store.actualUser);
-  console.log(actualUser)
-console.log("profile",user, isAuthenticated, isLoading)
-useEffect( () => {
-  if (isAuthenticated) {
-    dispatch(createUser(user));
-    // noRepeat = true;
-     dispatch(getUser(user.email));
-    window.localStorage.setItem("userEmail", user.email);
-    if (window.localStorage.url && window.localStorage.url !== window.location.pathname) {
-      navigate(window.localStorage.url)
-    }
-    window.localStorage.removeItem("url")
+    if (isAuthenticated) {
+    dispatch(getUser(user))
+    ;
   }
-}, [navigate, user, isAuthenticated, dispatch]);
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  
   
   return (
-    isAuthenticated && (<Link Link exact to="/user">   
-    
-    <img className={s.pic} src={user.picture} alt={user.name} />
-    {/* <h2>{user.name}</h2>
-    <p>{user.email}</p> */}
- </Link>
-   
+    isAuthenticated && (
+      <div>
+        <img src={user.picture} alt={user.name} />
+        <br/>
+        <label>Name:</label>
+        <h2>{user.name}</h2>
+        <label>Email:</label>
+        <h2>{user.email}</h2>
+        <div  >
+          <Link exact to="/user/settings">
+            <Button >
+              Settings
+            </Button>
+          </Link>
+
+          <Link  exact to="/user/myorders">
+          <Button >
+              My Orders
+              </Button>
+            </Link>
+        </div>
+      </div>
     )
   );
 };
+
+export default Profile;
