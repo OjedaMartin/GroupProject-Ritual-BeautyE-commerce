@@ -50,7 +50,7 @@
 //         cp: "",
 //         state: ""
 //       });
-//      navigate(-2) 
+//      navigate(-2)
 //     } else {
 //       e.preventDefault();
 //       alert("Complete all fields");

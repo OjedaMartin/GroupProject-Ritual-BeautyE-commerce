@@ -14,14 +14,9 @@ import Returns from "./Components/Returns.jsx";
 import TermsandC from "./Components/TermsandC.jsx";
 import TermsOfUse from "./Components/TermsOfUse.jsx";
 import PrivacyPolicy from "./Components/PrivacyPolicy.jsx";
-import Menu from "./Users/Menu.jsx";
 import { Settings } from "./Users/Settings.jsx";
 import { MyOrders } from "./Users/Orders.jsx";
 import CartCard from "../src/Components/CartCard.jsx";
-
-
-import Register from "./Users/Register.jsx";
-
 
 function App() {
   return (
@@ -54,13 +49,10 @@ function App() {
         <Route exact path="/termsofuse" element={<TermsOfUse />} />
         <Route path="/admin/*" element={<Admin />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/user" element={<Menu />} />
+
         <Route path="/user/settings" element={<Settings />} />
         <Route path="/user/myorders" element={<MyOrders />} />
         <Route exact path="/cart" element={<CartCard />} />
-
-        <Route exact path="/user/register" element={<Register />} />
-
       </Routes>
       <Footer />
     </BrowserRouter>
