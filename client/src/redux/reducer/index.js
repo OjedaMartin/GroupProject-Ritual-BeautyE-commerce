@@ -51,12 +51,20 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "PUT_CATEGORY":
+      return {
+        ...state,
+      };
+    case "HIDE_CATEGORY":
+      return {
+        ...state,
+      };      
     case "GET_CAT":
       return {
         ...state,
         category: action.payload,
       }
-    case "GET_USERS":
+    case "GET_ALL_USERS":
       return {
         ...state,
         users: action.payload,

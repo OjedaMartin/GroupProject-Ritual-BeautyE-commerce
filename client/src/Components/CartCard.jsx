@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FaRegSadCry } from "react-icons/fa";
 import { addProdToCart, removeProdFromCart, clearCart,removeAllOneProdToCart,addCartToBack} from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
-//import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 // import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 import Classes from './CartCard.module.css';
 import trashIcon from '../images/trash.png';
@@ -14,7 +14,8 @@ export default function CartCard() {
     const prodCart = useSelector((state) => state.prodCart);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    //const { isAuthenticated } = useAuth0();
+    const { isAuthenticated } = useAuth0();
+    console.log('isAuthenticated', isAuthenticated)
 
     useEffect(() => {
     }, [dispatch, prodCart]);

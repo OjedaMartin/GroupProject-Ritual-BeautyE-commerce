@@ -14,6 +14,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    status:{
+      type: DataTypes.ENUM,
+      values: ['Active', 'Hidden'],
+      defaultValue: 'Active',
+    }
    
   },{
     timestamps: false

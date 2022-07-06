@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, Link } from "react-router-dom";
 import style from "./Styles/UsersAdmin.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import {getAllUsers } from "../../redux/actions/index"
+import { getAllUsers } from "../../redux/actions/index"
 import { ImCross } from "react-icons/im"
 import { MdPassword } from "react-icons/md"
 import { GiUpgrade } from "react-icons/gi"

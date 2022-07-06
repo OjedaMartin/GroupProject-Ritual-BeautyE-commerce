@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUser } from "../redux/actions";
+import { getUserByName } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import { Settings } from "./Settings";
 import { MyOrders } from "./Orders";
@@ -17,7 +17,9 @@ const Profile = () => {
   // })}
   
     if (isAuthenticated) {
-    dispatch(getUser(user))
+    console.log(user.name)
+    dispatch(getUserByName(user.name))
+    
     ;
   }
   

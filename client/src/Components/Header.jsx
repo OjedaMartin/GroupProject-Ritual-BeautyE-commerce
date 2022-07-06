@@ -11,7 +11,7 @@ import { Logout } from "../Users/LogOut";
 
 export default function Header() {
   const { isAuthenticated } = useAuth0();
-  console.log("header", isAuthenticated);
+  //console.log("header", isAuthenticated);
   return (
     <div className={Style.main}>
       <div className={Style.header}>

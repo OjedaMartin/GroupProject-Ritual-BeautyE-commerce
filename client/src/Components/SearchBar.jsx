@@ -1,20 +1,29 @@
 import React, { useState } from "react";
-//import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 //import { getProductName } from "../redux/actions";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import style from "./SearchBar.module.css"
 
 
 export default function SearchBar (){
-    //const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const [name,setName] = useState("")
+    const products = useSelector(((state) => state.allProducts))
+    const goTo = useNavigate()
 
     function inputChangeHandler(e){
     e.preventDefault()
     setName(e.target.value)
     
     }
+
+  const onSearch = (searchTerm) => {
+    setName(searchTerm);
+    goTo(`/SearchDetail/search/${name}`)
+    console.log("search ", searchTerm);
+
+  };
 
    // function submitHandler(e){
    //     e.preventDefault()
@@ -43,6 +52,37 @@ export default function SearchBar (){
                  />
                 </form>
             </div>
+                <div className={style.dropdown}>
+            {products
+                .filter((item) => {
+                const searchTerm = name.toLowerCase();
+                const prod = item.name.toLowerCase();
+
+                return (
+                    searchTerm &&
+                    prod.startsWith(searchTerm) &&
+                    prod !== searchTerm
+                );
+                })
+                .slice(0, 10)
+                .map((item) => (
+                <div
+                    onClick={() => onSearch(item.name)}
+                    className={style.dropdownRow}
+                    key={item.id}
+                >
+                    {item.name}
+                </div>
+                ))}
+                </div>
         </div>
     )
 }
+
+
+
+
+
+  
+        
+    

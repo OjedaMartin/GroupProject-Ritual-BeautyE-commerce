@@ -50,3 +50,19 @@ body {
     padding: 3px 4px;
     font-size: 20px;
 }  
+.dropdown {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+}
+  
+.dropdown:empty {
+    border: none;
+}
+  
+.dropdown-row {
+    cursor: pointer;
+    text-align: start;
+    margin: 2px 0;
+}

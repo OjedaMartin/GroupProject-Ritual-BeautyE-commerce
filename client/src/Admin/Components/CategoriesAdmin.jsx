@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import style from "./Styles/CategoriesAdmin.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import {getAllCategories, postCategory} from "../../redux/actions/index"
+import {getAllCategories, postCategory, putCategory, hideCategory} from "../../redux/actions/index"
 import swal from 'sweetalert';
-import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im"
 import { BiPlusMedical } from "react-icons/bi"
+import { HiPencilAlt } from "react-icons/hi"
 
 
 
@@ -16,16 +16,18 @@ import { BiPlusMedical } from "react-icons/bi"
 function CategoriesAdmin(){
 
 
-let navigate = useNavigate();
 const dispatch = useDispatch()
 const categories = useSelector((state)=> state.category)
 const [estado, setEstado] = useState({  
   category: "",
 });
+const [edit, setEdit] = useState({
+  name: "",
+})
 
 useEffect(() => {
 dispatch(getAllCategories());
-}, [dispatch]);
+}, [dispatch,]);
 
 
 function handleChange(e) {
@@ -37,12 +39,36 @@ function handleChange(e) {
 //  SetErr(inputValidate({ ...estado, [e.target.name]: e.target.value }));
 }
 
-//function handleDelete(e){
-//    e.preventDefault()
-//    dispatch(deleteCategory(e.name))
-//    swal("Category deleted")
-//}
+async function  handleDelete(e){
+  
+    const deleteName = {name: e.name}
+    console.log(deleteName)  
+    dispatch(hideCategory(deleteName))
+    swal("Category Deleted")
+    dispatch(getAllCategories())
+   
+  
+}
 
+function handlePut(e){
+    const putInfo = {name: edit.name, id: e.id}
+    
+    console.log(putInfo)   
+    dispatch(putCategory(putInfo))
+    swal("Category changed")
+    setEdit({    
+      name: "",
+    });
+    dispatch(getAllCategories())
+}
+
+function handleEdit(e){
+  e.preventDefault();
+  setEdit({
+    ...edit,
+    [e.target.name]: e.target.value,
+  });
+}
 
 function handleSubmit(e) {
   e.preventDefault();
@@ -81,10 +107,14 @@ function handleSubmit(e) {
                 return(
                         <div className={style.card} key={e.id}>
                            
-                            <button className={style.DelBtn}><ImCross/></button>
-                            
+                            <button className={style.DelBtn} name={e.name}  onClick={() => handleDelete(e)}><ImCross/></button>
+                            <div>
+                                <button className={style.DelBtn} name={e.name} id={e.id} onClick={() => handlePut(e)}><HiPencilAlt/></button>
+                                <input className={style.changeinput} type="text" value={edit.name} name='name' onChange={(e) => handleEdit(e)}/>
+                            </div>
                             <p className={style.element}>{e.id}</p>
                             <p className={style.element}>{e.name}</p>
+                            <p className={style.element}>{e.status}</p>
                                               
                         </div>
 

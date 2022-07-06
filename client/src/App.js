@@ -24,21 +24,9 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/" element={<Landing />} />
-        <Route
-          exact
-          path="/SearchDetail/collection/:category"
-          element={<SearchDetail />}
-        />
-        <Route
-          exact
-          path="/SearchDetail/shopall/:allProducts"
-          element={<SearchDetail />}
-        />
-        <Route
-          exact
-          path="/SearchDetail/search/:name"
-          element={<SearchDetail />}
-        />
+        <Route exact path="/SearchDetail/collection/:category" element={<SearchDetail />} />
+        <Route exact path="/SearchDetail/shopall/:allProducts" element={<SearchDetail />} />
+        <Route exact path="/SearchDetail/search/:name" element={<SearchDetail />} />
         <Route exact path="/details/:id" element={<Detail />} />
         <Route exact path="/create" element={<FormCreateComponent />} />
         <Route exact path="/aboutus" element={<AboutUs />} />
@@ -49,7 +37,6 @@ function App() {
         <Route exact path="/termsofuse" element={<TermsOfUse />} />
         <Route path="/admin/*" element={<Admin />} />
         <Route path="/login" element={<Login />} />
-
         <Route path="/user/settings" element={<Settings />} />
         <Route path="/user/myorders" element={<MyOrders />} />
         <Route exact path="/cart" element={<CartCard />} />
