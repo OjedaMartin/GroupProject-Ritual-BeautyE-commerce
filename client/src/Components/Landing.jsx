@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {getAllProducts, getAllCategories} from "../redux/actions"
+import {getAllProducts, getAllCategories,getOrder} from "../redux/actions"
 import { useDispatch, useSelector } from 'react-redux';
 
 import Carousel1 from './Carousel';
@@ -16,10 +16,10 @@ import swal from 'sweetalert'
 export default function Landing(){
 
     const dispatch = useDispatch()
-    const products = useSelector((state)=> state.products)
+    // const products = useSelector((state)=> state.products)
     const { isAuthenticated } = useAuth0();
 
-    const prodCart = useSelector((state) => state.prodCart);
+    // const prodCart = useSelector((state) => state.prodCart);
     
 
    // console.log(products)

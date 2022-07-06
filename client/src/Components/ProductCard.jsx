@@ -7,47 +7,54 @@ import { addProdToCart, removeProdFromCart } from '../redux/actions'
 import ClassesProductCard from './ProductCard.module.css'
 import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 import swal from 'sweetalert'
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 export default function ProductCard({ name, brand, image, price, id, in_Stock, CategoryId, rating }) {
     const dispatch = useDispatch();
     const prodCart = useSelector((state) => state.prodCart);
-
+    const { isAuthenticated } = useAuth0();
     const data = prodCart.length > 0 ? prodCart.find((e) => e.id === id) : undefined;
     const quantity = data !== undefined ? data.quantity : 0;
 
-
-
-
-
     const handleAddCart = (e) => {
-        dispatch(addProdToCart({
-            id: id,
-            name: name,
-            image: image,
-            price: price,
-            brand: brand,
-            in_Stock: in_Stock,
-            CategoryId: CategoryId,
-            rating: rating,
-            quantity: quantity,
-        }));
-        if (quantity === 0) {
-            swal(`Added to cart`);
+        if (isAuthenticated){
+
+        }else{
+            dispatch(addProdToCart({
+                id: id,
+                name: name,
+                image: image,
+                price: price,
+                brand: brand,
+                in_Stock: in_Stock,
+                CategoryId: CategoryId,
+                rating: rating,
+                quantity: quantity,
+            }));
+            if (quantity === 0) {
+                swal(`Added to cart`);
+            }
         }
+        
     }
 
     const handleRemoveCart = (e) => {
-        dispatch(removeProdFromCart({
-            id: id,
-            quantity: quantity,
-        }));
-        
-        if (quantity === 1) {
-            swal(`Removed of cart`);
+        if (isAuthenticated){
+            
+
+        }else{
+            dispatch(removeProdFromCart({
+                id: id,
+                quantity: quantity,
+            }));
+            
+            if (quantity === 1) {
+                swal(`Removed of cart`);
+            }
         }
+        
     }
-    
     return (
         <div className={ClassesProductCard.container1}>
             <div className={ClassesProductCard.top}>
