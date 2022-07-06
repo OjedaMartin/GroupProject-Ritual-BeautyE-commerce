@@ -99,49 +99,49 @@ export default function CartCard() {
     }
 
     const handleBuy = (e) => {
-        e.preventDefault();
-        if (isAuthenticated) {
-            const dataBody = [];
-            prodCart?.map((prod) => {
-                return (
-                    dataBody.push({
-                        id: prod.id,
-                        cant: prod.quantity,
-                    })
-                )
-            });
-            const email = "agus@gmail.com";
-            const bodyFinsh = { productsId: dataBody, email: email }
-            if (true) {
-                dispatch(addCartToBack(bodyFinsh));
-                swal('¡Succes! Your cart is ready.');
-                navigate('/');
-                dispatch(clearCart());
-                const checkoutForm = () => {
-                    return <form onSubmit={handleSubmitCheckout}>
-                        <CardElement />
-                    </form>
-                }//------------------------------------------
-            } else { swal('User not found!') };
-            // console.log('dataBody',dataBody)
-        } else {
-            swal('You need login, to finish your cart!');
-            navigate("/login");
-        }
-    }
+    //     e.preventDefault();
+    //     if (isAuthenticated) {
+    //         const dataBody = [];
+    //         prodCart?.map((prod) => {
+    //             return (
+    //                 dataBody.push({
+    //                     id: prod.id,
+    //                     cant: prod.quantity,
+    //                 })
+    //             )
+    //         });
+    //         const email = "agus@gmail.com";
+    //         const bodyFinsh = { productsId: dataBody, email: email }
+    //         if (true) {
+    //             dispatch(addCartToBack(bodyFinsh));
+    //             swal('¡Succes! Your cart is ready.');
+    //             navigate('/');
+    //             dispatch(clearCart());
+    //             const checkoutForm = () => {
+    //                 return <form onSubmit={handleSubmitCheckout}>
+    //                     <CardElement />
+    //                 </form>
+    //             }//------------------------------------------
+    //         } else { swal('User not found!') };
+    //         // console.log('dataBody',dataBody)
+    //     } else {
+    //         swal('You need login, to finish your cart!');
+    //         navigate("/login");
+    //     }
+    // }
 
-    const handleDelete = (e) => {
-        if (isAuthenticated) {
+    // const handleDelete = (e) => {
+    //     if (isAuthenticated) {
 
 
-        } else {
-            e.preventDefault();
-            let confirmDelete = window.confirm("Do you are sure, to delet all cart?");
-            if (confirmDelete) {
-                dispatch(clearCart());
-                navigate('/SearchDetail/shopall/allProducts');
-            }
-        }
+    //     } else {
+    //         e.preventDefault();
+    //         let confirmDelete = window.confirm("Do you are sure, to delet all cart?");
+    //         if (confirmDelete) {
+    //             dispatch(clearCart());
+    //             navigate('/SearchDetail/shopall/allProducts');
+    //         }
+    //     }
     }
 
     const handleDeleteOneProd = (e) => {
