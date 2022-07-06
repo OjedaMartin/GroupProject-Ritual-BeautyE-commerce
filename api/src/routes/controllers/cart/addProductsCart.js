@@ -9,21 +9,16 @@ const addProductCart = async(req, res )=>{
    if (emailValido) {
 
         let cart = await Cart.create()
-        
+       await emailValido.addCart(cart)
        for (let i = 0; i < productsId.length; i++) {
-              let stock =await Product.findOne({where:{id:productsId[i].id}})
-              stock = stock.in_Stock - productsId[i].cant
-             await Product.update({in_Stock:stock},{where:{id:productsId[i].id}})
-             await CartProduct.create({cartId:cart.id, productId:productsId[i].id,quantity:productsId[i].cant})
+              
+             await CartProduct.create({CartId:cart.id, ProductId:productsId[i].id,quantity:productsId[i].cant})
        }
        
-            let prodcart = await CartProduct.findAll({where:{cartId:cart.id}})
+        
             
-            let address= emailValido.address
-            let orden = await Order.create({address})
-            emailValido.addOrder(orden)
-            orden.addCartProduct(prodcart) 
-            res.send("Producto añadido al carrito")
+           
+            res.send("carrito creado con sus productos")
    }else {
     res.send("usuario debe loguearse")
    }
