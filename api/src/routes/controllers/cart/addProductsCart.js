@@ -10,7 +10,11 @@ const addProductCart = async(req, res )=>{
     
     let emailValido= await User.findOne({where:{email}})
    if (emailValido) {
-
+    let cartrue = await Cart.findOne({where:{UserId:emailValido.id,state:"true"}})
+        if(cartrue){
+        await Cart.destroy({where:{id:cartrue.id}})
+        await CartProduct.destroy({where:{CartId:cartrue.id}})
+    }
         let cart = await Cart.create()
        await emailValido.addCart(cart)
        for (let i = 0; i < productsId.length; i++) {
