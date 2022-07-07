@@ -114,18 +114,18 @@
 //   );
 // };
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { putUser } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
+
 export const Settings = () => {
   const dispatch = useDispatch();
-  const { logout, isAuthenticated, user } = useAuth0();
+  const { logout, user } = useAuth0();
   const navigate = useNavigate();
-  const currentUser = useSelector((state) => state.users);
+
 
   const [edit, setEdit] = useState({
     // image: "",
@@ -133,14 +133,7 @@ export const Settings = () => {
     name: "",
     address: "",
   });
-  useEffect(() => {
-    setEdit({
-      // image: currentUser.image,
-      // email: currentUser.email,
-      name: currentUser.name,
-      address: currentUser.address,
-    });
-  }, [currentUser]);
+
   function handleChange(e) {
     setEdit({
       ...edit,
@@ -151,62 +144,61 @@ export const Settings = () => {
   function handleSubmit(e) {
     if (edit.name !== "") {
       e.preventDefault();
-      dispatch(putUser(edit));
+      dispatch(putUser(edit,user.email));
       alert("Saved");
       setEdit({
-        // image: "",
+        image: "",
         // email: "",
         name: "",
         address: "",
-      });
+      })
+      navigate("/");
     } else {
       e.preventDefault();
       alert("Complete all fields");
     }
     console.log(edit);
   }
-  // function handleDelete(e) {
-  //   e.preventDefault();
-  //   let choose = window.confirm(
-  //     "Are you sure you want to delete this account?"
-  //   );
-  //   if (choose) {
-  //     logout({ returnTo: window.location.origin });
-  //     dispatch(putUser({ email:user.email, del: true }));
-  //   }
-  // }
+  function handleDelete(e) {
+    e.preventDefault();
+    let choose = window.confirm(
+      "Are you sure you want to delete this account?"
+    );
+    if (choose) {
+      logout({ returnTo: window.location.origin });
+      dispatch(putUser({ email:user.email, del: true }));
+    }
+  }
   return (
     <div>
       <Form onSubmit={(e) => handleSubmit(e)}>
         <h1>Your Data</h1>
-        {/* <FormGroup>
+        <FormGroup>
           <Label for="exampleFile">File</Label>
           <Input
             id="exampleFile"
-            name="file"
+            name="image"
             type="file"
-            value={currentUser.image}
+            onChange={(e) => handleChange(e)}
           />
-        </FormGroup> */}
+        </FormGroup>
 
         <h3>Name</h3>
         <Input
           type="text"
-          defaultValue={currentUser.name}
           name="name"
           onChange={(e) => handleChange(e)}
         />
         <h3>adress</h3>
         <Input
           type="text"
-          defaultValue={currentUser.address}
           name="address"
           onChange={(e) => handleChange(e)}
         />
 
         <Button type="submit">Save</Button>
       </Form>
-      {/* <Button onClick={(e) => handleDelete(e)}>Delete</Button> */}
+      <Button onClick={(e) => handleDelete(e)}>Delete</Button>
     </div>
   );
 };

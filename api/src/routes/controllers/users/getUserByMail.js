@@ -2,20 +2,20 @@
 const { User } = require('../../../db');
 
 
-const getUserByName = async(req, res) => {
-    const { name } = req.params;
+const getUserByMail = async(req, res) => {
+    const { email } = req.params;
     try {
         const user = await User.findOne({
             where: {
-                name: name
+                email: email
             }
         });
         res.status(200).json(user)
     } catch(error) {
-        res.status(400).json({ error: "Ha ocurrido un error en el controller getUserByName " + error })
+        res.status(400).json({ error: "Ha ocurrido un error en el controller getUserByMail " + error })
     }
 }
 
 
 
-module.exports = { getUserByName }
+module.exports = { getUserByMail }

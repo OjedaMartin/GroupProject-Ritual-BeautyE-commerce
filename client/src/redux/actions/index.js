@@ -114,10 +114,10 @@ export function getfilterBrand(params) {
     }
   }
 }
-export function getProfile(params) {
+export function getProfile(email) {
   return async function (dispatch) {
     try{
-    const json = await axios.get(`http://localhost:3001/users/name`, params)
+    const json = await axios.get(`http://localhost:3001/users/${email}`)
     return dispatch({
       type: 'GET_PROFILE',
       payload: json.data
@@ -243,9 +243,9 @@ export function getUser(payload){
 //       }
 //   }
 // }
-export const putUser =(payload) => {
+export const putUser =(payload, email) => {
   return async function(dispatch){
-    let profile= await axios.put("http://localhost:3001/users/update", payload)
+    let profile= await axios.put(`http://localhost:3001/users/update/${email}`, payload)
     return dispatch(
       {
         type: "PUT",
@@ -257,7 +257,21 @@ export const putUser =(payload) => {
   
 };
 
-  
+// export function cambiarInfo(email, input) {
+//   return async (dispatch) => {
+//     try {
+//       let info = await axios.patch(
+//         // http://localhost:3001/users/modificar/${email}?nombres=${input.nombres}&apellidos=${input.apellidos}&telefono=${input.telefono}&documento=${input.documento}&edad=${input.edad}
+//       );
+//       return dispatch({
+//         type: "MODIFICAR",
+//         payload: info.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
 
 
 // =======

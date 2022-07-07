@@ -28,12 +28,13 @@
 const { User } = require('../../../db');
 
 const updateUser = async(req, res) => {
-    const { name,/* email, password, membership,*/ address } = req.body;
+    const { name, image/* email, password,membership */, address } = req.body;
     const { email } = req.params;
+    console.log("email put", name)
     try {
         const user = await User.update({
             name: name,
-            // email: email,
+            image: image,
             // password: password,
             // membership: membership,
             address: address

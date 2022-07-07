@@ -4,7 +4,7 @@ const { userRegister } = require('./controllers/users/userRegister');
 const { getUsers } = require('./controllers/users/getUsers');
 const { isAuth } = require('./controllers/middlewares/auth');
 const { userLogout } = require('./controllers/users/userLogout');
-const { getUserByName } = require('./controllers/users/getUserByName');
+const { getUserByMail } = require('./controllers/users/getUserByMail');
 const { updateUser } = require('./controllers/users/updateUser');
 
 
@@ -14,7 +14,7 @@ const router = Router()
 router.post('/login', userLogin);
 
 // Obtener un usuario por medio del email que se le pasa por params
-router.get('/:name', getUserByName);
+router.get('/:email', getUserByMail);
 
 // Ruta para regisrar un nuevo usuario y cargarlo a la db
 router.post('/register', userRegister);
@@ -26,7 +26,7 @@ router.get('/', getUsers)
 router.post('/logout', userLogout);
 
 // Ruta para actualizar datos de un usuario
-router.put('/update/:id', updateUser);
+router.put('/update/:email', updateUser);
 
 
 
