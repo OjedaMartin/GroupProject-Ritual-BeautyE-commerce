@@ -2,12 +2,17 @@ const { User, Review } = require('../../../db');
 
 const getReviews = async (req, res) =>{
     try{
-        const review = await Review.findAll()
+        const review = await Review.findAll({
+            include:{
+                model: User,
+                attributes:["id", "name"],
+            }
+        })
      
         if(review) {
             res.status(200).json(review);
         } else {
-            res.status(404).json('User didnt make any comment')
+            res.status(404).json('No reviews available')
         }
 
     }catch(error){
