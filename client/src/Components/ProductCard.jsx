@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addProdToCart, removeProdFromCart } from '../redux/actions'
+import { addProdToCart, removeProdFromCart,getCartByUser } from '../redux/actions'
 // import { useDispatch } from 'react-redux';
 // import cart from '../images/carritoIcon.png';
 import ClassesProductCard from './ProductCard.module.css'
@@ -13,45 +13,35 @@ import { useAuth0 } from '@auth0/auth0-react';
 export default function ProductCard({ name, brand, image, price, id, in_Stock, CategoryId, rating }) {
     const dispatch = useDispatch();
     const prodCart = useSelector((state) => state.prodCart);
+    const userCart = useSelector((state) => state.pruebaCartUser);
     const { isAuthenticated } = useAuth0();
     const data = prodCart.length > 0 ? prodCart.find((e) => e.id === id) : undefined;
     const quantity = data !== undefined ? data.quantity : 0;
 
+    
+
     const handleAddCart = (e) => {
-        if (isAuthenticated) {
-            //ACA SE DEBERIA DE ENVIAR LA INFORMACION AL BACK PARA QUE SE GUARDE Y NO EN EL LOCALSTORAGE
-            dispatch(addProdToCart({
-                id: id,
-                name: name,
-                image: image,
-                price: price,
-                brand: brand,
-                in_Stock: in_Stock,
-                CategoryId: CategoryId,
-                rating: rating,
-                quantity: quantity,
-            }));
-            if (quantity === 0) {
-                swal(`Added to cart`);
-            }
 
-        } else {
-            dispatch(addProdToCart({
-                id: id,
-                name: name,
-                image: image,
-                price: price,
-                brand: brand,
-                in_Stock: in_Stock,
-                CategoryId: CategoryId,
-                rating: rating,
-                quantity: quantity,
-            }));
-            if (quantity === 0) {
-                swal(`Added to cart`);
-            }
+        //ACA SE DEBERIA DE ENVIAR LA INFORMACION AL BACK PARA QUE SE GUARDE Y NO EN EL LOCALSTORAGE
+        dispatch(addProdToCart({
+            id: id,
+            name: name,
+            image: image,
+            price: price,
+            brand: brand,
+            in_Stock: in_Stock,
+            CategoryId: CategoryId,
+            rating: rating,
+            quantity: quantity,
+        },true ));//isAuthenticated
+        if (quantity === 0) {
+            swal(`Added to cart`);
         }
-
+        if (true) {
+            const emailDemo = "rafa@gmail.com";
+            dispatch(addProdToCart(userCart,emailDemo))
+            dispatch(getCartByUser(emailDemo))
+        }
     }
 
     const handleRemoveCart = (e) => {

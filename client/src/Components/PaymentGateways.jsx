@@ -32,3 +32,16 @@ export default function PaymentGateways() {
         </Elements>
     )
 }
+
+//USUARIO SIN REGISTRAR  //LOCALSTORAGE
+
+//LOGEA --> 1° PREGUNTAR SI TIENE UN CARRITO ARMADO
+// CART X PROD--> () 1 PROD
+//1 PROD
+
+
+//LOGEA --> 1° PREGUNTAR SI TIENE UN CARRITO ARMADO NADA
+// CART X PROD--> ()
+
+
+

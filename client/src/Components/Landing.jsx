@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getAllProducts, getAllCategories } from "../redux/actions";
+import { getAllProducts, getAllCategories,getAllUsers } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 import Carousel1 from "./Carousel";
@@ -14,6 +14,7 @@ export default function Landing() {
   const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
+    dispatch(getAllUsers());
     dispatch(getAllCategories());
     dispatch(getAllProducts());
   }, [dispatch]);

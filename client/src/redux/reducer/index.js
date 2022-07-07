@@ -11,8 +11,8 @@ const initialState = {
   //-------------
   users: [],
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
-  pruebaCartUser: [],
   searchedUsers: [],
+  pruebaCartUser: [],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -125,20 +125,37 @@ function rootReducer(state = initialState, action) {
     //     ...state,
     //   };
     case 'ADD_PROD_TO_CART':
+      // console.log('action.payload',action.payload)
+      // console.log('action.login',action.login)
       const newProd = action.payload;
-      const itemsInCart = state.prodCart?.find((e) => e.id === newProd.id);
+      const login = action.isLogin;
+      //------------------------LOGEADO O NO?----------------------------------
+      const itemsInCart = login
+        ? state.pruebaCartUser.length > 0
+          ? state.pruebaCartUser.find((e) => e.id === newProd.id)
+          : state.prodCart?.find((e) => e.id === newProd.id)
+        : state.prodCart.find((e) => e.id === newProd.id)
+
+      //-----------------------------------------------------------------------
 
       if (newProd.quantity < newProd.in_Stock) {
         const cartItems = itemsInCart
           ? state.prodCart.map((it) => it.id === newProd.id
             ? { ...it, quantity: it.quantity + 1 }
             : it)
-          : [...state.prodCart, { ...newProd, quantity: 1 }];
-        localStorage.setItem('prodCart', JSON.stringify(cartItems));
-        return {
-          ...state,
-          prodCart: cartItems,
-        };
+          : login
+            ? [...state.pruebaCartUser, { ...newProd, quantity: 1 }]
+            : [...state.prodCart, { ...newProd, quantity: 1 }]
+
+        login
+          ? localStorage.removeItem('prodCart')
+          : localStorage.setItem('prodCart', JSON.stringify(cartItems));
+
+        if (login) {
+          return { ...state, pruebaCartUser: cartItems, };
+        } else {
+          return { ...state, prodCart: cartItems, };
+        }
       } else {
         return {
           ...state,
@@ -198,10 +215,15 @@ function rootReducer(state = initialState, action) {
         searchedUsers: action.payload,
       };
     case 'GET_CART_USER':
-      return{
+      return {
         ...state,
-        pruebaCartUser:action.payload,
+        pruebaCartUser: action.payload,
       }
+    case "GET_CART_USER"://
+      return {
+        ...state,
+        pruebaUsers: action.payload,
+      };
     default:
       return state;
   }

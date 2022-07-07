@@ -1,11 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 //import SlidingPanel from 'react-sliding-side-panel';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaRegSadCry } from "react-icons/fa";
-import { addProdToCart, removeProdFromCart, clearCart, removeAllOneProdToCart, addCartToBack, getUser } from '../redux/actions';
+import {
+    addProdToCart,
+    removeProdFromCart,
+    clearCart,
+    removeAllOneProdToCart,
+    addCartToBack,
+    getCartByUser,
+    getAllUsers
+} from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
+//import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 import Classes from './CartCard.module.css';
 import trashIcon from '../images/trash.png';
 import swal from 'sweetalert'
@@ -15,17 +23,27 @@ import PaymentGateways from './PaymentGateways';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function CartCard() {
+    const allProd = useSelector((state) => state.allProducts);
     const prodCart = useSelector((state) => state.prodCart);
-    const userState = useSelector((state) => state.users);
+    const userCart = useSelector((state) => state.pruebaCartUser);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    //--------------------------------------------------
     const { isAuthenticated, user } = useAuth0();
-    console.log('user', user)
-    console.log('isAuthenticated', isAuthenticated)
-
+    if (isAuthenticated) {
+        console.log('user', user)
+        console.log('user.email', user.email)
+        console.log('isAuthenticated', isAuthenticated)
+    }
+    const emailDemo = 'rafa@gmail.com';
+    //--------------------------------------------------
     useEffect(() => {
-    }, [dispatch, prodCart]);
+        if (isAuthenticated) {
+            dispatch(getAllUsers())
+            dispatch(getCartByUser(emailDemo))
+        }
+    }, [dispatch, prodCart, isAuthenticated, user]);
 
     var totalAmount = 0;
 
@@ -39,60 +57,47 @@ export default function CartCard() {
         totalQuantity = totalQuantity + (prodCart[i].quantity);
     }
 
-    //------------------------------------ARREGLO DE IDS DE PRODUCTOS
-    // var arrProductsToBack = [];
-    // prodCart?.map((prod) => {
-    //     for (let i = 1; i <= prod.quantity; i++) {
-    //         arrProductsToBack.push(prod.id)
-    //     }
-    // })
-    //------------------------------PASARELA DE PAGOS
+
+    // const addProd = (e) => {
+    //     const filter = prodCart.find((item) => item.id === e.target.value);
+    //         if (filter.quantity < filter.in_Stock) {
+    //             dispatch(addProdToCart(
+    //                 {
+    //                     id: filter.id,
+    //                     name: filter.name,
+    //                     image: filter.image,
+    //                     price: filter.price,
+    //                     brand: filter.brand,
+    //                     in_Stock: filter.in_Stock,
+    //                     CategoryId: filter.CategoryId,
+    //                     rating: filter.rating,
+    //                     quantity: filter.quantity,
+    //                 }
+    //             ));        
+    // }
 
     const handleAddCart = (e) => {
-        if (isAuthenticated) {
-            //ACA DEBERIA ENVIARLO A LA BASE DE DATOS Y NO AL LOCALSTORAGE
-            e.preventDefault();
-            const filter = prodCart.find((item) => item.id === e.target.value);
-            if (filter.quantity < filter.in_Stock) {
-                dispatch(addProdToCart(
-                    {
-                        id: filter.id,
-                        name: filter.name,
-                        image: filter.image,
-                        price: filter.price,
-                        brand: filter.brand,
-                        in_Stock: filter.in_Stock,
-                        CategoryId: filter.CategoryId,
-                        rating: filter.rating,
-                        quantity: filter.quantity,
-                    }
-                ));
-            } else {
-                swal(`Insufficient stock in: ${filter.name}`);
-            }
-        } else {
-            e.preventDefault();
-            const filter = prodCart.find((item) => item.id === e.target.value);
-            if (filter.quantity < filter.in_Stock) {
-                dispatch(addProdToCart(
-                    {
-                        id: filter.id,
-                        name: filter.name,
-                        image: filter.image,
-                        price: filter.price,
-                        brand: filter.brand,
-                        in_Stock: filter.in_Stock,
-                        CategoryId: filter.CategoryId,
-                        rating: filter.rating,
-                        quantity: filter.quantity,
-                    }
-                ));
-            } else {
-                swal(`Insufficient stock in: ${filter.name}`);
-            }
-        }
+        e.preventDefault();
 
+        const filter = allProd.length > 0?.find((item) => item.id === e.target.value)
+        if (filter.quantity < filter.in_Stock) {
+            dispatch(addProdToCart({
+                id: filter.id,
+                name: filter.name,
+                image: filter.image,
+                price: filter.price,
+                brand: filter.brand,
+                in_Stock: filter.in_Stock,
+                CategoryId: filter.CategoryId,
+                rating: filter.rating,
+                quantity: filter.quantity,
+            }, isAuthenticated))
+        } else {
+            swal('¡Ups! Insufficient stock.');
+        }
     }
+
+
     const handleRemoveCart = (e) => {
         if (isAuthenticated) {
             //LO DEBERIA DE MANDAR AL BACK PARA BASE DE DATOS
@@ -119,7 +124,7 @@ export default function CartCard() {
             });
             console.log('dataBody', dataBody)
             const bodyFinsh = { productsId: dataBody, email: user.email }
-            console.log('Informacion para el back-->',bodyFinsh)
+            console.log('Informacion para el back-->', bodyFinsh)
             dispatch(addCartToBack(bodyFinsh));
             swal('¡Succes! Your cart is ready.');
             // navigate('/');
