@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { User } = require('../../../db');
+const { User, FooterUser } = require('../../../db');
 const jwt = require('jsonwebtoken');
 
 
@@ -8,6 +8,17 @@ const userRegister = async(req, res) => {
     try {
         let password = bcrypt.hashSync(req.body.password, 10)
         // Creamos el usuario
+        let footer = await FooterUser.findOne({
+            where:{
+                email: req.body.email,
+            }
+        })
+        footer ?
+        await FooterUser.destroy({
+            where: {
+              id: footer.id,
+            },
+          }) : null
         await User.create({
             name: req.body.name,
             email: req.body.email,
