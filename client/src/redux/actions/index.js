@@ -35,7 +35,7 @@ export function getAllCategories() {
 }
 export function getAllUsers() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/users");
+    let json = await axios.get("http://localhost:3001/users");    
     return dispatch({
       type: "GET_USERS",
       payload: json.data,
@@ -47,7 +47,7 @@ export function getDetail(id) {
   return async function (dispatch) {
     try {
       let prod = await axios.get(`http://localhost:3001/products/${id}`);
-      //console.log("getDet", prod)
+     //console.log("getDet", prod)
       return dispatch({
         type: "GET_DETAIL",
         payload: prod.data,
@@ -77,10 +77,9 @@ export function createProduct(payload) {
   };
 }
 export function Log(payload) {
-  console.log('Log/payload', payload)
   return async function (dispatch) {
     const info = await axios.post("http://localhost:3001/users/login", payload);
-    console.log("info action--->Log", info);
+    console.log("info action", info);
     return {
       type: "LOG",
       info
@@ -117,15 +116,15 @@ export function getfilterBrand(params) {
 }
 export function getProfile(params) {
   return async function (dispatch) {
-    try {
-      const json = await axios.get(`http://localhost:3001/users/name`, params)
-      return dispatch({
-        type: 'GET_PROFILE',
-        payload: json.data
-      })
-    } catch (error) {
-      console.log(error)
-    }
+    try{
+    const json = await axios.get(`http://localhost:3001/users/name`, params)
+    return dispatch({
+      type: 'GET_PROFILE',
+      payload: json.data
+    })
+  } catch (error) {
+    console.log(error)
+   }
   }
 }
 
@@ -140,10 +139,10 @@ export function postCategory(payload) {
   };
 }
 
-export function addCartToBack(payload) {
-  return async function (dispatch) {
-    const json = await axios.post('http://localhost:3001/cart/add/', payload);
-    console.log('json action addCartToBack', json.data);
+export function addCartToBack (payload) {
+  return async function(dispatch){
+    const json = await axios.post('http://localhost:3001/cart/add/',payload);
+    console.log('json action addCartToBack',json.data);
     return dispatch({
       type: "ADD_CART_TO_BACK"
     })
@@ -161,42 +160,52 @@ export function addCartToBack(payload) {
 //   }
 // }
 
-export function deleteProductCart(productId) {//DEBERIA HABER ALGO PARA IDENTIFICAR DE QUE CART BORRAR
+export function getAllCart (productId,email){
+  return async function (dispatch) {
+    const json = await axios.get(`http://localhost:3001/cart/`);
+    console.log('json action getAllCart',json.data);
+    return dispatch({
+      type: "GET_CART_USER",
+      payload: json.data,
+    })
+  }
+}
+
+export function deleteProductCart (productId){//DEBERIA HABER ALGO PARA IDENTIFICAR DE QUE CART BORRAR
   return async function (dispatch) {
     const json = await axios.delete(`http://localhost:3001/cart/delete/${productId}`);
-    console.log('json action deleteProductCart', json);
+    console.log('json action deleteProductCart',json);
     return dispatch({
       type: "DELETE_PRODUCT_CART",
     });
   }
 }
 
-export function addProdToCart(product) {
+export function addProdToCart (product){
   return ({
-    type: 'ADD_PROD_TO_CART',
+    type:'ADD_PROD_TO_CART', 
     payload: product,
   })
 }
 
-export function removeProdFromCart(product) {
+export function removeProdFromCart (product){
   return ({
-    type: 'REMOVE_PROD_FROM_CART',
-    payload: product,
+    type:'REMOVE_PROD_FROM_CART', 
+    payload:product,
   })
 }
-export function removeAllOneProdToCart(product) {
-  console.log('PROD ACTIONS--> REMOVE', product)
+export function removeAllOneProdToCart (product){
+  console.log('PROD ACTIONS--> REMOVE',product)
   return ({
-    type: 'REMOVE_ALL_PRODUCTS_BYID',
-    payload: product,
+    type:'REMOVE_ALL_PRODUCTS_BYID', 
+    payload:product,
   })
 }
 
-export function clearCart() {
+export function clearCart (){
   return ({
-    type: 'CLEAR_CART',
-  })
-}
+    type:'CLEAR_CART',
+  })}
 
 export function deleteStock(id, payload) {
   return async function (dispatch) {
@@ -210,27 +219,26 @@ export function deleteStock(id, payload) {
 }
 ///USUARIOS: RUTA DE CREACION, BUSQEDA Y LISTA DE USUARIOS
 export function createUser(payload) {
-  console.log('createUser/payload', payload)
   return async function (dispatch) {
-    const info = await axios.post("http://localhost:3001/users/register", payload);//PARECIERA QUE LA RUTA ESTA INCOMPLETA
-    console.log("info action--->createUser", info);
+    const info = await axios.post("http://localhost:3001/users/register", payload);
+    console.log("info action", info);
     return {
-      type: "CREATE_USER",
+      type: "REGISTER",
       info
     }
   };
 }
-export function getUser(payload) {
-  return async function (dispatch) {
-    try {
-      const json = await axios.get("http://localhost:3001/users/" + payload)
-      return dispatch({
-        type: "GET_USER",
-        payload: json.data
-      })
-    } catch (err) {
-      console.log(err)
-    }
+export function getUser(payload){
+  return async function (dispatch){
+      try {
+          const json = await axios.get("http://localhost:3001/users/" + payload)
+          return dispatch({
+              type: "GET_USER",
+              payload: json.data
+          })
+      } catch(err){
+          console.log(err)
+      }
   }
 }
 // export function getAllUsers(){
@@ -246,24 +254,21 @@ export function getUser(payload) {
 //       }
 //   }
 // }
-export const putUser = async (payload) => {
-  // return await axios.put("http://localhost:3001/users/update", payload)
-  // try { 
-  //   (function (response) { }) 
-  // }  catch(e) { (function (e) { }) };
+export const putUser =(payload) => {
+  return async function(dispatch){
+    let profile= await axios.put("http://localhost:3001/users/update", payload)
+    return dispatch(
+      {
+        type: "PUT",
+        payload: profile.data
+      }
+    )
+
+  }
+  
 };
 
-
-// export function deleteStock(id, payload) {
-//   return async function (dispatch) {
-//     const info = await axios.put(`http://localhost:3001/products/stock/${id}`, payload);
-//     console.log("info action", info);
-//     return {
-//       type: "DELETE_STOCK",
-//       info
-//     }
-//   };
-// }
+  
 
 
 // =======
@@ -282,18 +287,3 @@ export function getUserByName(name) {
   }
 }
 // >>>>>>> 5572d2f4f28285aa1b84cf893bccc1bcdb9cdc63
-export function getOrder() {
-
-  return async function (dispatch) {
-    try {
-      let json = await axios.get("http://localhost:3001/order")
-      console.log('json.data--->getOrder', json.data)
-      return dispatch({
-        type: 'GET_ORDER',
-        payload: json.data
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}

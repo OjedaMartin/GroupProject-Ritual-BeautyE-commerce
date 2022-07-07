@@ -2,23 +2,27 @@ import React, { useEffect } from 'react';
 //import SlidingPanel from 'react-sliding-side-panel';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaRegSadCry } from "react-icons/fa";
-import { addProdToCart, removeProdFromCart, clearCart, removeAllOneProdToCart, addCartToBack } from '../redux/actions';
+import { addProdToCart, removeProdFromCart, clearCart, removeAllOneProdToCart, addCartToBack, getUser } from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
-// import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
+
+import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 import Classes from './CartCard.module.css';
 import trashIcon from '../images/trash.png';
 import swal from 'sweetalert'
 //------------------------pasarela de pagos
-import { loadStripe } from '@stripe/stripe-js'
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
-
+import PaymentGateways from './PaymentGateways';
+//------------------------AUTH0
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function CartCard() {
     const prodCart = useSelector((state) => state.prodCart);
+    const userState = useSelector((state) => state.users);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { isAuthenticated } = useAuth0();
+
+    const { isAuthenticated, user } = useAuth0();
+    console.log('user', user)
+    console.log('isAuthenticated', isAuthenticated)
 
     useEffect(() => {
     }, [dispatch, prodCart]);
@@ -43,16 +47,115 @@ export default function CartCard() {
     //     }
     // })
     //------------------------------PASARELA DE PAGOS
-    // const stripePromise = loadStripe('pk_test_51LIJngJlBpaS4VmXSjPoLfIC3gTVPuLNswb2en6vmGD4ZpCItGyp8GTLtC9QGC6h3aqt582fuZNRpri8kDm2nRcs00xXSBdazI');
-    const stripe = useStripe();//Me conecta con stripe
-    const elements = useElements();
-
 
     const handleAddCart = (e) => {
+        if (isAuthenticated) {
+            //ACA DEBERIA ENVIARLO A LA BASE DE DATOS Y NO AL LOCALSTORAGE
+            e.preventDefault();
+            const filter = prodCart.find((item) => item.id === e.target.value);
+            if (filter.quantity < filter.in_Stock) {
+                dispatch(addProdToCart(
+                    {
+                        id: filter.id,
+                        name: filter.name,
+                        image: filter.image,
+                        price: filter.price,
+                        brand: filter.brand,
+                        in_Stock: filter.in_Stock,
+                        CategoryId: filter.CategoryId,
+                        rating: filter.rating,
+                        quantity: filter.quantity,
+                    }
+                ));
+            } else {
+                swal(`Insufficient stock in: ${filter.name}`);
+            }
+        } else {
+            e.preventDefault();
+            const filter = prodCart.find((item) => item.id === e.target.value);
+            if (filter.quantity < filter.in_Stock) {
+                dispatch(addProdToCart(
+                    {
+                        id: filter.id,
+                        name: filter.name,
+                        image: filter.image,
+                        price: filter.price,
+                        brand: filter.brand,
+                        in_Stock: filter.in_Stock,
+                        CategoryId: filter.CategoryId,
+                        rating: filter.rating,
+                        quantity: filter.quantity,
+                    }
+                ));
+            } else {
+                swal(`Insufficient stock in: ${filter.name}`);
+            }
+        }
+
+    }
+    const handleRemoveCart = (e) => {
+        if (isAuthenticated) {
+            //LO DEBERIA DE MANDAR AL BACK PARA BASE DE DATOS
+            //LIMPIAR EL LOCALSTORAGE
+            e.preventDefault();
+            dispatch(removeProdFromCart({ id: e.target.value }));
+        } else {
+            e.preventDefault();
+            dispatch(removeProdFromCart({ id: e.target.value }));
+        }
+    }
+    const handleBuy = (e) => {
         e.preventDefault();
-        const filter = prodCart.find((item) => item.id === e.target.value);
-        if (filter.quantity < filter.in_Stock) {
-            dispatch(addProdToCart(
+        if (isAuthenticated) {
+            //dispatch(getUser())
+            const dataBody = [];
+            prodCart?.map((prod) => {
+                return (
+                    dataBody.push({
+                        id: prod.id,
+                        cant: prod.quantity,
+                    })
+                )
+            });
+            console.log('dataBody', dataBody)
+            const bodyFinsh = { productsId: dataBody, email: user.email }
+            console.log('Informacion para el back-->',bodyFinsh)
+            dispatch(addCartToBack(bodyFinsh));
+            swal('¡Succes! Your cart is ready.');
+            // navigate('/');
+            dispatch(clearCart());
+            return (
+                <PaymentGateways />
+            )
+        } else {
+            swal('You need login, to finish your cart!');
+            navigate("/login");
+        }
+    }
+    const handleDelete = (e) => {
+        if (isAuthenticated) {
+            //ACA SE DEBERIA DE ELIMINAR EL CARRITO DE LA BASE DE DATOS? O CAMBIAR DE ESTADO VER!
+            e.preventDefault();
+            let confirmDelete = window.confirm("Do you are sure, to delet all cart?");
+            if (confirmDelete) {
+                dispatch(clearCart());
+                navigate('/SearchDetail/shopall/allProducts');
+            }
+        } else {
+            e.preventDefault();
+            let confirmDelete = window.confirm("Do you are sure, to delet all cart?");
+            if (confirmDelete) {
+                dispatch(clearCart());
+                navigate('/SearchDetail/shopall/allProducts');
+            }
+        }
+    }
+    const handleDeleteOneProd = (e) => {
+        if (isAuthenticated) {
+            //Esto deberia buscar en la base de datos el carrito y eliminar un producto o cambiar el estado
+            e.preventDefault();
+            const filter = prodCart.find((item) => item.id === e.target.value);
+            dispatch(removeAllOneProdToCart(
                 {
                     id: filter.id,
                     name: filter.name,
@@ -66,100 +169,22 @@ export default function CartCard() {
                 }
             ));
         } else {
-            swal(`Insufficient stock in: ${filter.name}`);
-        }
-    }
-
-    const handleRemoveCart = (e) => {
-        if (isAuthenticated) {
-            //LO DEBERIA DE MANDAR AL BACK PARA BASE DE DATOS
-            //LIMPIAR EL LOCALSTORAGE
-
-        } else {
             e.preventDefault();
-            dispatch(removeProdFromCart({ id: e.target.value }));
+            const filter = prodCart.find((item) => item.id === e.target.value);
+            dispatch(removeAllOneProdToCart(
+                {
+                    id: filter.id,
+                    name: filter.name,
+                    image: filter.image,
+                    price: filter.price,
+                    brand: filter.brand,
+                    in_Stock: filter.in_Stock,
+                    CategoryId: filter.CategoryId,
+                    rating: filter.rating,
+                    quantity: filter.quantity,
+                }
+            ));
         }
-    }
-
-    const handleSubmitCheckout = async (e) => {
-        e.preventDefault();
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: 'card',
-            card: elements.getElement(CardElement)
-        });
-        !error ? console.log(paymentMethod) : console.log(error)
-        //     if (!error){
-        //         const data = {//ESTO SERIA UN POST PARA EL BACK 
-        //             id:paymentMethod.id,
-        //             amount: totalAmount,
-        //             idCart:'sdfasdfsdf4654',
-        //             email: "email@gmail.com",
-        //         }
-        //     }
-    }
-
-    const handleBuy = (e) => {
-    //     e.preventDefault();
-    //     if (isAuthenticated) {
-    //         const dataBody = [];
-    //         prodCart?.map((prod) => {
-    //             return (
-    //                 dataBody.push({
-    //                     id: prod.id,
-    //                     cant: prod.quantity,
-    //                 })
-    //             )
-    //         });
-    //         const email = "agus@gmail.com";
-    //         const bodyFinsh = { productsId: dataBody, email: email }
-    //         if (true) {
-    //             dispatch(addCartToBack(bodyFinsh));
-    //             swal('¡Succes! Your cart is ready.');
-    //             navigate('/');
-    //             dispatch(clearCart());
-    //             const checkoutForm = () => {
-    //                 return <form onSubmit={handleSubmitCheckout}>
-    //                     <CardElement />
-    //                 </form>
-    //             }//------------------------------------------
-    //         } else { swal('User not found!') };
-    //         // console.log('dataBody',dataBody)
-    //     } else {
-    //         swal('You need login, to finish your cart!');
-    //         navigate("/login");
-    //     }
-    // }
-
-    // const handleDelete = (e) => {
-    //     if (isAuthenticated) {
-
-
-    //     } else {
-    //         e.preventDefault();
-    //         let confirmDelete = window.confirm("Do you are sure, to delet all cart?");
-    //         if (confirmDelete) {
-    //             dispatch(clearCart());
-    //             navigate('/SearchDetail/shopall/allProducts');
-    //         }
-    //     }
-    }
-
-    const handleDeleteOneProd = (e) => {
-        e.preventDefault();
-        const filter = prodCart.find((item) => item.id === e.target.value);
-        dispatch(removeAllOneProdToCart(
-            {
-                id: filter.id,
-                name: filter.name,
-                image: filter.image,
-                price: filter.price,
-                brand: filter.brand,
-                in_Stock: filter.in_Stock,
-                CategoryId: filter.CategoryId,
-                rating: filter.rating,
-                quantity: filter.quantity,
-            }
-        ));
     }
 
     if (prodCart.length > 0) {

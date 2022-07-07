@@ -1,11 +1,19 @@
 const nodemailer = require("nodemailer");
-const {FooterUser} = require("../../../db")
+const {FooterUser, User} = require("../../../db")
 const {transporter} = require("./transporter")
 
 async function footerSubscription (req, res, next){
     let { email } = req.body;
     try{
-        let newUser = await FooterUser.create({
+        let userCheck = await User.findOne({
+          where: {
+            email: email,
+          }
+        });
+        userCheck ?
+        res.status(400).send("User is already subscribed to our notification plan") :
+        
+        await FooterUser.create({
             email: email,
         })
 

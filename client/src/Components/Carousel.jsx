@@ -17,7 +17,7 @@ export default function Carousel1(){
             {
               image: img3
             }]}
-            time={4000}
+            // time={1000}
             width="100%"
             height="450px"
             radius="10px"

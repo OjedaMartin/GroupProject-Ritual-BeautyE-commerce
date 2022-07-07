@@ -11,9 +11,8 @@ const initialState = {
   //-------------
   users: [],
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
+  pruebaCartUser: [],
   searchedUsers: [],
-  //-------------
-  orders:[],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -63,7 +62,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-    case "CREATE_USER":
+    case "REGISTER":
       return {
         ...state,
       };
@@ -198,11 +197,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         searchedUsers: action.payload,
       };
-    case 'GET_ORDER':
-      return {
+    case 'GET_CART_USER':
+      return{
         ...state,
-        orders:action.payload,
-      };
+        pruebaCartUser:action.payload,
+      }
     default:
       return state;
   }

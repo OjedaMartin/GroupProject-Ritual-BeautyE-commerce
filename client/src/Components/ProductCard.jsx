@@ -18,9 +18,24 @@ export default function ProductCard({ name, brand, image, price, id, in_Stock, C
     const quantity = data !== undefined ? data.quantity : 0;
 
     const handleAddCart = (e) => {
-        if (isAuthenticated){
+        if (isAuthenticated) {
+            //ACA SE DEBERIA DE ENVIAR LA INFORMACION AL BACK PARA QUE SE GUARDE Y NO EN EL LOCALSTORAGE
+            dispatch(addProdToCart({
+                id: id,
+                name: name,
+                image: image,
+                price: price,
+                brand: brand,
+                in_Stock: in_Stock,
+                CategoryId: CategoryId,
+                rating: rating,
+                quantity: quantity,
+            }));
+            if (quantity === 0) {
+                swal(`Added to cart`);
+            }
 
-        }else{
+        } else {
             dispatch(addProdToCart({
                 id: id,
                 name: name,
@@ -36,24 +51,30 @@ export default function ProductCard({ name, brand, image, price, id, in_Stock, C
                 swal(`Added to cart`);
             }
         }
-        
+
     }
 
     const handleRemoveCart = (e) => {
-        if (isAuthenticated){
-            
-
-        }else{
+        //ACA SE DEBERIA DE ENVIAR LA INFORMACION AL BACK PARA QUE SE GUARDE Y NO EN EL LOCALSTORAGE
+        if (isAuthenticated) {
             dispatch(removeProdFromCart({
                 id: id,
                 quantity: quantity,
             }));
-            
+            if (quantity === 1) {
+                swal(`Removed of cart`);
+            }
+        } else {
+            dispatch(removeProdFromCart({
+                id: id,
+                quantity: quantity,
+            }));
+
             if (quantity === 1) {
                 swal(`Removed of cart`);
             }
         }
-        
+
     }
     return (
         <div className={ClassesProductCard.container1}>

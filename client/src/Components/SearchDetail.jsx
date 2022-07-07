@@ -42,7 +42,7 @@ export default function SearchDetail() {
     //---------------------------------------------------------------------------------------    
     // const prodCart = useSelector((state) => state.prodCart);
     //------------------------------------------------------------------------------------------
-
+    const productNotFound = productsAuxResults?.slice(0, 4);
 
 
     //----------------------------------------------------------------------------------------------
@@ -143,14 +143,46 @@ export default function SearchDetail() {
             </Fragment>
 
         )
-    } else {
+    } else if (name) {
         return (
-            <div className={ClassesSearchDetail.loading}> 
-            <img alt="loading" src={loaderEyes2prueba} />
+            <div >
+                <Fragment>
+                    <div className={ClassesSearchDetail.container3}>
+                        <h1>
+                            {`SORRY, NO RESULTS`}
+                        </h1>
+                        <h4>
+                            {`Your search for "${name}" did not match any results. Please modify your search terms and try again.`}
+                        </h4>
+                    </div>
+                    <section className={ClassesSearchDetail.noFindName}>
+                        {productNotFound?.map((e) => {
+                            return (
+                                <Fragment key={e.id}>
+                                    <div>
+                                        <ProductCard
+                                            key={e.id}
+                                            name={e.name}
+                                            brand={e.brand}
+                                            image={e.image}
+                                            price={e.price}
+                                            id={e.id}
+                                            in_Stock={e.in_Stock}
+                                            CategoryId={e.CategoryId}
+                                            rating={e.rating}
+                                        />
+                                    </div>
+                                </Fragment>
+                            )
+                        })}
+                    </section>
+                </Fragment>
             </div>
         )
+    } else {
+        <div className={ClassesSearchDetail.loading}>
+            <img alt="loading" src={loaderEyes2prueba} />
+        </div>
     }
-
-
 }
 
