@@ -17,7 +17,7 @@ export default function Carousel1(){
             {
               image: img3
             }]}
-            time={4000}
+            // time={1000}
             width="100%"
             height="450px"
             radius="10px"
@@ -25,7 +25,7 @@ export default function Carousel1(){
             automatic={true}
             pauseIconColor="white"
             pauseIconSize="40px"
-            slideBackgroundColor="darkgrey"
+            slideBackgroundColor="transparent"
             slideImageFit="cover"
             thumbnailWidth="100px"
             style={{

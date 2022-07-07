@@ -1,0 +1,213 @@
+.container {
+  align-items: center;
+  background-image: url('../images/fondoDetail.jpg');
+  min-height: 100vh;
+  /* padding-top: 64px;
+  padding-right: 64px; */
+  margin: 50px 100px;
+  box-shadow: 5px 5px 10px rgba(0, 40, 0, 0.5);
+  border-radius: 10px;
+
+
+  grid-template-columns: 250px 250px 250px 250px 250px;
+
+  justify-items: center;
+}
+
+.grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
+  margin: 0 auto; 
+
+ 
+
+} 
+
+
+.cardContainer {
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px rgba(0, 40, 0, 0.5);
+  transition: 1.5s;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  height: 200px;
+  margin: 30px;
+  padding-left: 15px;
+  padding-right: 20px;
+
+}
+.cardName{
+  justify-content: center;
+  align-items: center;
+  display: contents;
+  flex-direction: column;
+}
+
+
+.price {
+  font-size: 24px;
+}
+.subTotal {
+  font-size: 24px;
+}
+
+
+.btnvolver {
+  cursor: pointer;
+  border: 2px solid var(--tertiary-color);
+  background: var(--tertiary-color);
+  border-radius: 50px;
+  font-family: var(--primary-font);
+  padding: 12px 28px;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  font-size: var(--btn-font-size);
+  line-height: 21px;
+  color: var(--secondary-color);
+  transition-duration: 0.7s;
+  align-items: center;
+  margin-left: 45%;
+  margin-top: 20px;
+}
+
+.vaciarCarrito {
+  cursor: pointer;
+  border: 2px solid rgba(0, 0, 0, 0.397);
+  background: rgb(209, 209, 209);
+  border-radius: 30px;
+  font-family: 'Source Sans Pro', sans-serif bold;
+  padding: 8px 20px;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  font-size: var(--btn-font-size);
+  line-height: 8px;
+  color: var(--secondary-color);
+  transition-duration: 0.7s;
+  align-items: center;
+  margin-left: 44.7%;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.total {
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  color: rgba(0, 0, 0, 0.856);
+  background-color: rgba(97, 97, 97, 0.507);
+}
+.buyCart {
+  position: relative;
+  display: flex;
+  left: 0px;
+  cursor: pointer;
+  border: 2px solid rgba(20, 88, 14, 0.582);
+  background: rgb(186, 250, 189);
+  border-radius: 30px;
+  font-family: 'Source Sans Pro', sans-serif bold;
+  padding: 12px 28px;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  font-size: var(--btn-font-size);
+  line-height: 8px;
+  color: var(--secondary-color);
+  transition-duration: 0.7s;
+  align-items: center;
+  margin-left: 45%;
+  margin-top: 20px;
+}
+.buttonContainer{
+  margin-bottom: 3px;
+ 
+
+}
+.title{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-family: 'Source Sans Pro', sans-serif bold;
+  color: rgba(0, 0, 0, 0.808);
+}
+
+.priceAndcart2{
+  display: grid;
+  grid-template-columns: 50px 50px 50px ;
+  grid-auto-rows: auto;
+  margin-bottom: 15px;
+  height: 30px;
+  justify-items: center;
+}
+.btn2{
+  border: 1px solid #00000031;
+  font-size: 30px;
+  width: 45px;
+  font-size: 30px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 0 auto;
+  height: 45px;
+
+}
+
+.btnTrash{
+  /* width: 50px;
+  height: 50px; */
+  /* border: 0px solid #00000031;
+  background-color: white;
+  font-weight: bold;
+  margin-bottom: 18px;
+  padding: 0 auto; */
+  border: 1px solid #00000031;
+  /* font-size: 30px; */
+  width: 45px;
+  height: 45px;
+  font-size: 30px;
+  background-color: black;
+  color: white;
+  padding: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .goHome{
+  position: relative;
+  display: flex;
+  left: 0px;
+  cursor: pointer;
+  border: 2px solid rgba(20, 88, 14, 0.582);
+  background: rgb(186, 250, 189);
+  border-radius: 30px;
+  font-family: 'Source Sans Pro', sans-serif bold;
+  padding: 12px 28px;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  font-size: var(--btn-font-size);
+  line-height: 8px;
+  color: var(--secondary-color);
+  transition-duration: 0.7s;
+  align-items: center;
+  margin-left: 45%;
+  margin-top: 20px;
+} */

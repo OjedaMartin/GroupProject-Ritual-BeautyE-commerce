@@ -8,7 +8,7 @@ import NumberFormat from "react-number-format";
 export const MyOrders = () => {
   const [comment, setComment] = useState(false);
   const toggle = () => setComment(!comment);
-  const actualUser = useSelector((store) => store.currentUser);
+  const actualUser = useSelector((store) => store.users);
   let orders = actualUser?.carts?.filter((e) => e.productCart?.length > 0);
   console.log(orders);
   for (let i = 0; i < orders.length; i++) {
