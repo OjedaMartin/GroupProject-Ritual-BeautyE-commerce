@@ -4,7 +4,7 @@ const { Category } = require('../../../db')
 const hideCategory = async (req, res) => {
     try {
         let {name} = req.body;
-        console.log(req.body)
+        //console.log(req.body)
         
         const categoryByName = await Category.findAll({where:{name:name}})
         if(categoryByName.length){
