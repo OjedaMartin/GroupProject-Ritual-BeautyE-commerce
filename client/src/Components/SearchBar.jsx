@@ -18,18 +18,18 @@ export default function SearchBar (){
     
     }
 
-  const onSearch = (searchTerm) => {
+ function onSearch (searchTerm){
     setName(searchTerm);
-    goTo(`/SearchDetail/search/${name}`)
+    
     console.log("search ", searchTerm);
 
   };
 
-   // function submitHandler(e){
-   //     e.preventDefault()
-   //     dispatch(getProductName(name))    
-   // }
-   //type="submit" onClick={(e)=> submitHandler(e)}
+    function submitHandler(e){
+        e.preventDefault()
+        goTo(`/SearchDetail/search/${name}`)  
+    }
+   
     return (
 
         
@@ -37,21 +37,20 @@ export default function SearchBar (){
 
         <div className={style.container}>
             
-            <div className={style.searchbox}>
-                <form >
-                <Link to= {'/SearchDetail/search/' + name} ><button className={style.searchbtn} >
-                <FaSearch className={style.icon} aria-hidden='true' id="searchbar-icon"/>
-                </button></Link>
-
-                
+            <form className={style.searchbox}>
+                <div>       
                 <input className={style.search}
                  type="text"
                  placeholder="Search Products by name..."
                  onChange={(e) => inputChangeHandler(e)}
+                 value={name}
                  id="searchbar-input"
                  />
-                </form>
-            </div>
+                <button type="submit" onClick={(e)=> submitHandler(e)} className={style.searchbtn} >
+                <FaSearch className={style.icon} aria-hidden='true' id="searchbar-icon"/>
+                </button>
+                </div>
+            </form>
                 <div className={style.dropdown}>
             {products
                 .filter((item) => {
@@ -60,15 +59,15 @@ export default function SearchBar (){
 
                 return (
                     searchTerm &&
-                    prod.startsWith(searchTerm) &&
+                    prod.includes(searchTerm) &&
                     prod !== searchTerm
                 );
                 })
-                .slice(0, 10)
+                .slice(0, 5)
                 .map((item) => (
                 <div
                     onClick={() => onSearch(item.name)}
-                    className={style.dropdownRow}
+                    className={style.dropdownrow}
                     key={item.id}
                 >
                     {item.name}
