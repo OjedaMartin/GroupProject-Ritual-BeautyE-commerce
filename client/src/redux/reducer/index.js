@@ -10,6 +10,7 @@ const initialState = {
   cart: {},
   productsAux: [],
   //-------------
+  orders:[],
   users: [],
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
   searchedUsers: [],
@@ -76,6 +77,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         actual: action.payload,
       };
+      case "GET_US":
+        return {
+          ...state,
+          orders: action.payload,
+        }
     case " GET_ALL_USER":
       return {
         ...state,

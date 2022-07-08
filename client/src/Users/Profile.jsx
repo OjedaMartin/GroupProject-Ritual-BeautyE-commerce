@@ -8,18 +8,11 @@ import { getProfile} from "../redux/actions";
 const Profile = () => {
   const {  user } = useAuth0();
   const perfil= useSelector((state) => state.actual) 
-console.log("asdperfil", perfil)
   const dispatch = useDispatch();
   useEffect(() => {
   dispatch(getProfile(user?.email))
-})
+},[dispatch, user?.email])
 
-     
- 
-  
-  
-  
-  
   return (
     
       <div>

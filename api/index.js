@@ -32,7 +32,11 @@ const users = json3.users;
 
 // Syncing all the models at once.
 
+<<<<<<< HEAD
 conn.sync({ force:false }).then(() => {
+=======
+conn.sync({ force: false }).then(() => {
+>>>>>>> 62661b90a531d23e0a83c7b3edcd2869d6e85e93
   server.listen(3001, async() => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
 

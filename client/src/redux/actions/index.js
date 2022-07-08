@@ -114,10 +114,12 @@ export function getfilterBrand(params) {
     }
   }
 }
+
+
 export function getProfile(email) {
   return async function (dispatch) {
     try{
-    const json = await axios.get(`http://localhost:3001/users/${email}`)
+    const json = await axios.get(`http://localhost:3001/order/user/${email}`)
     return dispatch({
       type: 'GET_PROFILE',
       payload: json.data
@@ -127,6 +129,21 @@ export function getProfile(email) {
    }
   }
 }
+export function getUs(email) {
+  console.log(email)
+  return async function (dispatch) {
+    try{
+    const json = await axios.get(`http://localhost:3001/order/user/${email}`)
+    return dispatch({
+      type: 'GET_US',
+      payload: json.data
+    })
+  } catch (error) {
+    console.log(error)
+   }
+  }
+}
+
 
 export function postCategory(payload) {
   return async function (dispatch) {
