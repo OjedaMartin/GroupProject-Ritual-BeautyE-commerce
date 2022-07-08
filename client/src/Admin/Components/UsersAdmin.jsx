@@ -29,63 +29,72 @@ dispatch(getAllUsers());
 
 //<SearchBarAdmin/>
 
+return(
 
-  return (
-          <div className={style.container}>
-            
+  <>
+  <div>rebuild</div>
+  </>
 
-            <div className={style.secondaryBar}>
-              
-                   
-
-            </div>
-            <div className={style.cardinfo}>
-                
-                <p>Id</p>
-                <p>User</p>
-                <p>Email</p>
-                <p>Membership</p>
-                
-                
-            </div>
-            {searchedUsers.length>0? searchedUsers.map((e=> {
-                return(
-                        <div className={style.card} key={e.id}>
-                            <button className={style.DelBtn}><ImCross/></button>
-                            <button className={style.ModBtn}><GiUpgrade/></button>
-                            <button className={style.stockBtn}><MdPassword/></button>
-                            <p className={style.element}>{e.id}</p>
-                            <p className={style.element}>{e.name}</p>
-                            <p className={style.element}>{e.email}</p>
-                            <p className={style.element}>{e.membership}</p>
-                                            
-                        </div>)})) : <>----</>}
+)
 
 
-
-            {users.map(e=> {
-                return(
-                        <div className={style.card} key={e.id}>
-                            <button className={style.DelBtn}><ImCross/></button>
-                            <button className={style.ModBtn}><GiUpgrade/></button>
-                            <button className={style.stockBtn}><MdPassword/></button>
-                            <p className={style.element}>{e.id}</p>
-                            <p className={style.element}>{e.name}</p>
-                            <p className={style.element}>{e.email}</p>
-                            <p className={style.element}>{e.membership}</p>
-                                            
-                        </div>
-
-
-
-
-                )
-            } )
-          }
-
-            
-          </div>
-  );
+//
+//  return (
+//          <div className={style.container}>
+//            
+//
+//            <div className={style.secondaryBar}>
+//              
+//                   
+//
+//            </div>
+//            <div className={style.cardinfo}>
+//                
+//                <p>Id</p>
+//                <p>User</p>
+//                <p>Email</p>
+//                <p>Membership</p>
+//                
+//                
+//            </div>
+//            {searchedUsers.length>0? searchedUsers.map((e=> {
+//                return(
+//                        <div className={style.card} key={e.id}>
+//                            <button className={style.DelBtn}><ImCross/></button>
+//                            <button className={style.ModBtn}><GiUpgrade/></button>
+//                            <button className={style.stockBtn}><MdPassword/></button>
+//                            <p className={style.element}>{e.id}</p>
+//                            <p className={style.element}>{e.name}</p>
+//                            <p className={style.element}>{e.email}</p>
+//                            <p className={style.element}>{e.membership}</p>
+//                                            
+//                        </div>)})) : <>----</>}
+//
+//
+//
+//            {users.map(e=> {
+//                return(
+//                        <div className={style.card} key={e.id}>
+//                            <button className={style.DelBtn}><ImCross/></button>
+//                            <button className={style.ModBtn}><GiUpgrade/></button>
+//                            <button className={style.stockBtn}><MdPassword/></button>
+//                            <p className={style.element}>{e.id}</p>
+//                            <p className={style.element}>{e.name}</p>
+//                            <p className={style.element}>{e.email}</p>
+//                            <p className={style.element}>{e.membership}</p>
+//                                            
+//                        </div>
+//
+//
+//
+//
+//                )
+//            } )
+//          }
+//
+//            
+//          </div>
+//  );
 };
-
-export default UsersAdmin;
+//
+export default UsersAdmin
