@@ -1,0 +1,15 @@
+.contForm{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.infoReview{
+    text-align:center
+}
+
+.titleReview{
+    text-align:center
+}
+

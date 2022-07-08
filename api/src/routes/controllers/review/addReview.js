@@ -6,10 +6,10 @@ const addReview = async (req, res) => {
         
     try {
         let { id } = req.params;
-        let { email, rating, text} = req.body;
+        let { email, rating, text, name} = req.body;
         console.log('req.body :>> ', req.body);
         
-        let prod = await Product.findByPk(id)
+        let prod = await Product.findOne({where :{name}})
         let use = await User.findOne({where :{ email}})
 
         if (!prod) {

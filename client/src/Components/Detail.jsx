@@ -8,6 +8,8 @@ import style from "./Detail.module.css"
 import swal from 'sweetalert'
 import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 //--------------------------------------
+import Review from "./reviews";
+
 export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -84,6 +86,10 @@ export default function Detail() {
             <button className={style.btn} > Back to Home </button>
           </Link>
         </div>
+      </div>
+      <div>
+      <Review
+      id = {id}/>
       </div>
     </div>
   );

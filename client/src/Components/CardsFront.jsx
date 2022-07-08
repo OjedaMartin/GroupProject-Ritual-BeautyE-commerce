@@ -9,65 +9,14 @@ import img8 from '../images/img8.jpeg'
 import img9 from '../images/img9.webp'
 import style from './CardsFront.module.css'
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 const responsive = {
     0: { items: 1 },
     568: { items: 2 },
     1024: { items: 4 },
 };
-
-const items = [
-    <div className={style.itemCard}>
-        <NavLink to ={'details/b1061d09-0f2e-43b7-becd-869117cb296f'} className = {style.decorationT}>
-      <img src={`${img4}`} alt="fff"className={style.imgCarouselB} />
-      <p className={style.textShop}>DYSON</p>
-       <p className={style.textInfo}>Supersonic™ Hair Dryer</p>
-       <p className={style.textInfo}>$429.00</p>
-       </NavLink>
-    </div>,
-    <div className={style.itemCard}>
-        <NavLink to ={'details/ad232939-9770-44f8-893f-24a5d20a84e2'} className = {style.decorationT}>
-       <img src={`${img5}`} alt="fff"className={style.imgCarouselB}/>
-       <p className={style.textShop}>OLAPLEX</p>
-       <p className={style.textInfo}>No. 3 Hair Repair Perfector</p>
-       <p className={style.textInfo}>$28.00</p>
-       </NavLink>
-       
-    </div>, 
-    <div className={style.itemCard} >
-        <NavLink to ={'details/c81ddc79-5906-44a8-98ca-a1bf53603ee4'} className = {style.decorationT}>
-      <img src={`${img7}`} alt="fff"className={style.imgCarouselB}/>
-      <p className={style.textShop}>NuFACE</p>
-       <p className={style.textInfo}>Trinity Facial Toning Device</p>
-       <p className={style.textInfo}>$339.00</p>
-       </NavLink>
-    </div>,
-    <div className={style.itemCard} >
-        <NavLink to ={'details/409db126-c841-47ce-b783-716643ecb8af'} className = {style.decorationT}>
-       <img src={`${img6}`} alt="fff"className={style.imgCarouselB}/>
-       <p className={style.textShop}>SOL DE JANEIRO</p>
-       <p className={style.textInfo}>Brazilian Joia ™ Milky Leave-In Conditioner</p>
-       <p className={style.textInfo}>$28.00</p>
-       </NavLink>
-    </div>,
-    <div className={style.itemCard} >
-        <NavLink to ={'details/b0431205-be78-433e-8554-1dc8a5350056'} className = {style.decorationT}>
-       <img src={`${img8}`} alt="fff"className={style.imgCarouselB}/>
-       <p className={style.textShop}>BOBBI BROWN</p>
-       <p className={style.textInfo}>Vitamin Enriched Face Base Priming Moisturizer</p>
-       <p className={style.textInfo}>$95.00</p>
-       </NavLink>
-    </div>, 
-    <div className={style.itemCard} >
-        <NavLink to ={'details/ed509bd1-e134-439d-862f-f02efd441401'} className = {style.decorationT}>
-       <img src={`${img9}`} alt="fff"className={style.imgCarouselB}/>
-       <p className={style.textShop}>DIOR</p>
-       <p className={style.textInfo}>Dior Addict Lip Glow</p>
-       <p className={style.textInfo}>$35.00</p>
-       </NavLink>
-    </div>,
-
-];
 
 const onInitialized = (e) => {
     console.debug(`Start position(activeIndex) on init: ${e.item}. Event:`, e);
@@ -85,9 +34,80 @@ const onResized = (e) => {
     console.debug(`Item's position after resize: ${e.item}. Event:`, e);
 };
 
-const Carousel = () => (
-    <><div className={style.titleCardF}>Best Sellers</div>
+export default function  Carousel (){
+    const prod0 ="Supersonic™ Hair Dryer";
+    const prod1 ="No. 3 Hair Repair Perfector";
+    const prod2="Trinity Facial Toning Device";
+    const prod3 ="Brazilian Joia ™ Milky Leave-In Conditioner";
+    const prod4 ="Vitamin Enriched Face Base Priming Moisturizer";
+    const prod5="Dior Addict Lip Glow";
+    const idName1=[];
+    const productosData = useSelector((state) => state.products);
+    productosData?.map((e) => e.name === prod0 ? idName1.push(e.id):"");
+    productosData?.map((e) => e.name === prod1 ? idName1.push(e.id):"");
+    productosData?.map((e) => e.name === prod2 ? idName1.push(e.id):"");
+    productosData?.map((e) => e.name === prod3 ? idName1.push(e.id):"");
+    productosData?.map((e) => e.name === prod4 ? idName1.push(e.id):"");
+    productosData?.map((e) => e.name === prod5 ? idName1.push(e.id):"");
+
+    const items = [
+   
+        <div className={style.itemCard}>
+            <NavLink to ={'details/' + idName1[0]} className = {style.decorationT}>
+          <img src={`${img4}`} alt="fff"className={style.imgCarouselB} />
+          <p className={style.textShop}>DYSON</p>
+           <p className={style.textInfo}>Supersonic™ Hair Dryer</p>
+           <p className={style.textInfo}>$429.00</p>
+           </NavLink>
+        </div>,
+        <div className={style.itemCard}>
+            <NavLink to ={'details/' + idName1[1]} className = {style.decorationT}>
+           <img src={`${img5}`} alt="fff"className={style.imgCarouselB}/>
+           <p className={style.textShop}>OLAPLEX</p>
+           <p className={style.textInfo}>No. 3 Hair Repair Perfector</p>
+           <p className={style.textInfo}>$28.00</p>
+           </NavLink>
+           
+        </div>, 
+        <div className={style.itemCard} >
+            <NavLink to ={'details/' + idName1[2]} className = {style.decorationT}>
+          <img src={`${img7}`} alt="fff"className={style.imgCarouselB}/>
+          <p className={style.textShop}>NuFACE</p>
+           <p className={style.textInfo}>Trinity Facial Toning Device</p>
+           <p className={style.textInfo}>$339.00</p>
+           </NavLink>
+        </div>,
+        <div className={style.itemCard} >
+            <NavLink to ={'details/' + idName1[3]} className = {style.decorationT}>
+           <img src={`${img6}`} alt="fff"className={style.imgCarouselB}/>
+           <p className={style.textShop}>SOL DE JANEIRO</p>
+           <p className={style.textInfo}>Brazilian Joia ™ Milky Leave-In Conditioner</p>
+           <p className={style.textInfo}>$28.00</p>
+           </NavLink>
+        </div>,
+        <div className={style.itemCard} >
+            <NavLink to ={'details/' + idName1[4]} className = {style.decorationT}>
+           <img src={`${img8}`} alt="fff"className={style.imgCarouselB}/>
+           <p className={style.textShop}>BOBBI BROWN</p>
+           <p className={style.textInfo}>Vitamin Enriched Face Base Priming Moisturizer</p>
+           <p className={style.textInfo}>$95.00</p>
+           </NavLink>
+        </div>, 
+        <div className={style.itemCard} >
+            <NavLink to ={'details/' + idName1[5]} className = {style.decorationT}>
+           <img src={`${img9}`} alt="fff"className={style.imgCarouselB}/>
+           <p className={style.textShop}>DIOR</p>
+           <p className={style.textInfo}>Dior Addict Lip Glow</p>
+           <p className={style.textInfo}>$35.00</p>
+           </NavLink>
+        </div>,
+    
+    ];
+   return(
+    <>
+    <div className={style.titleCardF}>Best Sellers</div>
     <AliceCarousel
+    
         mouseTracking
         keyboardNavigation
         items={items}
@@ -96,6 +116,5 @@ const Carousel = () => (
         onSlideChange={onSlideChange}
         onSlideChanged={onSlideChanged}
         onResized={onResized} /></>
-);
-
-export default Carousel
+   )
+};
