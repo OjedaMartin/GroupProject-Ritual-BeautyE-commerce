@@ -11,7 +11,6 @@ const initialState = {
   //-------------
   users: [],
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
-  searchedUsers: [],
   allreviews:[],
 };
 
@@ -55,6 +54,11 @@ function rootReducer(state = initialState, action) {
     case "PUT_CATEGORY":
       return {
         ...state,
+      };
+    case "LOG":
+      return {
+        ...state,
+        profile: action.payload.data
       };
     case "HIDE_CATEGORY":
       return {
@@ -212,7 +216,7 @@ function rootReducer(state = initialState, action) {
     case 'GET_USER_BY_NAME':
       return {
         ...state,
-        searchedUsers: action.payload,
+        profile: action.payload,
       };
 
     default:

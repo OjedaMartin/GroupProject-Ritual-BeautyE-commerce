@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUserByName } from "../redux/actions";
+import { getUserByName, Log } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import { Settings } from "./Settings";
 import { MyOrders } from "./Orders";
@@ -15,10 +15,15 @@ const Profile = () => {
   //   email:user.email,
   //   image:user.picture
   // })}
-  
-    if (isAuthenticated) {
-    console.log(user.name)
+
+  async function postAndGet(user){
+    console.log("user", user)
+    await dispatch(Log(user))
     dispatch(getUserByName(user.name))
+  }
+  
+    if (isAuthenticated) { 
+      postAndGet(user)   
     
     ;
   }
