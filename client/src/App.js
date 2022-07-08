@@ -17,6 +17,7 @@ import PrivacyPolicy from "./Components/PrivacyPolicy.jsx";
 import { Settings } from "./Users/Settings.jsx";
 import { MyOrders } from "./Users/Orders.jsx";
 import CartCard from "../src/Components/CartCard.jsx";
+import ReviewForm from "./Components/reviewForm.jsx";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/user/settings" element={<Settings />} />
         <Route path="/user/myorders" element={<MyOrders />} />
         <Route exact path="/cart" element={<CartCard />} />
+        <Route exact path="/addreview" element={<ReviewForm />} />
       </Routes>
       <Footer />
     </BrowserRouter>

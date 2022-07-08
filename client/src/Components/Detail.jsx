@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getDetail, addProdToCart, removeProdFromCart } from "../redux/actions/index";
 import style from "./Detail.module.css"
+import Review from "./reviews";
 //---------------------------------------
 import swal from 'sweetalert'
 import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
@@ -84,6 +85,10 @@ export default function Detail() {
             <button className={style.btn} > Back to Home </button>
           </Link>
         </div>
+      </div>
+      <div>
+      <Review
+      id = {id}/>
       </div>
     </div>
   );

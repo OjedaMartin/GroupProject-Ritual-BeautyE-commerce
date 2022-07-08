@@ -313,3 +313,32 @@ export function clearCart (){
       payload: orderSelected,
     }
   }
+
+  // REVIEWS
+
+  export function postReview(payload) {
+    return async (dispatch) => {
+        try {
+            console.log(payload,'payload post review');
+            const response = await axios.post('http://localhost:3001/review/create/', payload);  
+      return dispatch({ type: 'POST_REVIEW', payload: response });
+        } catch (error) {
+            console.log(error, 'post review ');
+        }
+    };
+  };
+  
+  export function getReviews(){
+    return async function (dispatch){
+        try {
+            const response = await fetch('http://localhost:3001/review/');
+            const json = await response.json();
+            dispatch({
+                type:'GET_REVIEW',
+                payload: json
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+  }
