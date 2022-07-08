@@ -1,20 +1,5 @@
 const { Cart, User, Order, CartProduct, Product } = require("../../../db");
 
-const createOrder = async (req, res) => {
-  var { email, address } = req.body;
-  var user = await User.findOne({ where: { email } });
-  let orden;
-  if (user) {
-    if (!address) {
-      orden = await Order.create({ address: user.address });
-    } else {
-      orden = await Order.create({ address });
-    }
-    user.addOrder(orden);
-
-    let cart = await Cart.findOne({
-      where: { UserId: user.id, state: "true" },
-    });
 
 const createOrder = async(req, res )=>{
     
@@ -50,8 +35,8 @@ const createOrder = async(req, res )=>{
            await orden.addCartProduct(prods)
         }
       }
-    }
-  }
+    
+  
 
   /* 
     let prodcart = await CartProduct.findAll({where:{CartId:cart.id}})

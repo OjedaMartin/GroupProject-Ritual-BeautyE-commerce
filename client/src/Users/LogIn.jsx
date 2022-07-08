@@ -7,6 +7,7 @@ import { Log } from "../redux/actions";
 const Login= () => {
   const dispatch = useDispatch();
   const { loginWithRedirect, isAuthenticated, user} = useAuth0();
+  
 
 // if (isAuthenticated){dispatch(Log(user),{
 //   name:user.name,

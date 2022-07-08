@@ -4,7 +4,6 @@
             "name": "guille1",
             "email": "tomas@gmail.com",
             "password": "123456",
-            "membership": "Basic",
             "address": " 9 de julio N°5210 "
         },
         {
@@ -18,42 +17,36 @@
             "name": "gaston3",
             "email": "gaston@gmail.com",
             "password": "123456",
-            "membership": "Basic",
             "address": " 9 de julio N°5210 "
         },
         {
             "name": "ivan4",
             "email": "ivan@gmail.com",
             "password": "123456",
-            "membership": "Basic",
             "address": " 9 de julio N°5210 "
         },
         {
             "name": "alberto5",
             "email": "alberto@gmail.com",
             "password": "123456",
-            "membership": "Basic",
             "address": " 9 de julio N°5210 "
         },
         {
             "name": "maru6",
             "email": "maru6@gmail.com",
             "password": "123456",
-            "membership": "Basic",
             "address": " 9 de julio N°5210 "
         },
         {
             "name": "rafa7",
             "email": "rafa@gmail.com",
             "password": "123456",
-            "membership": "Basic",
             "address": " 9 de julio N°5210 "
         },
         {
             "name": "matias8",
             "email": "matias@gmail.com",
             "password": "123456",
-            "membership": "Basic",
             "address": " 9 de julio N°5210 "
         }
     ]

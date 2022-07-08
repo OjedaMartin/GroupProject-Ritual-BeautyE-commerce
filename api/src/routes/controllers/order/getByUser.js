@@ -2,7 +2,7 @@ const {Order,CartProduct,User} = require('../../../db')
 
 
 async function getByUser(req,res) {
-    let {email} = req.body
+    let {email} = req.params
     let user = await User.findOne({where:{email}}) 
 
     if(!user) res.send("No se encuentra ese usuario")  
