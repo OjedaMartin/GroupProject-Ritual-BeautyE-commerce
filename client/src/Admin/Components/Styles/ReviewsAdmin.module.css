@@ -1,0 +1,32 @@
+.container{
+    margin: 100px 120px;
+}
+.Card{
+    display: grid;
+    grid-template-columns: 100px 400px 100px 100px;
+    
+  
+}
+.info{
+    font-family: 'Vazirmatn', sans-serif;
+    border-bottom: 1px solid rgb(184, 184, 184);
+    
+}
+.DelBtn{
+    background-color: rgba(230, 64, 64, 0);
+    font-family: 'Cantarell', sans-serif;
+    border-color: rgba(240, 248, 255, 0);
+}
+.DelBtn:hover{
+    color: rgba(206, 37, 37, 0.815);    
+    font-family: 'Cantarell', sans-serif;
+    transform: scale(1.2);
+}
+.CardTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 200px;
+    font-family: 'Vazirmatn', sans-serif;
+
+}

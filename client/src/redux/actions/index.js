@@ -67,6 +67,15 @@ export function getAllUsers() {
     });
   };
 }
+export function getAllReviews() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/review");    
+    return dispatch({
+      type: "GET_ALL_REVIEWS",
+      payload: json.data,
+    });
+  };
+}
 
 //FILTRA POR MARCA
 export function getfilterBrand(params) {
@@ -257,6 +266,15 @@ export function deleteProductCart (productId){//DEBERIA HABER ALGO PARA IDENTIFI
     console.log('json action deleteProductCart',json);
     return dispatch({
       type: "DELETE_PRODUCT_CART",
+    });
+  }
+}
+export function deleteReview (reviewId){
+  return async function (dispatch) {
+    const json = await axios.delete(`http://localhost:3001/review/delete/${reviewId}`);
+    console.log('json action delete review',json);
+    return dispatch({
+      type: "DELETE_REVIEW",
     });
   }
 }
