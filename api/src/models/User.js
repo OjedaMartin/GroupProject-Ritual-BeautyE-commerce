@@ -22,10 +22,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,  
           },
-    email:{
-        type: DataTypes.STRING,
-        
-    },
     membership: {
       type: DataTypes.ENUM,
       values: ['Basic', 'Subscribed', 'Banned', 'Admin'],

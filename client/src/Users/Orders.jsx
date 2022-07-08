@@ -8,6 +8,7 @@ import {  getProfile, getUs, Log } from "../redux/actions";
 
 export const MyOrders = () => {
   const { isAuthenticated, user } = useAuth0();
+  console.log("detalle de user........",user)
   const perfil= useSelector((state) => state.actual) 
   console.log("prf", perfil)
   const dispatch = useDispatch();

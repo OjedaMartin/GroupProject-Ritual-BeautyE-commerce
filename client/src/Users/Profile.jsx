@@ -7,7 +7,9 @@ import { Button } from "reactstrap";
 import { getProfile} from "../redux/actions";
 const Profile = () => {
   const {  user } = useAuth0();
+  console.log("info de aut0!!!",user)
   const perfil= useSelector((state) => state.actual) 
+  console.log("estado del perfil!!!!!",perfil)
   const dispatch = useDispatch();
   useEffect(() => {
   dispatch(getProfile(user?.email))
