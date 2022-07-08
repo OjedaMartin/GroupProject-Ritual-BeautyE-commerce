@@ -1,35 +1,34 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUser } from "../redux/actions";
-import { useDispatch } from "react-redux";
-import { Settings } from "./Settings";
-import { MyOrders } from "./Orders";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
+import { getProfile} from "../redux/actions";
 const Profile = () => {
+  const {  user } = useAuth0();
+  const perfil= useSelector((state) => state.actual) 
   const dispatch = useDispatch();
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  // const[profile,setProfile] = useState("");
-  // if (isAuthenticated){ dispatch(getUser(user),{
-  //   name:user.name,
-  //   email:user.email,
-  //   image:user.picture
-  // })}
-  
-    if (isAuthenticated) {
-    dispatch(getUser(user))
-    ;
-  }
-  
+  useEffect(() => {
+  dispatch(getProfile(user?.email))
+},[dispatch, user?.email])
+
   return (
-    isAuthenticated && (
+    
       <div>
-        <img src={user.picture} alt={user.name} />
+      
+      
         <br/>
         <label>Name:</label>
-        <h2>{user.name}</h2>
+        <h2>{perfil?.name===null?"name":perfil?.name} </h2>
+        <br/>
+      
+        <img src={perfil?.image===null?"https://us.123rf.com/450wm/pixelpic/pixelpic2008/pixelpic200800992/153285753-logotipo-de-la-letra-r-vintage-vector-de-dise%C3%B1o-de-letra-r-cl%C3%A1sico-con-color-negro-y-dibujado-a-mano.jpg?ver=6":perfil?.image} alt="" />
+        <br/>
+        
         <label>Email:</label>
-        <h2>{user.email}</h2>
+       
+        <h2> {perfil?.email} </h2>
         <div  >
           <Link exact to="/user/settings">
             <Button >
@@ -44,7 +43,7 @@ const Profile = () => {
             </Link>
         </div>
       </div>
-    )
+    
   );
 };
 
