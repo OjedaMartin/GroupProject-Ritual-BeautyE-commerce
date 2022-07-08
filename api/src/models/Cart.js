@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
     },
     state:{
       type: DataTypes.STRING,
-      defaultValue: "Active",
+      defaultValue:"true",
     }
   },{
     timestamps: false

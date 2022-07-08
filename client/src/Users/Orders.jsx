@@ -1,66 +1,27 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Button, Modal, ModalBody } from "reactstrap";
-// import Review from "../ProductDetails/Reviews.jsx";
+import React, { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-import NumberFormat from "react-number-format";
+import { useDispatch, useSelector } from "react-redux";
+// import { Button, Modal, ModalBody } from "reactstrap";
+// import Review from "../ProductDetails/Reviews.jsx";
+import {  getProfile, getUs, Log } from "../redux/actions";
 
 export const MyOrders = () => {
-  const [comment, setComment] = useState(false);
-  const toggle = () => setComment(!comment);
-  const actualUser = useSelector((store) => store.currentUser);
-  let orders = actualUser?.carts?.filter((e) => e.productCart?.length > 0);
-  console.log(orders);
-  for (let i = 0; i < orders.length; i++) {
-    orders[i].amount = orders[i].productCart.reduce(
-      (a, p) =>
-        (a += Object.keys(p.stockSelected)?.reduce(
-          (a, t) => (a += p.stockSelected[t] * p.price),
-          0
-        )),
-      0
-    );
-  }
-  return (
-    <div>
-      <h1>Orders</h1>
-      <div >
-        <div >
-          {orders?.map((e) => (
-            <div >
-              <p >N° of order: {e.CartId}</p>
-              <p >
-                Price:{" "}
-                {
-                  <NumberFormat
-                    value={e.amount}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  />
-                }
-              </p>
-              <p>Products: </p>
-              <ul >
-                {e?.productCart?.map((el) => (
-                  <div >
-                    <li >
-                      <img src={el.picture} alt="not found" width="100px" />
-                      <p>{el.name}</p>
-                    </li>
-                    <Button onClick={toggle}>Add Comment</Button>
-                    <Modal isOpen={comment} toggle={toggle}>
-                      <ModalBody>
-                        {/* <Review productProductId={el.ProductId} /> */}
-                      </ModalBody>
-                    </Modal>
-                  </div>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+  const { isAuthenticated, user } = useAuth0();
+  const perfil= useSelector((state) => state.actual) 
+  console.log("prf", perfil)
+  const dispatch = useDispatch();
+ 
+  useEffect(() => {
+   dispatch(getProfile(user?.email))
+},[dispatch, user?.email])
+
+return(
+  <div>
+    <h1>My Orders</h1>
+    <label>Name:</label>
+        <h2>{perfil?.CartId===null?"asfdas":perfil?.CartId} </h2>
+    
+  </div>
+)
 };

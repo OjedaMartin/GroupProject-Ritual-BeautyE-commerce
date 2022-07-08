@@ -5,9 +5,9 @@ async function getOrder(req,res) {
 
     let resp= await Order.findAll({include:[{
         model: CartProduct,
-        attributes:["cartId","productId","quantity"]
+        attributes:["ProductId","quantity"]
     }]})
-    console.log(resp)
+    if(!resp) res.send("No hay ordenes disponibles para mostrar")
     res.json(resp)
 }
 

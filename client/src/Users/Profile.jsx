@@ -1,44 +1,50 @@
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import s from "./profile.module.css"
-import { Link} from "react-router-dom";
-import { useNavigate } from "react-router"; 
 import { useDispatch, useSelector } from "react-redux";
-import { createUser, getUser } from "../redux/actions";
-export const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  
-  const dispatch=useDispatch();
-  const navigate=useNavigate();
-  const actualUser = useSelector((store) => store.actualUser);
-  console.log(actualUser)
-console.log("profile",user, isAuthenticated, isLoading)
-useEffect( () => {
-  if (isAuthenticated) {
-    dispatch(createUser(user));
-    // noRepeat = true;
-     dispatch(getUser(user.email));
-    window.localStorage.setItem("userEmail", user.email);
-    if (window.localStorage.url && window.localStorage.url !== window.location.pathname) {
-      navigate(window.localStorage.url)
-    }
-    window.localStorage.removeItem("url")
-  }
-}, [navigate, user, isAuthenticated, dispatch]);
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
-  
-  
+import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
+import { getProfile} from "../redux/actions";
+const Profile = () => {
+  const {  user } = useAuth0();
+  const perfil= useSelector((state) => state.actual) 
+  const dispatch = useDispatch();
+  useEffect(() => {
+  dispatch(getProfile(user?.email))
+},[dispatch, user?.email])
+
   return (
-    isAuthenticated && (<Link Link exact to="/user">   
     
-    <img className={s.pic} src={user.picture} alt={user.name} />
-    {/* <h2>{user.name}</h2>
-    <p>{user.email}</p> */}
- </Link>
-   
-    )
+      <div>
+      
+      
+        <br/>
+        <label>Name:</label>
+        <h2>{perfil?.name===null?"name":perfil?.name} </h2>
+        <br/>
+      
+        <img src={perfil?.image===null?"https://us.123rf.com/450wm/pixelpic/pixelpic2008/pixelpic200800992/153285753-logotipo-de-la-letra-r-vintage-vector-de-dise%C3%B1o-de-letra-r-cl%C3%A1sico-con-color-negro-y-dibujado-a-mano.jpg?ver=6":perfil?.image} alt="" />
+        <br/>
+        
+        <label>Email:</label>
+       
+        <h2> {perfil?.email} </h2>
+        <div  >
+          <Link exact to="/user/settings">
+            <Button >
+              Settings
+            </Button>
+          </Link>
+
+          <Link  exact to="/user/myorders">
+          <Button >
+              My Orders
+              </Button>
+            </Link>
+        </div>
+      </div>
+    
   );
 };
+
+export default Profile;
