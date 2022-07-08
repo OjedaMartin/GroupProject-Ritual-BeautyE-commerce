@@ -115,27 +115,31 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    // case "GET_CART":
-    //   return {
-    //     ...state,
-    //     prodCart: action.payload,
-    //   };
+    case "GET_CART":
+      return {
+        ...state,
+        pruebaCartUser: [action.payload],
+      };
     // case "DELETE_PRODUCT_CART":
     //   return {
     //     ...state,
     //   };
     case 'ADD_PROD_TO_CART':
-      // console.log('action.payload',action.payload)
+      //console.log('action.payload', action.payload)
       // console.log('action.login',action.login)
       const newProd = action.payload;
       const login = action.isLogin;
       //------------------------LOGEADO O NO?----------------------------------
-      const itemsInCart = login
-        ? state.pruebaCartUser.length > 0
-          ? state.pruebaCartUser.find((e) => e.id === newProd.id)
-          : state.prodCart?.find((e) => e.id === newProd.id)
-        : state.prodCart.find((e) => e.id === newProd.id)
+      // const itemsInCart = login
+      //   ? state.pruebaCartUser.length > 0
+      //     ? state.pruebaCartUser.find((e) => e.id === newProd.id)
+      //     : state.prodCart?.find((e) => e.id === newProd.id)
+      //   : state.prodCart.find((e) => e.id === newProd.id)
+      // console.log('itemsInCart-->', !!itemsInCart)
 
+      const itemsInCart = state.prodCart?.find((e) => e.id === newProd.id)
+
+      //console.log('itemsInCart-->', !!itemsInCart)
       //-----------------------------------------------------------------------
 
       if (newProd.quantity < newProd.in_Stock) {
@@ -143,13 +147,13 @@ function rootReducer(state = initialState, action) {
           ? state.prodCart.map((it) => it.id === newProd.id
             ? { ...it, quantity: it.quantity + 1 }
             : it)
-          : login
-            ? [...state.pruebaCartUser, { ...newProd, quantity: 1 }]
-            : [...state.prodCart, { ...newProd, quantity: 1 }]
 
-        login
-          ? localStorage.removeItem('prodCart')
-          : localStorage.setItem('prodCart', JSON.stringify(cartItems));
+          : [...state.prodCart, { ...newProd, quantity: 1 }]
+
+
+        localStorage.setItem('prodCart', JSON.stringify(cartItems));
+        //-----------------------------------------------------------------------          
+        //console.log('cartItems --->', cartItems)
 
         if (login) {
           return { ...state, pruebaCartUser: cartItems, };
@@ -217,13 +221,13 @@ function rootReducer(state = initialState, action) {
     case 'GET_CART_USER':
       return {
         ...state,
-        pruebaCartUser: action.payload,
+        pruebaCartUser: [action.payload],
       }
-    case "GET_CART_USER"://
-      return {
-        ...state,
-        pruebaUsers: action.payload,
-      };
+    // case "GET_CART_USER":
+    //   return {
+    //     ...state,
+    //     pruebaUsers: action.payload,
+    //   };
     default:
       return state;
   }

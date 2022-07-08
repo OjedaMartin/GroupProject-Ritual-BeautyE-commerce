@@ -11,20 +11,27 @@ const createOrder = async(req, res )=>{
          orden= await Order.create({address:user.address})
         }else{ 
          orden= await Order.create({address})}
-        user.addOrder(orden)
+
+         if(!orden) res.send("ingresar ADDRESS para el destino de su compra")
          
+        user.addOrder(orden)
+       
         let cart = await Cart.findOne({where:{UserId:user.id,state:"true"}})
         
         if (cart) {
-            await Cart.update({state:"false"},{where:{UserId:user.id}})
-           await cart.addOrder(orden)
+            await cart.addOrder(orden)
+            
+           let stock
             let prods= await CartProduct.findAll({CartId:cart.id})
             for (let i = 0; i < prods.length; i++) {
                 let prod =await Product.findOne({where:{id:prods[i].ProductId}}) 
-                let stock = prod.in_Stock - prods[i].quantity
-                await Product.update({in_Stock:stock},{where:{id:prods[i].ProductId}})
+                if(prod.in_Stock < prods[i].quantity) { stock = prod.in_Stock}
+                else{ stock = prod.in_Stock - prods[i].quantity}
                 
+                await Cart.update({state:"false"},{where:{UserId:user.id}})
+                await Product.update({in_Stock:stock},{where:{id:prods[i].ProductId}})
             }
+            
            await orden.addCartProduct(prods)
         }
     }

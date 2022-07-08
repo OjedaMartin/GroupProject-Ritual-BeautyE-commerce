@@ -78,36 +78,33 @@ export default function CartCard() {
 
     const handleAddCart = (e) => {
         e.preventDefault();
-
-        const filter = allProd.length > 0?.find((item) => item.id === e.target.value)
+        const filter = prodCart.find((item) => item.id === e.target.value);
         if (filter.quantity < filter.in_Stock) {
-            dispatch(addProdToCart({
-                id: filter.id,
-                name: filter.name,
-                image: filter.image,
-                price: filter.price,
-                brand: filter.brand,
-                in_Stock: filter.in_Stock,
-                CategoryId: filter.CategoryId,
-                rating: filter.rating,
-                quantity: filter.quantity,
-            }, isAuthenticated))
+            dispatch(addProdToCart(
+                {
+                    id: filter.id,
+                    name: filter.name,
+                    image: filter.image,
+                    price: filter.price,
+                    brand: filter.brand,
+                    in_Stock: filter.in_Stock,
+                    CategoryId: filter.CategoryId,
+                    rating: filter.rating,
+                    quantity: filter.quantity,
+                }
+            ));
         } else {
-            swal('¡Ups! Insufficient stock.');
+            swal(`Insufficient stock in: ${filter.name}`);
         }
     }
 
 
     const handleRemoveCart = (e) => {
-        if (isAuthenticated) {
-            //LO DEBERIA DE MANDAR AL BACK PARA BASE DE DATOS
-            //LIMPIAR EL LOCALSTORAGE
-            e.preventDefault();
-            dispatch(removeProdFromCart({ id: e.target.value }));
-        } else {
-            e.preventDefault();
-            dispatch(removeProdFromCart({ id: e.target.value }));
-        }
+        //LO DEBERIA DE MANDAR AL BACK PARA BASE DE DATOS
+        //LIMPIAR EL LOCALSTORAGE
+        e.preventDefault();
+        dispatch(removeProdFromCart({ id: e.target.value }));
+
     }
     const handleBuy = (e) => {
         e.preventDefault();
@@ -138,43 +135,19 @@ export default function CartCard() {
         }
     }
     const handleDelete = (e) => {
-        if (isAuthenticated) {
-            //ACA SE DEBERIA DE ELIMINAR EL CARRITO DE LA BASE DE DATOS? O CAMBIAR DE ESTADO VER!
-            e.preventDefault();
-            let confirmDelete = window.confirm("Do you are sure, to delet all cart?");
-            if (confirmDelete) {
-                dispatch(clearCart());
-                navigate('/SearchDetail/shopall/allProducts');
-            }
-        } else {
-            e.preventDefault();
-            let confirmDelete = window.confirm("Do you are sure, to delet all cart?");
-            if (confirmDelete) {
-                dispatch(clearCart());
-                navigate('/SearchDetail/shopall/allProducts');
-            }
+        //ACA SE DEBERIA DE ELIMINAR EL CARRITO DE LA BASE DE DATOS? O CAMBIAR DE ESTADO VER!
+        e.preventDefault();
+        let confirmDelete = window.confirm("Do you are sure, to delet all cart?");
+        if (confirmDelete) {
+            dispatch(clearCart());
+            navigate('/SearchDetail/shopall/allProducts');
         }
+
     }
     const handleDeleteOneProd = (e) => {
-        if (isAuthenticated) {
-            //Esto deberia buscar en la base de datos el carrito y eliminar un producto o cambiar el estado
-            e.preventDefault();
-            const filter = prodCart.find((item) => item.id === e.target.value);
-            dispatch(removeAllOneProdToCart(
-                {
-                    id: filter.id,
-                    name: filter.name,
-                    image: filter.image,
-                    price: filter.price,
-                    brand: filter.brand,
-                    in_Stock: filter.in_Stock,
-                    CategoryId: filter.CategoryId,
-                    rating: filter.rating,
-                    quantity: filter.quantity,
-                }
-            ));
-        } else {
-            e.preventDefault();
+        e.preventDefault();
+        let confirmDelete = window.confirm("Do you are sure, to delet this product?");
+        if (confirmDelete) {
             const filter = prodCart.find((item) => item.id === e.target.value);
             dispatch(removeAllOneProdToCart(
                 {
@@ -190,6 +163,9 @@ export default function CartCard() {
                 }
             ));
         }
+
+
+
     }
 
     if (prodCart.length > 0) {

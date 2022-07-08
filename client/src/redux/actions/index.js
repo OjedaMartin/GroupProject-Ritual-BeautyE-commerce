@@ -173,7 +173,7 @@ export function getAllCart() {
 
 export function getCartByUser(email) {
   return async function (dispatch) {
-    const json = await axios.get(`http://localhost:3001/cart/user?email=${email}`);
+    const json = await axios.get(`http://localhost:3001/cart/user/${email}`);
     console.log('json action getAllCart', json.data);
     return dispatch({
       type: "GET_CART_USER",
