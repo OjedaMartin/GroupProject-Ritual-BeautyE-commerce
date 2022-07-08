@@ -12,6 +12,7 @@ import s from "./Landing.module.css";
 export default function Landing() {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
+  console.log("primer dato traido de user!!!!",user)
 
   useEffect(() => {
     dispatch(getAllCategories());

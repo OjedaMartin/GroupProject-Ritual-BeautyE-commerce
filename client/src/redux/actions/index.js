@@ -117,9 +117,10 @@ export function getfilterBrand(params) {
 
 
 export function getProfile(email) {
+  console.log("email axictiopnssss!!!!!!!!",email)
   return async function (dispatch) {
     try{
-    const json = await axios.get(`http://localhost:3001/order/user/${email}`)
+    const json = await axios.get(`http://localhost:3001/user/`,email)
     return dispatch({
       type: 'GET_PROFILE',
       payload: json.data
@@ -130,7 +131,7 @@ export function getProfile(email) {
   }
 }
 export function getUs(email) {
-  console.log(email)
+  console.log("gggggggggggggggggg",email)
   return async function (dispatch) {
     try{
     const json = await axios.get(`http://localhost:3001/order/user/${email}`)
