@@ -7,6 +7,7 @@ async function getOrder(req,res) {
         model: CartProduct,
         attributes:["ProductId","quantity"]
     }]})
+    if(!resp) res.send("No hay ordenes disponibles para mostrar")
     res.json(resp)
 }
 

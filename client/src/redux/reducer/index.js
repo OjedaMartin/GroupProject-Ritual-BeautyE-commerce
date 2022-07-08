@@ -4,11 +4,13 @@ const initialState = {
   details: [],
   category: [],
   profile: [],
+  //actual: [],
   //-----------------VER QUE SON ESTOS ESTADOS!
   currentUser: { carts: [{ productCart: [] }] },
   cart: {},
   productsAux: [],
   //-------------
+  orders:[],
   users: [],
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
   allreviews:[],
@@ -95,8 +97,13 @@ function rootReducer(state = initialState, action) {
     case "GET_PROFILE":
       return {
         ...state,
-        profile: action.payload,
+        actual: action.payload,
       };
+      case "GET_US":
+        return {
+          ...state,
+          orders: action.payload,
+        }
     case " GET_ALL_USER":
       return {
         ...state,
@@ -136,6 +143,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+      case "LOG":
+        return{
+          ...state
+        }
     // case "GET_CART":
     //   return {
     //     ...state,
