@@ -11,8 +11,10 @@ const initialState = {
   //-------------
   users: [],
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
-  searchedUsers: [],
   pruebaCartUser: [],
+  //-------------
+  searchedUsers: [], 
+  allreviews:[],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -52,12 +54,34 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "PUT_CATEGORY":
+      return {
+        ...state,
+      };
+    case "LOG":
+      return {
+        ...state,
+        profile: action.payload.data
+      };
+    case "HIDE_CATEGORY":
+      return {
+        ...state,
+      };      
+    case "DELETE_REVIEW":
+      return {
+        ...state,
+      };      
     case "GET_CAT":
       return {
         ...state,
         category: action.payload,
       }
-    case "GET_USERS":
+    case "GET_ALL_REVIEWS":
+      return {
+        ...state,
+        allreviews: action.payload,
+      }
+    case "GET_ALL_USERS":
       return {
         ...state,
         users: action.payload,
@@ -216,7 +240,7 @@ function rootReducer(state = initialState, action) {
     case 'GET_USER_BY_NAME':
       return {
         ...state,
-        searchedUsers: action.payload,
+        profile: action.payload,
       };
     case 'GET_CART_USER':
       return {

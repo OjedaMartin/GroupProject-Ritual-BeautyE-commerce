@@ -1,12 +1,16 @@
+
 import React, { useEffect, useState } from 'react';
 import {  Link } from "react-router-dom";
-import style from "./Styles/ProductsAdmin.module.css";
 import { useDispatch, useSelector } from 'react-redux';
+import swal from 'sweetalert'
+
 import {getAllProducts, deleteStock } from "../../redux/actions/index"
+
+
+import style from "./Styles/ProductsAdmin.module.css";
 import { ImCross } from "react-icons/im"
 import { BiPlusMedical, BiShowAlt } from "react-icons/bi"
 import { HiPencilAlt } from "react-icons/hi"
-import swal from 'sweetalert'
 
 function ProductsAdmin(){
 
@@ -28,11 +32,18 @@ function handleChange(e) {
   });  
 }
 
-function StockHandler(e){
-  console.log(e.id)
-  console.log(estado)
-  dispatch(deleteStock(e.id, estado))
-  swal("stock has been changed")  
+async function StockHandler(e){
+  
+  try{
+    if(estado.stock>0 && estado.stock<1000){
+    await dispatch(deleteStock(e.id, estado))
+    swal("stock has been changed")  
+    dispatch(getAllProducts());
+  } else {
+    swal("Invalid Stock Number!")
+  }
+  } catch {
+    swal("An error has ocurred, contact the dev")}
 }
 
 
@@ -48,11 +59,13 @@ function deleteHandler(e){
   })
   .then((willDelete) => {
     if (willDelete) {
+      dispatch(deleteStock(e.id, estado))
       swal("the product has been deleted!", {
         icon: "success",
       });
       
-      dispatch(deleteStock(e.id, estado))
+      
+      dispatch(getAllProducts());
       
     } else {
       swal("Your product is safe!");
@@ -105,7 +118,7 @@ function deleteHandler(e){
                               <button className={style.stockBtn} id={e.id} onClick={()=>StockHandler(e)}>                              
                                  Restock                              
                               </button>
-                              <input className={style.stockinput} type="text" name='stock' onChange={(e) => handleChange(e)}/>
+                              <input className={style.stockinput} type="number" name='stock' onChange={(e) => handleChange(e)}/>
                             </div>
                             <p className={style.element}>{e.name}</p>
                             <p className={style.element}>{e.brand}</p>

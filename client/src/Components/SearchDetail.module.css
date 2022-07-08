@@ -7,6 +7,8 @@
 }
 .todo{
     margin: 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
 
@@ -68,4 +70,10 @@
 }
 .container3 h4{
     margin-top: 15px;
+}
+.params {
+    font-family: 'Source Sans Pro', sans-serif;
+    height: 200px;
+    width: 200px;
+    word-wrap: break-word;    
 }

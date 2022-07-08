@@ -92,7 +92,7 @@ export default function SearchDetail() {
 
                     <div className={ClassesSearchDetail.todo}>
                         <div className={ClassesSearchDetail.params}>
-                            <h1>{catNameAux ? catNameAux[0].name : name ? name : 'Products'}</h1>
+                            <h1>{catNameAux ? catNameAux[0].name.slice(0,30)+"..." : name ? name.slice(0,30)+"..." : 'Products'}</h1>
                         </div>
                         <div className={ClassesSearchDetail.selectors}>
                             <select onChange={setOrder} name='Type' className={ClassesSearchDetail.select} >

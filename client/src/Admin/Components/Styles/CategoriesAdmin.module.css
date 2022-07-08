@@ -8,7 +8,7 @@
 .card{
 
     display: grid;
-    grid-template-columns: 50px 300px 150px;
+    grid-template-columns: 50px 250px  150px 150px 150px;
     grid-auto-rows: auto;  
    
 
@@ -69,7 +69,7 @@
 }
 .gridinfoname{
     font-family: 'Cantarell', sans-serif;
-    padding-left: 225px;
+    padding-left: 100px;
 
 }
 .gridinfoid{
@@ -79,6 +79,6 @@
 .gridinfocont{
     display: flex;
     align-items: center;
-    margin-left: 90px;
+    margin-left:  525px;
 
 }

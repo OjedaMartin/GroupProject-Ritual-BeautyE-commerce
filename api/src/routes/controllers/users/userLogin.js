@@ -4,24 +4,25 @@ const { User } = require("../../../db");
 // const TOKEN_KEY = "x4ergEyzTEbTijup39kXHF657bR8l2v";
 
 const userLogin = async (req, res) => {
-  const { email, name, image } = req.body;
-  const user = await User.findOrCreate({ where: { email: email } });
-  if (user === null) {
-    const datos = {
-      id: id,
+  const { email, name, picture } = req.body;
+
+  console.log("data", email, name,picture)
+  
+  const [user,created] = await User.findOrCreate({ where: { email: email }, defaults:{
+    
       email: email,
       name: name,
-      image: image,
-      membership: membership,
-      address: address,
-      points: points,
-    };
+      image: picture,
 
-    res.status(200).json(datos);
-  }
-  {
-    res.status(400).send("wrong information");
-  }
+
+       } });
+      
+    if(created) console.log('i am here!')
+    res.status(200).json(user)
+  
+  
+  
+
 };
 
 module.exports = { userLogin };

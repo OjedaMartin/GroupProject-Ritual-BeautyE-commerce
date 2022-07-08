@@ -8,12 +8,11 @@ import {
     clearCart,
     removeAllOneProdToCart,
     addCartToBack,
-    getCartByUser,
+    getCartbyUser,
     getAllUsers
 } from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
-
-//import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
+// import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 import Classes from './CartCard.module.css';
 import trashIcon from '../images/trash.png';
 import swal from 'sweetalert'
@@ -31,17 +30,12 @@ export default function CartCard() {
 
     //--------------------------------------------------
     const { isAuthenticated, user } = useAuth0();
-    if (isAuthenticated) {
-        console.log('user', user)
-        console.log('user.email', user.email)
-        console.log('isAuthenticated', isAuthenticated)
-    }
-    const emailDemo = 'rafa@gmail.com';
     //--------------------------------------------------
     useEffect(() => {
         if (isAuthenticated) {
             dispatch(getAllUsers())
-            dispatch(getCartByUser(emailDemo))
+            dispatch(getCartbyUser(user.email))
+            console.log('TERMINO DE EJECUTAR getCartbyUser')
         }
     }, [dispatch, prodCart, isAuthenticated, user]);
 

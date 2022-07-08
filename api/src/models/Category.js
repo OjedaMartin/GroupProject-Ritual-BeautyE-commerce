@@ -14,11 +14,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // state:{
-    //   type: DataTypes.ENUM,
-    //   values: ['Active', 'Hidden'],
-    //   defaultValue: 'Active',
-    // },
+    status:{
+      type: DataTypes.ENUM,
+      values: ['Active', 'Hidden'],
+      defaultValue: 'Active',
+    }
+   
   },{
     timestamps: false
   });

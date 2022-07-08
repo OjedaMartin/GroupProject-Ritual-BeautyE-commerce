@@ -5,6 +5,12 @@ body {
 
 
 }
+.container{
+    margin: 0px 10px 10px 30px ;
+}
+.icon:hover{
+    transform: scale(1.2);
+}
 .searchbox {
     
     display: flex;
@@ -17,6 +23,7 @@ body {
     border-top: #ffffff00 ;
     border-left: #ffffff00 ;
     border-right: #ffffff00 ;
+    font-family: 'Vazirmatn', sans-serif; ;
 
 }
 .search:focus 		{ outline:none; }
@@ -50,3 +57,33 @@ body {
     padding: 3px 4px;
     font-size: 20px;
 }  
+.dropdown {
+    margin-top: 40px;
+        position: absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(175, 175, 175);
+    z-index: 1;
+    border-radius: 0.25rem;
+    
+}
+  
+.dropdown:empty {
+    border: none;
+}
+  
+.dropdownrow {
+    background-color: #ffffff;
+    z-index: 1;
+    cursor: pointer;   
+    text-align: start;
+    padding: 2px 5px;
+    font-family: 'Vazirmatn', sans-serif;
+    border-radius: 0.25rem;
+
+}
+
+.dropdownrow:hover{
+    background-color: #93f0ba73;
+}

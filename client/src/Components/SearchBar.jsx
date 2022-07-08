@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-//import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 //import { getProductName } from "../redux/actions";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import style from "./SearchBar.module.css"
 
 
 export default function SearchBar (){
-    //const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const [name,setName] = useState("")
+    const products = useSelector(((state) => state.allProducts))
+    const goTo = useNavigate()
 
     function inputChangeHandler(e){
     e.preventDefault()
@@ -16,11 +18,18 @@ export default function SearchBar (){
     
     }
 
-   // function submitHandler(e){
-   //     e.preventDefault()
-   //     dispatch(getProductName(name))    
-   // }
-   //type="submit" onClick={(e)=> submitHandler(e)}
+ function onSearch (searchTerm){
+    setName(searchTerm);
+    
+    console.log("search ", searchTerm);
+
+  };
+
+    function submitHandler(e){
+        e.preventDefault()
+        goTo(`/SearchDetail/search/${name}`)  
+    }
+   
     return (
 
         
@@ -28,21 +37,51 @@ export default function SearchBar (){
 
         <div className={style.container}>
             
-            <div className={style.searchbox}>
-                <form >
-                <Link to= {'/SearchDetail/search/' + name} ><button className={style.searchbtn} >
-                <FaSearch className={style.icon} aria-hidden='true' id="searchbar-icon"/>
-                </button></Link>
-
-                
+            <form className={style.searchbox}>
+                <div>       
                 <input className={style.search}
                  type="text"
                  placeholder="Search Products by name..."
                  onChange={(e) => inputChangeHandler(e)}
+                 value={name}
                  id="searchbar-input"
                  />
-                </form>
-            </div>
+                <button type="submit" onClick={(e)=> submitHandler(e)} className={style.searchbtn} >
+                <FaSearch className={style.icon} aria-hidden='true' id="searchbar-icon"/>
+                </button>
+                </div>
+            </form>
+                <div className={style.dropdown}>
+            {products
+                .filter((item) => {
+                const searchTerm = name.toLowerCase();
+                const prod = item.name.toLowerCase();
+
+                return (
+                    searchTerm &&
+                    prod.includes(searchTerm) &&
+                    prod !== searchTerm
+                );
+                })
+                .slice(0, 5)
+                .map((item) => (
+                <div
+                    onClick={() => onSearch(item.name)}
+                    className={style.dropdownrow}
+                    key={item.id}
+                >
+                    {item.name}
+                </div>
+                ))}
+                </div>
         </div>
     )
 }
+
+
+
+
+
+  
+        
+    
