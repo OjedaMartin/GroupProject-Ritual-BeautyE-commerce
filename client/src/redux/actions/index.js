@@ -268,3 +268,45 @@ export function getUserByName(name) {
   }
 }
 // >>>>>>> 5572d2f4f28285aa1b84cf893bccc1bcdb9cdc63
+
+export function postReview(payload) {
+  return async (dispatch) => {
+      try {
+          console.log(payload,'payload post review');
+          const response = await axios.post('http://localhost:3001/review/create/', payload);  
+    return dispatch({ type: 'POST_REVIEW', payload: response });
+      } catch (error) {
+          console.log(error, 'post review ');
+      }
+  };
+};
+
+// export function getReviews() {
+//   return async function (dispatch) {
+//     try {
+//       let json = await axios.get('http://localhost:3001/review/')
+//       console.log(json,'json de la action');
+//       return dispatch({
+//         type: 'GET_REVIEW',
+//         payload: json.data
+//       })
+//     } catch (error) {
+//       console.log(error, 'get Review' )
+//     }
+//   }
+// }
+
+export function getReviews(){
+  return async function (dispatch){
+      try {
+          const response = await fetch('http://localhost:3001/review/');
+          const json = await response.json();
+          dispatch({
+              type:'GET_REVIEW',
+              payload: json
+          });
+      } catch (error) {
+          console.log(error);
+      }
+  }
+}

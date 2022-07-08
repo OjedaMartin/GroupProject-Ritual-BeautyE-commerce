@@ -41,14 +41,6 @@
       "idcategory": "cat130038"
     },
     {
-      "name": "Supersonic™ Hair Dryer",
-      "brand": "Dyson",
-      "image": "https://www.sephora.com/productimages/sku/s2585420-main-grid.jpg?pb=allure-best-2021-badge",
-      "price": 429.00,
-      "rating": 3.55,
-      "idcategory": "cat130038"
-    },
-    {
       "name": "No. 3 Hair Repair Perfector",
       "brand": "Olaplex",
       "image": "https://www.sephora.com/productimages/sku/s2033264-main-grid.jpg?pb=2020-03-sephora-clean-2019",
@@ -551,14 +543,6 @@
       "price": 49.00,
       "rating": 4.2285,
       "idcategory": "cat140006"
-    },
-    {
-      "name": "Vitamin Enriched Face Base Priming Moisturizer",
-      "brand": "Bobbi Brown",
-      "image": "https://www.sephora.com/productimages/sku/s1292820-main-grid.jpg",
-      "price": 95.00,
-      "rating": 4.5405,
-      "idcategory": "cat150006"
     },
     {
       "name": "Unseen Sunscreen SPF 40 PA+++",
