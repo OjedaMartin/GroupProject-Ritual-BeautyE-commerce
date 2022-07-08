@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getAllProducts, getAllCategories } from "../redux/actions";
+import { getAllProducts, getAllCategories, Log } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 import Carousel1 from "./Carousel";
@@ -11,13 +11,18 @@ import Profile from "../Users/Profile";
 import s from "./Landing.module.css";
 export default function Landing() {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
+  console.log("primer dato traido de user!!!!",user)
 
   useEffect(() => {
     dispatch(getAllCategories());
     dispatch(getAllProducts());
   }, [dispatch]);
-
+  (() => {
+    if (isAuthenticated) {
+      dispatch(Log(user))
+    }})()
+  
   return (
     <>
       <Carousel1 />
@@ -25,13 +30,14 @@ export default function Landing() {
       <WhatsNew />
 
       {isAuthenticated ? (
+        
         <div class={s.body}>
           <nav class={s.side}>
             <ul>
               <li>
-                <a href="0">
-                  {" "}
-                  <Profile />
+                <a href="/profile">
+                  {user.name}
+                  
                   <span>
                     <i class="fa fa-map-marker"></i>
                   </span>

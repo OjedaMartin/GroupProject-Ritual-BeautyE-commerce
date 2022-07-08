@@ -7,12 +7,23 @@ import { Log } from "../redux/actions";
 const Login= () => {
   const dispatch = useDispatch();
   const { loginWithRedirect, isAuthenticated, user} = useAuth0();
-if (isAuthenticated){dispatch(Log(user),{
-  name:user.name,
-  image: user.picture,
-  email:user.email
-})
-} return <button onClick={() => loginWithRedirect()}>Log In</button>;
+  
+
+// if (isAuthenticated){dispatch(Log(user),{
+//   name:user.name,
+//   image: user.picture,
+//   email:user.email
+// })
+// ( () => {
+//   if (isAuthenticated) {
+//      dispatch(Log(user)) }
+// })
+(() => {
+  if (isAuthenticated) {
+    dispatch(Log(user))
+  }})()
+
+return <button onClick={() => loginWithRedirect()}>Log In</button>;
 };
 
 export default Login

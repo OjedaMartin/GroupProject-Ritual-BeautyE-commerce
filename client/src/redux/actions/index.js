@@ -169,7 +169,65 @@ export function Log(payload) {
   };
 }
 
-//CREA UNA CATEGORIA
+
+//export function getfilterCategories(params) {
+//  return async function (dispatch) {
+//    try {
+//      const json = await axios.get(`http://localhost:3001/filters/category/${params}`)
+//      return dispatch({
+//        type: 'GET_FILTER_CATEGORIES',
+//        payload: json.data
+//      })
+//    } catch (error) {
+//      console.log(error)
+//    }
+//  }
+//}
+//export function getfilterBrand(params) {
+//  return async function (dispatch) {
+//    try {
+//      const json = await axios.get(`http://localhost:3001/filters/brand/${params}`)
+//      return dispatch({
+//        type: 'GET_FILTER_BRAND',
+//        payload: json.data
+//      })
+//    } catch (error) {
+//      console.log(error)
+//    }
+//  }
+//}
+//
+//
+//export function getProfile(email) {
+//  console.log("email axictiopnssss!!!!!!!!",email)
+//  return async function (dispatch) {
+//    try{
+//    const json = await axios.get(`http://localhost:3001/user/`,email)
+//    return dispatch({
+//      type: 'GET_PROFILE',
+//      payload: json.data
+//    })
+//  } catch (error) {
+//    console.log(error)
+//   }
+//  }
+//}
+//export function getUs(email) {
+//  console.log("gggggggggggggggggg",email)
+//  return async function (dispatch) {
+//    try{
+//    const json = await axios.get(`http://localhost:3001/order/user/${email}`)
+//    return dispatch({
+//      type: 'GET_US',
+//      payload: json.data
+//    })
+//  } catch (error) {
+//    console.log(error)
+//   }
+//  }
+//}
+
+
 export function postCategory(payload) {
   return async function (dispatch) {
     const info = await axios.post("http://localhost:3001/categories/create", payload);
@@ -313,3 +371,89 @@ export function clearCart (){
       payload: orderSelected,
     }
   }
+//  };
+//}
+/////USUARIOS: RUTA DE CREACION, BUSQEDA Y LISTA DE USUARIOS
+//export function createUser(payload) {
+//  return async function (dispatch) {
+//    const info = await axios.post("http://localhost:3001/users/register", payload);
+//    console.log("info action", info);
+//    return {
+//      type: "REGISTER",
+//      info
+//    }
+//  };
+//}
+//export function getUser(payload){
+//  return async function (dispatch){
+//      try {
+//          const json = await axios.get("http://localhost:3001/users/" + payload)
+//          return dispatch({
+//              type: "GET_USER",
+//              payload: json.data
+//          })
+//      } catch(err){
+//          console.log(err)
+//      }
+//  }
+//}
+//// export function getAllUsers(){
+////   return async function (dispatch){
+////       try {
+////           const json = await axios.get("http://localhost:3001/users/" )
+////           return dispatch({
+////               type: "GET_ALL_USERS",
+////               payload: json.data
+////           })
+////       } catch(err){
+////           console.log(err)
+////       }
+////   }
+//// }
+//export const putUser =(payload, email) => {
+//  return async function(dispatch){
+//    let profile= await axios.put(`http://localhost:3001/users/update/${email}`, payload)
+//    return dispatch(
+//      {
+//        type: "PUT",
+//        payload: profile.data
+//      }
+//    )
+//
+//  }
+//  
+//};
+//
+//// export function cambiarInfo(email, input) {
+////   return async (dispatch) => {
+////     try {
+////       let info = await axios.patch(
+////         // http://localhost:3001/users/modificar/${email}?nombres=${input.nombres}&apellidos=${input.apellidos}&telefono=${input.telefono}&documento=${input.documento}&edad=${input.edad}
+////       );
+////       return dispatch({
+////         type: "MODIFICAR",
+////         payload: info.data,
+////       });
+////     } catch (error) {
+////       console.log(error);
+////     }
+////   };
+//// }
+//
+//
+//// =======
+//export function getUserByName(name) {
+//
+//  return async function (dispatch) {
+//    try {
+//      let json = await axios.get("http://localhost:3001/users/" + name)
+//      return dispatch({
+//        type: 'GET_USER_BY_NAME',
+//        payload: json.data
+//      })
+//    } catch (error) {
+//      console.log(error)
+//    }
+//  }
+//}
+//// >>>>>>> 5572d2f4f28285aa1b84cf893bccc1bcdb9cdc63
