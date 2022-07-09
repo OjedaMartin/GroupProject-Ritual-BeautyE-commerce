@@ -1,13 +1,58 @@
-.div{
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-    font-family: 'Vazirmatn', sans-serif;
-    font-size: 11px;
-    font-weight: 200;
-    padding: 10px 10px;
-    margin: 20px;
+.div {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  font-family: "Vazirmatn", sans-serif;
+  font-size: 11px;
+  font-weight: 200;
+  padding: 10px 10px;
+  margin: 20px;
 }
-.pic{
-    border-radius: 40px;
-    width: 40px;
+.pic {
+  border-radius: 40px;
+  width: 40px;
+}
+
+.loading {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: auto;
+}
+.loading .item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid #fff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  animation: spin 2s ease infinite;
+}
+.loading.item:nth-child(1) {
+  width: 50px;
+  height: 50px;
+}
+.loading.item:nth-child(2) {
+  width: 70px;
+  height: 70px;
+  animation-delay: 0.1s;
+}
+.loading .item:nth-child(3) {
+  width: 90px;
+  height: 90px;
+  animation-delay: 0.2s;
+}
+.loading.item:nth-child(4) {
+  width: 110px;
+  height: 110px;
+  animation-delay: 0.3s;
+}
+@keyframes spin {
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
 }

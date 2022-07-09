@@ -4,6 +4,7 @@ const { User } = require('../../../db');
 
 const getUserByName = async(req, res) => {
     const { name } = req.params;
+    
     try {
         const user = await User.findOne({
             where: {
@@ -11,6 +12,7 @@ const getUserByName = async(req, res) => {
             }
         });
         res.status(200).json(user)
+        console.log(user)
     } catch(error) {
         res.status(400).json({ error: "Ha ocurrido un error en el controller getUserByName " + error })
     }

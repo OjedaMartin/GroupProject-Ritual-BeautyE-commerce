@@ -94,9 +94,12 @@ export function getfilterBrand(params) {
 
 // TRAE EL PREFIL POR NOMBRE
 export function getProfile(params) {
+
   return async function (dispatch) {
     try{
-    const json = await axios.get(`http://localhost:3001/users/name`, params)
+    const json = await axios.get(`http://localhost:3001/users/`, params)
+  console.log(json,"get")
+
     return dispatch({
       type: 'GET_PROFILE',
       payload: json.data
@@ -129,11 +132,12 @@ export function getDetail(id) {
 
 
 //TRAE USUARIO POR NOMBRE
-export function getUserByName(name) {
+export function getUserByName() {
 
   return async function (dispatch) {
     try {
-      let json = await axios.get("http://localhost:3001/users/" + name)
+      let json = await axios.get("http://localhost:3001/users/")
+
       return dispatch({
         type: 'GET_USER_BY_NAME',
         payload: json.data
@@ -243,6 +247,7 @@ export function hideCategory(payload) {
 
 //CAMBIA LOS DATOS DEL USER
 export const putUser =(payload) => {
+  console.log(payload)
   return async function(dispatch){
     let profile= await axios.put("http://localhost:3001/users/update", payload)
     return dispatch(

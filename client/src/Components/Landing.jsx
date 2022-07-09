@@ -1,37 +1,55 @@
-import React, { useEffect } from "react";
-import { getAllProducts, getAllCategories } from "../redux/actions";
+import React, { useEffect, useState } from "react";
+import { getAllProducts, getAllCategories, Log, getUserByName } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 import Carousel1 from "./Carousel";
 import WhatsNew from "./whatsnew";
 import Carousel from "./CardsFront";
 import { useAuth0 } from "@auth0/auth0-react";
-import Profile from "../Users/Profile";
-
+import { CircularProgress } from "@mui/material";
 import s from "./Landing.module.css";
 export default function Landing() {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useAuth0();
-
+  const { isAuthenticated, user, loginWithRedirect } = useAuth0();
+  const perfil= useSelector((state) => state.cu) 
+  console.log(user)
+  console.log(perfil)
   useEffect(() => {
     dispatch(getAllCategories());
     dispatch(getAllProducts());
-  }, [dispatch]);
+    dispatch(getUserByName(perfil?.name))
+    console.log(perfil?.name)
+  }, [dispatch,perfil?.name]);
+  (() => {
+    if (isAuthenticated) {
+      dispatch(Log(perfil?.email))
+    console.log(perfil?.name)
 
+    }})()
+    const [load, setLoad] = useState(true)
+
+  setTimeout(function () {
+    setLoad(false)
+  }, 500)
   return (
     <>
+   
       <Carousel1 />
       <Carousel />
       <WhatsNew />
-
-      {isAuthenticated ? (
+      {
+      load ?
+          <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+      :
+<div>
+{isAuthenticated ? (
         <div class={s.body}>
           <nav class={s.side}>
             <ul>
               <li>
-                <a href="0">
-                  {" "}
-                  <Profile />
+                <a href="/profile">
+                  {perfil[0]}
+                 
                   <span>
                     <i class="fa fa-map-marker"></i>
                   </span>
@@ -73,6 +91,8 @@ export default function Landing() {
           </nav>
         </div>
       )}
+</div>
+}
     </>
   );
 }

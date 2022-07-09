@@ -18,6 +18,7 @@ import { Settings } from "./Users/Settings.jsx";
 import { MyOrders } from "./Users/Orders.jsx";
 import CartCard from "../src/Components/CartCard.jsx";
 import ReviewForm from "./Components/reviewForm.jsx";
+import Profile from "./Users/Profile.jsx";
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
         <Route exact path="/termsofuse" element={<TermsOfUse />} />
         <Route path="/admin/*" element={<Admin />} />
         <Route path="/login" element={<Login />} />
+        <Route exact path="/profile" element={<Profile />} />
+
         <Route path="/user/settings" element={<Settings />} />
         <Route path="/user/myorders" element={<MyOrders />} />
         <Route exact path="/cart" element={<CartCard />} />

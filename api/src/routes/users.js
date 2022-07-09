@@ -26,7 +26,7 @@ router.get('/', getUsers)
 router.post('/logout', userLogout);
 
 // Ruta para actualizar datos de un usuario
-router.put('/update/:id', updateUser);
+router.put('/update/:email', updateUser);
 
 
 
