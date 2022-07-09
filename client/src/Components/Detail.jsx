@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { getDetail, addProdToCart, removeProdFromCart } from "../redux/actions/index";
 import style from "./Detail.module.css"
 import Review from "./reviews";
+import StarDetail from "./StarDetail";
 //---------------------------------------
 import swal from 'sweetalert'
 import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
@@ -73,7 +74,9 @@ export default function Detail() {
           <h1 className={style.titles}>  {product?.map(e => e.name.length > 20 ? e.name.slice(0, 20).concat('...') : e.name)} </h1>
           <h4 className={style.label}> price: {product?.map((e) => e.price)} </h4>
           <h4 className={style.label}>  brand: {product?.map((e) => e.brand)} </h4>
-          <h4 className={style.label}> rating:{product?.map((e) => e.rating)} </h4>
+          {/* <h4 className={style.label}> rating:{product?.map((e) => e.rating)} </h4> */}
+          <h4 className={style.label}> rating:{product?.map((e) => (<StarDetail 
+          stars = {parseInt(e.rating)}/>))} </h4>
           <h4 className={style.label}> {objectCat[product?.map((e) => e.CategoryId)]}</h4>
           <h4 className={style.label}>Add to cart</h4>
           <div className={style.btnAddToCart}>

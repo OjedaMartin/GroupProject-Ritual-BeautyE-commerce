@@ -110,6 +110,7 @@ export default function ReviewForm(){
         <label> Rating:</label>
          <StarRating
             onClick = {handleChangerating}
+            stars = {5}
          />   
         <label> Text:</label>
         <input
