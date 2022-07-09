@@ -1,10 +1,10 @@
 
 import style from "./Rating.module.css"
 
-const StarRating = ({onClick}) => {
+const StarRating = ({onClick, stars}) => {
     return (
       <div >
-        {[...Array(5)].map((_, index) => {
+        {[...Array(stars)].map((_, index) => {
           index += 1;
           return (
             <button
