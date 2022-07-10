@@ -6,21 +6,9 @@ import { Button, Modal, ModalBody } from "reactstrap";
 import NumberFormat from "react-number-format";
 
 export const MyOrders = () => {
-  const [comment, setComment] = useState(false);
-  const toggle = () => setComment(!comment);
-  const actualUser = useSelector((store) => store.users);
-  let orders = actualUser?.carts?.filter((e) => e.productCart?.length > 0);
-  console.log(orders);
-  for (let i = 0; i < orders.length; i++) {
-    orders[i].amount = orders[i].productCart.reduce(
-      (a, p) =>
-        (a += Object.keys(p.stockSelected)?.reduce(
-          (a, t) => (a += p.stockSelected[t] * p.price),
-          0
-        )),
-      0
-    );
-  }
+  const orders= useSelector((state) => state.currentUser)
+  console.log(orders)
+  
   return (
     <div>
       <h1>Orders</h1>
@@ -48,12 +36,12 @@ export const MyOrders = () => {
                       <img src={el.picture} alt="not found" width="100px" />
                       <p>{el.name}</p>
                     </li>
-                    <Button onClick={toggle}>Add Comment</Button>
-                    <Modal isOpen={comment} toggle={toggle}>
-                      <ModalBody>
+                    {/* <Button onClick={toggle}>Add Comment</Button> */}
+                    {/* <Modal isOpen={comment} toggle={toggle}> */}
+                      {/* <ModalBody> */}
                         {/* <Review productProductId={el.ProductId} /> */}
-                      </ModalBody>
-                    </Modal>
+                      {/* </ModalBody> */}
+                    {/* </Modal> */}
                   </div>
                 ))}
               </ul>

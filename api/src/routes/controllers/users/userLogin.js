@@ -8,21 +8,40 @@ const userLogin = async (req, res) => {
 
   console.log("data", email, name,picture)
   
+  let consulta = await User.findOne({
+    where: {
+      email: email
+    }
+  });
   const [user,created] = await User.findOrCreate({ where: { email: email }, defaults:{
-    
-      email: email,
-      name: name,
-      image: picture,
+
+    email: email,
+    name: name,
+    image: picture,
 
 
-       } });
-      
-    if(created) console.log('i am here!')
-    res.status(200).json(user)
-  
-  
-  
+     } });
+
+  if(created) console.log('i am here!')
+  res.status(200).json(user)
+
+
+
 
 };
 
+//   if (consulta == null) {
+//     let user = await User.create({
+//       name,
+//       email,
+//       subscribed,
+     
+//     });
+
+//     return res.json(user)
+//   } else {
+//     return res.json(consulta)
+
+// };
+// }
 module.exports = { userLogin };
