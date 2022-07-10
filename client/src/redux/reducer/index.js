@@ -5,6 +5,8 @@ const initialState = {
   category: [],
   profile: [],
   review: [],
+  cu:[],
+  putUser:[],
   //-----------------VER QUE SON ESTOS ESTADOS!
   currentUser: { carts: [{ productCart: [] }] },
   cart: {},
@@ -53,6 +55,10 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
     case "PUT_CATEGORY":
+      return {
+        ...state,
+      };
+      case "PUT":
       return {
         ...state,
       };
@@ -217,7 +223,7 @@ function rootReducer(state = initialState, action) {
     case 'GET_USER_BY_NAME':
       return {
         ...state,
-        profile: action.payload,
+        cu: action.payload,
       };
     case 'POST_REVIEW':
       return {
