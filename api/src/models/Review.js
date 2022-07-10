@@ -10,6 +10,9 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
+    email:{
+      type :DataTypes.STRING
+    },
     rating:{
       type: DataTypes.FLOAT,
       allowNull: false,
