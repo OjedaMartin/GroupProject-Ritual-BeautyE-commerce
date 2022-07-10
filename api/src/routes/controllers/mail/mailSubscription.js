@@ -17,7 +17,7 @@ async function subscriptionChange(req, res, next){
             subject: `Membership renewed for Ritual Make-up Store`,
             html:`<h4>Thank you for renewing your membership to Ritual Make-up Shop!</h4>
             <p>User ${user.name} now has the ${user.membership} membership.
-            Explore new deals and our extensive catalogue of products at <a href="http://localhost:3000/">Ritual</a>!</p>    `
+            Explore new deals and our extensive catalogue of products at <a href="https://pg-ecommerce-client.vercel.app/">Ritual</a>!</p>    `
           }, (err, info) => {
             if (err) {
               res.status(400).send(err.message);

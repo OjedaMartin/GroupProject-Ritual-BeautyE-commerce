@@ -109,7 +109,7 @@ export function getfilterBrand(params) {
 export function getProfile(params) {
   return async function (dispatch) {
     try{
-    const json = await axios.get(`http://localhost:3001/users/name`, params)
+    const json = await axios.get(`http://localhost:3001/users/`, params)
     return dispatch({
       type: 'GET_PROFILE',
       payload: json.data
@@ -142,11 +142,11 @@ export function getDetail(id) {
 
 
 //TRAE USUARIO POR NOMBRE
-export function getUserByName(name) {
+export function getUserByName(payload) {
 
   return async function (dispatch) {
     try {
-      let json = await axios.get("http://localhost:3001/users/" + name)
+      let json = await axios.get("http://localhost:3001/users/")
       return dispatch({
         type: 'GET_USER_BY_NAME',
         payload: json.data
@@ -186,17 +186,17 @@ export function createProduct(payload) {
   };
 }
 //CARGA A BD UN USUARIO
-export function Log(payload) {
+export function Log(email) {
+  console.log(email, "pp")
   return async function (dispatch) {
-    const info = await axios.post("http://localhost:3001/users/login", payload);
+    const info = await axios.post("http://localhost:3001/users/login/",email);
     console.log("info action", info);
     return {
       type: "LOG",
-      info
+      email: info.data
     }
   };
 }
-
 //CREA UNA CATEGORIA
 export function postCategory(payload) {
   return async function (dispatch) {
@@ -292,9 +292,12 @@ export function upgradeToAdmin(payload) {
 }
 
 //CAMBIA LOS DATOS DEL USER
-export const putUser =(payload) => {
+export const putUser =(payload, email) => {
+  console.log(payload)
   return async function(dispatch){
-    let profile= await axios.put("http://localhost:3001/users/update", payload)
+    let profile= await axios.put(`http://localhost:3001/users/update/${email}`, payload)
+  console.log(profile.data)
+
     return dispatch(
       {
         type: "PUT",

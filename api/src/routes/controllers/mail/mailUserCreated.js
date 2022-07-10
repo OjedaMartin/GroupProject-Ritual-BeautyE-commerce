@@ -17,7 +17,7 @@ async function userCreated(req, res, next){
             subject: `Thank you for signing up to Ritual Make-up Shop`,
             html:`<h4>Welcome!</h4>
             <p>User ${user.name} has been created successfully.
-            Explore new deals and our extensive catalogue of products at <a href="http://localhost:3000/">Ritual</a>!</p>    `
+            Explore new deals and our extensive catalogue of products at <a href="https://pg-ecommerce-client.vercel.app/">Ritual</a>!</p>    `
           }, (err, info) => {
             if (err) {
               res.status(400).send(err.message);
