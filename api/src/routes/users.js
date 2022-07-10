@@ -6,6 +6,7 @@ const { isAuth } = require('./controllers/middlewares/auth');
 const { userLogout } = require('./controllers/users/userLogout');
 const { getUserByName } = require('./controllers/users/getUserByName');
 const { updateUser } = require('./controllers/users/updateUser');
+const { updateSubscription } = require('./controllers/users/updateSubscription');
 
 
 const router = Router()
@@ -27,6 +28,9 @@ router.post('/logout', userLogout);
 
 // Ruta para actualizar datos de un usuario
 router.put('/update/:id', updateUser);
+
+//Ruta para cancelar/unirse al programa de notificaciones
+router.put('/subscription', updateSubscription)
 
 
 
