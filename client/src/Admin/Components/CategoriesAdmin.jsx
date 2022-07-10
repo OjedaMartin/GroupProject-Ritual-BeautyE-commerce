@@ -110,7 +110,7 @@ function handleSubmit(e) {
                             <button className={style.DelBtn} name={e.name}  onClick={() => handleDelete(e)}><ImCross/></button>
                             <div>
                                 <button className={style.DelBtn} name={e.name} id={e.id} onClick={() => handlePut(e)}><HiPencilAlt/></button>
-                                <input className={style.changeinput} type="text" value={edit.name} name='name' onChange={(e) => handleEdit(e)}/>
+                                <input key={e.id} className={style.changeinput} type="text" value={edit.name} name='name' onChange={(e) => handleEdit(e)}/>
                             </div>
                             <p className={style.element}>{e.id}</p>
                             <p className={style.element}>{e.name}</p>

@@ -67,11 +67,24 @@ export function getAllUsers() {
     });
   };
 }
+
+//TRAE TODAS LAS REVIEWS
 export function getAllReviews() {
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/review");    
     return dispatch({
       type: "GET_ALL_REVIEWS",
+      payload: json.data,
+    });
+  };
+}
+
+//TRAE TODAS LAS ORDENES
+export function getAllOrders() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/order");    
+    return dispatch({
+      type: "GET_ALL_ORDERS",
       payload: json.data,
     });
   };
@@ -136,6 +149,21 @@ export function getUserByName(name) {
       let json = await axios.get("http://localhost:3001/users/" + name)
       return dispatch({
         type: 'GET_USER_BY_NAME',
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+//ADMIN DEVUELVE A SEARCHEDUSER EL USER X EMAIL
+export function getUserByEmail(email) {
+
+  return async function (dispatch) {
+    try {
+      let json = await axios.get("http://localhost:3001/users/e/" + email)
+      return dispatch({
+        type: 'GET_USER_BY_EMAIL',
         payload: json.data
       })
     } catch (error) {
@@ -236,6 +264,28 @@ export function hideCategory(payload) {
     console.log("info action", info);
     return {
       type: "HIDE_CATEGORY",
+      info
+    }
+  };
+}
+//LE OTRGA A UN USUARIO LA MEMBERSHIP DE BANNED
+export function banUser(payload) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/admin/ban`, payload);
+    console.log("info action", info);
+    return {
+      type: "BAN_USER",
+      info
+    }
+  };
+}
+//LE OTRGA A UN USUARIO LA MEMBERSHIP DE ADMIN
+export function upgradeToAdmin(payload) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/admin/upgrade`, payload);
+    console.log("info action", info);
+    return {
+      type: "UPGRADE_TO_ADMIN",
       info
     }
   };

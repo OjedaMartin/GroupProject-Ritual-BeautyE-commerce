@@ -6,7 +6,7 @@ function HeaderAdmin(){
   return (
     <>
       <header className={style.headerContainer}>
-        <Link to={`/admin/main`} style={{ textDecoration: 'none', color: 'white'  }}>
+        <Link to={`/admin`} style={{ textDecoration: 'none', color: 'white'  }}>
           <h1>RITUAL</h1>
         </Link>
           
