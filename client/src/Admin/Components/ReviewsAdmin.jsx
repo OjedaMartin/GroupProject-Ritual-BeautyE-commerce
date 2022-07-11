@@ -50,7 +50,8 @@ function ReviewsAdmin(){
                 <>
                   
                   <div className={style.CardTop}>
-                    <h2>Id review</h2>
+                    <h2>review Id</h2>
+                    <h2>email</h2>
                     <h2>Rating</h2>
                     <h2>Text</h2>
                   </div>
@@ -63,6 +64,7 @@ function ReviewsAdmin(){
                           <ImCross/>
                         </button> 
                         <h3 className={style.info}>{e.id}</h3>                
+                        <h3 className={style.info}>{e.email}</h3>                
                         <h3 className={style.info}>{e.rating}</h3>                
                         <h3 className={style.info}>{e.text}</h3>                
                                         

@@ -12,13 +12,17 @@ import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 //--------------------------------------
 export default function Detail() {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const {id} = useParams();
 
-  const prodCart = useSelector((state) => state.prodCart);
-  const product = useSelector((state) => state.details);
   useEffect(() => {
     dispatch(getDetail(id));
   }, [dispatch, id]);
+
+
+  dispatch(getDetail(id))
+  
+  const prodCart = useSelector((state) => state.prodCart);
+  const product = useSelector((state) => state.details);
 
   const objectCat = {
     cat140006: 'Makeup',
