@@ -16,7 +16,8 @@ const initialState = {
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
   allreviews:[],
   allOrders:[],
-  searchedUser:[]
+  searchedUser:[],
+  currentOrder:[],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -99,6 +100,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allreviews: action.payload,
+      }
+    case "GET_ORDER_BY_ID":
+      return {
+        ...state,
+        currentOrder: action.payload,
       }
     case "GET_ALL_ORDERS":
       return {

@@ -17,23 +17,21 @@ import swal from 'sweetalert'
 function UsersAdmin(){
 
 const dispatch = useDispatch()
-const [estado, setEstado] = useState({  
-  category: "",
-});
+
 const [email, setEmail] = useState({
   email: ""
 })
 
 useEffect(() => {
   dispatch(getAllUsers());
-}, [dispatch]);
+}, [dispatch,email]);
 
 const users = useSelector((state)=> state.users)
 const searchedUsers = useSelector((state)=> state.searchedUser)
 console.log("sds",searchedUsers)
 
 
-function handleBan(e){
+ async function handleBan(e){
  
   const putInfo = {email: e.email}
  swal({
@@ -44,7 +42,7 @@ function handleBan(e){
 })
 .then((willBan) => {
   if (willBan) {
-    dispatch(banUser(putInfo))
+     dispatch(banUser(putInfo))
     swal("the user has been banned!", {
       icon: "success",
     });
@@ -58,7 +56,7 @@ function handleBan(e){
 });
 
 }
-function handleAdmin(e){
+async function handleAdmin(e){
   const putInfo = {email: e.email}
   
   swal({
@@ -70,7 +68,7 @@ function handleAdmin(e){
   })
   .then((willUpgrade) => {
     if (willUpgrade) {
-      dispatch(upgradeToAdmin(putInfo))
+       dispatch(upgradeToAdmin(putInfo))
       swal("the user has been upgraded!", {
         icon: "success",
       });

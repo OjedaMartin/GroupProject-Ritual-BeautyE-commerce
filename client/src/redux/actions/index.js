@@ -138,6 +138,24 @@ export function getDetail(id) {
     }
   };
 }
+//TRAE ORDEN POR ID DE LA MISMA 
+export function getOrderById(id) {
+  return async function (dispatch) {
+    try {
+      let prod = await axios.get(`http://localhost:3001/order/getById/${id}`);
+     //console.log("getDet", prod)
+      return dispatch({
+        type: "GET_ORDER_BY_ID",
+        payload: prod.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: "GET_ORDER_BY_ID",
+        payload: error.name,
+      });
+    }
+  };
+}
 
 
 

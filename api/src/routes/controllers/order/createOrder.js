@@ -5,6 +5,7 @@ const createOrder = async(req, res )=>{
     
     var {email,address} = req.body
     var user = await User.findOne({where:{email}}) 
+    console.log("user",user) 
     let orden
     if (user){
         if(!address){

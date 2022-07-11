@@ -18,4 +18,4 @@ const getUserByEmail = async(req, res) => {
 
 
 
-module.exports = { getUserByEmail}
+module.exports = {getUserByEmail}

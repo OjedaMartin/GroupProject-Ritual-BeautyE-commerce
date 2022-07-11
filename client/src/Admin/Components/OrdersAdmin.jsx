@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders } from  "../../redux/actions/index"
 import { NavLink } from "react-router-dom";
-import style from "./Styles/ReviewsAdmin.module.css";
-
+import style from "./Styles/OrdersAdmin.module.css";
+import { ImCross } from "react-icons/im"
 
 function OrdersAdmin(){
 
@@ -15,7 +15,9 @@ function OrdersAdmin(){
   
   const allOrders = useSelector((state)=> state.allOrders)
 
-   
+ 
+
+
   return (
             <div className={style.container}>
 
@@ -25,20 +27,23 @@ function OrdersAdmin(){
                 <>
                   
                   <div className={style.CardTop}>
-                    <h2>*</h2>
-                    <h2>*</h2>
-                    <h2>*</h2>
+                    <h2> id</h2>
+                    <h2> Status</h2>
+                    <h2>User Address</h2>
+                    <h2>User Email</h2>
+                    <h2>Products</h2>
                   </div>
                   
                   
                   {allOrders.map((e)=>{return(
-                    <div className={style.Card} key={e.id}>
-
-                        
+                    <div className={style.Card} key={e.id}  >
+                    
                         <h3 className={style.info}>{e.id}</h3>                
-                        <h3 className={style.info}>{e.id}</h3>                
-                        <h3 className={style.info}>{e.id}</h3>                
-                                        
+                        <h3 className={style.info}>{e.state}</h3>                
+                        <h3 className={style.info}>{e.address}</h3>                
+                        <h3 className={style.info}>{e.user.email}</h3>                
+                        <h3 className={style.info}>{e.products.map((e)=> {return e.quantity}).reduce((previousValue, currentValue) => previousValue + currentValue)} products</h3>                
+                        <NavLink to={`/admin/orderdetail/${e.id}`}><button className={style.cardbtn}>Detail</button></NavLink>            
                     </div>
                   )})}
                 
