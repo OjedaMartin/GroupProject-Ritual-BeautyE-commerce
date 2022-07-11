@@ -29,7 +29,7 @@ const addReview = async (req, res) => {
                 text,
                 email : use.email
         })
-        // const asd = await prod.addReview(newReview)
+        await prod.addReview(newReview)
         // console.log(asd)
 
         res.status(200).json(newReview)
