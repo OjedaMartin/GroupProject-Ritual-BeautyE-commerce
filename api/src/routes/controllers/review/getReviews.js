@@ -2,6 +2,7 @@ const { User, Review } = require('../../../db');
 
 const getReviews = async (req, res) =>{
     try{
+        
         const review = await Review.findAll()
      
         if(review) {

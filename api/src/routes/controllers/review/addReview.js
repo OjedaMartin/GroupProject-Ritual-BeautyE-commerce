@@ -10,6 +10,8 @@ const addReview = async (req, res) => {
         
         let prod = await Product.findOne({where :{name}})
         let use = await User.findOne({where :{ email}})
+        console.log("PROOOOOD", prod)
+        console.log("USEEEEE", use)
 
         if (!prod) {
             res.status(404).json({
@@ -24,11 +26,13 @@ const addReview = async (req, res) => {
 
         let newReview = await Review.create({
                 rating,
-                text
+                text,
+                email : use.email
         })
-        prod.addReview(newReview)
+        // const asd = await prod.addReview(newReview)
+        // console.log(asd)
 
-        res.status(200).send('Creado')
+        res.status(200).json(newReview)
     }catch(error) {
         console.log(error)
 
