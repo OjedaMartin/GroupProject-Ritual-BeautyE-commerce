@@ -53,7 +53,7 @@ conn.sync({ force: false }).then(() => {
     }
     await Promise.all(arrayPromises);
   }
-let a = await Product.findAll()
+let a = await Product.findAll() 
 if(!a) carga()
   });
 });

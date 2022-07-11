@@ -2,12 +2,8 @@ const { User, Review } = require('../../../db');
 
 const getReviews = async (req, res) =>{
     try{
-        const review = await Review.findAll({
-            include:{
-                model: User,
-                attributes:["id", "name"],
-            }
-        })
+        
+        const review = await Review.findAll()
      
         if(review) {
             res.status(200).json(review);

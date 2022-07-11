@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getAllProducts, getAllCategories,getAllUsers } from "../redux/actions";
+import { getAllProducts, getAllCategories, Log } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 import Carousel1 from "./Carousel";
@@ -11,14 +11,18 @@ import Profile from "../Users/Profile";
 import s from "./Landing.module.css";
 export default function Landing() {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useAuth0();
-
+  const { isAuthenticated, user, loginWithRedirect } = useAuth0();
+  const perfil= useSelector((state) => state.cu)
+  const info= perfil.filter(e=> e.email===user?.email)
   useEffect(() => {
-    dispatch(getAllUsers());
     dispatch(getAllCategories());
     dispatch(getAllProducts());
   }, [dispatch]);
-
+  (() => {
+    if (isAuthenticated) {
+      dispatch(Log(user))
+    }})()
+  
   return (
     <>
       <Carousel1 />
@@ -30,16 +34,16 @@ export default function Landing() {
           <nav class={s.side}>
             <ul>
               <li>
-                <a href="0">
-                  {" "}
-                  <Profile />
+              <a href="/profile">
+                  {info[0]?.name}
+                 
                   <span>
                     <i class="fa fa-map-marker"></i>
                   </span>
                 </a>
               </li>
               <li>
-                <a href="/">
+                <a href="/cart">
                   Buy
                   <span>
                     <i class="fa fa-compass"></i>

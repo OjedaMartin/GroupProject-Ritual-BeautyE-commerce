@@ -1,0 +1,10 @@
+.buttonRating {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+ 
+  .spancolorStar{
+    color: #002a0b;
+  }

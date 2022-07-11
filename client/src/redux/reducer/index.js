@@ -4,6 +4,9 @@ const initialState = {
   details: [],
   category: [],
   profile: [],
+  review: [],
+  cu: [],
+  putUser: [],
   //-----------------VER QUE SON ESTOS ESTADOS!
   currentUser: { carts: [{ productCart: [] }] },
   cart: {},
@@ -60,6 +63,10 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
     case "PUT_CATEGORY":
+      return {
+        ...state,
+      };
+    case "PUT":
       return {
         ...state,
       };
@@ -236,7 +243,7 @@ function rootReducer(state = initialState, action) {
           ...state,
           prodCart: cartUpgrade,
         };
-      }else{
+      } else {
         return {
           ...state,
         };
@@ -259,13 +266,12 @@ function rootReducer(state = initialState, action) {
     case 'GET_USER_BY_NAME':
       return {
         ...state,
-        profile: action.payload,
+        cu: action.payload,
       };
     case 'GET_CART_USER':
       const cartUserAux = action.payload;
       if (cartUserAux.length > 0) {
         const itemsUserCart = [];
-
         cartUserAux.map((e) => itemsUserCart.push({
           id: e.ProductId.id,
           name: e.ProductId.name,
@@ -296,6 +302,15 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         cartUserPRUEBA: [],
+      };
+    case 'POST_REVIEW':
+      return {
+        ...state,
+      };
+    case 'GET_REVIEW':
+      return {
+        ...state,
+        review: action.payload
       };
     // case "GET_CART_USER":
     //   return {

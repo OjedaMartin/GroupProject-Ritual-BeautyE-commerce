@@ -31,6 +31,10 @@ module.exports = (sequelize) => {
     },
     image:{
         type: DataTypes.STRING
+    },
+    subscribed:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     }
   });
 };

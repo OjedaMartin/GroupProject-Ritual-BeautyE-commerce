@@ -7,6 +7,10 @@ async function offerAvailable(req, res, next){
     try{
         let users = await User.findAll({
             attributes: ["email"],
+        },{
+            where:{
+                subscribed: true,
+            }
         })
         let footer = await FooterUser.findAll({
             attributes: ["email"],
@@ -18,7 +22,7 @@ async function offerAvailable(req, res, next){
                 from: '"Offers available!"<ritual.makeup.commerce@gmail.com>',
                 to: user.email,
                 subject: `There are new offers from Ritual Make-up Store!`,
-                html:`<p>Check out our new offers available at our webpage <a href="http://localhost:3000/">Ritual</a>!.
+                html:`<p>Check out our new offers available at our webpage <a href="https://pg-ecommerce-client.vercel.app/">Ritual</a>!.
                 Don't miss out on these NEW <b>HOT DEALS</b>🔥🔥🔥!</p>`
               }, (err, info) => {
                 if (err) {
