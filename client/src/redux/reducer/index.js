@@ -11,10 +11,12 @@ const initialState = {
   //-------------
   users: [],
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
-  pruebaCartUser: [],
+  cartUser: [],
+  cartUserPRUEBA: [],
+  testStatus: [],
   //-------------
-  searchedUsers: [], 
-  allreviews:[],
+  searchedUsers: [],
+  allreviews: [],
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -35,6 +37,9 @@ const orderProducts = (orderSelected, stateProducts) => {
       return stateProducts;
   }
 };
+
+
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_PRODUCT_NAME":
@@ -66,11 +71,11 @@ function rootReducer(state = initialState, action) {
     case "HIDE_CATEGORY":
       return {
         ...state,
-      };      
+      };
     case "DELETE_REVIEW":
       return {
         ...state,
-      };      
+      };
     case "GET_CAT":
       return {
         ...state,
@@ -142,69 +147,76 @@ function rootReducer(state = initialState, action) {
     case "GET_CART":
       return {
         ...state,
-        pruebaCartUser: [action.payload],
+        cartUser: action.payload,
       };
     // case "DELETE_PRODUCT_CART":
     //   return {
     //     ...state,
     //   };
     case 'ADD_PROD_TO_CART':
-      //console.log('action.payload', action.payload)
-      // console.log('action.login',action.login)
       const newProd = action.payload;
-      const login = action.isLogin;
-      //------------------------LOGEADO O NO?----------------------------------
-      // const itemsInCart = login
-      //   ? state.pruebaCartUser.length > 0
-      //     ? state.pruebaCartUser.find((e) => e.id === newProd.id)
-      //     : state.prodCart?.find((e) => e.id === newProd.id)
-      //   : state.prodCart.find((e) => e.id === newProd.id)
-      // console.log('itemsInCart-->', !!itemsInCart)
+      const isLogin = action.login;
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+      console.log('newProd----> ESTE ES EL PRODUCTO A AGREGAR', newProd)
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////  
 
-      const itemsInCart = state.prodCart?.find((e) => e.id === newProd.id)
+      //---------------------------------------SI EL USUARIO TRAE CART, LO TENGO QUE COMPLETAR CON EL ID
+      const itemsUserCart = [];
 
-      //console.log('itemsInCart-->', !!itemsInCart)
-      //-----------------------------------------------------------------------
+      if (state.cartUserPRUEBA.length > 0 && state.prodCart.length === 0) {
+        state.cartUserPRUEBA.map((e) => itemsUserCart.push({
+          id: e.ProductId.id,
+          name: e.ProductId.name,
+          image: e.ProductId.image,
+          price: e.ProductId.price,
+          brand: e.ProductId.brand,
+          in_Stock: e.ProductId.in_Stock,
+          CategoryId: e.ProductId.CategoryId,
+          rating: e.ProductId.rating,
+          quantity: e.quantity,
+        }))
+      }
+
+      //console.log('itemsUserCart ---> ESTO ES LO QUE ME TRAIGO DE DB', itemsUserCart)
+
+
+      //---------------------------------------ACA YA ME DOY CUENTA SI TENGO UN CARRITO DEL USUARIO O NO (EL UNICO CASO SERIA QUE EL USUARIO NO TENGO UN CARRITO Y QUE EL LOCALSTORAGE A LA HORA DE LOGEARSE ESTE VACIO, ES DECIR QUE EL USUARIO NO HAYA AGREGADO NADA)
+      const itemsInCart = itemsUserCart.length > 0
+        ? itemsUserCart?.find((e) => e.id === newProd.id)
+        : state.prodCart?.find((e) => e.id === newProd.id)
+
+      //console.log('ESTO DEVUELVE SI ENCONTRO EL MISMO ID(itemsInCart)', itemsInCart)
+
 
       if (newProd.quantity < newProd.in_Stock) {
-        const cartItems = itemsInCart
-          ? state.prodCart.map((it) => it.id === newProd.id
-            ? { ...it, quantity: it.quantity + 1 }
-            : it)
+        const cartItems = itemsUserCart.length > 0
+          ? itemsInCart//<---- SI EL USUARIO TIENE ALGO EN SU CARRITO  
+            ? itemsUserCart.map((it) => it.id === newProd.id
+              ? { ...it, quantity: it.quantity + 1 } : it)
+            : [...itemsUserCart, { ...newProd, quantity: 1 }]
 
-          : [...state.prodCart, { ...newProd, quantity: 1 }]
+          : itemsInCart //<---- SI EL USUARIO NO TIENE NADA EN SU CARRITO      
+            ? state.prodCart.map((it) => it.id === newProd.id
+              ? { ...it, quantity: it.quantity + 1 } : it)
+            : [...state.prodCart, { ...newProd, quantity: 1 }];
+
+        //console.log('ASI QUEDA EL VALOR SI SE ENCONTRO', cartItems)
 
 
-        localStorage.setItem('prodCart', JSON.stringify(cartItems));
-        //-----------------------------------------------------------------------          
-        //console.log('cartItems --->', cartItems)
-
-        if (login) {
-          return { ...state, pruebaCartUser: cartItems, };
-        } else {
-          return { ...state, prodCart: cartItems, };
+        if (!isLogin) {//SI ESTA LOGEADO QUE NO CARGUE EL LOCALSTORAGE SOLO VA A USAR EL ESTADO
+          localStorage.setItem('prodCart', JSON.stringify(cartItems));//lo borro dentro del handle
         }
+
+        return {
+          ...state,
+          prodCart: cartItems,
+        };
+
       } else {
         return {
           ...state,
         };
       }
-
-
-    // const newProd = action.payload;
-    // const itemsInCart = state.prodCart?.find((e) => e.id === newProd.id);
-    // const cartItems = itemsInCart
-    //   ?.quantity < newProd.in_Stock
-    //   ? state.prodCart.map((it) => it.id === newProd.id
-    //     ? { ...it, quantity: it.quantity + 1 }
-    //     : it)
-    //   : [...state.prodCart, { ...newProd, quantity: 1 }];
-    // localStorage.setItem('prodCart', JSON.stringify(cartItems));
-
-    // return {
-    //   ...state,
-    //   prodCart: cartItems,
-    // };
     case 'REMOVE_PROD_FROM_CART':
       const prodToRemove = state.prodCart?.find((e) => e.id === action.payload.id);
       const cartUpgrade = prodToRemove?.quantity > 1
@@ -212,16 +224,23 @@ function rootReducer(state = initialState, action) {
           ? { ...it, quantity: it.quantity - 1 }
           : it)
         : state.prodCart.filter((upgrade) => upgrade.id !== action.payload.id);
-      cartUpgrade.length > 0
-        ? localStorage.setItem('prodCart', JSON.stringify(cartUpgrade))
-        : localStorage.setItem('prodCart', JSON.stringify([]))
-      console.log('cartUpgrade', cartUpgrade)
 
+      let confirmDelete = action.payload.quantity === 1 ? window.confirm("Do you are sure, to delet all cart?") : true
 
-      return {
-        ...state,
-        prodCart: cartUpgrade,
-      };
+      if (confirmDelete) {
+        cartUpgrade.length > 0
+          ? localStorage.setItem('prodCart', JSON.stringify(cartUpgrade))
+          : localStorage.setItem('prodCart', JSON.stringify([]))
+
+        return {
+          ...state,
+          prodCart: cartUpgrade,
+        };
+      }else{
+        return {
+          ...state,
+        };
+      }
     case 'REMOVE_ALL_PRODUCTS_BYID':
       const prodToRemoveAll = state.prodCart?.filter((e) => e.id !== action.payload.id);
       prodToRemoveAll.length > 0
@@ -243,10 +262,41 @@ function rootReducer(state = initialState, action) {
         profile: action.payload,
       };
     case 'GET_CART_USER':
+      const cartUserAux = action.payload;
+      if (cartUserAux.length > 0) {
+        const itemsUserCart = [];
+
+        cartUserAux.map((e) => itemsUserCart.push({
+          id: e.ProductId.id,
+          name: e.ProductId.name,
+          image: e.ProductId.image,
+          price: e.ProductId.price,
+          brand: e.ProductId.brand,
+          in_Stock: e.ProductId.in_Stock,
+          CategoryId: e.ProductId.CategoryId,
+          rating: e.ProductId.rating,
+          quantity: e.quantity,
+        }))
+        console.log('SE LEVANTA EL CARRITO DEL USER Y SE DEBE DE ACTUALIZAR PRODCART')
+        localStorage.removeItem('prodCart')
+        return {
+          ...state,
+          cartUserPRUEBA: cartUserAux,
+          prodCart: itemsUserCart,
+        }
+      } else {
+        return {
+          ...state,
+          cartUserPRUEBA: action.payload,
+        };
+
+      }
+
+    case 'CLEAR_CART_USER':
       return {
         ...state,
-        pruebaCartUser: [action.payload],
-      }
+        cartUserPRUEBA: [],
+      };
     // case "GET_CART_USER":
     //   return {
     //     ...state,

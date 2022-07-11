@@ -38,7 +38,7 @@ export function getfilterCategories(params) {
 //TRAE TODOS LOS PRODUCTOS
 export function getAllProducts() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/products");    
+    let json = await axios.get("http://localhost:3001/products");
     return dispatch({
       type: "GET_ALL",
       payload: json.data,
@@ -60,7 +60,7 @@ export function getAllCategories() {
 //TRAE TODOS LOS USUARIOS
 export function getAllUsers() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/users");    
+    let json = await axios.get("http://localhost:3001/users");
     return dispatch({
       type: "GET_ALL_USERS",
       payload: json.data,
@@ -69,7 +69,7 @@ export function getAllUsers() {
 }
 export function getAllReviews() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/review");    
+    let json = await axios.get("http://localhost:3001/review");
     return dispatch({
       type: "GET_ALL_REVIEWS",
       payload: json.data,
@@ -95,15 +95,15 @@ export function getfilterBrand(params) {
 // TRAE EL PREFIL POR NOMBRE
 export function getProfile(params) {
   return async function (dispatch) {
-    try{
-    const json = await axios.get(`http://localhost:3001/users/name`, params)
-    return dispatch({
-      type: 'GET_PROFILE',
-      payload: json.data
-    })
-  } catch (error) {
-    console.log(error)
-   }
+    try {
+      const json = await axios.get(`http://localhost:3001/users/name`, params)
+      return dispatch({
+        type: 'GET_PROFILE',
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -112,7 +112,7 @@ export function getDetail(id) {
   return async function (dispatch) {
     try {
       let prod = await axios.get(`http://localhost:3001/products/${id}`);
-     //console.log("getDet", prod)
+      //console.log("getDet", prod)
       return dispatch({
         type: "GET_DETAIL",
         payload: prod.data,
@@ -233,9 +233,9 @@ export function hideCategory(payload) {
 }
 
 //CAMBIA LOS DATOS DEL USER
-export const putUser =(payload) => {
-  return async function(dispatch){
-    let profile= await axios.put("http://localhost:3001/users/update", payload)
+export const putUser = (payload) => {
+  return async function (dispatch) {
+    let profile = await axios.put("http://localhost:3001/users/update", payload)
     return dispatch(
       {
         type: "PUT",
@@ -244,18 +244,18 @@ export const putUser =(payload) => {
     )
 
   }
-  
+
 };
 
-  
+
 ///////////////////////////////////////////////////////DELETE//////////////////////////////////////////
 
 //BORRA DEL PRODUCTOS DEL CARRITO
 
-export function deleteReview (reviewId){
+export function deleteReview(reviewId) {
   return async function (dispatch) {
     const json = await axios.delete(`http://localhost:3001/review/delete/${reviewId}`);
-    console.log('json action delete review',json);
+    console.log('json action delete review', json);
     return dispatch({
       type: "DELETE_REVIEW",
     });
@@ -275,19 +275,18 @@ export function deleteReview (reviewId){
 // }
 // MUEVE EL CONTENIDO DEL CARRITO AL USUARIO
 
-export function getCartbyUser (email){
+export function getCartbyUser(params) {
   return async function (dispatch) {
-    try{
-      let json = await axios.get("http://localhost:3001/cart/user" + email)
+    try {
+      let json = await axios.get(`http://localhost:3001/cart/user/${params}`)
       return dispatch({
         type: 'GET_CART_USER',
         payload: json.data,
       })
-    }catch(e){
+    } catch (e) {
       console.log(e)
     }
   }
-
 }
 
 // //TRAE USUARIO POR NOMBRE
@@ -307,50 +306,54 @@ export function getCartbyUser (email){
 // }
 
 
-export function addCartToBack (payload) {
-  return async function(dispatch){
-    const json = await axios.post('http://localhost:3001/cart/add/',payload);
-    console.log('json action addCartToBack',json.data);
+export function addCartToBack(payload) {
+  return async function (dispatch) {
+    const json = await axios.post('http://localhost:3001/cart/add/', payload);
+    // console.log('json action addCartToBack',json.data);
     return dispatch({
       type: "ADD_CART_TO_BACK"
     })
   }
 }
-export function addProdToCart (product, login){
+export function addProdToCart(product, isLogin) {
   return ({
-    type:'ADD_PROD_TO_CART', 
+    type: 'ADD_PROD_TO_CART',
     payload: product,
-    isLogin: login,
+    login: isLogin,
   })
 }
 
-export function removeProdFromCart (product,login){
+export function removeProdFromCart(product) {
   return ({
-    type:'REMOVE_PROD_FROM_CART', 
-    payload:product,
-    isLogin: login,
+    type: 'REMOVE_PROD_FROM_CART',
+    payload: product,
   })
 }
-export function removeAllOneProdToCart (product, login){
-  console.log('PROD ACTIONS--> REMOVE',product)
+export function removeAllOneProdToCart(product) {
+  //console.log('PROD ACTIONS--> REMOVE',product)
   return ({
-    type:'REMOVE_ALL_PRODUCTS_BYID', 
-    payload:product,
-    isLogin: login,
+    type: 'REMOVE_ALL_PRODUCTS_BYID',
+    payload: product,
   })
 }
 
-export function clearCart (){
+export function clearCart() {
   return ({
-    type:'CLEAR_CART',
-  })}
+    type: 'CLEAR_CART',
+  })
+}
+export function clearCartUserPRUEBA() {
+  return ({
+    type: 'CLEAR_CART_USER',
+  })
+}
 
 ///////////////////////////////////////////////////ORDER/////////////////////////////////////////////
 
-  export function orderProducts(orderSelected) {
-    return {
-      type: 'ORDER_PRODUCTS',
-      payload: orderSelected,
-    }
+export function orderProducts(orderSelected) {
+  return {
+    type: 'ORDER_PRODUCTS',
+    payload: orderSelected,
   }
+}
 

@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getDetail, addProdToCart, removeProdFromCart } from "../redux/actions/index";
+import { getDetail, addProdToCart, removeProdFromCart, clearCartUserPRUEBA,addCartToBack } from "../redux/actions/index";
 import style from "./Detail.module.css"
 //---------------------------------------
 import swal from 'sweetalert'
 import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
+import { useAuth0 } from '@auth0/auth0-react';
 //--------------------------------------
 export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  //--------------------------------------------------
+  const { isAuthenticated, user } = useAuth0();
+  const [updateStateToADD, setUpdateStateToADD] = useState(false);
+  //------------------------------------------------------------------------------------------------
   const prodCart = useSelector((state) => state.prodCart);
   const product = useSelector((state) => state.details);
   useEffect(() => {
@@ -24,7 +28,7 @@ export default function Detail() {
     cat130042: 'Tools & Brushes',
     cat130038: 'Hair',
   }
- // console.log('id----->', id)
+  // VER SI AL FINAL TENGO QUE AGREGAR OTRA DATA O YA TRABAJO DIRECTAMENTE CON PRODCART 
 
   const data = prodCart.length > 0 ? prodCart.find((e) => e.id === product[0].id) : undefined;
   const quantity = data !== undefined ? data.quantity : 0;
@@ -46,7 +50,12 @@ export default function Detail() {
         CategoryId: product[0].CategoryId,
         rating: product[0].rating,
         quantity: quantity,
-      }));
+      }, isAuthenticated));
+
+      if (isAuthenticated) {
+        setUpdateStateToADD(true)
+      }
+
     } else {
       swal(`Insufficient stock in: ${product[0].name}`);
     }
@@ -61,7 +70,23 @@ export default function Detail() {
     if (quantity === 1) {
       swal(`Removed of cart`);
     }
+    if (isAuthenticated) {
+      setUpdateStateToADD(true)
+      if (quantity === 1) {
+        dispatch(clearCartUserPRUEBA())
+      }
+    }
   }
+
+
+  if (updateStateToADD && isAuthenticated) {
+    setUpdateStateToADD(false)
+    const productsAux = [];
+    prodCart.map((item) => productsAux.push({ id: item.id, cant: item.quantity }))
+    dispatch(addCartToBack({ productsId: productsAux, email: user.email }))
+  }
+
+
   return (
     <div className={style.back}>
       <div className={style.manzana}>

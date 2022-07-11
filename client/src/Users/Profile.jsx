@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUserByName, Log } from "../redux/actions";
+import { getUserByName, Log, getCartbyUser } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import { Settings } from "./Settings";
 import { MyOrders } from "./Orders";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 const Profile = () => {
   const dispatch = useDispatch();
+  const [confirmCondition, setConfirmCondition] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
   // const[profile,setProfile] = useState("");
   // if (isAuthenticated){ dispatch(getUser(user),{
@@ -16,23 +17,28 @@ const Profile = () => {
   //   image:user.picture
   // })}
 
-  async function postAndGet(user){
+  async function postAndGet(user) {
     //console.log("user", user)
     await dispatch(Log(user))
     dispatch(getUserByName(user.name))
+
   }
-  
-    if (isAuthenticated) { 
-      postAndGet(user)   
-    
-    ;
+
+  if (isAuthenticated) {
+    postAndGet(user)
+    if (!confirmCondition){
+      setConfirmCondition(true)
+      dispatch(getCartbyUser(user.email))
+      console.log('SE LEVANTA EL CART DEL USER NI BIEN SE LOGEO');
+    }
+   
   }
-  
+
   return (
     isAuthenticated && (
       <div>
         <img src={user.picture} alt={user.name} />
-        <br/>
+        <br />
         <label>Name:</label>
         <h2>{user.name}</h2>
         <label>Email:</label>
@@ -44,11 +50,11 @@ const Profile = () => {
             </Button>
           </Link>
 
-          <Link  exact to="/user/myorders">
-          <Button >
+          <Link exact to="/user/myorders">
+            <Button >
               My Orders
-              </Button>
-            </Link>
+            </Button>
+          </Link>
         </div>
       </div>
     )

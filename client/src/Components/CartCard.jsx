@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-//import SlidingPanel from 'react-sliding-side-panel';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaRegSadCry } from "react-icons/fa";
 import {
@@ -7,12 +6,9 @@ import {
     removeProdFromCart,
     clearCart,
     removeAllOneProdToCart,
-    addCartToBack,
-    getCartbyUser,
-    getAllUsers
+    addCartToBack
 } from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
-// import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 import Classes from './CartCard.module.css';
 import trashIcon from '../images/trash.png';
 import swal from 'sweetalert'
@@ -24,20 +20,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 export default function CartCard() {
     const allProd = useSelector((state) => state.allProducts);
     const prodCart = useSelector((state) => state.prodCart);
-    const userCart = useSelector((state) => state.pruebaCartUser);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     //--------------------------------------------------
     const { isAuthenticated, user } = useAuth0();
+    const [updateStateToADD, setUpdateStateToADD] = useState(false);
     //--------------------------------------------------
-    useEffect(() => {
-        if (isAuthenticated) {
-            dispatch(getAllUsers())
-            dispatch(getCartbyUser(user.email))
-            console.log('TERMINO DE EJECUTAR getCartbyUser')
-        }
-    }, [dispatch, prodCart, isAuthenticated, user]);
 
     var totalAmount = 0;
 
@@ -50,25 +39,6 @@ export default function CartCard() {
     for (let i = 0; i < prodCart.length; i++) {
         totalQuantity = totalQuantity + (prodCart[i].quantity);
     }
-
-
-    // const addProd = (e) => {
-    //     const filter = prodCart.find((item) => item.id === e.target.value);
-    //         if (filter.quantity < filter.in_Stock) {
-    //             dispatch(addProdToCart(
-    //                 {
-    //                     id: filter.id,
-    //                     name: filter.name,
-    //                     image: filter.image,
-    //                     price: filter.price,
-    //                     brand: filter.brand,
-    //                     in_Stock: filter.in_Stock,
-    //                     CategoryId: filter.CategoryId,
-    //                     rating: filter.rating,
-    //                     quantity: filter.quantity,
-    //                 }
-    //             ));        
-    // }
 
     const handleAddCart = (e) => {
         e.preventDefault();
@@ -85,56 +55,71 @@ export default function CartCard() {
                     CategoryId: filter.CategoryId,
                     rating: filter.rating,
                     quantity: filter.quantity,
-                }
+                }, isAuthenticated
             ));
+            if (isAuthenticated) {
+                setUpdateStateToADD(true)
+            }
         } else {
             swal(`Insufficient stock in: ${filter.name}`);
         }
     }
-
-
     const handleRemoveCart = (e) => {
-        //LO DEBERIA DE MANDAR AL BACK PARA BASE DE DATOS
-        //LIMPIAR EL LOCALSTORAGE
         e.preventDefault();
-        dispatch(removeProdFromCart({ id: e.target.value }));
+        const filter = prodCart.find((item) => item.id === e.target.value); 
+        dispatch(removeProdFromCart({
+            id: filter.id,
+            name: filter.name,
+            image: filter.image,
+            price: filter.price,
+            brand: filter.brand,
+            in_Stock: filter.in_Stock,
+            CategoryId: filter.CategoryId,
+            rating: filter.rating,
+            quantity: filter.quantity,
+        }));
+        if (isAuthenticated) {
+            setUpdateStateToADD(true)
+        }
 
     }
     const handleBuy = (e) => {
         e.preventDefault();
-        if (isAuthenticated) {
-            //dispatch(getUser())
-            const dataBody = [];
-            prodCart?.map((prod) => {
-                return (
-                    dataBody.push({
-                        id: prod.id,
-                        cant: prod.quantity,
-                    })
-                )
-            });
-            console.log('dataBody', dataBody)
-            const bodyFinsh = { productsId: dataBody, email: user.email }
-            console.log('Informacion para el back-->', bodyFinsh)
-            dispatch(addCartToBack(bodyFinsh));
-            swal('¡Succes! Your cart is ready.');
-            // navigate('/');
-            dispatch(clearCart());
-            return (
-                <PaymentGateways />
-            )
-        } else {
-            swal('You need login, to finish your cart!');
-            navigate("/login");
-        }
+        // if (isAuthenticated) {
+        //     //dispatch(getUser())
+        //     const dataBody = [];
+        //     prodCart?.map((prod) => {
+        //         return (
+        //             dataBody.push({
+        //                 id: prod.id,
+        //                 cant: prod.quantity,
+        //             })
+        //         )
+        //     });
+        //     console.log('dataBody', dataBody)
+        //     const bodyFinsh = { productsId: dataBody, email: user.email }
+        //     console.log('Informacion para el back-->', bodyFinsh)
+        //     dispatch(addCartToBack(bodyFinsh));
+        //     swal('¡Succes! Your cart is ready.');
+        //     // navigate('/');
+        //     dispatch(clearCart());
+        //     return (
+        //         <PaymentGateways />
+        //     )
+        // } else {
+        //     swal('You need login, to finish your cart!');
+        //     navigate("/login");
+        // }
     }
     const handleDelete = (e) => {
-        //ACA SE DEBERIA DE ELIMINAR EL CARRITO DE LA BASE DE DATOS? O CAMBIAR DE ESTADO VER!
         e.preventDefault();
         let confirmDelete = window.confirm("Do you are sure, to delet all cart?");
         if (confirmDelete) {
             dispatch(clearCart());
             navigate('/SearchDetail/shopall/allProducts');
+            if (isAuthenticated) {
+                dispatch(addCartToBack({ productsId: [], email: user.email }))//VER QUE MANDAR PARA QUE VACIE EL CART DE DB!
+            }
         }
 
     }
