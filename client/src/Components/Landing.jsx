@@ -10,6 +10,7 @@ import Profile from "../Users/Profile";
 
 import s from "./Landing.module.css";
 
+
 export default function Landing() {
   const dispatch = useDispatch();
   const { isAuthenticated, user, loginWithRedirect } = useAuth0();
@@ -23,9 +24,8 @@ export default function Landing() {
     if(isAuthenticated) {
       dispatch(Log(user))
     }
-
   }, [dispatch, isAuthenticated, user]);
-
+  
   
   return (
     <>
@@ -39,7 +39,7 @@ export default function Landing() {
               <li>
               {isAuthenticated ? (
                   <a href="/profile">
-                    {user.name}
+                    {info[0]?.name}
                     <span>
                       <i class="fa fa-map-marker"></i>
                     </span>

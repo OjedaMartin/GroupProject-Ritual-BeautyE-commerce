@@ -17,9 +17,6 @@ export default function ProductCard({ name, brand, image, price, id, in_Stock, C
     const quantity = data !== undefined ? data.quantity : 0;
 
 
-
-
-
     const handleAddCart = (e) => {
         dispatch(addProdToCart({
             id: id,
