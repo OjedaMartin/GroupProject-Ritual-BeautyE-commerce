@@ -19,7 +19,7 @@ export default function SearchDetail() {
     const [, setReloadState] = useState(false);
     const { name } = useParams();
     const { category } = useParams();
-    const { allProducts } = useParams();
+    //const { allProducts } = useParams();
 
     const dispatch = useDispatch();
 
@@ -52,10 +52,10 @@ export default function SearchDetail() {
         else if (category) {
             dispatch(getfilterCategories(category));
         }
-        else if (allProducts) { dispatch(getAllProducts()) }
 
-    }, [name, category, allProducts]);
-
+    }, [name, category]);
+    
+    //else if (allProducts) { dispatch(getAllProducts()) }
     const setOrder = (e) => {
         dispatch(orderProducts(e.target.value));
         setReloadState((state) => !state);
@@ -110,7 +110,7 @@ export default function SearchDetail() {
                             </select>
                             <select onChange={handleFilterByCategory} name='CatType' className={ClassesSearchDetail.select}>
                                 <option value='category'>Category</option>
-                                {allCategories?.map((e) => (<option key={e.name} value={e.id} className={ClassesSearchDetail.select}>{e.name}</option>))}
+                                {allCategories?.map((e,i) => (<option key={i} value={e.id} className={ClassesSearchDetail.select}>{e.name}</option>))}
                             </select>
                         </div>
                     </div>
