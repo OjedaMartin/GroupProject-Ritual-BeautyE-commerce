@@ -204,11 +204,11 @@ export function createProduct(payload) {
   };
 }
 //CARGA A BD UN USUARIO
-export function Log(email) {
-  console.log(email, "pp")
-  return async function (dispatch) {
-    const info = await axios.post("http://localhost:3001/users/login/",email);
-    console.log("info action", info);
+export function Log(user) {
+  console.log(user)
+  return async function () {
+    const info = await axios.post("http://localhost:3001/users/login/",user);
+    console.log("info action login", info);
     return {
       type: "LOG",
       email: info.data

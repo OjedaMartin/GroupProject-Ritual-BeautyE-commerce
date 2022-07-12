@@ -79,7 +79,9 @@ export default function Detail() {
           <h4 className={style.label}>  brand: {product?.map((e) => e.brand)} </h4>
           {/* <h4 className={style.label}> rating:{product?.map((e) => e.rating)} </h4> */}
           <h4 className={style.label}> rating:{product?.map((e) => (<StarDetail 
-          stars = {parseInt(e.rating)}/>))} </h4>
+          stars = {parseInt(e.rating)}
+          key = {e.id}
+          />))} </h4>
           <h4 className={style.label}> {objectCat[product?.map((e) => e.CategoryId)]}</h4>
           <h4 className={style.label}>Add to cart</h4>
           <div className={style.btnAddToCart}>
