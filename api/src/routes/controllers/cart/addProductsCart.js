@@ -1,6 +1,5 @@
 const { Product, Cart, User, Order, CartProduct } = require('../../../db')
 
-
 const addProductCart = async (req, res) => {
 
     var { productsId, email } = req.body
@@ -10,20 +9,20 @@ const addProductCart = async (req, res) => {
 
     let emailValido = await User.findOne({ where: { email } })
     if (emailValido) {
-        let cartrue = await Cart.findOne({ where: { UserId: emailValido.id, state: "true" } })
-        if (cartrue) {
-            await Cart.destroy({ where: { id: cartrue.id } })
-            await CartProduct.destroy({ where: { CartId: cartrue.id } })
-        }
-        let cart = await Cart.create()
-        await emailValido.addCart(cart)
-        for (let i = 0; i < productsId.length; i++) {
+        let cart = await Cart.findOne({ where: { UserId: emailValido.id, state: "true" } })
+       
+       
+            
+            for (let i = 0; i < productsId.length; i++) {
+                let prod = await CartProduct.findOne({ where: { CartId: cart.id, ProductId: productsId[i].id } })
+                if (prod) {
+                    await CartProduct.update({ quantity: productsId[i].cant }, { where: { id: prod.id } })
+                } else {
+                    await CartProduct.create({ CartId: cart.id, ProductId: productsId[i].id, quantity: productsId[i].cant })
+                }
 
-            await CartProduct.create({ CartId: cart.id, ProductId: productsId[i].id, quantity: productsId[i].cant })
-        }
-
-
-
+            }
+        
 
         res.send("carrito creado con sus productos")
     } else {
@@ -31,7 +30,6 @@ const addProductCart = async (req, res) => {
     }
 
 }
-
 
 async function carts(req, res) {
     let resp = await Cart.findAll()

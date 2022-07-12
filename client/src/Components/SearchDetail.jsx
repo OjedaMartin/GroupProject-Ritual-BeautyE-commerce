@@ -54,7 +54,7 @@ export default function SearchDetail() {
         }
         else if (allProducts) { dispatch(getAllProducts()) }
 
-    }, [dispatch, name, category, allProducts]);
+    }, [name, category, allProducts]);
 
     const setOrder = (e) => {
         dispatch(orderProducts(e.target.value));

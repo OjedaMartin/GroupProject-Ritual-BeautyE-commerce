@@ -18,17 +18,18 @@ export default function Landing() {
     dispatch(getAllCategories());
     dispatch(getAllProducts());
   }, [dispatch]);
-  (() => {
-    if (isAuthenticated) {
-      dispatch(Log(user))
-    }})()
   
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(Log(user));
+    }
+  },[dispatch, user, isAuthenticated])
   return (
     <>
       <Carousel1 />
       <Carousel />
       <WhatsNew />
-
+      <button onclick={logme(user)}>aaaaaaaaaaaaa</button>
       {isAuthenticated ? (
         <div class={s.body}>
           <nav class={s.side}>
