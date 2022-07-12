@@ -32,7 +32,6 @@ export default function Landing() {
       <Carousel1 />
       <Carousel />
       <WhatsNew />
-
         <div class={s.body}>
           <nav class={s.side}>
             <ul>

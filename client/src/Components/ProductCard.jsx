@@ -1,50 +1,91 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addProdToCart, removeProdFromCart } from '../redux/actions'
+import { addProdToCart, removeProdFromCart, addCartToBack, clearCartUserPRUEBA } from '../redux/actions'
 // import { useDispatch } from 'react-redux';
 // import cart from '../images/carritoIcon.png';
 import ClassesProductCard from './ProductCard.module.css'
 import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 import swal from 'sweetalert'
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function ProductCard({ name, brand, image, price, id, in_Stock, CategoryId, rating }) {
     const dispatch = useDispatch();
     const prodCart = useSelector((state) => state.prodCart);
+    const [updateStateToADD, setUpdateStateToADD] = useState(false);
+    //const [updateStateToREMOVE, setUpdateStateToREMOVE] = useState(false);
+    const userCart = useSelector((state) => state.cartUserPRUEBA);
+    //--------------------------------------------------
+    const { isAuthenticated, user } = useAuth0();
+    //------------------------------------------------------------------------------------------------
 
-    const data = prodCart.length > 0 ? prodCart.find((e) => e.id === id) : undefined;
-    const quantity = data !== undefined ? data.quantity : 0;
 
+    //--------------------------------VER SI EL PRODUCTO YA ESTA CARGADO------------------------------
+    const data = prodCart.length > 0
+        ? prodCart.find((el) => el.id === id)
+        : undefined
+    //-----UNA VEZ QUE CONFIRME QUE AL TRAER EL CART DEL BACK ME LO GUARDA EN PRODCART BORRO ESTO-------
+    const data2 = userCart.length > 0
+        ? userCart.find((el) => el.ProductId.id === id)
+        : undefined
+    //----------------------SI YA ESTABA CARGADO, SACO LA CANTIDAD QUE TIENE--------------------------
 
-    const handleAddCart = (e) => {
-        dispatch(addProdToCart({
-            id: id,
-            name: name,
-            image: image,
-            price: price,
-            brand: brand,
-            in_Stock: in_Stock,
-            CategoryId: CategoryId,
-            rating: rating,
-            quantity: quantity,
-        }));
-        if (quantity === 0) {
+    const quantityDATA = data !== undefined ? data.quantity : data2 !== undefined ? data2.quantity : 0;
+
+    const handleAddCart = async (e) => {
+        e.preventDefault()
+        if (quantityDATA === 0) {
             swal(`Added to cart`);
+        }
+        if (quantityDATA < in_Stock) {
+            const objeToAdd = {
+                id: id,
+                name: name,
+                image: image,
+                price: price,
+                brand: brand,
+                in_Stock: in_Stock,
+                CategoryId: CategoryId,
+                rating: rating,
+                quantity: quantityDATA,
+            }
+            dispatch(addProdToCart(objeToAdd, isAuthenticated));
+
+            if (isAuthenticated) {
+                setUpdateStateToADD(true)
+            }
+        }else{
+            swal(`Insufficient stock in: ${name}`);
         }
     }
 
     const handleRemoveCart = (e) => {
-        dispatch(removeProdFromCart({
-            id: id,
-            quantity: quantity,
-        }));
-        
-        if (quantity === 1) {
+        e.preventDefault()
+        if (quantityDATA === 1) {
             swal(`Removed of cart`);
         }
+        dispatch(removeProdFromCart({
+            id: id,
+            quantity: quantityDATA,
+        }));
+
+        if (isAuthenticated) {
+            setUpdateStateToADD(true)
+            if (quantityDATA === 1) {
+                dispatch(clearCartUserPRUEBA())
+            }
+        }
     }
-    
+
+    if (updateStateToADD && isAuthenticated) {
+        setUpdateStateToADD(false)
+        const productsAux = [];
+        prodCart.map((item) => productsAux.push({ id: item.id, cant: item.quantity }))
+        console.log('ESTO AGREGO AL BACK',productsAux)
+        dispatch(addCartToBack({ productsId: productsAux, email: user.email }))
+    }
+
+
     return (
         <div className={ClassesProductCard.container1}>
             <div className={ClassesProductCard.top}>
@@ -64,9 +105,9 @@ export default function ProductCard({ name, brand, image, price, id, in_Stock, C
             </div>
             <p>{`$${price}`}</p>
             <div className={ClassesProductCard.priceAndcart}>
-                {quantity > 0 ? <AiFillMinusSquare className={ClassesProductCard.btn} onClick={handleRemoveCart} /> : ""}
-                <p>{quantity > 0 ? quantity : ""}</p>
-                <AiFillPlusSquare className={ClassesProductCard.btn} onClick={handleAddCart} />
+                {quantityDATA > 0 ? <AiFillMinusSquare className={ClassesProductCard.btn} onClick={handleRemoveCart} /> : ""}
+                <p>{quantityDATA > 0 ? quantityDATA : ""}</p>
+                <AiFillPlusSquare className={ClassesProductCard.btn} onClick={(e) => handleAddCart(e)} />
             </div>
 
 

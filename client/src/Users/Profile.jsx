@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUserByName, Log } from "../redux/actions";
+import { getUserByName, Log, getCartbyUser } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Settings } from "./Settings";
-import s from"./profile.module.css"
+import s from "./profile.module.css"
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 const Profile = () => {
@@ -11,17 +11,25 @@ const Profile = () => {
   console.log(user)
   const name = useSelector((state) => state.cu)
   console.log(name)
-  const data= name.filter(e=> e.email===user?.email)
+  const data = name.filter(e => e.email === user?.email)
   console.log(data)
   const dispatch = useDispatch();
   // const auth0Email = perfil?.email
   // const userLogged = perfil?.length > 0 ? perfil?.find(e => (e.email === auth0Email)) : false;
+  // const [confirmCondition, setConfirmCondition] = useState(false);
+  // if (isAuthenticated) {
+    // if (!confirmCondition) {
+    //   setConfirmCondition(true)
+    //   dispatch(getCartbyUser(user.email))
+    //   console.log('SE LEVANTA EL CART DEL USER NI BIEN SE LOGEO');
+    // }
+  // }
   useEffect(() => {
     dispatch(getUserByName(user?.name));
   }, [dispatch]);
-  
+
   return (
-      <div>
+    <div>
       {name && name.length ? (
         <div>
           <img src={name.image} alt={name.name} />
