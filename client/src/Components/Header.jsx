@@ -18,21 +18,20 @@ export default function Header() {
   const { isAuthenticated, user } = useAuth0();
   //console.log("header", isAuthenticated);
 
-  //----------------------------------------MANTIENE ACTUALIZADO EL CART DEL USER EN TEORIA xD----------------------------------------
-  const [confirmCondition, setConfirmCondition] = useState(false);
+  //-----------------------------------------MANTIENE ACTUALIZADO EL CART DEL USER EN TEORIA xD----------------------------------------
   const dispatch = useDispatch();
   const prodCart = useSelector((state) => state.prodCart);
   const userCart = useSelector((state) => state.cartUserPRUEBA);
 
-  if (isAuthenticated && !confirmCondition && userCart.length === 0) {
+  if (isAuthenticated && userCart.length === 0) {
     if (prodCart.length > 0) {
-      setConfirmCondition(true)
       const porductsOfLocalStorage = [];
       prodCart.map((e) => porductsOfLocalStorage.push({ id: e.id, cant: e.quantity }));
-      dispatch(addCartToBack({ productsId: porductsOfLocalStorage, email: user.email }));
+      //dispatch(addCartToBack({ productsId: porductsOfLocalStorage, email: user.email }));
       localStorage.removeItem('prodCart')
     }
   }
+
   useEffect(() => {
     console.log('ENTRE AL USEEFFECT(1)')
     if (isAuthenticated) {
