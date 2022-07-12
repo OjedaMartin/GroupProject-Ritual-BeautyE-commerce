@@ -99,18 +99,19 @@ function handleSubmit(e) {
             <h3 className={style.font} >Current Categories:</h3>
             
             <div className={style.gridinfocont}>
-            <h2 className={style.gridinfoid}>Id:</h2>
-            <h2 className={style.gridinfoname}>Name:</h2>
+            <h2 className={style.gridinfoid}>Id</h2>
+            <h2 className={style.gridinfoname}>Name</h2>
+            <h2 className={style.gridinfoname}>Status</h2>
             </div>
 
             {categories.map(e=> {
                 return(
                         <div className={style.card} key={e.id}>
                            
-                            <button className={style.DelBtn} name={e.name}  onClick={() => handleDelete(e)}><ImCross/></button>
+                            <button className={style.DelBtn} name={e.name} onClick={() => handleDelete(e)}><ImCross/></button>
                             <div>
-                                <button className={style.DelBtn} name={e.name} id={e.id} onClick={() => handlePut(e)}><HiPencilAlt/></button>
                                 <input key={e.id} className={style.changeinput} type="text" value={edit.name} name='name' onChange={(e) => handleEdit(e)}/>
+                                <button className={style.addbtn} name={e.name} id={e.id} onClick={() => handlePut(e)}><HiPencilAlt/></button>
                             </div>
                             <p className={style.element}>{e.id}</p>
                             <p className={style.element}>{e.name}</p>

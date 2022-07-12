@@ -46,11 +46,11 @@ export default function OrderDetailAdmin (){
                         <div className={style.infocontainer}> 
                             <div className={style.orderState}>
                                 <h3 className={style.info}>State: {data.state}  </h3>    
-                                   <select onChange={e=>handleSelect(e)} name="OrderState" id={data.id}  >
-                                        <option value="Created">Created</option>     
-                                        <option value="Dispatched">Dispatched</option>     
-                                        <option value="Arrived">Arrived</option>     
-                                        <option value="Cancelled">Cancelled</option>                                           
+                                   <select className={style.select} onChange={e=>handleSelect(e)} name="OrderState" id={data.id}  >
+                                        <option className={style.option} value="Created">Created</option>     
+                                        <option className={style.option} value="Dispatched">Dispatched</option>     
+                                        <option className={style.option} value="Arrived">Arrived</option>     
+                                        <option className={style.option} value="Cancelled">Cancelled</option>                                           
                                    </select> 
                                    <button className={style.ModBtn} onClick={e=>handleClick(e)}><GoCheck/></button>      
                             </div>                                  
