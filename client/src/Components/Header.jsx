@@ -18,7 +18,7 @@ export default function Header() {
   const { isAuthenticated, user } = useAuth0();
   //console.log("header", isAuthenticated);
 
-  //----------------------------------------MANTIENE ACTUALIZADO EL CART DEL USER EN TEORIA xD----------------------------------------
+  //-----------------------------------------MANTIENE ACTUALIZADO EL CART DEL USER EN TEORIA xD----------------------------------------
   const dispatch = useDispatch();
   const prodCart = useSelector((state) => state.prodCart);
   const userCart = useSelector((state) => state.cartUserPRUEBA);

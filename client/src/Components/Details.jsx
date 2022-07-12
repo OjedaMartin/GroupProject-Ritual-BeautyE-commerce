@@ -25,6 +25,7 @@ export default function Detail() {
     cat130038: 'Hair',
   }
 
+  
   return (
     <div className="back">
       <div className="manzana">

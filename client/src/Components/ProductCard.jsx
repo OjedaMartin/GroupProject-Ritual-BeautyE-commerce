@@ -37,7 +37,6 @@ const quantityDATA = data !== undefined ? data.quantity : data2 !== undefined ? 
         rating: rating,
         quantity: quantityDATA,
     }
-
     return (
         <div className={ClassesProductCard.container1}>
             <div className={ClassesProductCard.top}>

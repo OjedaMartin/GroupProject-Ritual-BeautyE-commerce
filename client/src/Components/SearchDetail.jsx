@@ -52,7 +52,7 @@ export default function SearchDetail() {
     const productNotFound = productsAuxResults?.slice(0, 4);
 
 
-    //----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
 
     useEffect(() => {
         const cartObjItems = prodCart.map(product => ({

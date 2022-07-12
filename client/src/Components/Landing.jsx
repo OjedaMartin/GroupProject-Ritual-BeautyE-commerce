@@ -27,7 +27,6 @@ export default function Landing() {
 
   }, [dispatch, isAuthenticated, user])
 
- 
   return (
     <>
       <Carousel1 />
