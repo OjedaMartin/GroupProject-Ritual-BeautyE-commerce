@@ -3,6 +3,7 @@ const {Cart,CartProduct,User,Product} = require('../../../db')
 
 async function getByUser(req,res) {
     let {email} = req.params
+    console.log('BUSCA CART DEL USER')
     let user = await User.findOne({where:{email}})
     let cart= await Cart.findOne({where:{UserId:user.id,state:"true"}})    
     if(!cart){ res.status(200).json([])}

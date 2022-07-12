@@ -3,10 +3,10 @@ import style from "./Rating.module.css"
 
 const StarDetail = ({onClick, stars}) => {
     return (
-      <div >
+      <div  >
         {[...Array(stars)].map((_, index) => {
           index += 1;
-          return(<span className={style.spancolorStar}>&#9733;</span>)
+          return(<span key ={index}  className={style.spancolorStar}>&#9733;</span>)
         })}
       </div>
     );

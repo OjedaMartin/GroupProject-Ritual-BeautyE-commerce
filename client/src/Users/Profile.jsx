@@ -16,14 +16,14 @@ const Profile = () => {
   const dispatch = useDispatch();
   // const auth0Email = perfil?.email
   // const userLogged = perfil?.length > 0 ? perfil?.find(e => (e.email === auth0Email)) : false;
-  const [confirmCondition, setConfirmCondition] = useState(false);
-  if (isAuthenticated) {
-    if (!confirmCondition) {
-      setConfirmCondition(true)
-      dispatch(getCartbyUser(user.email))
-      console.log('SE LEVANTA EL CART DEL USER NI BIEN SE LOGEO');
-    }
-  }
+  // const [confirmCondition, setConfirmCondition] = useState(false);
+  // if (isAuthenticated) {
+    // if (!confirmCondition) {
+    //   setConfirmCondition(true)
+    //   dispatch(getCartbyUser(user.email))
+    //   console.log('SE LEVANTA EL CART DEL USER NI BIEN SE LOGEO');
+    // }
+  // }
   useEffect(() => {
     dispatch(getUserByName(user?.name));
   }, [dispatch]);

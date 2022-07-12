@@ -6,23 +6,29 @@ const { User, Cart } = require("../../../db");
 const userLogin = async (req, res) => {
   const { email, name, picture } = req.body;
 
-  console.log("data", email, name, picture)
+  console.log("data", email, name,picture)
+
+  const [user,created] = await User.findOrCreate({ where: { email: email }, defaults:{
+
+    email: email,
+    name: name,
+    image: picture,
+
+
+     } });
+
+  if(created) console.log('i am here!')
+  let cart= await Cart.findOne({where:{UserId:user.id,state:"true"}}) 
+  if (!cart){
+    cart = await Cart.create()
+    await user.addCart(cart)
+  }
+
  
-  console.log('USERLOGIN')
+  res.status(200).json(user)
 
-  const [user, created] = await User.findOrCreate({
-    where: { email: email }, defaults: {
 
-      email: email,
-      name: name,
-      image: picture,
 
-    }
-  });
-  if (created) console.log('i am here!')
-  let cart = await Cart.create()
-  await user.addCart(cart)
-  res.status(200)
 
 };
 
