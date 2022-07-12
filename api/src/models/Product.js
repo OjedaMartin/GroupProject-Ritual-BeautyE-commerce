@@ -36,7 +36,11 @@ module.exports = (sequelize) => {
     in_Stock: {
       type: DataTypes.INTEGER,
       defaultValue: 100,
-    }
+    },
+    discount: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
   },{
     timestamps: false
   });

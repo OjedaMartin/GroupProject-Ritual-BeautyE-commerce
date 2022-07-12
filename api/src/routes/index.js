@@ -9,6 +9,7 @@ const cart = require('./cart');
 const review = require('./review')
 const mail = require("./mail")
 const order = require('./order')
+const wishlist = require('./wishlist')
 
 // const products = require('./products')
 
@@ -26,6 +27,7 @@ router.use('/cart', cart);
 router.use('/review', review);
 router.use("/mail", mail);
 router.use('/order', order)
+router.use('/wishlist', wishlist)
 
 // router.use('/products', products);
 
