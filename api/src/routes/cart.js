@@ -7,7 +7,7 @@ const { getByUser } = require('./controllers/cart/getByUser');
 const router = Router();
 
 
-router.post('/add', addProductCart);
+router.put('/add', addProductCart);
 router.get('/all', carts);
 router.get('/user/:email', getByUser);
 

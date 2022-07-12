@@ -25,15 +25,14 @@ export default function Landing() {
       dispatch(Log(user))
     }
 
-  }, [dispatch, isAuthenticated, user]);
+  }, [dispatch, isAuthenticated, user])
 
-  
+ 
   return (
     <>
       <Carousel1 />
       <Carousel />
       <WhatsNew />
-
         <div class={s.body}>
           <nav class={s.side}>
             <ul>

@@ -8,7 +8,7 @@ const getReviews = async (req, res) =>{
         if(review) {
             res.status(200).json(review);
         } else {
-            res.status(404).json('User didnt make any comment')
+            res.status(404).json('No reviews available')
         }
 
     }catch(error){
