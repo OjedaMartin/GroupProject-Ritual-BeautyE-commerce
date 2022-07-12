@@ -16,10 +16,9 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getDetail(id));
-  }, [dispatch, id]);
+  }, []);
 
 
-  dispatch(getDetail(id))
   
   const prodCart = useSelector((state) => state.prodCart);
   const product = useSelector((state) => state.details);

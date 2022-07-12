@@ -101,7 +101,7 @@ async function handleAdmin(e){
 
             <div className={style.cardinfo}>
                 
-                <p>Id</p>
+                
                 <p>User</p>
                 <p>Email</p>
                 <p>Membership</p>
