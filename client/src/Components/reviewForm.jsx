@@ -105,13 +105,8 @@ export default function ReviewForm(){
                 {
                 input.product
                 }
-            </p>
-        
-        <label> Rating:</label>
-         <StarRating
-            onClick = {handleChangerating}
-            stars = {5}
-         />   
+            </p> 
+            
         <label> Text:</label>
         <input
         type='text'
@@ -119,6 +114,12 @@ export default function ReviewForm(){
         onChange={(e)=> handleChangeText(e)}
         />
 
+        <label> Rating:</label>
+         <StarRating
+            onClick = {handleChangerating}
+            stars = {5}
+         />  
+        <br />
 
         <button type = 'submit' onClick={() => navigate(-1)}>add</button>
 

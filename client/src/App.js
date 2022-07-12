@@ -38,7 +38,6 @@ function App() {
         <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route exact path="/termsofuse" element={<TermsOfUse />} />
         <Route path="/admin/*" element={<Admin />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
 
         <Route path="/user/settings" element={<Settings />} />
