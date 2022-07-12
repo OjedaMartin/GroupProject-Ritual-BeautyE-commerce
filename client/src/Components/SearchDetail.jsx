@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 import {
@@ -7,27 +7,34 @@ import {
     getAllCategories,
     getfilterCategories,
     getfilterBrand,
-    getAllProducts
+    getAllProducts,
+    addProdToCart, removeProdFromCart, addCartToBack, clearCartUserPRUEBA
 } from '../redux/actions';
+import swal from 'sweetalert'
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import loaderEyes2prueba from '../images/loaderEyes2prueba.gif';
 import ClassesSearchDetail from './SearchDetail.module.css'
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 export default function SearchDetail() {
     const [, setReloadState] = useState(false);
     const { name } = useParams();
     const { category } = useParams();
-    const { allProducts } = useParams();
+    //const { allProducts } = useParams();
+    const { isAuthenticated, user } = useAuth0();
 
     const dispatch = useDispatch();
 
     const productsResults = useSelector((state) => state.products);
     const productsAuxResults = useSelector((state) => state.productsAux);
     const allCategories = useSelector((state) => state.category);
+    const prodCart = useSelector((state) => state.prodCart);
+    const userCart = useSelector((state) => state.cartUserPRUEBA);
 
     const [currentPage, setCurrentPage] = useState(1);//pag selected
+    const [objItems, setObjItems] = useState() 
     const [productsPerPage] = useState(9);//cards x page
     const indexOfLastCard = currentPage * productsPerPage;
     const indexOfFirstCard = indexOfLastCard - productsPerPage;
@@ -42,20 +49,30 @@ export default function SearchDetail() {
     //---------------------------------------------------------------------------------------    
     // const prodCart = useSelector((state) => state.prodCart);
     //------------------------------------------------------------------------------------------
+    const productNotFound = productsAuxResults?.slice(0, 4);
 
 
+    //-----------------------------------------------------------------------------------------------
 
-    //----------------------------------------------------------------------------------------------
+    useEffect(() => {
+        const cartObjItems = prodCart.map(product => ({
+            id: product.id, 
+            cant: product.quantity
+        }))
+
+        setObjItems(cartObjItems)
+    }, [prodCart])
+
     useEffect(() => {
         dispatch(getAllCategories());
         if (name) { dispatch(getProductName(name)) }
         else if (category) {
             dispatch(getfilterCategories(category));
         }
-        else if (allProducts) { dispatch(getAllProducts()) }
 
-    }, [dispatch, name, category, allProducts]);
-
+    }, [name, category]);
+    
+    //else if (allProducts) { dispatch(getAllProducts()) }
     const setOrder = (e) => {
         dispatch(orderProducts(e.target.value));
         setReloadState((state) => !state);
@@ -78,6 +95,38 @@ export default function SearchDetail() {
         setCurrentPage(pageNum)
     };
 
+
+    const onHandleAddCart = (objeToAdd, inStock, quantityDATA) => {
+        if (quantityDATA === 0) swal(`Added to cart`);
+
+        if (quantityDATA < inStock) {
+            dispatch(addProdToCart(objeToAdd, isAuthenticated));
+        } else {
+            swal(`Insufficient stock in: ${name}`);
+        }
+
+        if (isAuthenticated) {
+            dispatch(addCartToBack({ productsId: objItems, email: user.email })) 
+        }
+    }
+
+    const onHandleRemoveCart = (productId, quantityDATA) => {
+
+        if (quantityDATA === 1) {
+            swal(`Removed of cart`);
+        }
+        dispatch(removeProdFromCart({
+            id: productId,
+            quantity: quantityDATA,
+        }));
+
+        if (isAuthenticated) {
+            if (quantityDATA === 1) {
+                dispatch(clearCartUserPRUEBA())
+            }
+        }
+    }
+console.log('objItems', objItems)
     if (currentProducts.length > 0) {
         return (
             <Fragment>
@@ -110,12 +159,55 @@ export default function SearchDetail() {
                             </select>
                             <select onChange={handleFilterByCategory} name='CatType' className={ClassesSearchDetail.select}>
                                 <option value='category'>Category</option>
-                                {allCategories?.map((e) => (<option key={e.name} value={e.id} className={ClassesSearchDetail.select}>{e.name}</option>))}
+                                {allCategories?.map((e,i) => (<option key={i} value={e.id} className={ClassesSearchDetail.select}>{e.name}</option>))}
                             </select>
                         </div>
                     </div>
                     <section className={ClassesSearchDetail.sectionFlex}>
-                        {currentProducts.map((e) => {
+                        {currentProducts.map((product) => {
+                            return (
+                                <Fragment key={product.id}>
+                                    <div>
+                                        <ProductCard
+                                            key={product.id}
+                                            name={product.name}
+                                            brand={product.brand}
+                                            image={product.image}
+                                            price={product.price}
+                                            id={product.id}
+                                            in_Stock={product.in_Stock}
+                                            CategoryId={product.CategoryId}
+                                            rating={product.rating}
+                                            onHandleAdd={onHandleAddCart}
+                                            onHandleRemove={onHandleRemoveCart}
+                                        />
+                                    </div>
+                                </Fragment>
+                            )
+                        })}
+
+
+                    </section>
+
+                </main>
+
+            </Fragment>
+
+        )
+    } else if (name) {
+        return (
+            <div >
+                <Fragment>
+                    <div className={ClassesSearchDetail.container3}>
+                        <h1>
+                            {`SORRY, NO RESULTS`}
+                        </h1>
+                        <h4>
+                            {`Your search for "${name}" did not match any results. Please modify your search terms and try again.`}
+                        </h4>
+                    </div>
+                    <section className={ClassesSearchDetail.noFindName}>
+                        {productNotFound?.map((e) => {
                             return (
                                 <Fragment key={e.id}>
                                     <div>
@@ -134,24 +226,14 @@ export default function SearchDetail() {
                                 </Fragment>
                             )
                         })}
-
-
                     </section>
-
-                </main>
-
-            </Fragment>
-
-        )
-    } else {
-        return (
-            <div className={ClassesSearchDetail.loading}> 
-            <h3>No hay publicaciones que coincidan con tu búsqueda.</h3>
-            <img alt="loading" src={loaderEyes2prueba} />
+                </Fragment>
             </div>
         )
+    } else {
+        <div className={ClassesSearchDetail.loading}>
+            <img alt="loading" src={loaderEyes2prueba} />
+        </div>
     }
-
-
 }
 

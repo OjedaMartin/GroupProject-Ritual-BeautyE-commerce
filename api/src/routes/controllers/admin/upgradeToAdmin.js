@@ -1,12 +1,11 @@
 const { User } = require('../../../db');
 
 const upgradeToAdmin = async (req, res, next) => {
-    let {email} = req.body;
-    console.log(email)
+    let { userId } = req.body;
     try{
         let userCheck = await User.findOne({
             where:{
-                email: email,
+                id: userId,
             }
         })
         if(userCheck){

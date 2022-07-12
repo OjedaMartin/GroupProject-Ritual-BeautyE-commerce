@@ -3,6 +3,7 @@ const { hideCategory } = require('./controllers/categories/hideCategory');
 const { Allcategories } = require('./controllers/categories/getCategories')
 const {postCategory} = require('./controllers/categories/postCategories')
 const { putCategories } = require('./controllers/categories/putCategories')
+const { deleteCategory } = require('./controllers/categories/deleteCategory')
 
 const router = Router();
 

@@ -19,8 +19,9 @@ module.exports = (sequelize) => {
         
     },
     membership: {
-        type: DataTypes.STRING,
-        defaultValue: "Basic"
+      type: DataTypes.ENUM,
+      values: ['Basic', 'Subscribed', 'Banned', 'Admin'],
+      defaultValue: 'Basic',
     },
     points: {
         type: DataTypes.INTEGER,

@@ -8,7 +8,7 @@ import Carousel from "./CardsFront";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "../Users/Profile";
 
-import s from "./Landing.module.css";
+import styles from "./Landing.module.css";
 
 export default function Landing() {
   const dispatch = useDispatch();
@@ -25,17 +25,15 @@ export default function Landing() {
       dispatch(Log(user))
     }
 
-  }, [dispatch, isAuthenticated, user]);
+  }, [dispatch, isAuthenticated, user])
 
-  
   return (
     <>
       <Carousel1 />
       <Carousel />
       <WhatsNew />
-
-        <div class={s.body}>
-          <nav class={s.side}>
+        <div class={styles.body}>
+          <nav class={styles.side}>
             <ul>
               <li>
               {isAuthenticated ? (

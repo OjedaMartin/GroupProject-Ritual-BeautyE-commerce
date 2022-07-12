@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -9,9 +9,40 @@ import Style from "./Header.module.css";
 // import { Login } from '../Users/LogIn';
 import { Logout } from "../Users/LogOut";
 
+//--------------CART-USER--------------
+import { useDispatch, useSelector } from 'react-redux';
+import { addCartToBack, getCartbyUser } from '../redux/actions'
+
+
 export default function Header() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   //console.log("header", isAuthenticated);
+
+  //-----------------------------------------MANTIENE ACTUALIZADO EL CART DEL USER EN TEORIA xD----------------------------------------
+  const dispatch = useDispatch();
+  const prodCart = useSelector((state) => state.prodCart);
+  const userCart = useSelector((state) => state.cartUserPRUEBA);
+
+  if (isAuthenticated && userCart.length === 0) {
+    if (prodCart.length > 0) {
+      const porductsOfLocalStorage = [];
+      prodCart.map((e) => porductsOfLocalStorage.push({ id: e.id, cant: e.quantity }));
+      //dispatch(addCartToBack({ productsId: porductsOfLocalStorage, email: user.email }));
+      localStorage.removeItem('prodCart')
+    }
+  }
+
+  useEffect(() => {
+    console.log('ENTRE AL USEEFFECT(1)')
+    if (isAuthenticated) {
+      console.log('ENTRE AL DISPATCH')
+      dispatch(getCartbyUser(user.email))
+    }
+  }, []);
+
+  //-----------------------------------------------------------------------------------------------------------------------------------
+
+
   return (
     <div className={Style.main}>
       <div className={Style.header}>
@@ -31,10 +62,10 @@ export default function Header() {
             <>
               <Link to="/cart">
                 <button className={Style.iconCart}>
-                  <FaShoppingCart/> 
+                  <FaShoppingCart />
                 </button>
               </Link>
-              
+
             </>
           )}
         </div>

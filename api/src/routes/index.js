@@ -10,6 +10,7 @@ const review = require('./review')
 const mail = require("./mail")
 const order = require('./order')
 const admin = require('./admin')
+const wishlist = require('./wishlist')
 
 // const products = require('./products')
 
@@ -28,6 +29,7 @@ router.use('/review', review);
 router.use("/mail", mail);
 router.use('/order', order);
 router.use('/admin', admin);
+router.use('/wishlist', wishlist)
 
 // router.use('/products', products);
 

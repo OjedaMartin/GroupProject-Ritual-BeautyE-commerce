@@ -57,7 +57,7 @@ console.log("sds",searchedUsers)
 
 }
 async function handleAdmin(e){
-  const putInfo = {email: e.email}
+  const putInfo = {id: e.id}
   
   swal({
     title: "Are you sure?",
@@ -114,7 +114,7 @@ async function handleAdmin(e){
                 return(
                         <div className={style.card} key={e.id}>
                             <button className={style.DelBtn} email={e.email} onClick={() => handleBan(e)}><ImCross/></button>
-                            <button className={style.ModBtn} email={e.email} onClick={() => handleAdmin(e)}><GiUpgrade/></button>
+                            <button className={style.ModBtn} id={e.id} onClick={() => handleAdmin(e)}><GiUpgrade/></button>
                             <p className={style.element}>{e.id}</p>
                             <p className={style.element}>{e.name}</p>
                             <p className={style.element}>{e.email}</p>

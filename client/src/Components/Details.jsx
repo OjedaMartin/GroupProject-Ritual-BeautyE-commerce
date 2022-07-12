@@ -11,7 +11,7 @@ export default function Detail() {
   console.log('id----->',id)
 
   
-  const product = useSelector((state) => state.details);
+  const products = useSelector((state) => state.details);
   // const allCategories = useSelector((state) => state.category);
   useEffect(() => {
     dispatch(getDetail(id));
@@ -25,18 +25,19 @@ export default function Detail() {
     cat130038: 'Hair',
   }
 
+  
   return (
     <div className="back">
       <div className="manzana">
         <div className="img">
-          <img className="imgdetail" src={product.map(e => e.image)} width="100%" height="100%" alt='Img not found!'/>
+          <img className="imgdetail" src={products.map(product => product.image)} width="100%" height="100%" alt='Img not found!'/>
         </div>
         <div className="divInfo">
-          <h4 className="titles">  {product.map(e => e.name)} </h4>
-          <h4 className="label"> price: {product.map((e) => e.price)} </h4>
-          <h4 className="label">  brand: {product.map((e) => e.brand)} </h4>
-          <h4 className="label"> rating:{product.map((e) => e.rating)} </h4>
-          <h4 className="label"> {objectCat[product?.map((e) => e.CategoryId)]}</h4>
+          <h4 className="titles">  {products.map(product => product.name)} </h4>
+          <h4 className="label"> price: {products.map((product) => product.price)} </h4>
+          <h4 className="label">  brand: {products.map((product) => product.brand)} </h4>
+          <h4 className="label"> rating:{products.map((product) => product.rating)} </h4>
+          <h4 className="label"> {objectCat[products?.map((product) => product.CategoryId)]}</h4>
           <Link to="/">
             <button className="btn" > Back to Home </button>
           </Link>
