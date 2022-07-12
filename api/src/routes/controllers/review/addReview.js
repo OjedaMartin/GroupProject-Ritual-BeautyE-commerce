@@ -30,6 +30,7 @@ const addReview = async (req, res) => {
                 email : use.email
         })
         await prod.addReview(newReview)
+        //const asd = await prod.addReview(newReview)
         // console.log(asd)
 
         res.status(200).json(newReview)
