@@ -28,7 +28,9 @@ const getUsers = async (req, res) => {
     try {
         
         const users = await User.findAll({
+
             attributes: [ "id", "name", "email", "membership"]
+
         });
         // const token= verifyT(users)
         res.send(users)
