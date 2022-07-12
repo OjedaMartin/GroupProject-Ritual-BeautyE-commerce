@@ -11,6 +11,8 @@ const mail = require("./mail")
 const order = require('./order')
 const admin = require('./admin')
 const wishlist = require('./wishlist')
+const stripe= require('./stripe')
+
 
 // const products = require('./products')
 
@@ -30,6 +32,8 @@ router.use("/mail", mail);
 router.use('/order', order);
 router.use('/admin', admin);
 router.use('/wishlist', wishlist)
+router.use('/stripe', stripe)
+
 
 // router.use('/products', products);
 

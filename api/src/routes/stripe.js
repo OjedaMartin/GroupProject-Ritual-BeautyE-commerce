@@ -1,38 +1,40 @@
-
 const express = require('express');
-// This is your test secret API key.
-const stripe = require("stripe")('sk_test_51LIC2EEEblkT4xrOzXTCXmXNW0whTEUEOvyxJNDf4cvUzjPCWxGC0Q5hnyJo21Lfi7ZM4Xn3Ej1IjxLf0nTnkeby00te5C9WB9');
-
+const Stripe = require('stripe');
 
 const router = express.Router();
-app.use(express.static("public"));
-app.use(express.json());
 
-/* const calculateOrderAmount = (items) => {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // people from directly manipulating the amount on the client
-  return valor;
-}; */
+// Vamos a configurar el backend de modo que podamos requerir a Stripe
+// Primero creamos un nuevo servidor:
 
-/* app.post("/create-payment-intent",  */
-router.post ('/createPayment',async(req, res) =>{
-  const { total } = req.body;
-  
 
-  // Create a PaymentIntent with the order amount and currency
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: total,
-    currency: "dollar",
-    automatic_payment_methods: {
-      enabled: true,
-    },
-  });
+// Una vez confirmado que los datos los recibimos por body, vamos a mandarlos
+// a Stripe!
+const stripe = new Stripe('sk_test_51LII2ZAVboyClKcxlXRQ0spDkky6x98RZgp9OucJaRDHqZEsGMVcCKsbpYDVajCq5LbIfRckGJChbaDZOq9tE9Ww00X5fT2ZyR')
 
-  res.send({
-    clientSecret: paymentIntent.client_secret,
-  });
-})
+// Configuramos el cors para que no haya problemas con el front
 
-module.exports = router
+// configuramos express para que pueda leer objetos JSON
 
+
+// Ahora creamos la ruta a la que vamos a recibir los datos del post en el 
+// frontend
+router.post('/api/checkout', async (req, res) => {
+	const { id, amount } = req.body;
+	console.log("detalle compra: ", amount,"id: " ,id)
+	try {
+		const payment = await stripe.paymentIntents.create({
+			currency: "USD",
+			amount,
+			description: "Keyboard Gaming",
+			payment_method: id,
+			confirm: true
+		});
+		console.log("payment", payment)
+		res.json({ msg: "Successful payment" })
+	} catch(error) {
+		console.log(error)
+		res.json({ message: error.row.message })
+	}
+});
+
+module.exports= router

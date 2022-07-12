@@ -18,6 +18,7 @@ import { MyOrders } from "./Users/Orders.jsx";
 import CartCard from "../src/Components/CartCard.jsx";
 import ReviewForm from "./Components/reviewForm.jsx";
 import Profile from "./Users/Profile.jsx";
+import Stripe from "./Stripe/Stripe"
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/user/myorders" element={<MyOrders />} />
         <Route exact path="/cart" element={<CartCard />} />
         <Route exact path="/addreview" element={<ReviewForm />} />
+        <Route exact path="/stripe" element={<Stripe />}/>
       </Routes>
       <Footer />
     </BrowserRouter>
