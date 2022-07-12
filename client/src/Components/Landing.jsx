@@ -20,7 +20,6 @@ export default function Landing() {
   useEffect(() => {
     dispatch(getAllCategories());
     dispatch(getAllProducts());
-
     if(isAuthenticated) {
       dispatch(Log(user))
     }
