@@ -39,7 +39,7 @@ export default function Header() {
       console.log('ENTRE AL DISPATCH')
       dispatch(getCartbyUser(user.email))
     }
-  }, [user]);
+  }, []);
 
   //-----------------------------------------------------------------------------------------------------------------------------------
 
