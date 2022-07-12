@@ -16,7 +16,7 @@ export default function ProductCard({ name, brand, image, price, id, in_Stock, C
     const data = prodCart.length > 0 ? prodCart.find((e) => e.id === id) : undefined;
     const quantity = data !== undefined ? data.quantity : 0;
 
-
+console.log("hi", name)
 
 
 

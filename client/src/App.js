@@ -8,7 +8,6 @@ import AboutUs from "./Components/AboutUs.jsx";
 import Admin from "./Admin/Admin";
 import Header from "./Components/Header.jsx";
 import Footer from "./Components/footer.jsx";
-import Login from "./Users/LogIn.jsx";
 import Faq from "./Components/FAQ.jsx";
 import Returns from "./Components/Returns.jsx";
 import TermsandC from "./Components/TermsandC.jsx";

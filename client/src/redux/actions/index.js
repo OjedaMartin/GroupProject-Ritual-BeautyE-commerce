@@ -275,6 +275,17 @@ export function putCategory(payload) {
     }
   };
 }
+//CAMBIA EL ESTADO DE UNA ORDEN
+export function updateOrderState(id,state) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/state/${id}/${state}`);
+    console.log("info action", info);
+    return {
+      type: "UPDATE_ORDER_STATE",
+      info
+    }
+  };
+}
 //CAMBIA LA CATEGORIA A STATUS:HIDDEN
 export function hideCategory(payload) {
   return async function (dispatch) {

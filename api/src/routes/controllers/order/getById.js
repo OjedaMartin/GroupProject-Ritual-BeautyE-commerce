@@ -1,22 +1,48 @@
+const {Order,CartProduct,User,Product} = require('../../../db')
 
-const { User } = require('../../../db');
+
+async function getById(req,res) {
+    let {id} = req.params
+
+    let resp= await Order.findOne({where:{id}/* ,include:[{
+        model: CartProduct,
+        attributes:["ProductId","quantity"]
+    }] */})
+    if(!resp){res.send("No existe esta orden")}
+    else{
+    let result = []
+
+        let a ={
+           id: resp.id,
+           state:resp.state,
+           address: resp.address,
+           createdAt: resp.createdAt,
+           user: await User.findOne({attributes:["email"],where:{id:resp.UserId}}),
+           CartId: resp.CartId,
+           products: await data(resp.CartId) 
+        }
+        result.push(a)
 
 
-const getById = async(req, res) => {
-    const { id } = req.params;
-    console.log(id)
-    try {
-        const order = await Orders.findOne({
-            where: {
-                id: id
-            }
-        });
-        res.status(200).json(order)
-    } catch(error) {
-        res.status(400).json({ error: "Ha ocurrido un error en el controller getById de las orders " + error })
+   async function data(a) {
+     let info =  (await CartProduct.findAll({attributes:["ProductId","quantity"],where:{CartId:a}}))
+     
+        let b = []
+        let c= {}
+        for (let j = 0; j < info.length; j++) {
+            // console.log("detalle info!!!",info[i]) 
+            c={
+               product :(await Product.findOne({where: {id:info[j].ProductId}})),
+               quantity : info[j].quantity
+             }
+          b.push(c)
+      }
+       console.log("detalle final!!!",b)
+      return b
+
     }
-}
 
+    res.json(result)
+}}
 
-
-module.exports = {getById}
+module.exports={getById}

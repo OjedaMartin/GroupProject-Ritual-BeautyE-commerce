@@ -87,6 +87,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };      
+    case "UPDATE_ORDER_STATE":
+      return {
+        ...state,
+      };      
     case "DELETE_REVIEW":
       return {
         ...state,
