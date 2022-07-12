@@ -57,7 +57,7 @@ console.log("sds",searchedUsers)
 
 }
 async function handleAdmin(e){
-  const putInfo = {id: e.id}
+  const putInfo = {userId: e.id}
   
   swal({
     title: "Are you sure?",
@@ -93,11 +93,13 @@ async function handleAdmin(e){
             </div>
             {searchedUsers? Object.values(searchedUsers).map((e=> {
                 return(
-                        <div>
+
+
+                        <div className={style.data}>
                           {e}
                            </div>
                                             
-                        )})) : <>----</>}
+                        )})) : <></>}
 
             <div className={style.cardinfo}>
                 
