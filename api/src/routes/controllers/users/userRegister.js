@@ -5,24 +5,48 @@ const jwt = require('jsonwebtoken');
 
 // Regitro
 const userRegister = async(req, res) => {
+    let {name, email, password} = req.body;
     try {
-        let password = bcrypt.hashSync(req.body.password, 10)
-        // Creamos el usuario
+        //Borramos el usuario en footer (si existe)
         let footer = await FooterUser.findOne({
             where:{
-                email: req.body.email,
+                email: email,
             }
-        })
+        });
         footer ?
         await FooterUser.destroy({
             where: {
-              id: footer.id,
+                id: footer.id,
             },
-          }) : null
+        }) : null
+        // Checkeamos si el usuario ya existe
+        let userCheck = await User.findOne({
+            where:{
+                name: name,
+                email: email,
+            }
+        });
+        let nameCheck = await User.findOne({
+            where:{
+                name: name,
+            }
+        })
+        let emailCheck = await User.findOne({
+            where:{
+                email: email,
+            }
+        })
+        userCheck ?
+        res.send(`User ${name} is already in database`) :
+        nameCheck ?
+        res.send(`${name} is already in use`) :
+        emailCheck ?
+        res.send(`${email} is already in use`) :
+        // Creamos el usuario
         await User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
+            name: name,
+            email: email,
+            password: password
         }).then(user => {
             // Creamos el token
             let token = jwt.sign({ user }, 'secretkey', {
