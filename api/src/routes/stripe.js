@@ -9,7 +9,7 @@ const router = express.Router();
 
 // Una vez confirmado que los datos los recibimos por body, vamos a mandarlos
 // a Stripe!
-const stripe = new Stripe('sk_test_51LII2ZAVboyClKcxlXRQ0spDkky6x98RZgp9OucJaRDHqZEsGMVcCKsbpYDVajCq5LbIfRckGJChbaDZOq9tE9Ww00X5fT2ZyR')
+const stripe = new Stripe('sk_test_51LL7tkB5ICzkw2FVn6lyuj4azv49o6xl4iclXOyRfQrAFEXtpVhvJrZEAWa864Whl13gwLxQoPD0YpgT0GMdvCnp00JTwR0GWM')
 
 // Configuramos el cors para que no haya problemas con el front
 
