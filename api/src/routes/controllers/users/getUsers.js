@@ -27,11 +27,7 @@ app.use(cors())
 const getUsers = async (req, res) => {
     try {
         
-        const users = await User.findAll({
-
-            attributes: [ "id", "name", "email", "membership"]
-
-        });
+        const users = await User.findAll();
         // const token= verifyT(users)
         res.send(users)
     } catch(error) {
