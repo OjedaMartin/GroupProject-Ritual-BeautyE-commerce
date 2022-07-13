@@ -23,9 +23,6 @@ module.exports = (sequelize) => {
       values: ['Basic', 'Subscribed', 'Banned', 'Admin'],
       defaultValue: 'Basic',
     },
-    points: {
-        type: DataTypes.INTEGER,
-    },
     address: {
         type: DataTypes.STRING,
     },
