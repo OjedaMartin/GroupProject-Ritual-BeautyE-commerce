@@ -9,8 +9,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "../Users/Profile";
 
 import s from "./Landing.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Landing() {
+  // const navigate= useNavigate();
   const dispatch = useDispatch();
   const { isAuthenticated, user, loginWithRedirect } = useAuth0();
   
@@ -39,14 +41,14 @@ export default function Landing() {
               <li>
               {isAuthenticated ? (
                   <a href="/profile">
-                    {user.name}
+                  Profile
                     <span>
                       <i class="fa fa-map-marker"></i>
                     </span>
                   </a>
                 ) : (
-                  <button onClick={() => loginWithRedirect()}>
-                    Login
+                  <button class={s.log} onClick={() => loginWithRedirect()}>
+                   LOG IN
                   </button>
                 )
               }

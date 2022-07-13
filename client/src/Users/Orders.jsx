@@ -1,14 +1,22 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrderByUser } from "../redux/actions";
 import { Button, Modal, ModalBody } from "reactstrap";
 // import Review from "../ProductDetails/Reviews.jsx";
 
 import NumberFormat from "react-number-format";
+import { useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const MyOrders = () => {
-  const orders= useSelector((state) => state.currentUser)
+  const dispatch=useDispatch()
+  const orders= useSelector((state) => state.users)
   console.log(orders)
+  const { user } = useAuth0();
   
+  useEffect(() => {
+    dispatch(getOrderByUser(user?.email))
+  })
   return (
     <div>
       <h1>Orders</h1>
@@ -17,7 +25,7 @@ export const MyOrders = () => {
           {orders?.map((e) => (
             <div >
               <p >N° of order: {e.CartId}</p>
-              <p >
+              {/* <p >
                 Price:{" "}
                 {
                   <NumberFormat
@@ -27,10 +35,10 @@ export const MyOrders = () => {
                     prefix={"$"}
                   />
                 }
-              </p>
+              </p> */}
               <p>Products: </p>
               <ul >
-                {e?.productCart?.map((el) => (
+                {e?.products?.map((el) => (
                   <div >
                     <li >
                       <img src={el.picture} alt="not found" width="100px" />

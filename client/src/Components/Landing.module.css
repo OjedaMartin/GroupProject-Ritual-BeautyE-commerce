@@ -1,3 +1,7 @@
+body{
+    font-size:16px
+}
+
 .body {
     font-size: 1em;
     background: #333;
@@ -11,7 +15,7 @@
     font-size: 1em;
     line-height: 4em;
     color: #fff;
-    font-weight:700;
+    font-weight:44em;
     text-transform:uppercase;
     position:fixed;
     top:0; 
@@ -25,7 +29,7 @@
 }
  .side ul li {
   display:block;
-  border-radius: 5px;
+  border-radius: .3em;
     background-color: rgba(51, 51, 51, 0.575);
     height: 3em;
     padding-top: -.5em;
@@ -63,4 +67,27 @@
     padding:1em 1.5em;
     right: 0.16666666666667em;
     color: #F8F6FF;
+}
+.log{
+    background-color: transparent;
+    font-size:1em;
+    line-height: 2em;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    font-weight:700;
+    color: #fff;
+}
+@media (max-width:992px){
+    body{
+        font-size:12px;
+    }
+}@media (max-width:720px){
+    body{
+        font-size:10px;
+    }
+}@media (max-width:440px){
+    body{
+        font-size:8px;
+    }
 }

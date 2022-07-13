@@ -12,6 +12,7 @@ import { Logout } from "../Users/LogOut";
 //--------------CART-USER--------------
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartToBack, getCartbyUser } from '../redux/actions'
+import Admin from "../Admin/Admin";
 
 
 export default function Header() {
@@ -39,7 +40,7 @@ export default function Header() {
       console.log('ENTRE AL DISPATCH')
       dispatch(getCartbyUser(user.email))
     }
-  }, [user]);
+  },[]);
 
   //-----------------------------------------------------------------------------------------------------------------------------------
 
@@ -55,6 +56,13 @@ export default function Header() {
           </Link>
         </h1>
         <div className={Style.contIcons}>
+        {isAuthenticated && (user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com")?<div> 
+        <Link to="/admin">
+                <button className={Style.admin}>
+                  Admin
+                </button>
+              </Link>
+</div>: null}
           {isAuthenticated ? (
             <>
               <Logout />

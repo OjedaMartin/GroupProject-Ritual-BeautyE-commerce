@@ -6,7 +6,7 @@ body {
 
 }
 .container{
-    margin: 0px 10px 10px 30px ;
+    margin: 0em .6em .6em  1.8em ;
 }
 .icon:hover{
     transform: scale(1.2);
@@ -46,24 +46,24 @@ body {
 .container{
     display: flex;
     flex-direction: row;
-    padding-top: 30px;
+    padding-top: 1.8em;
 }
 
 .searchbtn{
 
     background-color: #ffffff00;
-    border-width: 0px;
-    size:20px 20px;
-    padding: 3px 4px;
+    border-width: 0em;
+    size:1.2em 1.2em;
+    padding: .18em .25em;
     font-size: 20px;
 }  
 .dropdown {
-    margin-top: 40px;
+    margin-top: 2.5em;
         position: absolute;
     background-color: white;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgb(175, 175, 175);
+    border: .06em solid rgb(175, 175, 175);
     z-index: 1;
     border-radius: 0.25rem;
     
@@ -78,7 +78,7 @@ body {
     z-index: 1;
     cursor: pointer;   
     text-align: start;
-    padding: 2px 5px;
+    padding: .12em 0.3em;
     font-family: 'Vazirmatn', sans-serif;
     border-radius: 0.25rem;
 

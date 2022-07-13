@@ -387,3 +387,18 @@ export function orderProducts(orderSelected) {
         }
     }
   }
+///////orders of Users
+export function getOrderByUser(email) {
+  console.log(email)
+  return async function (dispatch) {
+    try {
+      let json = await axios.get("http://localhost:3001/orders/user" + email)
+      return dispatch({
+        type: 'GET_ORDER_BY_USER',
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
