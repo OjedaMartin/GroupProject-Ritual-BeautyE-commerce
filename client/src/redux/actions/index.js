@@ -95,15 +95,15 @@ export function getfilterBrand(params) {
 // TRAE EL PREFIL POR NOMBRE
 export function getProfile(params) {
   return async function (dispatch) {
-    try{
-    const json = await axios.get(`http://localhost:3001/users/`, params)
-    return dispatch({
-      type: 'GET_PROFILE',
-      payload: json.data
-    })
-  } catch (error) {
-    console.log(error)
-   }
+    try {
+      const json = await axios.get(`http://localhost:3001/users/`, params)
+      return dispatch({
+        type: 'GET_PROFILE',
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -161,7 +161,7 @@ export function createProduct(payload) {
 export function Log(user) {
   console.log(user)
   return async function () {
-    const info = await axios.post("http://localhost:3001/users/login/",user);
+    const info = await axios.post("http://localhost:3001/users/login/", user);
     console.log("info action login", info);
     return {
       type: "LOG",
@@ -233,11 +233,11 @@ export function hideCategory(payload) {
 }
 
 
-export const putUser =(payload, email) => {
+export const putUser = (payload, email) => {
   console.log(payload)
-  return async function(dispatch){
-    let profile= await axios.put(`http://localhost:3001/users/update/${email}`, payload)
-  console.log(profile.data)
+  return async function (dispatch) {
+    let profile = await axios.put(`http://localhost:3001/users/update/${email}`, payload)
+    console.log(profile.data)
 
     return dispatch(
       {
@@ -278,19 +278,7 @@ export function deleteReview(reviewId) {
 // }
 // MUEVE EL CONTENIDO DEL CARRITO AL USUARIO
 
-export function getCartbyUser(params) {
-  return async function (dispatch) {
-    try {
-      let json = await axios.get(`http://localhost:3001/cart/user/${params}`)
-      return dispatch({
-        type: 'GET_CART_USER',
-        payload: json.data,
-      })
-    } catch (e) {
-      console.log(e)
-    }
-  }
-}
+
 
 // //TRAE USUARIO POR NOMBRE
 // export function getUserByName(name) {
@@ -309,10 +297,31 @@ export function getCartbyUser(params) {
 // }
 
 
+export function getCartbyUser(params) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`http://localhost:3001/cart/user/${params}`)
+      return dispatch({
+        type: 'GET_CART_USER',
+        payload: json.data,
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+}
+
+export function completeCartToAdd(product){
+  return ({
+    type: 'COMPLETE_CART',
+    payload:product,
+  })
+}
+
 export function addCartToBack(payload) {
   return async function (dispatch) {
     const json = await axios.post('http://localhost:3001/cart/add/', payload);
-    // console.log('json action addCartToBack',json.data);
+    console.log('json action addCartToBack',json.data);
     return dispatch({
       type: "ADD_CART_TO_BACK"
     })
@@ -345,10 +354,21 @@ export function clearCart() {
     type: 'CLEAR_CART',
   })
 }
-export function clearCartUserPRUEBA() {
+export function clearcartUser() {
   return ({
     type: 'CLEAR_CART_USER',
   })
+}
+
+export function postOrder(payload) {
+  return async (dispatch) => {
+    try {
+      const resp = await axios.post('http://localhost:3001/order/create', payload);
+      return dispatch({ type: 'POST_ORDER', payload: resp });
+    }catch(error){
+      console.log(error, 'post order')
+    }
+  }
 }
 
 ///////////////////////////////////////////////////ORDER//////////////////////////////////////////////
@@ -359,31 +379,31 @@ export function orderProducts(orderSelected) {
     payload: orderSelected,
   }
 }
-  // REVIEWS
+// REVIEWS
 
-  export function postReview(payload) {
-    return async (dispatch) => {
-        try {
-            console.log(payload,'payload post review');
-            const response = await axios.post('http://localhost:3001/review/create/', payload);  
+export function postReview(payload) {
+  return async (dispatch) => {
+    try {
+      console.log(payload, 'payload post review');
+      const response = await axios.post('http://localhost:3001/review/create/', payload);
       return dispatch({ type: 'POST_REVIEW', payload: response });
-        } catch (error) {
-            console.log(error, 'post review ');
-        }
-    };
+    } catch (error) {
+      console.log(error, 'post review ');
+    }
   };
-  
-  export function getReviews(){
-    return async function (dispatch){
-        try {
-            const response = await fetch('http://localhost:3001/review/');
-            const json = await response.json();
-            dispatch({
-                type:'GET_REVIEW',
-                payload: json
-            });
-        } catch (error) {
-            console.log(error);
-        }
+};
+
+export function getReviews() {
+  return async function (dispatch) {
+    try {
+      const response = await fetch('http://localhost:3001/review/');
+      const json = await response.json();
+      dispatch({
+        type: 'GET_REVIEW',
+        payload: json
+      });
+    } catch (error) {
+      console.log(error);
     }
   }
+}

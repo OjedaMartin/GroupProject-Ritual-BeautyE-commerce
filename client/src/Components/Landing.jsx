@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { getAllProducts, getAllCategories, Log } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 import Carousel1 from "./Carousel";
 import WhatsNew from "./whatsnew";
 import Carousel from "./CardsFront";
@@ -44,19 +44,21 @@ export default function Landing() {
                     </span>
                   </a>
                 ) : (
-                  <button onClick={() => loginWithRedirect()}>
-                    Login
+                  <button onClick={() => loginWithRedirect()} className={styles.btn}>
+                    LOG IN
                   </button>
                 )
               }
               </li>
               <li>
-                <a href="/cart">
+                 {/* <a href="/cart">  */}
+                 <Link to={`/cart`}>        
                   Buy
+                  </Link> 
                   <span>
                     <i class="fa fa-compass"></i>
                   </span>
-                </a>
+                {/* </a> */}
               </li>
             </ul>
           </nav>

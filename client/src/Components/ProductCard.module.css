@@ -38,18 +38,37 @@
 }
 
 .priceAndcart {
+    
     display: grid;
     grid-template-columns: 50px 50px 50px ;
     grid-auto-rows: auto;
-    margin-bottom: 15px;
+    margin-bottom: 50px;
+    align-items: center;
     height: 30px;
     justify-items: center;
 
 }
 
 .btn{
-    border: 0px solid #00000093;
+    border: none;
+    background-color: rgba(240, 248, 255, 0);
+
     font-size: 30px;
     
     transition: 0.2s all ease-in-out;
+
+    margin-bottom: 20px;
+}
+.num{
+    font-weight: bold;
+}
+.btn:active{
+    border: none;
+    background-color: rgba(240, 248, 255, 0);
+
+    font-size: 30px;
+    
+    transition: 0.2s all ease-in-out;
+
+    margin-bottom: 20px;
 }
