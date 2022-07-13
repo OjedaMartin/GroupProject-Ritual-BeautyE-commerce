@@ -64,3 +64,10 @@
     right: 0.16666666666667em;
     color: #F8F6FF;
 }
+.btn{
+    background-color: #f8f6ff00;
+    border: none;
+    color: #FFF;
+    font-weight: bold;
+
+}
