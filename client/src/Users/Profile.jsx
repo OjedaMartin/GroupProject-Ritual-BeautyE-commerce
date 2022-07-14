@@ -17,10 +17,13 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getUserByName(user?.name));
-    console.log('Esto es auto', isAuthenticated)
-    dispatch(getCartbyUser(user.email))
+    if (isAuthenticated) {
+      dispatch(getCartbyUser(user?.email))
+      localStorage.removeItem('prodCart')
+    }
 
-  }, [dispatch]);
+
+  }, [dispatch, user, isAuthenticated]);
 
   return (
     <div>

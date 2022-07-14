@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getDetail, addProdToCart, removeProdFromCart, clearcartUser,addCartToBack } from "../redux/actions/index";
+import { getDetail, addProdToCart, removeProdFromCart, clearcartUser, addCartToBack } from "../redux/actions/index";
 import style from "./Detail.module.css"
 import Review from "./reviews";
 import StarDetail from "./StarDetail";
@@ -16,11 +16,17 @@ export default function Detail() {
   const { id } = useParams();
   //--------------------------------------------------
   const { isAuthenticated, user } = useAuth0();
-  const [updateStateToADD, setUpdateStateToADD] = useState(false);
+
   //------------------------------------------------------------------------------------------------
   const prodCart = useSelector((state) => state.prodCart);
-  const product = useSelector((state) => state.details);
+  const productDetail = useSelector((state) => state.details);
+
+
+
   useEffect(() => {
+
+    console.log('esto es id', id)
+
     dispatch(getDetail(id));
   }, [dispatch, id]);
 
@@ -30,81 +36,94 @@ export default function Detail() {
     cat130042: 'Tools & Brushes',
     cat130038: 'Hair',
   }
-  // VER SI AL FINAL TENGO QUE AGREGAR OTRA DATA O YA TRABAJO DIRECTAMENTE CON PRODCART 
 
-  const data = prodCart.length > 0 ? prodCart.find((e) => e.id === product[0].id) : undefined;
+  console.log('esto seria quantity')
+  const data = prodCart.length > 0 ? prodCart.find((e) => e.id === productDetail[0]?.id) : undefined;
   const quantity = data !== undefined ? data.quantity : 0;
 
-  //console.log('quantity--->', quantity)
 
   const handleAddCart = (e) => {
     if (quantity === 0) {
       swal(`Added to cart`);
     }
-    if (quantity < product[0].in_Stock) {
+    if (quantity < productDetail[0].in_Stock) {
       dispatch(addProdToCart({
-        id: product[0].id,
-        name: product[0].name,
-        image: product[0].image,
-        price: product[0].price,
-        brand: product[0].brand,
-        in_Stock: product[0].in_Stock,
-        CategoryId: product[0].CategoryId,
-        rating: product[0].rating,
+        id: productDetail[0].id,
+        name: productDetail[0].name,
+        image: productDetail[0].image,
+        price: productDetail[0].price,
+        brand: productDetail[0].brand,
+        in_Stock: productDetail[0].in_Stock,
+        CategoryId: productDetail[0].CategoryId,
+        rating: productDetail[0].rating,
         quantity: quantity,
-      }, isAuthenticated));
+      }));
 
       if (isAuthenticated) {
-        setUpdateStateToADD(true)
+        const itemInclud =
+          prodCart.length > 0
+            ?
+            prodCart.find((element) => element.id === productDetail[0].id)
+            :
+            undefined
+
+        const cartItems = itemInclud !== undefined
+          ?
+          prodCart.map((it) => it.id === productDetail[0].id
+            ?
+            { ...it, quantity: it.quantity + 1 } : it)
+          :
+          [...prodCart, { ...productDetail[0], quantity: 1 }]
+
+        dispatch(addCartToBack({ productsId: cartItems, email: user.email }))
       }
 
     } else {
-      swal(`Insufficient stock in: ${product[0].name}`);
+      swal(`Insufficient stock in: ${productDetail[0].name}`);
     }
 
   }
   const handleRemoveCart = (e) => {
-    dispatch(removeProdFromCart({
-      id: id,
-      quantity: quantity,
-    }));
-
     if (quantity === 1) {
-      swal(`Removed of cart`);
-    }
-    if (isAuthenticated) {
-      setUpdateStateToADD(true)
-      if (quantity === 1) {
-        dispatch(clearcartUser())
+      let confirmDelete = window.confirm(`Do you are sure, to delet this product of your cart?`)
+      if (confirmDelete) {
+        swal(`Removed of cart.`);
+        dispatch(removeProdFromCart({
+          id: productDetail[0].id,
+        }));
+        if (isAuthenticated) {
+          let cartItems = prodCart.filter((upgrade) => upgrade.id !== productDetail[0].id);
+          dispatch(addCartToBack({ productsId: cartItems, email: user.email }));
+        }
       }
+    } else {
+      dispatch(removeProdFromCart({
+        id: productDetail[0].id,
+      }));
+      const cartUpgrade =
+        prodCart.map((it) => it.id === productDetail[0].id
+          ? { ...it, quantity: it.quantity - 1 }
+          : it)
+      dispatch(addCartToBack({ productsId: cartUpgrade, email: user.email }));
     }
   }
-
-
-  if (updateStateToADD && isAuthenticated) {
-    setUpdateStateToADD(false)
-    const productsAux = [];
-    prodCart.map((item) => productsAux.push({ id: item.id, cant: item.quantity }))
-    dispatch(addCartToBack({ productsId: productsAux, email: user.email }))
-  }
-
 
   return (
     <div className={style.back}>
       <div className={style.manzana}>
         <div className={style.img}>
-          <img className={style.imgdetail} src={product?.map(e => e.image)} width="100%" height="100%" alt='Img not found!' />
+          <img className={style.imgdetail} src={productDetail?.map(e => e.image)} width="100%" height="100%" alt='Img not found!' />
         </div>
         <div className={style.divInfo}>
-          <h1 className={style.titles}>  {product?.map(e => e.name.length > 20 ? e.name.slice(0, 20).concat('...') : e.name)} </h1>
-          <h4 className={style.label}> price: {product?.map((e) => e.price)} </h4>
-          <h4 className={style.label}>  brand: {product?.map((e) => e.brand)} </h4>
-          {/* <h4 className={style.label}> rating:{product?.map((e) => e.rating)} </h4> */}
-          <h4 className={style.label}> rating:{product?.map((e) => (<StarDetail 
-          stars = {parseInt(e.rating)}
-          key = {e.id}
+          <h1 className={style.titles}>  {productDetail?.map(e => e.name.length > 20 ? e.name.slice(0, 20).concat('...') : e.name)} </h1>
+          <h4 className={style.label}> price: {productDetail?.map((e) => e.price)} </h4>
+          <h4 className={style.label}>  brand: {productDetail?.map((e) => e.brand)} </h4>
+          {/* <h4 className={style.label}> rating:{productDetail?.map((e) => e.rating)} </h4> */}
+          <h4 className={style.label}> rating:{productDetail?.map((e) => (<StarDetail
+            stars={parseInt(e.rating)}
+            key={e.id}
           />))} </h4>
-          <h4 className={style.label}> {objectCat[product?.map((e) => e.CategoryId)]}</h4>
+          <h4 className={style.label}> {objectCat[productDetail?.map((e) => e.CategoryId)]}</h4>
           <h4 className={style.label}>Add to cart</h4>
           <div className={style.btnAddToCart}>
             {quantity > 0 ? <AiFillMinusSquare className={style.btn2} onClick={handleRemoveCart} /> : ""}
@@ -117,8 +136,8 @@ export default function Detail() {
         </div>
       </div>
       <div>
-      <Review
-      id = {id}/>
+        <Review
+          id={id} />
       </div>
     </div>
   );

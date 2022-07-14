@@ -150,22 +150,6 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    // case "COMPLETE_CART":
-    //   const thisItem = action.payload;
-    //   const itemInclud =
-    //     state.prodCart.length > 0
-    //       ?
-    //       state.prodCart.find((element) => element.id === thisItem.id)
-    //       :
-    //       undefined
-    //   if (thisItem.quantity < thisItem.in_Stock){
-
-    //   }
-
-    //     return {
-    //       ...state,
-    //       //testStatus:
-    //     };
     case 'ADD_PROD_TO_CART':
       const newProd = action.payload;
       const isLogin = action.login;
@@ -232,9 +216,9 @@ function rootReducer(state = initialState, action) {
           : it)
         : state.prodCart.filter((upgrade) => upgrade.id !== action.payload.id);
 
-      let confirmDelete = action.payload.quantity === 1 ? window.confirm("Do you are sure, to delet all cart?") : true
+      // let confirmDelete = action.payload.quantity === 1 ? window.confirm("Do you are sure, to delet all cart?") : true
 
-      if (confirmDelete) {
+      if (true) {
         cartUpgrade.length > 0
           ? localStorage.setItem('prodCart', JSON.stringify(cartUpgrade))
           : localStorage.setItem('prodCart', JSON.stringify([]))
@@ -271,7 +255,9 @@ function rootReducer(state = initialState, action) {
       };
     case 'GET_CART_USER':
       const cartUserAux = action.payload;
+      // console.log('cartUserAux---->2',cartUserAux)
       if (cartUserAux.length > 0) {
+
         const itemsUserCart = [];
         cartUserAux.map((e) => itemsUserCart.push({
           id: e.ProductId.id,
@@ -284,40 +270,20 @@ function rootReducer(state = initialState, action) {
           rating: e.ProductId.rating,
           quantity: e.quantity,
         }))
+       
+      console.log('itemsUserCart',itemsUserCart)
 
-        if (state.prodCart.length > 0) {
-          let arrCart = [];
-          for (let i = 0; i < cartUserAux.length; i++) {
-            for (let j = 0; j < state.prodCart.length; j++) {
-              if (cartUserAux[i].id === state.prodCart[j].id) {
-                arrCart.push({ ...cartUserAux[i], quantity: cartUserAux[i].quantity + state.prodCart[j].quantity })
-              } else {
-                arrCart.push(cartUserAux[i]);
-                arrCart.push(state.prodCart[j]);
-              }
-            }
-          }
-          localStorage.removeItem('prodCart')
-          return {//SI EL CARRITO DEL USER ESTA LLENO Y EL LOCALSTORAGE ESTA LLENO
-            ...state,
-            cartUser: arrCart,
-            prodCart: arrCart,
-          }
-        }
-
-        localStorage.removeItem('prodCart')
-        return {//CARRITO LLENO PERO LOCALSTORAGE ESTA VACIO
-          ...state,
-          cartUser: itemsUserCart,
-          prodCart: itemsUserCart,
-        }
-
-
-      } else {
-        return {
-          ...state,
-        };
-      }
+      localStorage.removeItem('prodCart')
+      return {//CARRITO LLENO PERO LOCALSTORAGE ESTA VACIO
+        ...state,
+        prodCart: itemsUserCart,
+      };
+    }else{
+      localStorage.removeItem('prodCart')
+      return {//CARRITO LLENO PERO LOCALSTORAGE ESTA VACIO
+        ...state,
+      };
+    }
     case 'CLEAR_CART_USER':
       return {
         ...state,
@@ -337,11 +303,6 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    // case "GET_CART_USER":
-    //   return {
-    //     ...state,
-    //     pruebaUsers: action.payload,
-    //   };
     default:
       return state;
   }

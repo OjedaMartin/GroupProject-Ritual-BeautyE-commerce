@@ -6,13 +6,29 @@ const addProductCart = async (req, res) => {
 
     console.log('productsId---->', productsId)
     console.log('email---->', email)
+    let cart
+    let user = await User.findOne({ where: { email } })
+    if (user) {
+        cart = await Cart.findOne({ where: { UserId: user.id, state:"true" } })
+        if(cart){ await Cart.destroy({where:{id:cart.id}})}
 
-    let emailValido = await User.findOne({ where: { email } })
-    if (emailValido) {
-        let cart = await Cart.findOne({ where: { UserId: emailValido.id, state: "true" } })
-       
-       
-            
+        cart = await Cart.create()
+        await user.addCart(cart)
+        for (let i = 0; i < productsId.length; i++) {
+
+            await CartProduct.create({ CartId: cart.id, ProductId: productsId[i].id, quantity: productsId[i].quantity })
+        }
+
+
+
+        
+        /* let cart = await Cart.findOne({ where: { UserId: emailValido.id, state: "true" } })
+            let productIn = await CartProduct.findAll({where:{CartId: cart.id}})
+                for (let i = 0; i < productIn.length; i++) {
+                    let a = 
+
+                }
+
             for (let i = 0; i < productsId.length; i++) {
                 let prod = await CartProduct.findOne({ where: { CartId: cart.id, ProductId: productsId[i].id } })
                 if (prod) {
@@ -21,8 +37,10 @@ const addProductCart = async (req, res) => {
                     await CartProduct.create({ CartId: cart.id, ProductId: productsId[i].id, quantity: productsId[i].quantity })
                 }
 
-            }
+            } */
+
         
+
 
         res.send("carrito creado con sus productos")
     } else {
