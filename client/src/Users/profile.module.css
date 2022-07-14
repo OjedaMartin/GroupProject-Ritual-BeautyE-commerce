@@ -1,13 +1,13 @@
 .div{
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 .6em rgba(0, 0, 0, 0.15);
     cursor: pointer;
     font-family: 'Vazirmatn', sans-serif;
-    font-size: 11px;
+    font-size: .6em;
     font-weight: 200;
-    padding: 10px 10px;
-    margin: 20px;
+    padding: .6em .6em;
+    margin: 1.2em;
 }
 .pic{
-    border-radius: 40px;
-    width: 40px;
+    border-radius: 2.4em;
+    width: 2.4em;
 }

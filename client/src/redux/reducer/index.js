@@ -117,6 +117,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
+      case " GET_ORDER_BY_ID":
+        return {
+          ...state,
+          users: action.payload,
+        };
     case "GET_ALL":
       return {
         ...state,
@@ -342,11 +347,21 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    case "GET_ORDER_BY_USER":
+    case "GET_ORDER_BY_USER1":
       return {
         ...state,
         orderByUser: action.payload
       };
+      case 'GET_ORDER_BY_USER':
+        return {
+          ...state,
+          users: action.payload
+        };
+        case 'GET_ORDER_BY_ID':
+          return {
+            ...state,
+            users: action.payload
+          };
     // case "GET_CART_USER":
     //   return {
     //     ...state,

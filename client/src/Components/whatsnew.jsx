@@ -18,7 +18,7 @@ export default function WhatsNew(){
 
 
     return(
-        <div>
+        <div className={style.containers}>
             <div className={style.titleCardWhatsNew}>What's New</div>
         <div className={style.grid1}>
             <div>

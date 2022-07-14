@@ -27,9 +27,6 @@ const userLogin = async (req, res) => {
  
   res.status(200).json(user)
 
-
-
-
 };
 
 module.exports = { userLogin };

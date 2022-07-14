@@ -1,47 +1,47 @@
 
 .header{
-    padding: 10px 20px;
+    padding: .6em 1.2em;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom-style: solid;
-    border-bottom-width: 1px;
+    border-bottom-width: .12em;
     border-bottom-color: rgb(248, 237, 237);
     background-image: url('../images/BackgroundHeader.png');
     
     
 }
 .title {
-    font-size: 50px;    
+    font-size: 3.22em;    
     background-color: rgba(255, 255, 255, 0);
-    margin: 30px 0px ;
+    margin: .5em 0em ;
     font-family: 'Source Sans Pro', sans-serif;
-    padding-right: 70px;
+    padding-right: .1em;
     
       
 
 }
 .contIcons {
-    margin-top: 30px;
+    margin-top: .4em;
     display: flex;
 
 }
 .iconUser {
     background-color: #ffffff00;
-    border-width: 0px;
-    font-size: 20px;
+    border-width: 0em;
+    font-size: 1em;
 }
 .iconCart {
     background-color: #ffffff00;
-    border-width: 0px;
-    font-size: 20px;
+    border-width: 0em;
+    font-size: 1.4em;
 }
 .Navbar {
     padding: 5px 200px;
     display: flex;
     justify-content: space-between;
     border-bottom-style: solid;
-    border-bottom-width: 1px;
+    border-bottom-width: 0.1em;
     border-bottom-color: rgb(226, 226, 226);
 
 
@@ -49,27 +49,42 @@
 .subT {
     font-family: 'Red Hat Display', sans-serif;
     background-color: white;
-    border-width: 0px;
-    font-size: 20px;
+    border-width: 0em;
+    font-size: 1.2em;
 
 }
 .photo{
     
-    height: 103px;
-    width: 1360px;
+    height: 5em;
+    width: 80em;
     
 }
 .btnH{
     border-radius: 0rem;
     border: black;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 .6em rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    font-family: 'Vazirmatn', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 10px 10px;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: .6em;
+    font-weight: 40em;
+    padding: .6em .6em;
     background-color:black ;
     color:white;
-    margin: 20px;
+    margin: 1.2em;
+
+}
+.admin{
+    border-radius: 1rem;
+    border: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    width:7vw;
+    padding: 1em 1em;
+    background-color:rgba(27, 107, 51, 0.637) ;
+    color:white;
+    margin: 2em;
 
 }

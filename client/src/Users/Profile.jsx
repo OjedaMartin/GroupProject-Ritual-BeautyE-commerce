@@ -18,7 +18,7 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getUserByName(user?.name));
     console.log('Esto es auto', isAuthenticated)
-    dispatch(getCartbyUser(user.email))
+    // dispatch(getCartbyUser(user.email))
 
   }, [dispatch]);
 
@@ -41,7 +41,7 @@ const Profile = () => {
               <Button>Settings</Button>
             </Link>
 
-            <Link exact to="/user/myorders">
+            <Link exact to="/user/orders/">
               <Button>My Orders</Button>
             </Link>
           </div>

@@ -125,17 +125,20 @@ export default function Detail() {
             {quantity > 0 ? <AiFillMinusSquare className={style.btn2} onClick={handleRemoveCart} /> : ""}
             <h4>{quantity > 0 ? quantity : ""}</h4>
             <AiFillPlusSquare className={style.btn2} onClick={handleAddCart} />
-          </div>
-          <Link to="/">
-            <button className={style.btn} > Back to Home </button>
+            <Link to="/">
+            <button className={style.btn} >Back to Home</button>
           </Link>
+          </div>
+     
         </div>
+        
       </div>
       <div>
         <Review
           id={id}
            />
       </div>
+      
     </div>
   );
 }

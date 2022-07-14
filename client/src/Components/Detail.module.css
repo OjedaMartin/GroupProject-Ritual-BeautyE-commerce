@@ -26,7 +26,8 @@
     padding: 20px 80px;
 }
 .titles{
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Red Hat Display', sans-serif;
+
     /* position: relative; */
     /* justify-content:center; */
 }
@@ -39,15 +40,19 @@
     align-content: center;
     }
 .btn{
-border-radius: 0rem;
+    border-radius: 1rem;
+
 border: black;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 cursor: pointer;
-font-family: 'Vazirmatn', sans-serif;
-font-size: 16px;
+font-family: 'Red Hat Display', sans-serif;
+font-size: 12px;
 font-weight: 700;
-padding: 15px 60px;
-background-color:rgba(0, 0, 0, 0.733) ;
+width:15vw;
+
+padding:  1em 1em;
+background-color:rgba(39, 66, 47, 0.637) ;
+;
 color:white;
 margin: 50px;
 
@@ -57,7 +62,8 @@ margin: 50px;
 .label{
     /* position: relative; */
 
-    font-family: 'Vazirmatn', sans-serif;
+    font-family: 'Red Hat Display', sans-serif;
+
     margin: 10px;
 }
 
@@ -70,12 +76,15 @@ margin: 50px;
     justify-items: center;
 }
 .btnAddToCart h4{
-    font-family: 'Vazirmatn', sans-serif;
+    font-family: 'Red Hat Display', sans-serif;
+
     font-size: 30px;
 }
-
+.rev{
+    padding:0px;
+}
 .btn2{
-    border: 0px solid #00000093;
+    border: 0px solid rgba(39, 66, 47, 0.637);
     font-size: 30px;
     
     transition: 0.2s all ease-in-out;
@@ -84,4 +93,20 @@ margin: 50px;
 .ratinginline{
     display: flex;
     flex-direction: row;
+}
+@media (max-width: 400px) {
+    .manzana {
+        flex-direction: column;
+        height: auto;
+    }
+    .titles {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .label {
+        font-size: 12px
+    }
+    .btn {
+        padding: 5px 15px;
+    }
 }

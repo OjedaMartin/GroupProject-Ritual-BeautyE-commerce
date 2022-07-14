@@ -32,8 +32,9 @@ export default function Review({id}){
 
    return(
         <>
+       
         {isAuthenticated ?(
-            <div>
+            <div className={style.cont}>
             {reviewFiltered && reviewFiltered.length  ? (
                  <>
                  <div className={style.reviewmanzana2}>
