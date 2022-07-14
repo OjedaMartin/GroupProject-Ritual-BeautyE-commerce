@@ -7,8 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
-const domain="dev-8r0m7oi3.us.auth0.com"
-const client="bPhN1fH05XewadH1kQWEM4bJmY8T0mv9"
+const domain="dev-ea4kaqw0.us.auth0.com"
+const client="2LIkbEjs5KLDsVzOF1Pue5fZom6KosSl"
+
 
 ReactDOM.render(
   <Provider store={store}>

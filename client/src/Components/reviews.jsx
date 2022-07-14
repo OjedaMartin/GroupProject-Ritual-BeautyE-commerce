@@ -2,7 +2,7 @@ import style from "./review.module.css"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { getOrderByUser, getReviews } from "../redux/actions"
+import { getOrderByUser1, getReviews } from "../redux/actions"
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Review({id}){
@@ -25,7 +25,7 @@ export default function Review({id}){
       
       dispatch(getReviews())
       if(isAuthenticated && user.email){
-        dispatch(getOrderByUser(user.email))
+        dispatch(getOrderByUser1(user.email))
       }
         
     },[dispatch, isAuthenticated,])  
