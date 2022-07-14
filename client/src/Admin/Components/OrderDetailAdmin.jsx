@@ -5,6 +5,7 @@ import {  useParams } from "react-router-dom";
 import style from "./Styles/OrderDetailAdmin.module.css"
 import ProductsAdmin from "./ProductsAdmin";
 import { GoCheck } from "react-icons/go"
+import swal from "sweetalert";
 
 
 export default function OrderDetailAdmin (){
@@ -30,6 +31,10 @@ export default function OrderDetailAdmin (){
     function handleClick(e){
         e.preventDefault()  
         dispatch(updateOrderState(id,state))
+        swal("Order status has been changed")
+        setTimeout(() => {
+            window.location.reload()
+            }, 1000);
     }
 
 
@@ -47,6 +52,7 @@ export default function OrderDetailAdmin (){
                             <div className={style.orderState}>
                                 <h3 className={style.info}>State: {data.state}  </h3>    
                                    <select className={style.select} onChange={e=>handleSelect(e)} name="OrderState" id={data.id}  >
+                                        <option className={style.option} value="none" selected disabled>Change Status</option>     
                                         <option className={style.option} value="Created">Created</option>     
                                         <option className={style.option} value="Dispatched">Dispatched</option>     
                                         <option className={style.option} value="Arrived">Arrived</option>     

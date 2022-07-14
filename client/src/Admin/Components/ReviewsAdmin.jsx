@@ -32,7 +32,9 @@ function ReviewsAdmin(){
           icon: "success",
         });
                 
-        dispatch(getAllReviews());
+        setTimeout(() => {
+          window.location.reload()
+          }, 1000);
         
       } else {
         swal("Your review is safe!");

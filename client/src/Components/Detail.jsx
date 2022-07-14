@@ -101,7 +101,7 @@ export default function Detail() {
         </div>
         <div className={style.divInfo}>
           <h1 className={style.titles}>  {product?.map(e => e.name.length > 20 ? e.name.slice(0, 20).concat('...') : e.name)} </h1>
-          <h4 className={style.label}> price: {product?.map((e) => e.price)} </h4>
+          <h4 className={style.label}> price: {product?.map((e) => e.discount? Math.ceil(e.price - e.price * (e.discount / 100)) +"!!" : e.price ) } </h4>  
           <h4 className={style.label}>  brand: {product?.map((e) => e.brand)} </h4>
           {/* <h4 className={style.label}> rating:{product?.map((e) => e.rating)} </h4> */}
           <h4 className={style.label}> rating:{product?.map((e) => (<StarDetail 

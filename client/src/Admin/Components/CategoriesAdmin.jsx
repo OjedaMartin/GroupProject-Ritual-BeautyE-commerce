@@ -45,7 +45,9 @@ async function  handleDelete(e){
     console.log(deleteName)  
     dispatch(hideCategory(deleteName))
     swal("Category Deleted")
-    dispatch(getAllCategories())
+    setTimeout(() => {
+      window.location.reload()
+      }, 1000);
    
   
 }
@@ -57,9 +59,11 @@ function handlePut(e){
     dispatch(putCategory(putInfo))
     swal("Category changed")
     setEdit({    
-      name: "",
+      name: "=>",
     });
-    dispatch(getAllCategories())
+    setTimeout(() => {
+    window.location.reload()
+    }, 1000);
 }
 
 function handleEdit(e){
@@ -68,6 +72,7 @@ function handleEdit(e){
     ...edit,
     [e.target.name]: e.target.value,
   });
+  
 }
 
 function handleSubmit(e) {
@@ -79,7 +84,9 @@ function handleSubmit(e) {
   setEstado({    
     category: "",
   });
-  dispatch(getAllCategories())
+  setTimeout(() => {
+    window.location.reload()
+    }, 1000);
 }
 
 
@@ -110,7 +117,7 @@ function handleSubmit(e) {
                            
                             <button className={style.DelBtn} name={e.name} onClick={() => handleDelete(e)}><ImCross/></button>
                             <div>
-                                <input key={e.id} className={style.changeinput} type="text" value={edit.name} name='name' onChange={(e) => handleEdit(e)}/>
+                                <input key={e.id} className={style.changeinput} type="text" value={edit.name} name="name" onChange={(e) => handleEdit(e)}/>
                                 <button className={style.addbtn} name={e.name} id={e.id} onClick={() => handlePut(e)}><HiPencilAlt/></button>
                             </div>
                             <p className={style.element}>{e.id}</p>

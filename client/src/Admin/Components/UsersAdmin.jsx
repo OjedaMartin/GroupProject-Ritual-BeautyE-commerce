@@ -33,7 +33,7 @@ console.log("sds",searchedUsers)
 
  async function handleBan(e){
  
-  const putInfo = {email: e.email}
+  const putInfo = {userId: e.id}
  swal({
   title: "Are you sure?",
   icon: "warning",
@@ -48,7 +48,9 @@ console.log("sds",searchedUsers)
     });
     
     
-    dispatch(getAllUsers());
+    setTimeout(() => {
+      window.location.reload()
+      }, 1000);
     
   } else {
     swal("the user remains safe");
@@ -74,7 +76,9 @@ async function handleAdmin(e){
       });
       
       
-      dispatch(getAllUsers());
+      setTimeout(() => {
+      window.location.reload()
+      }, 1000);
       
     } else {
       swal("the user remains the same!");
@@ -91,15 +95,21 @@ async function handleAdmin(e){
                    
 
             </div>
-            {searchedUsers? Object.values(searchedUsers).map((e=> {
-                return(
+          
 
-
-                        <div className={style.data}>
-                          {e}
-                           </div>
-                                            
-                        )})) : <></>}
+            {searchedUsers && searchedUsers.name ? (
+                <div className={style.searchcard}>    
+                  <h2 className={style.searchtitle}> Search Results</h2>              
+                  <h3 className={style.searchtext}>Name: {searchedUsers.name}</h3> 
+                  <h3 className={style.searchtext}>Email: {searchedUsers.email}</h3> 
+                  <h3 className={style.searchtext}>User since: {searchedUsers.createdAt.slice(0,10)}</h3>
+                  <h3 className={style.searchtext}>Membership: {searchedUsers.membership}</h3>
+                  <button className={style.DelBtn} email={searchedUsers.email} onClick={() => handleBan(searchedUsers)}>Ban <ImCross/></button>
+                  <button className={style.ModBtn} id={searchedUsers.id} onClick={() => handleAdmin(searchedUsers)}>Give Admin <GiUpgrade/></button> 
+                </div>
+            ):(<></>)
+                
+                }
 
             <div className={style.cardinfo}>
                 

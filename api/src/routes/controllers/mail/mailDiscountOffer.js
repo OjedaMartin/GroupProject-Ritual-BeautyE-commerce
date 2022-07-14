@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const {Product, Wishlist, User, Product_Wishlist} = require("../../../db");
 const {transporter} = require("./transporter");
+const { Op } = require("sequelize");
 
 const discountOffer = async (req, res, next) =>{
     try{
@@ -33,7 +34,7 @@ const discountOffer = async (req, res, next) =>{
             }
         });
         wishlists = wishlists.map(list => {return list.UserId})
-        users = await users.findAll({
+        users = await User.findAll({
             where:{
                 id:{
                     [Op.in]: wishlists,

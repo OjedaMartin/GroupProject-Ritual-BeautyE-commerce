@@ -255,6 +255,27 @@ export function deleteStock(id, payload) {
   };
 }
 
+export function discountProduct(payload) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/admin/discount`, payload);
+    console.log("info action", info);
+    return {
+      type: "DISCOUNT_PRODUCT",
+      info
+    }
+  };
+}
+export function discountOffer() {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/mail/discount`);
+    console.log("info not action", info);
+    return {
+      type: "DISCOUNT_OFFER",
+      info
+    }
+  };
+}
+
 //CAMBIA EL NOMBRE DE LA CATEGORIA
 export function putCategory(payload) {
   return async function (dispatch) {

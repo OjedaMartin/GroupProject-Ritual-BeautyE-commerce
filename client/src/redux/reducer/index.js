@@ -74,7 +74,15 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "DISCOUNT_PRODUCT":
+      return {
+        ...state,
+      };
     case "PUT_CATEGORY":
+      return {
+        ...state,
+      };
+    case "DISCOUNT_OFFER":
       return {
         ...state,
       };
