@@ -1,6 +1,6 @@
 .grid1 {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns:1fr 1fr;
     grid-template-rows: 32% 32% 32% ;
     margin-left: 40px;
     margin-right: 40px;
@@ -58,7 +58,18 @@
     margin-bottom: .8em;
     font-weight: bold;
 }
-
+.containers{
+    margin-bottom: 150px;
+}
 .decorationTW{
     color: #7a7979;
+}
+@media (max-width:400px){
+    .grid1 {
+    grid-template-columns:1fr;
+
+    }
+    .containers{
+        margin-bottom: 1250px;
+    }
 }

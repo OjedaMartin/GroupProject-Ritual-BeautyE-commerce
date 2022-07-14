@@ -38,6 +38,7 @@
 }
 
 .priceAndcart {
+    
     display: grid;
     grid-template-columns: 3.12em 3.12em  3.12em  ;
     grid-auto-rows: auto;
@@ -52,4 +53,19 @@
     font-size: 1.8em;
     
     transition: 0.2s all ease-in-out;
+
+    margin-bottom: 20px;
+}
+.num{
+    font-weight: bold;
+}
+.btn:active{
+    border: none;
+    background-color: rgba(240, 248, 255, 0);
+
+    font-size: 30px;
+    
+    transition: 0.2s all ease-in-out;
+
+    margin-bottom: 20px;
 }

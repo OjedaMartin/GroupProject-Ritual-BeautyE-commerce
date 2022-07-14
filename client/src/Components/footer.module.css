@@ -5,10 +5,9 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    position: absolute;
+
     width: 100%;
     height: auto;
-    margin-top: 20px;
 }
 
 .divAlign{

@@ -1,26 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addProdToCart, removeProdFromCart, addCartToBack, clearCartUserPRUEBA } from '../redux/actions'
 // import { useDispatch } from 'react-redux';
 // import cart from '../images/carritoIcon.png';
 import ClassesProductCard from './ProductCard.module.css'
 import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
-import swal from 'sweetalert'
 import { useAuth0 } from '@auth0/auth0-react';
 
-export default function ProductCard({ name, brand, image, price, id, in_Stock, CategoryId, rating }) {
+export default function ProductCard(props) {
+    const { name, brand, image, price, id, in_Stock, CategoryId, rating, onHandleAdd, onHandeleRemove, onHandleAddtoDb } = props
     const dispatch = useDispatch();
     const prodCart = useSelector((state) => state.prodCart);
-    const [updateStateToADD, setUpdateStateToADD] = useState(false);
-    //const [updateStateToREMOVE, setUpdateStateToREMOVE] = useState(false);
-    const userCart = useSelector((state) => state.cartUserPRUEBA);
+    const userCart = useSelector((state) => state.cartUser);
     //--------------------------------------------------
     const { isAuthenticated, user } = useAuth0();
-    //------------------------------------------------------------------------------------------------
 
-
-    //--------------------------------VER SI EL PRODUCTO YA ESTA CARGADO------------------------------
     const data = prodCart.length > 0
         ? prodCart.find((el) => el.id === id)
         : undefined
@@ -32,59 +26,17 @@ export default function ProductCard({ name, brand, image, price, id, in_Stock, C
 
     const quantityDATA = data !== undefined ? data.quantity : data2 !== undefined ? data2.quantity : 0;
 
-    const handleAddCart = async (e) => {
-        e.preventDefault()
-        if (quantityDATA === 0) {
-            swal(`Added to cart`);
-        }
-        if (quantityDATA < in_Stock) {
-            const objeToAdd = {
-                id: id,
-                name: name,
-                image: image,
-                price: price,
-                brand: brand,
-                in_Stock: in_Stock,
-                CategoryId: CategoryId,
-                rating: rating,
-                quantity: quantityDATA,
-            }
-            dispatch(addProdToCart(objeToAdd, isAuthenticated));
-
-            if (isAuthenticated) {
-                setUpdateStateToADD(true)
-            }
-        }else{
-            swal(`Insufficient stock in: ${name}`);
-        }
+    const objToAdd = {
+        id: id,
+        name: name,
+        image: image,
+        price: price,
+        brand: brand,
+        in_Stock: in_Stock,
+        CategoryId: CategoryId,
+        rating: rating,
+        quantity: quantityDATA,
     }
-
-    const handleRemoveCart = (e) => {
-        e.preventDefault()
-        if (quantityDATA === 1) {
-            swal(`Removed of cart`);
-        }
-        dispatch(removeProdFromCart({
-            id: id,
-            quantity: quantityDATA,
-        }));
-
-        if (isAuthenticated) {
-            setUpdateStateToADD(true)
-            if (quantityDATA === 1) {
-                dispatch(clearCartUserPRUEBA())
-            }
-        }
-    }
-
-    if (updateStateToADD && isAuthenticated) {
-        setUpdateStateToADD(false)
-        const productsAux = [];
-        prodCart.map((item) => productsAux.push({ id: item.id, cant: item.quantity }))
-        console.log('ESTO AGREGO AL BACK',productsAux)
-        dispatch(addCartToBack({ productsId: productsAux, email: user.email }))
-    }
-
 
     return (
         <div className={ClassesProductCard.container1}>
@@ -105,12 +57,37 @@ export default function ProductCard({ name, brand, image, price, id, in_Stock, C
             </div>
             <p>{`$${price}`}</p>
             <div className={ClassesProductCard.priceAndcart}>
-                {quantityDATA > 0 ? <AiFillMinusSquare className={ClassesProductCard.btn} onClick={handleRemoveCart} /> : ""}
-                <p>{quantityDATA > 0 ? quantityDATA : ""}</p>
-                <AiFillPlusSquare className={ClassesProductCard.btn} onClick={(e) => handleAddCart(e)} />
+                {
+                    quantityDATA > 0
+                        ?
+                        (
+                            <button
+                                className={ClassesProductCard.btn}
+                                onClick={(e) => {
+                                    onHandeleRemove(e, quantityDATA);
+                                    onHandleAddtoDb();
+                                }} >
+                                <AiFillMinusSquare />
+                            </button>
+                        )
+                        : null
+                }
+                <p className={ClassesProductCard.num}>{quantityDATA > 0 ? quantityDATA : null}</p>
+                <button
+                    className={ClassesProductCard.btn}
+                    onClick={() => {
+                        onHandleAdd(objToAdd, in_Stock, quantityDATA);
+                        let newORupdateProd = {
+                            id: id,
+                            quantity: quantityDATA,
+                            in_Stock: in_Stock
+                        }
+                        onHandleAddtoDb(newORupdateProd);
+                    }} >
+                    <AiFillPlusSquare />
+                </button>
             </div>
-
-
         </div>
     )
-}
+};
+

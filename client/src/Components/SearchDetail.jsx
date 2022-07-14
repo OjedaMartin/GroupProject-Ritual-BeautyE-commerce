@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 import {
@@ -7,27 +7,35 @@ import {
     getAllCategories,
     getfilterCategories,
     getfilterBrand,
-    getAllProducts
+    getAllProducts,
+    addProdToCart, removeProdFromCart, addCartToBack, clearcartUser
 } from '../redux/actions';
+import swal from 'sweetalert'
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import loaderEyes2prueba from '../images/loaderEyes2prueba.gif';
 import ClassesSearchDetail from './SearchDetail.module.css'
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 export default function SearchDetail() {
     const [, setReloadState] = useState(false);
     const { name } = useParams();
     const { category } = useParams();
-    const { allProducts } = useParams();
+    //const { allProducts } = useParams();
+    const { isAuthenticated, user } = useAuth0();
 
     const dispatch = useDispatch();
 
     const productsResults = useSelector((state) => state.products);
     const productsAuxResults = useSelector((state) => state.productsAux);
     const allCategories = useSelector((state) => state.category);
+    const prodCart = useSelector((state) => state.prodCart);
+    const userCart = useSelector((state) => state.cartUser);
+    const newArrToDb = useSelector((state) => state.arrToSendDB)
 
     const [currentPage, setCurrentPage] = useState(1);//pag selected
+    const [arrItems, setArrItems] = useState([])
     const [productsPerPage] = useState(9);//cards x page
     const indexOfLastCard = currentPage * productsPerPage;
     const indexOfFirstCard = indexOfLastCard - productsPerPage;
@@ -45,17 +53,28 @@ export default function SearchDetail() {
     const productNotFound = productsAuxResults?.slice(0, 4);
 
 
-    //----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+
+    useEffect(() => {
+        const cartArrItems = prodCart.map(product => ({
+            id: product.id,
+            cant: product.quantity
+        }))
+
+        setArrItems([...cartArrItems])
+
+    }, [prodCart])
+
     useEffect(() => {
         dispatch(getAllCategories());
         if (name) { dispatch(getProductName(name)) }
         else if (category) {
             dispatch(getfilterCategories(category));
         }
-        else if (allProducts) { dispatch(getAllProducts()) }
 
-    }, [name, category, allProducts]);
+    }, [name, category]);
 
+    //else if (allProducts) { dispatch(getAllProducts()) }
     const setOrder = (e) => {
         dispatch(orderProducts(e.target.value));
         setReloadState((state) => !state);
@@ -78,6 +97,61 @@ export default function SearchDetail() {
         setCurrentPage(pageNum)
     };
 
+
+    const onHandleAddCart = (objeToAdd, inStock, quantityDATA) => {
+        if (quantityDATA === 0) swal(`Added to cart`);
+
+        if (quantityDATA < inStock) {
+            dispatch(addProdToCart(objeToAdd, isAuthenticated));
+        } else {
+            swal(`Insufficient stock in: ${name}`);
+        }
+    }
+
+    const onHandleRemoveCart = (productId, quantityDATA) => {
+
+        if (quantityDATA === 1) {
+            swal(`Removed of cart`);
+        }
+        dispatch(removeProdFromCart({
+            id: productId,
+            quantity: quantityDATA,
+        }));
+
+        if (isAuthenticated) {
+            if (quantityDATA === 1) {
+                dispatch(clearcartUser())
+            }
+        }
+    }
+
+    const onHandleAddtoDb = ( newORupdateProd ) => {
+        if (isAuthenticated) {
+            console.log('ESTO ES newORupdateProd-->',newORupdateProd)
+            const itemInclud =
+                prodCart.length > 0
+                    ?
+                    prodCart.find((element) => element.id === newORupdateProd.id)
+                    :
+                    undefined
+            if (newORupdateProd.quantity < newORupdateProd.in_Stock) {
+                const cartItems = itemInclud !== undefined
+                    ?
+                    prodCart.map((it) => it.id === newORupdateProd.id
+                        ?
+                        { ...it, quantity: it.quantity + 1 } : it)
+                    :
+                    [...prodCart, { ...newORupdateProd, quantity: 1 }]
+
+                //setArrItems(cartItems)
+                
+                console.log('ESTO ES LO QUE MANDO AL BACK-->',cartItems)
+                dispatch(addCartToBack({ productsId: cartItems, email: user.email }))
+            }
+            //primero tengo que ver si lo tiene que agregar o sumar
+
+        }
+    }
     if (currentProducts.length > 0) {
         return (
             <Fragment>
@@ -92,7 +166,7 @@ export default function SearchDetail() {
 
                     <div className={ClassesSearchDetail.todo}>
                         <div className={ClassesSearchDetail.params}>
-                            <h1>{catNameAux ? catNameAux[0].name.slice(0,30)+"..." : name ? name.slice(0,30)+"..." : 'Products'}</h1>
+                            <h1>{catNameAux ? catNameAux[0].name.slice(0, 30) + "..." : name ? name.slice(0, 30) + "..." : 'Products'}</h1>
                         </div>
                         <div className={ClassesSearchDetail.selectors}>
                             <select onChange={setOrder} name='Type' className={ClassesSearchDetail.select} >
@@ -110,25 +184,28 @@ export default function SearchDetail() {
                             </select>
                             <select onChange={handleFilterByCategory} name='CatType' className={ClassesSearchDetail.select}>
                                 <option value='category'>Category</option>
-                                {allCategories?.map((e) => (<option key={e.name} value={e.id} className={ClassesSearchDetail.select}>{e.name}</option>))}
+                                {allCategories?.map((e, i) => (<option key={i} value={e.id} className={ClassesSearchDetail.select}>{e.name}</option>))}
                             </select>
                         </div>
                     </div>
                     <section className={ClassesSearchDetail.sectionFlex}>
-                        {currentProducts.map((e) => {
+                        {currentProducts.map((product) => {
                             return (
-                                <Fragment key={e.id}>
+                                <Fragment key={product.id}>
                                     <div>
                                         <ProductCard
-                                            key={e.id}
-                                            name={e.name}
-                                            brand={e.brand}
-                                            image={e.image}
-                                            price={e.price}
-                                            id={e.id}
-                                            in_Stock={e.in_Stock}
-                                            CategoryId={e.CategoryId}
-                                            rating={e.rating}
+                                            key={product.id}
+                                            name={product.name}
+                                            brand={product.brand}
+                                            image={product.image}
+                                            price={product.price}
+                                            id={product.id}
+                                            in_Stock={product.in_Stock}
+                                            CategoryId={product.CategoryId}
+                                            rating={product.rating}
+                                            onHandleAdd={onHandleAddCart}
+                                            onHandleRemove={onHandleRemoveCart}
+                                            onHandleAddtoDb={onHandleAddtoDb}
                                         />
                                     </div>
                                 </Fragment>

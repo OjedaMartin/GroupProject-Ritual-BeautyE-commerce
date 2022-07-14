@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getDetail, addProdToCart, removeProdFromCart, clearCartUserPRUEBA,addCartToBack } from "../redux/actions/index";
+import { getDetail, addProdToCart, removeProdFromCart, clearcartUser,addCartToBack } from "../redux/actions/index";
 import style from "./Detail.module.css"
 import Review from "./reviews";
 import StarDetail from "./StarDetail";
@@ -75,7 +75,7 @@ export default function Detail() {
     if (isAuthenticated) {
       setUpdateStateToADD(true)
       if (quantity === 1) {
-        dispatch(clearCartUserPRUEBA())
+        dispatch(clearcartUser())
       }
     }
   }
@@ -110,16 +110,19 @@ export default function Detail() {
             {quantity > 0 ? <AiFillMinusSquare className={style.btn2} onClick={handleRemoveCart} /> : ""}
             <h4>{quantity > 0 ? quantity : ""}</h4>
             <AiFillPlusSquare className={style.btn2} onClick={handleAddCart} />
-          </div>
-          <Link to="/">
-            <button className={style.btn} > Back to Home </button>
+            <Link to="/">
+            <button className={style.btn} >Back to Home</button>
           </Link>
+          </div>
+     
         </div>
+        
       </div>
-      <div>
-      <Review
+      <div className={style.rev}>
+           <Review
       id = {id}/>
       </div>
+      
     </div>
   );
 }

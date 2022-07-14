@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -16,7 +16,7 @@ import Admin from "../Admin/Admin";
 
 
 export default function Header() {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated,user} = useAuth0();
   //console.log("header", isAuthenticated);
 
   //----------------------------------------MANTIENE ACTUALIZADO EL CART DEL USER EN TEORIA xD----------------------------------------
@@ -25,8 +25,8 @@ export default function Header() {
   const prodCart = useSelector((state) => state.prodCart);
   const userCart = useSelector((state) => state.cartUserPRUEBA);
 
-  if (isAuthenticated && !confirmCondition && userCart.length === 0) {
-    if (prodCart.length > 0) {
+  if (isAuthenticated && !confirmCondition && userCart?.length === 0) {
+    if (prodCart?.length > 0) {
       setConfirmCondition(true)
       const porductsOfLocalStorage = [];
       prodCart.map((e) => porductsOfLocalStorage.push({ id: e.id, cant: e.quantity }));

@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
 import { getAllProducts, getAllCategories, Log } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 import Carousel1 from "./Carousel";
 import WhatsNew from "./whatsnew";
 import Carousel from "./CardsFront";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "../Users/Profile";
 
-import s from "./Landing.module.css";
-import { useNavigate } from "react-router-dom";
+import styles from "./Landing.module.css";
 
 export default function Landing() {
   // const navigate= useNavigate();
@@ -29,14 +28,13 @@ export default function Landing() {
 
   }, [dispatch, isAuthenticated, user])
 
- 
   return (
     <>
       <Carousel1 />
       <Carousel />
       <WhatsNew />
-        <div class={s.body}>
-          <nav class={s.side}>
+        <div class={styles.body}>
+          <nav class={styles.side}>
             <ul>
               <li>
               {isAuthenticated ? (
@@ -47,19 +45,21 @@ export default function Landing() {
                     </span>
                   </a>
                 ) : (
-                  <button class={s.log} onClick={() => loginWithRedirect()}>
-                   LOG IN
+                  <button onClick={() => loginWithRedirect()} className={styles.btn}>
+                    LOG IN
                   </button>
                 )
               }
               </li>
               <li>
-                <a href="/cart">
+                 {/* <a href="/cart">  */}
+                 <Link to={`/cart`}>        
                   Buy
+                  </Link> 
                   <span>
                     <i class="fa fa-compass"></i>
                   </span>
-                </a>
+                {/* </a> */}
               </li>
             </ul>
           </nav>

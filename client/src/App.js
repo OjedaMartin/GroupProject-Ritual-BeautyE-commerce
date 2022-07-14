@@ -19,6 +19,8 @@ import { MyOrders } from "./Users/Orders.jsx";
 import CartCard from "../src/Components/CartCard.jsx";
 import ReviewForm from "./Components/reviewForm.jsx";
 import Profile from "./Users/Profile.jsx";
+import Stripe from "./Stripe/Stripe"
+import { OrderGral } from "./Users/OrderGral.jsx";
 
 function App() {
   return (
@@ -39,11 +41,13 @@ function App() {
         <Route exact path="/termsofuse" element={<TermsOfUse />} />
         <Route path="/admin/*" element={<Admin />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/user/orders" element={<OrderGral />} />
 
         <Route path="/user/settings" element={<Settings />} />
-        <Route path="/user/myorders" element={<MyOrders />} />
+        <Route path="/user/myorders/:id" element={<MyOrders />} />
         <Route exact path="/cart" element={<CartCard />} />
         <Route exact path="/addreview" element={<ReviewForm />} />
+        <Route exact path="/stripe" element={<Stripe />}/>
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -2,12 +2,15 @@ body{
     font-size:16px
 }
 
-.body {
+.sideContainer {
+    position: fixed;
+    left: 0;
+    top: 100px;
     font-size: 1em;
     background: #333;
     font-family: 'Roboto', Arial, Verdana, sans-serif;
-    
 }
+
  .side {
     width:16em;
     height: auto;
@@ -46,6 +49,8 @@ body{
  .side ul li:nth-child(4) { background-color: #2e835686;}
 
  .side ul li:hover {
+    /* position: absolute; */
+
     background-color: #36693ab4; /*you can make different colors depending on the nth-child like above*/
     -webkit-transform: translateX(10em);
     transform: translateX(-10em);/*equal to left in the  .side*/
@@ -90,4 +95,11 @@ body{
     body{
         font-size:8px;
     }
+}
+.btn{
+    background-color: #f8f6ff00;
+    border: none;
+    color: #FFF;
+    font-weight: bold;
+
 }
