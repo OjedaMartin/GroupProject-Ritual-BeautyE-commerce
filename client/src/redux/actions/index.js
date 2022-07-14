@@ -67,11 +67,24 @@ export function getAllUsers() {
     });
   };
 }
+
+//TRAE TODAS LAS REVIEWS
 export function getAllReviews() {
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/review");
     return dispatch({
       type: "GET_ALL_REVIEWS",
+      payload: json.data,
+    });
+  };
+}
+
+//TRAE TODAS LAS ORDENES
+export function getAllOrders() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/order");    
+    return dispatch({
+      type: "GET_ALL_ORDERS",
       payload: json.data,
     });
   };
@@ -125,6 +138,24 @@ export function getDetail(id) {
     }
   };
 }
+//TRAE ORDEN POR ID DE LA MISMA 
+//export function getOrderById(id) {
+//  return async function (dispatch) {
+//    try {
+//      let prod = await axios.get(`http://localhost:3001/order/getById/${id}`);
+//     //console.log("getDet", prod)
+//      return dispatch({
+//        type: "GET_ORDER_BY_ID",
+//        payload: prod.data,
+//      });
+//    } catch (error) {
+//      return dispatch({
+//        type: "GET_ORDER_BY_ID",
+//        payload: error.name,
+//      });
+//    }
+//  };
+//}
 
 
 
@@ -136,6 +167,21 @@ export function getUserByName(payload) {
       let json = await axios.get("http://localhost:3001/users/")
       return dispatch({
         type: 'GET_USER_BY_NAME',
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+//ADMIN DEVUELVE A SEARCHEDUSER EL USER X EMAIL
+export function getUserByEmail(email) {
+
+  return async function (dispatch) {
+    try {
+      let json = await axios.get("http://localhost:3001/users/e/" + email)
+      return dispatch({
+        type: 'GET_USER_BY_EMAIL',
         payload: json.data
       })
     } catch (error) {
@@ -208,6 +254,37 @@ export function deleteStock(id, payload) {
     }
   };
 }
+export function ModifyProduct(id, payload) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/products/update/${id}`, payload);
+    console.log("info action", info);
+    return {
+      type: "MODIFY_PRODUCT",
+      info
+    }
+  };
+}
+
+export function discountProduct(payload) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/admin/discount`, payload);
+    console.log("info action", info);
+    return {
+      type: "DISCOUNT_PRODUCT",
+      info
+    }
+  };
+}
+export function discountOffer() {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/mail/discount`);
+    console.log("info not action", info);
+    return {
+      type: "DISCOUNT_OFFER",
+      info
+    }
+  };
+}
 
 //CAMBIA EL NOMBRE DE LA CATEGORIA
 export function putCategory(payload) {
@@ -220,6 +297,17 @@ export function putCategory(payload) {
     }
   };
 }
+//CAMBIA EL ESTADO DE UNA ORDEN
+export function updateOrderState(id,state) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/order/state/${id}/${state}`);
+    console.log("info action", info);
+    return {
+      type: "UPDATE_ORDER_STATE",
+      info
+    }
+  };
+}
 //CAMBIA LA CATEGORIA A STATUS:HIDDEN
 export function hideCategory(payload) {
   return async function (dispatch) {
@@ -227,6 +315,28 @@ export function hideCategory(payload) {
     console.log("info action", info);
     return {
       type: "HIDE_CATEGORY",
+      info
+    }
+  };
+}
+//LE OTRGA A UN USUARIO LA MEMBERSHIP DE BANNED
+export function banUser(payload) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/admin/ban`, payload);
+    console.log("info action", info);
+    return {
+      type: "BAN_USER",
+      info
+    }
+  };
+}
+//LE OTRGA A UN USUARIO LA MEMBERSHIP DE ADMIN
+export function upgradeToAdmin(payload) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/admin/upgrade`, payload);
+    console.log("info action", info);
+    return {
+      type: "UPGRADE_TO_ADMIN",
       info
     }
   };

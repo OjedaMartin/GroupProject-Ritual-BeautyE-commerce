@@ -3,6 +3,7 @@ const { banUser } = require("./controllers/admin/banUser")
 const { discountProduct } = require("./controllers/admin/discountProduct")
 const { upgradeToAdmin } = require("./controllers/admin/upgradeToAdmin")
 
+
 const router = Router();
 
 router.put("/ban", banUser)

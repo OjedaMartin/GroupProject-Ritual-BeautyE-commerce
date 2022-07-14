@@ -198,7 +198,8 @@ export default function SearchDetail() {
                                             name={product.name}
                                             brand={product.brand}
                                             image={product.image}
-                                            price={product.price}
+                                            price={product.discount?  Math.ceil(product.price - product.price * (product.discount / 100)) : product.price }
+                                            discount={product.discount? product.discount : 0}
                                             id={product.id}
                                             in_Stock={product.in_Stock}
                                             CategoryId={product.CategoryId}

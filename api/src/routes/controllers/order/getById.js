@@ -4,7 +4,10 @@ const {Order,CartProduct,User,Product} = require('../../../db')
 async function getById(req,res) {
     let {id} = req.params
 
-    let resp= await Order.findOne({where:{id}})
+    let resp= await Order.findOne({where:{id}/* ,include:[{
+        model: CartProduct,
+        attributes:["ProductId","quantity"]
+    }] */})
     if(!resp){res.send("No existe esta orden")}
     else{
     let result = []

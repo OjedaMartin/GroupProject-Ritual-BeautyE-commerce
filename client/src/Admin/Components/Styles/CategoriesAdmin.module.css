@@ -47,9 +47,9 @@
     
 }
 .inputadd{
-    border:0;
-    box-shadow: 0 0 5px  rgba(0, 0, 0, 0.596);
+    border: 1px solid black;    
     margin: 10px;
+    border-radius: 2px;
 }
 .inputadd:focus 		{ outline:none; }
 
@@ -69,7 +69,7 @@
 }
 .gridinfoname{
     font-family: 'Cantarell', sans-serif;
-    padding-left: 100px;
+    padding-left: 75px;
 
 }
 .gridinfoid{
@@ -79,6 +79,16 @@
 .gridinfocont{
     display: flex;
     align-items: center;
-    margin-left:  525px;
+    margin-left:  330px;
 
+}
+.changeinput{
+    height: 20px;
+    width: 20px;
+    color: rgb(255, 255, 255);
+}
+.changeinput:focus{
+    height: 35px;
+    width: 150px;
+    color: rgb(0, 0, 0);
 }

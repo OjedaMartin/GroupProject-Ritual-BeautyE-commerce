@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { FaShoppingCart } from "react-icons/fa";
 
@@ -42,6 +42,9 @@ export default function Header() {
     }
   },[]);
 
+  const Cats = useSelector((state) => state.category);
+  console.log("cats", Cats)
+
   //-----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -80,20 +83,38 @@ export default function Header() {
         </div>
       </div>
       <nav className={Style.Navbar}>
-        <Link to="/SearchDetail/collection/cat140006">
-          <button className={Style.subT}>Makeup</button>
-        </Link>
-        <Link to="/SearchDetail/collection/cat150006">
-          <button className={Style.subT}>Skincare</button>
-        </Link>
-        <Link to="/SearchDetail/collection/cat130042">
-          <button className={Style.subT}>Tools & Brushes</button>
-        </Link>
-        <Link to="/SearchDetail/collection/cat130038">
-          <button className={Style.subT}>Hair</button>
-        </Link>
-        {/* <Link to="/SearchDetail/"><button className='subT'>Sale</button></Link> */}
+
+            {Cats?.map((item, index)=>{
+              return(
+                <NavLink style={{ textDecoration: "none", color: "black" }} key={index} to={`/SearchDetail/collection/${item.id}`}>
+                  <h3 className={Style.subT}>{item.name}</h3>
+                </NavLink>
+
+              )
+
+
+            })
+              
+              
+              }
+
+           
+
       </nav>
     </div>
   );
 }
+
+      //  <Link to="/SearchDetail/collection/cat140006">
+      //    <button className={Style.subT}>Makeup</button>
+      //  </Link>
+      //  <Link to="/SearchDetail/collection/cat150006">
+      //    <button className={Style.subT}>Skincare</button>
+      //  </Link>
+      //  <Link to="/SearchDetail/collection/cat130042">
+      //    <button className={Style.subT}>Tools & Brushes</button>
+      //  </Link>
+      //  <Link to="/SearchDetail/collection/cat130038">
+      //    <button className={Style.subT}>Hair</button>
+      //  </Link>
+      //  {/* <Link to="/SearchDetail/"><button className='subT'>Sale</button></Link> */}

@@ -8,7 +8,7 @@ import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai"
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function ProductCard(props) {
-    const { name, brand, image, price, id, in_Stock, CategoryId, rating, onHandleAdd, onHandeleRemove, onHandleAddtoDb } = props
+    const { name, brand, image, price, id, discount, in_Stock, CategoryId, rating, onHandleAdd, onHandeleRemove, onHandleAddtoDb } = props
     const dispatch = useDispatch();
     const prodCart = useSelector((state) => state.prodCart);
     const userCart = useSelector((state) => state.cartUser);
@@ -55,7 +55,7 @@ export default function ProductCard(props) {
             <div className={ClassesProductCard.names} >
                 <p>{name.length > 28 ? (name.slice(0, 25)).concat('...') : name}</p>
             </div>
-            <p>{`$${price}`}</p>
+            <p>{ discount>0?  `   ${discount}%SALE   $` + price: `$${price}`}</p>
             <div className={ClassesProductCard.priceAndcart}>
                 {
                     quantityDATA > 0

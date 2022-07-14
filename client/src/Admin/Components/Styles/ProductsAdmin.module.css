@@ -8,7 +8,7 @@
 
 
     display: grid;
-    grid-template-columns: 50px 50px 50px 200px 110px 150px 75px 75px 110px 110px ;
+    grid-template-columns: 50px 50px 50px  100px 200px 110px 150px 75px 75px 110px 110px ;
     grid-auto-rows: auto;  
    
 
@@ -88,7 +88,7 @@
 .cardinfo{
     display: grid;
     grid-template-columns: 200px 110px 150px 75px 75px 110px 300px;
-    margin: 0 225px 0 180px;
+    margin: 0 225px 0 270px;
     border-bottom: 0.5px solid rgba(129, 129, 129, 0.514)
 
 }

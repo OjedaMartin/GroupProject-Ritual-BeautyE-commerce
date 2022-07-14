@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 export const OrderGral = () => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
-  console.log(user);
+  console.log("=>> ", user);
   useEffect(() => {
     dispatch(getUserByName(user?.name));
     dispatch(getOrderByUser(user?.email));

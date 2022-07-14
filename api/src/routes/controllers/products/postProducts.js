@@ -2,10 +2,10 @@
 const { Product, Category } = require("../../../db");
 
 const createProduct = async (req, res) => {
-  const { name, brand, image, price, CategoryId } = req.body;
+  const { name, brand, image, price, category } = req.body;
   try {
-      console.log("post", name, brand, image, price, CategoryId);
-      if(name && brand && image && price && CategoryId) {
+      console.log("post", name, brand, image, price, category);
+      if(name && brand && image && price && category) {
           const newProduct = await Product.create({
               name,
               brand:brand[0],
@@ -15,7 +15,8 @@ const createProduct = async (req, res) => {
           });
           let productCategory = await Category.findOne({
               where: {
-                  id: CategoryId,
+                  name: category,
+                  
               }
           });
           const product = await newProduct.setCategory(productCategory);
@@ -25,6 +26,8 @@ const createProduct = async (req, res) => {
       }
   } catch(error) {
       res.status(404).send(`Error en el controlador createProduct: ${error}`);
+      console.log(error)
+      console.info(error)
 
   }
 

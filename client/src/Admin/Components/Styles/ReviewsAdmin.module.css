@@ -3,7 +3,7 @@
 }
 .Card{
     display: grid;
-    grid-template-columns: 100px 400px 100px 100px;
+    grid-template-columns: 100px 400px  300px 100px 100px;
     
   
 }
@@ -23,10 +23,11 @@
     transform: scale(1.2);
 }
 .CardTop{
-    display: flex;
+    display: grid;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 200px;
+    margin: 10px 120px 10px 110px;
+    grid-template-columns:  400px  300px 100px 100px;
     font-family: 'Vazirmatn', sans-serif;
 
 }

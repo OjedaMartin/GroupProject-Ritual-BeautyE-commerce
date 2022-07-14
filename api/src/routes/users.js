@@ -6,6 +6,7 @@ const { isAuth } = require('./controllers/middlewares/auth');
 const { userLogout } = require('./controllers/users/userLogout');
 const { getUserByName } = require('./controllers/users/getUserByName');
 const { updateUser } = require('./controllers/users/updateUser');
+const { getUserByEmail } = require('./controllers/users/getUserByEmail');
 const { updateSubscription } = require('./controllers/users/updateSubscription');
 
 
@@ -14,8 +15,11 @@ const router = Router()
 // Ruta para loguear un usuario:
 router.post('/login', userLogin);
 
+// Obtener un usuario por medio del Nombre que se le pasa por params
+router.get('/:name', getUserByName);
+
 // Obtener un usuario por medio del email que se le pasa por params
-router.get('/:email', getUserByName);
+router.get('/e/:email', getUserByEmail);
 
 // Ruta para regisrar un nuevo usuario y cargarlo a la db
 router.post('/register', userRegister);
