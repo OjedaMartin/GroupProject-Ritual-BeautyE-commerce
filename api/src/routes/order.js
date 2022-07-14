@@ -8,7 +8,7 @@ const { updateState } = require('./controllers/order/updateState');
 const router = Router();
 
 router.get('/', getOrder);
-router.get('/user', getByUser);
+router.get('/user/:email', getByUser);
 router.put('/state/:id/:state', updateState);
 router.post('/create', createOrder);
 

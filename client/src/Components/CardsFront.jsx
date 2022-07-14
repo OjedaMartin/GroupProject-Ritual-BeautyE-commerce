@@ -43,12 +43,12 @@ export default function  Carousel (){
     const prod5="Dior Addict Lip Glow";
     const idName1=[];
     const productosData = useSelector((state) => state.products);
-    productosData?.map((e) => e.name === prod0 ? idName1.push(e.id):"");
-    productosData?.map((e) => e.name === prod1 ? idName1.push(e.id):"");
-    productosData?.map((e) => e.name === prod2 ? idName1.push(e.id):"");
-    productosData?.map((e) => e.name === prod3 ? idName1.push(e.id):"");
-    productosData?.map((e) => e.name === prod4 ? idName1.push(e.id):"");
-    productosData?.map((e) => e.name === prod5 ? idName1.push(e.id):"");
+    productosData && productosData?.map((e) => e.name === prod0 ? idName1.push(e.id):"");
+    productosData && productosData?.map((e) => e.name === prod1 ? idName1.push(e.id):"");
+    productosData && productosData?.map((e) => e.name === prod2 ? idName1.push(e.id):"");
+    productosData && productosData?.map((e) => e.name === prod3 ? idName1.push(e.id):"");
+    productosData && productosData?.map((e) => e.name === prod4 ? idName1.push(e.id):"");
+    productosData && productosData?.map((e) => e.name === prod5 ? idName1.push(e.id):"");
 
     const items = [
    

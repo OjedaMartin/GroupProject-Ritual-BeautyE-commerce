@@ -384,7 +384,6 @@ export function orderProducts(orderSelected) {
 export function postReview(payload) {
   return async (dispatch) => {
     try {
-      console.log(payload, 'payload post review');
       const response = await axios.post('http://localhost:3001/review/create/', payload);
       return dispatch({ type: 'POST_REVIEW', payload: response });
     } catch (error) {
@@ -404,6 +403,39 @@ export function getReviews() {
       });
     } catch (error) {
       console.log(error);
+    }
+  }
+}
+
+// subscripcion footer 
+
+export function footerSubscription(email) {
+  return async (dispatch) => {
+    try {
+      console.log(email, ',email post review');
+      const response = await axios.put('http://localhost:3001/mail/footer/', email);
+      return {
+        type: 'PUT_FOOTER_SUBSCRIPTION',
+        response
+      }
+    } catch (error) {
+      console.log(error, 'put footer subscription ');
+    }
+  };
+};
+
+export function getOrderByUser(email) {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get(`http://localhost:3001/order/user/${email}`);
+      const data = json.data
+      console.log('action order user', email);
+      return dispatch({
+        type: 'GET_ORDER_BY_USER',
+        payload: data
+      })
+    } catch (error) {
+      console.log(error, 'error del getorderbyuser')
     }
   }
 }

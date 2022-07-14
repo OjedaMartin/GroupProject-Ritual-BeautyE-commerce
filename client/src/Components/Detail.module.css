@@ -80,3 +80,8 @@ margin: 50px;
     
     transition: 0.2s all ease-in-out;
 }
+
+.ratinginline{
+    display: flex;
+    flex-direction: row;
+}

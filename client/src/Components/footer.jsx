@@ -3,10 +3,27 @@ import { FaInstagram, FaPinterestP, FaTiktok, FaFacebookF } from "react-icons/fa
 import React, { useState } from "react";
 import swal from 'sweetalert';
 import { NavLink } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { footerSubscription } from '../redux/actions';
 
 export default function Footer(){
-    const [mail, setmail] = useState('')
+    const [email, setmail] = useState('')
+
+    const dispatch = useDispatch()
+
+    function handleSubmit(e){
+        e.preventDefault();
+        const send = {email:email}
+        dispatch(footerSubscription(send))
+        swal({
+            title: "Nice",
+            text: "Review added!",
+            icon: "success"
+        });
+        setmail({
+            email: '',
+        })
+    }
     return(
         <div className={style.bgfooter} >
         <div >
@@ -72,18 +89,20 @@ export default function Footer(){
             <form
             onSubmit={(e) => {
                 e.preventDefault();
+                handleSubmit(e);
                 setmail('')
                 swal({
                     text: "You are now suscribed to our Newsletter!",
                     icon: "success",
                   });
               }}>
+                
             <input
              className={style.inputBox}
              placeholder='Enter Email' 
              type = 'email'
              required
-             value={mail}
+             value={email}
              onChange={e => setmail(e.target.value)}> 
              </input>
              

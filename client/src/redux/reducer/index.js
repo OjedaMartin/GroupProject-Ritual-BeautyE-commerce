@@ -19,6 +19,7 @@ const initialState = {
   //-------------
   searchedUsers: [],
   allreviews: [],
+  orderByUser: []
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -336,6 +337,15 @@ function rootReducer(state = initialState, action) {
     case 'POST_ORDER':
       return {
         ...state,
+      };
+    case 'PUT_FOOTER_SUBSCRIPTION':
+      return {
+        ...state,
+      };
+    case "GET_ORDER_BY_USER":
+      return {
+        ...state,
+        orderByUser: action.payload
       };
     // case "GET_CART_USER":
     //   return {
