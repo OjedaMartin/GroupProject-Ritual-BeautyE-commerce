@@ -70,6 +70,7 @@ export default function SearchDetail() {
         if (name) { dispatch(getProductName(name)) }
         else if (category) {
             dispatch(getfilterCategories(category));
+            setCurrentPage(1);
         }
 
     }, [name, category]);
@@ -88,7 +89,11 @@ export default function SearchDetail() {
     }
 
     const handleFilterByBrand = (e) => {
-        dispatch(getfilterBrand(e.target.value));
+        if (e.target.value === 'All brand') {
+            dispatch(getfilterCategories(category))
+
+        }
+        else { dispatch(getfilterBrand(e.target.value)); }
         setReloadState((state) => !state);
         setCurrentPage(1);
     }
@@ -111,23 +116,31 @@ export default function SearchDetail() {
     const onHandleRemoveCart = (productId, quantityDATA) => {
 
         if (quantityDATA === 1) {
-            swal(`Removed of cart`);
-        }
-        dispatch(removeProdFromCart({
-            id: productId,
-            quantity: quantityDATA,
-        }));
-
-        if (isAuthenticated) {
-            if (quantityDATA === 1) {
-                dispatch(clearcartUser())
+            let confirmDelete = window.confirm(`Do you are sure, to delet this product of your cart?`)
+            if (confirmDelete) {
+                swal(`Removed of cart.`);
+                dispatch(removeProdFromCart({
+                    id: productId,
+                }));
+                if (isAuthenticated) {
+                    let cartItems = prodCart.filter((upgrade) => upgrade.id !== productId);
+                    dispatch(addCartToBack({ productsId: cartItems, email: user.email }));
+                }
             }
+        } else {
+            dispatch(removeProdFromCart({
+                id: productId,
+            }));
+            const cartUpgrade =
+                prodCart.map((it) => it.id === productId
+                    ? { ...it, quantity: it.quantity - 1 }
+                    : it)
+            dispatch(addCartToBack({ productsId: cartUpgrade, email: user.email }));
         }
     }
 
-    const onHandleAddtoDb = ( newORupdateProd ) => {
+    const onHandleAddtoDb = (newORupdateProd) => {
         if (isAuthenticated) {
-            console.log('ESTO ES newORupdateProd-->',newORupdateProd)
             const itemInclud =
                 prodCart.length > 0
                     ?
@@ -143,13 +156,8 @@ export default function SearchDetail() {
                     :
                     [...prodCart, { ...newORupdateProd, quantity: 1 }]
 
-                //setArrItems(cartItems)
-                
-                console.log('ESTO ES LO QUE MANDO AL BACK-->',cartItems)
                 dispatch(addCartToBack({ productsId: cartItems, email: user.email }))
             }
-            //primero tengo que ver si lo tiene que agregar o sumar
-
         }
     }
     if (currentProducts.length > 0) {
@@ -176,16 +184,16 @@ export default function SearchDetail() {
                                 <option value='Sort by rated' className={ClassesSearchDetail.select}>Top Rated</option>
                             </select>
                             <select onChange={handleFilterByBrand} name='BrandType' className={ClassesSearchDetail.select}>
-                                <option value='brand'>Brand</option>
+                                <option value='All brand'>All Brand</option>
                                 {newData?.map((e) => (
                                     <option key={e} value={e} className={ClassesSearchDetail.select}>{e}</option>
 
                                 ))}
                             </select>
-                            <select onChange={handleFilterByCategory} name='CatType' className={ClassesSearchDetail.select}>
+                            {/* <select onChange={handleFilterByCategory} name='CatType' className={ClassesSearchDetail.select}>
                                 <option value='category'>Category</option>
                                 {allCategories?.map((e, i) => (<option key={i} value={e.id} className={ClassesSearchDetail.select}>{e.name}</option>))}
-                            </select>
+                            </select> */}
                         </div>
                     </div>
                     <section className={ClassesSearchDetail.sectionFlex}>

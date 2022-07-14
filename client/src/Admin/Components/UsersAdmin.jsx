@@ -128,7 +128,7 @@ async function handleAdmin(e){
                             <button className={style.DelBtn} email={e.email} onClick={() => handleBan(e)}><ImCross/></button>
                             <button className={style.ModBtn} id={e.id} onClick={() => handleAdmin(e)}><GiUpgrade/></button>
                             <p className={style.element}>{e.id}</p>
-                            <p className={style.element}>{e.name}</p>
+                            <p className={style.element}>{e.name.slice(0,11)}</p>
                             <p className={style.element}>{e.email}</p>
                             <p className={style.element}>{e.membership}</p>
                                             

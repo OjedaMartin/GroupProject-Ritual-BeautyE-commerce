@@ -16,6 +16,7 @@ export default function CheckoutForm() {
   const navigate = useNavigate()
   const prodCart = useSelector((state) => state.prodCart);
   const name = useSelector((state) => state.cu)
+  const [edit, setEdit]= useState()
 
   const { isAuthenticated, user } = useAuth0();
 
@@ -29,20 +30,9 @@ export default function CheckoutForm() {
   //---------------------------------------------------------------------------
 
   useEffect(() => {
-    dispatch(getUserByName(user?.name));//GET USER BY NAME NO ME TRAE LA DIRECCION!
+    dispatch(getUserByName(user?.name));
   }, [dispatch,user]);
 
-  // const currentUser = useSelector((state) => state.putUser);
-  // const [edit, setEdit] = useState({
-  //   name: "",
-  //   address: "",
-  // });
-  // useEffect(() => {
-  //   setEdit({
-  //     name: currentUser.name,
-  //     address: currentUser.address,
-  //   });
-  // }, [currentUser]);
 
   //-----------------------------------------------------
   const stripe = useStripe();
@@ -61,17 +51,14 @@ export default function CheckoutForm() {
       try {
         const { data } = await axios.post('http://localhost:3001/stripe/api/checkout', {
           id: id,
-          amount: totalAmount * 100 // son 10 dólares
+          amount: totalAmount * 100
         });
-
-        console.log('DATA DEL USUARIO',name)
 
         elements.getElement(CardElement).clear();
         if (data.msg === 'Successful payment') {
-         dispatch(postOrder({ email: user.email ,address:'cra 11 114 20'}))//email,address
-
+         dispatch(postOrder({ email: user.email, address:edit.address}))
          dispatch(clearCart())
-          swal('¡Succes! Your cart is ready.');
+          swal('Success! Your cart is ready.');
         }
         navigate('/')
       } catch (error) {
@@ -81,12 +68,14 @@ export default function CheckoutForm() {
       console.log("Hay un error en el handleSubmit")
     }
   }
+
    function handleChange(e) {
-  //   setEdit({
-  //     ...edit,
-  //     [e.target.name]: e.target.value,
-  //   });
+    setEdit({
+      ...edit,
+      [e.target.name]: e.target.value,
+    });
   }
+  console.log('edit',edit)
   
 
   return (
@@ -99,11 +88,10 @@ export default function CheckoutForm() {
               className={styles.input}
               type="text"
               pattern="[A-Za-z ,.'-]{3,30}"
-              name="name"
-              onChange={(e) => handleChange(e)}
+              name="name" 
             />
           </div>
-          {/* <div>
+          <div>
             <label className={styles.label}>Address: </label>
             <input
               className={styles.input}
@@ -111,7 +99,7 @@ export default function CheckoutForm() {
               name="address"
               onChange={(e) => handleChange(e)}
             />
-          </div> */}
+          </div>
         </div>
 
         <h4 className={styles.total}>Total: ${totalAmount}</h4>

@@ -18,11 +18,7 @@ const userLogin = async (req, res) => {
      } });
 
   if(created) console.log('i am here!')
-  let cart= await Cart.findOne({where:{UserId:user.id,state:"true"}}) 
-  if (!cart){
-    cart = await Cart.create()
-    await user.addCart(cart)
-  }
+  
 
  
   res.status(200).json(user)

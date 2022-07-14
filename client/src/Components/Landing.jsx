@@ -45,7 +45,7 @@ export default function Landing() {
                     </span>
                   </a>
                 ) : (
-                  <button onClick={() => loginWithRedirect()} className={styles.btn}>
+                  <button onClick={() => loginWithRedirect()}  className={styles.btn}>
                     LOG IN
                   </button>
                 )

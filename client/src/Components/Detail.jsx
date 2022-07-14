@@ -21,12 +21,17 @@ export default function Detail() {
   const prodCart = useSelector((state) => state.prodCart);
   const productDetail = useSelector((state) => state.details);
 
+
+
   useEffect(() => {
+
+    console.log('esto es id', id)
+
     dispatch(getDetail(id));
 
   }, [dispatch, id]);
 
-/////////////////////////////////////////MAYBE
+
 
   const objectCat = {
     cat140006: 'Makeup',

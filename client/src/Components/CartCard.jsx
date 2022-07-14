@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaRegSadCry } from "react-icons/fa";
 import {
     addProdToCart,
     removeProdFromCart,
@@ -12,22 +11,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import Classes from './CartCard.module.css';
 import trashIcon from '../images/trash.png';
 import swal from 'sweetalert'
-//------------------------pasarela de pagos
-import CheckoutForm from '../Stripe/StripeForm'
-//------------------------AUTH0
+
+
 import { useAuth0 } from '@auth0/auth0-react';
 
 
 export default function CartCard() {
 
-    const allProd = useSelector((state) => state.allProducts);
+    const dispatch = useDispatch();
     const prodCart = useSelector((state) => state.prodCart);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+
 
     //--------------------------------------------------
     const { isAuthenticated, user } = useAuth0();
-    //const [updateStateToADD, setUpdateStateToADD] = useState(false);
+
     //--------------------------------------------------
 
     var totalAmount = 0;
@@ -42,46 +40,64 @@ export default function CartCard() {
         totalQuantity = totalQuantity + (prodCart[i].quantity);
     }
 
+
+
     const handleAddCart = (e) => {
         e.preventDefault();
-        const filter = prodCart.find((item) => item.id === e.target.value);
-        if (filter.quantity < filter.in_Stock) {
-            dispatch(addProdToCart(
-                {
-                    id: filter.id,
-                    name: filter.name,
-                    image: filter.image,
-                    price: filter.price,
-                    brand: filter.brand,
-                    in_Stock: filter.in_Stock,
-                    CategoryId: filter.CategoryId,
-                    rating: filter.rating,
-                    quantity: filter.quantity,
-                }, isAuthenticated
-            ));
+        const productFinded = prodCart.find((item) => item.id === e.target.value);
+
+        console.log('productFinded-->AGREGANDO', productFinded)
+
+        if (productFinded.quantity < productFinded.in_Stock) {
+            console.log('productFinded-->AGREGANDO')
+            dispatch(addProdToCart(productFinded));
             if (isAuthenticated) {
-             //   setUpdateStateToADD(true)
+                const itemInclud =
+                    prodCart.length > 0
+                        ?
+                        prodCart.find((element) => element.id === e.target.value)
+                        :
+                        undefined
+
+                const cartItems = itemInclud !== undefined
+                    ?
+                    prodCart.map((it) => it.id === e.target.value
+                        ?
+                        { ...it, quantity: it.quantity + 1 } : it)
+                    :
+                    [...prodCart, { ...productFinded, quantity: 1 }]
+
+                dispatch(addCartToBack({ productsId: cartItems, email: user.email }))
             }
+
         } else {
-            swal(`Insufficient stock in: ${filter.name}`);
+            swal(`Insufficient stock in: ${productFinded.name}`);
         }
     }
     const handleRemoveCart = (e) => {
         e.preventDefault();
-        const filter = prodCart.find((item) => item.id === e.target.value);
-        dispatch(removeProdFromCart({
-            id: filter.id,
-            name: filter.name,
-            image: filter.image,
-            price: filter.price,
-            brand: filter.brand,
-            in_Stock: filter.in_Stock,
-            CategoryId: filter.CategoryId,
-            rating: filter.rating,
-            quantity: filter.quantity,
-        }));
-        if (isAuthenticated) {
-           // setUpdateStateToADD(true)
+        const productFinded = prodCart.find((item) => item.id === e.target.value);
+        console.log('productFinded-->RESTANDO', productFinded)
+        if (productFinded.quantity === 1) {
+            let confirmDelete = window.confirm(`Do you are sure, to delet this product of your cart?`)
+            if (confirmDelete) {
+                dispatch(removeProdFromCart({
+                    id: e.target.value,
+                }));
+                if (isAuthenticated) {
+                    let cartItems = prodCart.filter((upgrade) => upgrade.id !== e.target.value);
+                    dispatch(addCartToBack({ productsId: cartItems, email: user.email }));
+                }
+            }
+        } else {
+            dispatch(removeProdFromCart({
+                id: e.target.value,
+            }));
+            const cartUpgrade =
+                prodCart.map((it) => it.id === e.target.value
+                    ? { ...it, quantity: it.quantity - 1 }
+                    : it)
+            dispatch(addCartToBack({ productsId: cartUpgrade, email: user.email }));
         }
 
     }
@@ -89,14 +105,10 @@ export default function CartCard() {
         e.preventDefault();
         if (isAuthenticated) {
             navigate(`/stripe/`);
-          
-            //swal('¡Succes! Your cart is ready.');
-            //dispatch(clearCart());name={product.name}
-            
 
         } else {
             swal('You need login, to finish your cart!');
-            window.location.href = "https://dev-ea4kaqw0.us.auth0.com/u/login/identifier?state=hKFo2SBRUVZGcktfeWwwTGU4RU1XLXY5aWVaUnQxdVNaamtaOaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIENoSEdGSFR5NFZjQ0JnQmtIVWg5cGdRbU1nQWpMYXI4o2NpZNkgMkxJa2JFanM1S0xEc1Z6T0YxUHVlNWZab202S29zU2w";
+            window.location.href = "https://dev-ea4kaqw0.us.auth0.com/u/login/identifier?state=hKFo2SB0NDg2WGJyaFZhbFNJeUFreE9OazZtUzdZWkxteHJEZaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIFYwOHQ3VXZPbEM5TDlSWU9zYTRZb0J6UTFrUjFQZHBqo2NpZNkgMkxJa2JFanM1S0xEc1Z6T0YxUHVlNWZab202S29zU2w";
         }
     }
     const handleDelete = (e) => {
@@ -106,7 +118,7 @@ export default function CartCard() {
             dispatch(clearCart());
             navigate('/SearchDetail/shopall/allProducts');
             if (isAuthenticated) {
-                dispatch(addCartToBack({ productsId: [], email: user.email }))//VER QUE MANDAR PARA QUE VACIE EL CART DE DB!
+                dispatch(addCartToBack({ productsId: [], email: user.email }))
             }
         }
 
@@ -115,20 +127,17 @@ export default function CartCard() {
         e.preventDefault();
         let confirmDelete = window.confirm("Do you are sure, to delet this product?");
         if (confirmDelete) {
-            const filter = prodCart.find((item) => item.id === e.target.value);
-            dispatch(removeAllOneProdToCart(
-                {
-                    id: filter.id,
-                    name: filter.name,
-                    image: filter.image,
-                    price: filter.price,
-                    brand: filter.brand,
-                    in_Stock: filter.in_Stock,
-                    CategoryId: filter.CategoryId,
-                    rating: filter.rating,
-                    quantity: filter.quantity,
+            const productFinded = prodCart.find((item) => item.id === e.target.value);
+            dispatch(removeAllOneProdToCart(productFinded));
+            if (isAuthenticated) {
+                if (prodCart.length > 1) {
+                    let cartItems = prodCart.filter((upgrade) => upgrade.id !== e.target.value);
+                    dispatch(addCartToBack({ productsId: cartItems, email: user.email }));
+                }else{
+                    dispatch(addCartToBack({ productsId: [], email: user.email }))
                 }
-            ));
+
+            }
         }
 
 
@@ -166,7 +175,7 @@ export default function CartCard() {
                 </div>
                 <div className={Classes.buttonContainer}>
                     {prodCart.length > 0 ? <button className={Classes.buyCart} onClick={handleBuy}><h4>Buy 🛒</h4></button> : ""}
-                    
+
                     {prodCart.length > 0 ? <button className={Classes.vaciarCarrito} onClick={handleDelete} ><h4>Clear Cart</h4></button> : ""}
                 </div>
             </div >
