@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { banUser } = require("./controllers/admin/banUser")
 const { discountProduct } = require("./controllers/admin/discountProduct")
 const { upgradeToAdmin } = require("./controllers/admin/upgradeToAdmin")
-const { discountProduct } = require("./controllers/admin/discountProduct")
+
 
 const router = Router();
 

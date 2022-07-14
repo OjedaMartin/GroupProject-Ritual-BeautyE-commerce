@@ -78,6 +78,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "MODIFY_PRODUCT":
+      return {
+        ...state,
+      };
     case "PUT_CATEGORY":
       return {
         ...state,

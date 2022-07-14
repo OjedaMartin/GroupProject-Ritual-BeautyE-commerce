@@ -4,7 +4,7 @@ const { createOrder } = require('./controllers/order/createOrder');
 const { getByUser } = require('./controllers/order/getByUser');
 const { getById } = require('./controllers/order/getById');
 const { updateState } = require('./controllers/order/updateState');
-const {getById}= require('./controllers/order/getById')
+
 
 const router = Router();
 

@@ -139,23 +139,23 @@ export function getDetail(id) {
   };
 }
 //TRAE ORDEN POR ID DE LA MISMA 
-export function getOrderById(id) {
-  return async function (dispatch) {
-    try {
-      let prod = await axios.get(`http://localhost:3001/order/getById/${id}`);
-     //console.log("getDet", prod)
-      return dispatch({
-        type: "GET_ORDER_BY_ID",
-        payload: prod.data,
-      });
-    } catch (error) {
-      return dispatch({
-        type: "GET_ORDER_BY_ID",
-        payload: error.name,
-      });
-    }
-  };
-}
+//export function getOrderById(id) {
+//  return async function (dispatch) {
+//    try {
+//      let prod = await axios.get(`http://localhost:3001/order/getById/${id}`);
+//     //console.log("getDet", prod)
+//      return dispatch({
+//        type: "GET_ORDER_BY_ID",
+//        payload: prod.data,
+//      });
+//    } catch (error) {
+//      return dispatch({
+//        type: "GET_ORDER_BY_ID",
+//        payload: error.name,
+//      });
+//    }
+//  };
+//}
 
 
 
@@ -250,6 +250,16 @@ export function deleteStock(id, payload) {
     console.log("info action", info);
     return {
       type: "DELETE_STOCK",
+      info
+    }
+  };
+}
+export function ModifyProduct(id, payload) {
+  return async function (dispatch) {
+    const info = await axios.put(`http://localhost:3001/products/update/${id}`, payload);
+    console.log("info action", info);
+    return {
+      type: "MODIFY_PRODUCT",
       info
     }
   };

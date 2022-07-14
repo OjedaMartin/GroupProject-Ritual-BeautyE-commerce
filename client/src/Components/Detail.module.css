@@ -40,21 +40,19 @@
     align-content: center;
     }
 .btn{
+
     border-radius: 1rem;
-
-border: black;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-cursor: pointer;
-font-family: 'Red Hat Display', sans-serif;
-font-size: 12px;
-font-weight: 700;
-width:15vw;
-
-padding:  1em 1em;
-background-color:rgba(39, 66, 47, 0.637) ;
-;
-color:white;
-margin: 50px;
+    border: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    width:15vw;
+    padding:  1em 1em;
+    background-color:rgba(39, 66, 47, 0.637) ;    
+    color:white;
+    margin-top: 38px;
 
 
 
@@ -86,8 +84,10 @@ margin: 50px;
 .btn2{
     border: 0px solid rgba(39, 66, 47, 0.637);
     font-size: 30px;
+    margin-bottom: 35px;
     
     transition: 0.2s all ease-in-out;
+    z-index: 1;
 }
 
 .ratinginline{
