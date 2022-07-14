@@ -1,14 +1,15 @@
 .Logout{
-    border-radius: 0rem;
+    border-radius: 1rem;
     border: black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    font-family: 'Vazirmatn', sans-serif;
-    font-size: 11px;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: .7em;
     font-weight: 700;
-    padding: 10px 10px;
-    background-color:black ;
+    width:7vw;
+    padding: 1em 1em;
+    background-color:rgba(27, 107, 51, 0.637) ;
     color:white;
-    margin: 20px;
+    margin: 2em;
 
 }

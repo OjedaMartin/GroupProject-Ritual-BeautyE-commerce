@@ -2,7 +2,8 @@ const {Order,CartProduct,User,Product} = require('../../../db')
 
 
 async function getByUser(req,res) {
-    let {email} = req.body
+    let {email} = req.params
+    console.log(email)
     let user = await User.findOne({where:{email}})   
     let resp= await Order.findAll({where:{UserId:user.id}/* ,include:[{
         model: CartProduct,

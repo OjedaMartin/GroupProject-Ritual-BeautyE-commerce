@@ -11,6 +11,7 @@ import Profile from "../Users/Profile";
 import styles from "./Landing.module.css";
 
 export default function Landing() {
+  // const navigate= useNavigate();
   const dispatch = useDispatch();
   const { isAuthenticated, user, loginWithRedirect } = useAuth0();
   
@@ -38,7 +39,7 @@ export default function Landing() {
               <li>
               {isAuthenticated ? (
                   <a href="/profile">
-                    {user.name}
+                  Profile
                     <span>
                       <i class="fa fa-map-marker"></i>
                     </span>
