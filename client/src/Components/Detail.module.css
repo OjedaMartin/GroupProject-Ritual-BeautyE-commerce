@@ -90,6 +90,10 @@ margin: 50px;
     transition: 0.2s all ease-in-out;
 }
 
+.ratinginline{
+    display: flex;
+    flex-direction: row;
+}
 @media (max-width: 400px) {
     .manzana {
         flex-direction: column;

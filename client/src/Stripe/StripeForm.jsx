@@ -68,7 +68,7 @@ export default function CheckoutForm() {
 
         elements.getElement(CardElement).clear();
         if (data.msg === 'Successful payment') {
-         dispatch(postOrder({ email: user.email}))//email,address
+         dispatch(postOrder({ email: user.email ,address:'cra 11 114 20'}))//email,address
 
          dispatch(clearCart())
           swal('¡Succes! Your cart is ready.');
