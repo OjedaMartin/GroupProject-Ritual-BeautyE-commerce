@@ -44,7 +44,7 @@ const Profile = () => {
               <Button>Settings</Button>
             </Link>
 
-            <Link exact to="/user/myorders">
+            <Link exact to="/user/orders/">
               <Button>My Orders</Button>
             </Link>
           </div>

@@ -1,7 +1,7 @@
 const { User } = require('../../../db');
 
 const upgradeToAdmin = async (req, res, next) => {
-    let { userId } = req.body;
+    let { userId } = req.body;   
     try{
         let userCheck = await User.findOne({
             where:{

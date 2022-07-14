@@ -28,7 +28,10 @@ export default function Detail() {
     console.log('esto es id', id)
 
     dispatch(getDetail(id));
+
   }, [dispatch, id]);
+
+
 
   const objectCat = {
     cat140006: 'Makeup',
@@ -116,7 +119,7 @@ export default function Detail() {
         </div>
         <div className={style.divInfo}>
           <h1 className={style.titles}>  {productDetail?.map(e => e.name.length > 20 ? e.name.slice(0, 20).concat('...') : e.name)} </h1>
-          <h4 className={style.label}> price: {productDetail?.map((e) => e.price)} </h4>
+          <h4 className={style.label}> price: {productDetail?.map((e) => e.discount? Math.ceil(e.price - e.price * (e.discount / 100)) +"!!" : e.price ) } </h4>
           <h4 className={style.label}>  brand: {productDetail?.map((e) => e.brand)} </h4>
           {/* <h4 className={style.label}> rating:{productDetail?.map((e) => e.rating)} </h4> */}
           <h4 className={style.label}> rating:{productDetail?.map((e) => (<StarDetail
@@ -129,16 +132,20 @@ export default function Detail() {
             {quantity > 0 ? <AiFillMinusSquare className={style.btn2} onClick={handleRemoveCart} /> : ""}
             <h4>{quantity > 0 ? quantity : ""}</h4>
             <AiFillPlusSquare className={style.btn2} onClick={handleAddCart} />
-          </div>
-          <Link to="/">
-            <button className={style.btn} > Back to Home </button>
+            <Link to="/">
+            <button className={style.btn} >Back to Home</button>
           </Link>
+          </div>
+     
         </div>
+        
       </div>
       <div>
         <Review
-          id={id} />
+          id={id}
+           />
       </div>
+      
     </div>
   );
 }

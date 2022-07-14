@@ -106,13 +106,9 @@ export default function CartCard() {
         if (isAuthenticated) {
             navigate(`/stripe/`);
 
-            //swal('¡Succes! Your cart is ready.');
-            //dispatch(clearCart());name={product.name}
-
-
         } else {
             swal('You need login, to finish your cart!');
-            window.location.href = "https://dev-ea4kaqw0.us.auth0.com/u/login/identifier?state=hKFo2SBRUVZGcktfeWwwTGU4RU1XLXY5aWVaUnQxdVNaamtaOaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIENoSEdGSFR5NFZjQ0JnQmtIVWg5cGdRbU1nQWpMYXI4o2NpZNkgMkxJa2JFanM1S0xEc1Z6T0YxUHVlNWZab202S29zU2w";
+            window.location.href = "https://dev-ea4kaqw0.us.auth0.com/u/login/identifier?state=hKFo2SB0NDg2WGJyaFZhbFNJeUFreE9OazZtUzdZWkxteHJEZaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIFYwOHQ3VXZPbEM5TDlSWU9zYTRZb0J6UTFrUjFQZHBqo2NpZNkgMkxJa2JFanM1S0xEc1Z6T0YxUHVlNWZab202S29zU2w";
         }
     }
     const handleDelete = (e) => {

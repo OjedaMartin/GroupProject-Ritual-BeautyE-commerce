@@ -66,37 +66,40 @@ export default function ReviewForm(){
        name:'',
        text: '',
     })
+
 }
+    
     
 
    return(
        <>
        <div>    
-       <h1 className={style.titleReview}> Add a Review</h1>
-       <p className={style.infoReview}>LLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt <br />
-           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco  <br />
-           laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in  <br />
-           voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat  <br />
-           cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+       <h1 className={style.titleReview}> Your opinion is important for us</h1>
+       <p className={style.infoReview}>
+         Thank you for your purchase! <br />
+        We created this form, so you can give us your opinion about our product.<br />
+        We will use all your comments, in order to improve our catalogue and  offer you the best existing products.<br />
+        ☺ <br />
+        </p>
        </div>
        <form 
        className={style.contForm}
        onSubmit={(e) =>handleSubmit(e)}
        >
 
-        <label> Email:</label>
+        <label className={style.textReview}> Email:</label>
         <input
-        type='text'
+        type='text' 
         onChange={(e)=> handleChangeEmail(e)}
         value = {input.email}
         />
 
-        <label> Product Name:</label>
+        <label className={style.textReview}> Product Name:</label>
         <select defaultValue={'DEFAULT'} 
         onChange={(e)=> handleChangeName(e)} >
             <option value='DEFAULT'  disabled defaultValue > All</option>
             {product  &&product.map(product => (
-                    <option key={product.id} value={product.name}>
+                    <option className={style.textReview} key={product.id} value={product.name}>
                       {product.name}
                     </option>
                   ))}
@@ -106,22 +109,21 @@ export default function ReviewForm(){
                 input.product
                 }
             </p> 
-            
-        <label> Text:</label>
+        <label className={style.textReview}> Text:</label>
         <input
         type='text'
         value = {input.text}
         onChange={(e)=> handleChangeText(e)}
         />
 
-        <label> Rating:</label>
+        <label className={style.textReview}> Rating:</label>
          <StarRating
             onClick = {handleChangerating}
             stars = {5}
          />  
         <br />
 
-        <button type = 'submit' onClick={() => navigate(-1)}>add</button>
+        <button  className={style.buttonReviewF} type = 'submit' onClick={() => navigate(-2)}>add</button>
 
        </form>
        </>

@@ -1,0 +1,118 @@
+
+.container{
+    
+    margin: 100px 120px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    background-image: url('../images/BackgroundHeader.png');
+}
+.title{
+    font-family: 'Cantarell', sans-serif;
+    border-bottom: 1px solid #ededed;
+    text-align: center;
+        
+    justify-content: center;
+    padding: 30px;
+    height: 100px;
+}
+.littleinfo{
+    text-align: left;    
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 15px;
+}
+.info{
+
+    text-align:start;    
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 25px;
+    margin: 20px 0px 20px 0px;
+}
+.infocontainer{
+    margin: 30px 0px 30px 25px;
+}
+.divListItem{
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-between; 
+    border: 1px solid #ededed;   
+}
+.billingInfo{
+    margin-left: 100px;   
+}
+.billingText{
+    font-size: larger;
+    font-family: 'Vazirmatn', sans-serif;
+    text-align: end;
+}
+.itemText{
+    font-size: large;
+    font-family: 'Vazirmatn', sans-serif;
+    
+}
+.image{
+    width: 120px;
+    height: 120px;
+}
+.totalPrice{
+    text-align: end;
+    font-family: 'Vazirmatn', sans-serif;
+    padding: 25px;
+}
+.itemcont{
+    height: 100%;
+    width: 450px;
+}
+.ModBtn{
+    background-color: rgba(230, 64, 64, 0);
+    font-family: 'Cantarell', sans-serif;
+    border-color: rgba(240, 248, 255, 0);
+    font-size: 25px;
+    
+}
+.ModBtn:hover{
+    color: rgba(104, 245, 39, 0.747);    
+    font-family: 'Cantarell', sans-serif;
+    transform: scale(1.2);
+}
+.orderState{
+    display: flex;
+    flex-direction: row;
+    
+
+
+}
+.option{
+    font-family: 'Vazirmatn', sans-serif;
+    height: 30px;
+    width: 150px;
+    border-radius: 5px;
+
+}
+.select{
+   
+    font-family: 'Vazirmatn', sans-serif;
+    text-align: center;
+    height:30px;
+    width: 150px;
+    margin: 20px 5px 20px 20px;
+    border-radius: 2px;
+    background-color: rgb(234, 253, 234);
+
+}
+.admin{
+    border-radius: 1rem;
+    border: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    width:7vw;
+    padding: 1em 1em;
+    background-color:rgba(27, 107, 51, 0.637) ;
+    color:white;
+    margin: 2em;
+
+}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {useDispatch} from "react-redux"
-import { getUserByName } from "../../redux/actions/index";
+import { getUserByEmail, getAllUsers } from "../../redux/actions/index";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import style from "./Styles/SearchBarAdmin.module.css"
@@ -8,17 +8,19 @@ import style from "./Styles/SearchBarAdmin.module.css"
 
 export default function SearchBar (){
     const dispatch = useDispatch()
-    const [name,setName] = useState("")
+    const [value,setValue] = useState("")
 
     function inputChangeHandler(e){
     e.preventDefault()
-    setName(e.target.value)
+    setValue(e.target.value)
     
     }
 
-    function submitHandler(e){
+    async function submitHandler(e){
         e.preventDefault()
-        dispatch(getUserByName(name))    
+        await dispatch(getUserByEmail(value))
+        dispatch(getAllUsers());
+
     }
    
    
@@ -37,7 +39,7 @@ export default function SearchBar (){
                 
                 <input className={style.search}
                  type="text"
-                 placeholder="Search Users by name..."
+                 placeholder="Search Users by email..."
                  onChange={(e) => inputChangeHandler(e)}                                     
                  id="searchbar-input"
                  />

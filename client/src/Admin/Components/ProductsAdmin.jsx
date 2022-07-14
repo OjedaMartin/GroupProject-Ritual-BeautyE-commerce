@@ -4,7 +4,7 @@ import {  Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert'
 
-import {getAllProducts, deleteStock } from "../../redux/actions/index"
+import {getAllProducts, deleteStock, discountProduct, discountOffer } from "../../redux/actions/index"
 
 
 import style from "./Styles/ProductsAdmin.module.css";
@@ -19,6 +19,9 @@ const products = useSelector((state)=> state.products)
 const [estado, setEstado] = useState({  
   stock: "0",
 });
+const [price, setPrice] = useState({  
+  price: "999",
+});
 
 useEffect(() => {
 dispatch(getAllProducts());
@@ -32,13 +35,55 @@ function handleChange(e) {
   });  
 }
 
+function handleChange2(e) {
+  e.preventDefault();
+  setPrice({
+    ...price,
+    [e.target.name]: e.target.value,
+  });  
+}
+
+
+async function DiscountHandler(e){
+  
+  try{
+    console.log("=> " ,price)
+    const info = { productId:e.id, 
+      discount: price.price,}
+    const info2 = {discount: price.price,}   
+    console.log( "ssss",info, info2) 
+
+
+
+    if(price.price>0 && price.price<1000){
+    await dispatch(discountProduct(info))
+    
+     dispatch(discountOffer())
+    swal("price has been changed")  
+    setTimeout(() => {
+      window.location.reload()
+      }, 1000);
+  } else {
+    swal("Invalid discount price!")
+  }
+  } catch {
+    swal("An error has ocurred, contact the dev")}
+}
+
+
+
+
+
+
 async function StockHandler(e){
   
   try{
     if(estado.stock>0 && estado.stock<1000){
     await dispatch(deleteStock(e.id, estado))
     swal("stock has been changed")  
-    dispatch(getAllProducts());
+    setTimeout(() => {
+      window.location.reload()
+      }, 1000);
   } else {
     swal("Invalid Stock Number!")
   }
@@ -65,7 +110,9 @@ function deleteHandler(e){
       });
       
       
-      dispatch(getAllProducts());
+      setTimeout(() => {
+        window.location.reload()
+        }, 1000);
       
     } else {
       swal("Your product is safe!");
@@ -120,6 +167,15 @@ function deleteHandler(e){
                               </button>
                               <input className={style.stockinput} type="number" name='stock' onChange={(e) => handleChange(e)}/>
                             </div>
+
+                            <div className={style.stockdiv}>
+                              <button className={style.stockBtn} id={e.id} onClick={()=>DiscountHandler(e)}>                              
+                                 Discount                              
+                              </button>
+                              <input className={style.stockinput} type="number" name='price' onChange={(e) => handleChange2(e)}/>
+                            </div>
+
+
                             <p className={style.element}>{e.name}</p>
                             <p className={style.element}>{e.brand}</p>
                             <p className={style.element}><img className={style.img} src={e.image} alt={e.id} /></p>

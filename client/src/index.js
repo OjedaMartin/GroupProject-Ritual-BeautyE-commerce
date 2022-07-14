@@ -10,6 +10,7 @@ import { store } from "./redux/store";
 const domain="dev-ea4kaqw0.us.auth0.com"
 const client="2LIkbEjs5KLDsVzOF1Pue5fZom6KosSl"
 
+
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>

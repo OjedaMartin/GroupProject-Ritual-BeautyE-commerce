@@ -8,7 +8,7 @@
 
 
     display: grid;
-    grid-template-columns: 50px 50px 50px 200px 110px 150px 75px 75px 110px 110px ;
+    grid-template-columns: 50px  50px 200px 110px 300px 75px 75px 110px 110px ;
     grid-auto-rows: auto;  
    
 
@@ -36,6 +36,9 @@
     font-family: 'Cantarell', sans-serif;
     transform: scale(1.2);
 }
+.DelBtn:focus{
+    outline: none;
+ }
 .ModBtn{
     background-color: rgba(230, 64, 64, 0);
     font-family: 'Cantarell', sans-serif;
@@ -47,6 +50,9 @@
     font-family: 'Cantarell', sans-serif;
     transform: scale(1.2);
 }
+.ModBtn:focus{
+    outline: none;
+ }
 .stockBtn{
     background-color: rgba(230, 64, 64, 0);
     font-family: 'Cantarell', sans-serif;
@@ -82,14 +88,41 @@
     color: rgba(43, 206, 37, 0.815);
     transform: scale(1.1);
 }
+.addbtn:focus{
+   outline: none;
+}
 .img{
     height: 75px;
     width: 75px;
 }
 .cardinfo{
     display: grid;
-    grid-template-columns: 200px 110px 150px 75px 75px 110px 300px;
-    margin: 0 225px 0 180px;
-    border-bottom: 0.5px solid rgba(129, 129, 129, 0.514)
+    grid-template-columns: 150px 250px 1px ;
+    margin: 0 225px 25px 338px;
+    border-bottom: 0.5px solid rgba(129, 129, 129, 0.514);
+    font-family: 'Cantarell', sans-serif;
+}
+.data{
+    font-family: 'Cantarell', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    
+}
+.byEmailflex{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+.searchcard{
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid black ;
+}
+.searchtext{
+    font-family: 'Vazirmatn', sans-serif;
+}
+.searchtitle{
+    text-align: center;
+    font-family: 'Cantarell', sans-serif;
+
 
 }

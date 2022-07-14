@@ -1,15 +1,18 @@
 const {Product, Category} = require ('../../../db');
 
 const putProduct = async (req, res, ) => {
-    const { name, brand, image, price, rating, idcategory } = req.body;
+    const { name, brand, image, price, category} = req.body; 
     const { id } = req.params;
+
+console.log(body)
+
     try {
         const updating = await Product.update({
             name: name,
             brand: brand,
             image: image,
             price: price,
-            rating: rating,
+            category: category,
         }, {
             where: {
                 id: id
@@ -17,7 +20,7 @@ const putProduct = async (req, res, ) => {
         });
         let newCat = await Category.findOne({
             where:{
-                id: idcategory,
+                name: category,
             }
         })
         let updatedProd = await Product.findOne({

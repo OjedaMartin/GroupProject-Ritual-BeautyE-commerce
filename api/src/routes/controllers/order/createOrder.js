@@ -5,14 +5,24 @@ const createOrder = async(req, res )=>{
     
     var {email,address} = req.body
     var user = await User.findOne({where:{email}}) 
+    console.log("user",user) 
     let orden
     if (user){
         if(!address){
          orden= await Order.create({address:user.address})
         }else{ 
-         orden= await Order.create({address})}
-
-         if(!orden) res.send("ingresar ADDRESS para el destino de su compra")
+         orden= await Order.create({address})
+        }
+        if(!user.address){
+            await User.update({
+                address: address,
+            },{
+                where:{
+                    email: email,
+                }
+            })
+        }
+        if(!orden) res.send("Address is needed for the shipping of your products")
          
         user.addOrder(orden)
        

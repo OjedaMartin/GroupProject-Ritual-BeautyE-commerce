@@ -9,6 +9,7 @@ export const Logout = () => {
     className={s.Logout}
       onClick={() => {
         window.localStorage.setItem("cart", JSON.stringify([]));
+        localStorage.removeItem('prodCart')
         logout({ returnTo: window.location.origin });
       }}
     >

@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+//const multer = require('multer');
 var cors = require('cors')
 
 require('./db.js');
@@ -22,6 +23,14 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+
+//const storage = multer.diskStorage({
+//  destination: path.join(__dirname, 'public/uploads'),
+//  filename: (req, file, cb) => {
+//      cb(null, new Date().getTime() + path.extname(file.originalname));
+//  }
+//});
+//server.use(multer({storage}).single('image'));
 
 server.use('/', routes);
 

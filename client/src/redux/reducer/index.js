@@ -14,11 +14,16 @@ const initialState = {
   //-------------
   users: [],
   prodCart: localStorage.getItem('prodCart') ? JSON.parse(localStorage.getItem('prodCart')) : [],
+  allreviews:[],
+  allOrders:[],
+  searchedUser:[],
+  currentOrder:[],
   cartUser: [],
   testStatus: [],
   //-------------
-  searchedUsers: [],
-  allreviews: [],
+  //searchedUsers: [],
+  //allreviews: [],
+  orderByUser: []
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -57,13 +62,38 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "BAN_USER":
+      return {
+        ...state,
+      };
+    case "UPGRADE_TO_ADMIN":
+      return {
+        ...state,
+      };
     case "DELETE_STOCK":
+      return {
+        ...state,
+      };
+    case "DISCOUNT_PRODUCT":
+      return {
+        ...state,
+      };
+    case "MODIFY_PRODUCT":
       return {
         ...state,
       };
     case "PUT_CATEGORY":
       return {
         ...state,
+      };
+    case "DISCOUNT_OFFER":
+      return {
+        ...state,
+      };
+    case "GET_USER_BY_EMAIL":
+      return {
+        ...state,
+        searchedUser: action.payload,
       };
     case "PUT":
       return {
@@ -77,7 +107,11 @@ function rootReducer(state = initialState, action) {
     case "HIDE_CATEGORY":
       return {
         ...state,
-      };
+      };      
+    case "UPDATE_ORDER_STATE":
+      return {
+        ...state,
+      };      
     case "DELETE_REVIEW":
       return {
         ...state,
@@ -91,6 +125,16 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allreviews: action.payload,
+      }
+    case "GET_ORDER_BY_ID":
+      return {
+        ...state,
+        currentOrder: action.payload,
+      }
+    case "GET_ALL_ORDERS":
+      return {
+        ...state,
+        allOrders: action.payload,
       }
     case "GET_ALL_USERS":
       return {
@@ -116,6 +160,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
+      case " GET_ORDER_BY_ID":
+        return {
+          ...state,
+          users: action.payload,
+        };
     case "GET_ALL":
       return {
         ...state,
@@ -303,6 +352,30 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case 'PUT_FOOTER_SUBSCRIPTION':
+      return {
+        ...state,
+      };
+    case "GET_ORDER_BY_USER1":
+      return {
+        ...state,
+        orderByUser: action.payload
+      };
+      case 'GET_ORDER_BY_USER':
+        return {
+          ...state,
+          users: action.payload
+        };
+        case 'GET_ORDER_BY_ID':
+          return {
+            ...state,
+            users: action.payload
+          };
+    // case "GET_CART_USER":
+    //   return {
+    //     ...state,
+    //     pruebaUsers: action.payload,
+    //   };
     default:
       return state;
   }

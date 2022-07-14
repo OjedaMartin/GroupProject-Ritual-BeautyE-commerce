@@ -11,6 +11,7 @@ import ProductCreateAdmin from "./Components/ProductCreateAdmin";
 import ProductModifyAdmin from "./Components/ProductModifyAdmin";
 import CategoriesAdmin from "./Components/CategoriesAdmin";
 import ReviewsAdmin from "./Components/ReviewsAdmin";
+import OrderDetailAdmin from "./Components/OrderDetailAdmin";
 
 
 
@@ -22,7 +23,7 @@ function Admin() {
                     <div className={style.mainContainer}>
                         <Routes>
 
-                            <Route path={"/main"} element={<DashBoardAdmin/>}/>
+                            <Route exact path={"/"} element={<DashBoardAdmin/>}/>
 
                             <Route path={"/users"} element={<UsersAdmin/>}/>
 
@@ -34,7 +35,9 @@ function Admin() {
 
                             <Route exact path={"/categories"} element={<CategoriesAdmin/>}/>
 
-                            <Route path={"/orders"} element={<OrdersAdmin/>}/>                          
+                            <Route path={"/orders"} element={<OrdersAdmin/>}/>
+                            <Route path={"/orderdetail/:id"} element={<OrderDetailAdmin/>}/>
+
 
                         </Routes>
                     </div>
