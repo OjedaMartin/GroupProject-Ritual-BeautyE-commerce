@@ -1,7 +1,7 @@
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import StripeForm from './StripeForm';
-const stripePromise = loadStripe('pk_test_51LII2ZAVboyClKcxFXfaLc0qLlBjZQFjRZlGSXRyn6UogVEiiO7WkhyrJrqwCR2x2X9GseVpI71Thr5LfqltIEVb00mgoR3sb5')
+const stripePromise = loadStripe('pk_test_51LL7tkB5ICzkw2FVhkHUH6dsRNZoW2MruQreFe0Fw0M4HZ8S6MTk5TmwoGaLdUkBdqFBaTJ6s7VfqW8aHpl63Ai800FaaiYRFC')
 
 function Stripe() {
     return (

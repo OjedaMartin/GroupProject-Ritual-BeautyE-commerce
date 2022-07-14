@@ -16,9 +16,9 @@ const addProductCart = async (req, res) => {
             for (let i = 0; i < productsId.length; i++) {
                 let prod = await CartProduct.findOne({ where: { CartId: cart.id, ProductId: productsId[i].id } })
                 if (prod) {
-                    await CartProduct.update({ quantity: productsId[i].cant }, { where: { id: prod.id } })
+                    await CartProduct.update({ quantity: productsId[i].quantity }, { where: { id: prod.id } })
                 } else {
-                    await CartProduct.create({ CartId: cart.id, ProductId: productsId[i].id, quantity: productsId[i].cant })
+                    await CartProduct.create({ CartId: cart.id, ProductId: productsId[i].id, quantity: productsId[i].quantity })
                 }
 
             }

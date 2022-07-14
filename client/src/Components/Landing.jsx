@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { getAllProducts, getAllCategories, Log } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 import Carousel1 from "./Carousel";
 import WhatsNew from "./whatsnew";
 import Carousel from "./CardsFront";
@@ -11,6 +11,7 @@ import Profile from "../Users/Profile";
 import styles from "./Landing.module.css";
 
 export default function Landing() {
+  // const navigate= useNavigate();
   const dispatch = useDispatch();
   const { isAuthenticated, user, loginWithRedirect } = useAuth0();
   
@@ -38,25 +39,27 @@ export default function Landing() {
               <li>
               {isAuthenticated ? (
                   <a href="/profile">
-                    {user.name}
+                  Profile
                     <span>
                       <i class="fa fa-map-marker"></i>
                     </span>
                   </a>
                 ) : (
-                  <button onClick={() => loginWithRedirect()}>
-                    Login
+                  <button onClick={() => loginWithRedirect()} className={styles.btn}>
+                    LOG IN
                   </button>
                 )
               }
               </li>
               <li>
-                <a href="/cart">
+                 {/* <a href="/cart">  */}
+                 <Link to={`/cart`}>        
                   Buy
+                  </Link> 
                   <span>
                     <i class="fa fa-compass"></i>
                   </span>
-                </a>
+                {/* </a> */}
               </li>
             </ul>
           </nav>

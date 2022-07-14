@@ -8,7 +8,7 @@ import {
     getfilterCategories,
     getfilterBrand,
     getAllProducts,
-    addProdToCart, removeProdFromCart, addCartToBack, clearCartUserPRUEBA
+    addProdToCart, removeProdFromCart, addCartToBack, clearcartUser
 } from '../redux/actions';
 import swal from 'sweetalert'
 import ProductCard from './ProductCard';
@@ -31,10 +31,11 @@ export default function SearchDetail() {
     const productsAuxResults = useSelector((state) => state.productsAux);
     const allCategories = useSelector((state) => state.category);
     const prodCart = useSelector((state) => state.prodCart);
-    const userCart = useSelector((state) => state.cartUserPRUEBA);
+    const userCart = useSelector((state) => state.cartUser);
+    const newArrToDb = useSelector((state) => state.arrToSendDB)
 
     const [currentPage, setCurrentPage] = useState(1);//pag selected
-    const [objItems, setObjItems] = useState() 
+    const [arrItems, setArrItems] = useState([])
     const [productsPerPage] = useState(9);//cards x page
     const indexOfLastCard = currentPage * productsPerPage;
     const indexOfFirstCard = indexOfLastCard - productsPerPage;
@@ -55,12 +56,13 @@ export default function SearchDetail() {
     //-----------------------------------------------------------------------------------------------
 
     useEffect(() => {
-        const cartObjItems = prodCart.map(product => ({
-            id: product.id, 
+        const cartArrItems = prodCart.map(product => ({
+            id: product.id,
             cant: product.quantity
         }))
 
-        setObjItems(cartObjItems)
+        setArrItems([...cartArrItems])
+
     }, [prodCart])
 
     useEffect(() => {
@@ -71,7 +73,7 @@ export default function SearchDetail() {
         }
 
     }, [name, category]);
-    
+
     //else if (allProducts) { dispatch(getAllProducts()) }
     const setOrder = (e) => {
         dispatch(orderProducts(e.target.value));
@@ -104,10 +106,6 @@ export default function SearchDetail() {
         } else {
             swal(`Insufficient stock in: ${name}`);
         }
-
-        if (isAuthenticated) {
-            dispatch(addCartToBack({ productsId: objItems, email: user.email })) 
-        }
     }
 
     const onHandleRemoveCart = (productId, quantityDATA) => {
@@ -122,11 +120,38 @@ export default function SearchDetail() {
 
         if (isAuthenticated) {
             if (quantityDATA === 1) {
-                dispatch(clearCartUserPRUEBA())
+                dispatch(clearcartUser())
             }
         }
     }
-console.log('objItems', objItems)
+
+    const onHandleAddtoDb = ( newORupdateProd ) => {
+        if (isAuthenticated) {
+            console.log('ESTO ES newORupdateProd-->',newORupdateProd)
+            const itemInclud =
+                prodCart.length > 0
+                    ?
+                    prodCart.find((element) => element.id === newORupdateProd.id)
+                    :
+                    undefined
+            if (newORupdateProd.quantity < newORupdateProd.in_Stock) {
+                const cartItems = itemInclud !== undefined
+                    ?
+                    prodCart.map((it) => it.id === newORupdateProd.id
+                        ?
+                        { ...it, quantity: it.quantity + 1 } : it)
+                    :
+                    [...prodCart, { ...newORupdateProd, quantity: 1 }]
+
+                //setArrItems(cartItems)
+                
+                console.log('ESTO ES LO QUE MANDO AL BACK-->',cartItems)
+                dispatch(addCartToBack({ productsId: cartItems, email: user.email }))
+            }
+            //primero tengo que ver si lo tiene que agregar o sumar
+
+        }
+    }
     if (currentProducts.length > 0) {
         return (
             <Fragment>
@@ -141,7 +166,7 @@ console.log('objItems', objItems)
 
                     <div className={ClassesSearchDetail.todo}>
                         <div className={ClassesSearchDetail.params}>
-                            <h1>{catNameAux ? catNameAux[0].name.slice(0,30)+"..." : name ? name.slice(0,30)+"..." : 'Products'}</h1>
+                            <h1>{catNameAux ? catNameAux[0].name.slice(0, 30) + "..." : name ? name.slice(0, 30) + "..." : 'Products'}</h1>
                         </div>
                         <div className={ClassesSearchDetail.selectors}>
                             <select onChange={setOrder} name='Type' className={ClassesSearchDetail.select} >
@@ -159,7 +184,7 @@ console.log('objItems', objItems)
                             </select>
                             <select onChange={handleFilterByCategory} name='CatType' className={ClassesSearchDetail.select}>
                                 <option value='category'>Category</option>
-                                {allCategories?.map((e,i) => (<option key={i} value={e.id} className={ClassesSearchDetail.select}>{e.name}</option>))}
+                                {allCategories?.map((e, i) => (<option key={i} value={e.id} className={ClassesSearchDetail.select}>{e.name}</option>))}
                             </select>
                         </div>
                     </div>
@@ -181,6 +206,7 @@ console.log('objItems', objItems)
                                             rating={product.rating}
                                             onHandleAdd={onHandleAddCart}
                                             onHandleRemove={onHandleRemoveCart}
+                                            onHandleAddtoDb={onHandleAddtoDb}
                                         />
                                     </div>
                                 </Fragment>

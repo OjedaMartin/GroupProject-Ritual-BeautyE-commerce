@@ -19,11 +19,11 @@ const initialState = {
   searchedUser:[],
   currentOrder:[],
   cartUser: [],
-  cartUserPRUEBA: [],
   testStatus: [],
   //-------------
-  
-  
+  //searchedUsers: [],
+  //allreviews: [],
+  orderByUser: []
 };
 
 const orderProducts = (orderSelected, stateProducts) => {
@@ -156,6 +156,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
+      case " GET_ORDER_BY_ID":
+        return {
+          ...state,
+          users: action.payload,
+        };
     case "GET_ALL":
       return {
         ...state,
@@ -190,15 +195,22 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    case "GET_CART":
-      return {
-        ...state,
-        cartUser: action.payload,
-      };
-    // case "DELETE_PRODUCT_CART":
-    //   return {
-    //     ...state,
-    //   };
+    // case "COMPLETE_CART":
+    //   const thisItem = action.payload;
+    //   const itemInclud =
+    //     state.prodCart.length > 0
+    //       ?
+    //       state.prodCart.find((element) => element.id === thisItem.id)
+    //       :
+    //       undefined
+    //   if (thisItem.quantity < thisItem.in_Stock){
+
+    //   }
+
+    //     return {
+    //       ...state,
+    //       //testStatus:
+    //     };
     case 'ADD_PROD_TO_CART':
       const newProd = action.payload;
       const isLogin = action.login;
@@ -209,8 +221,8 @@ function rootReducer(state = initialState, action) {
       //---------------------------------------SI EL USUARIO TRAE CART, LO TENGO QUE COMPLETAR CON EL ID
       const itemsUserCart = [];
 
-      if (state.cartUserPRUEBA.length > 0 && state.prodCart.length === 0) {
-        state.cartUserPRUEBA.map((e) => itemsUserCart.push({
+      if (state.cartUser.length > 0 && state.prodCart.length === 0) {
+        state.cartUser.map((e) => itemsUserCart.push({
           id: e.ProductId.id,
           name: e.ProductId.name,
           image: e.ProductId.image,
@@ -223,15 +235,11 @@ function rootReducer(state = initialState, action) {
         }))
       }
 
-      //console.log('itemsUserCart ---> ESTO ES LO QUE ME TRAIGO DE DB', itemsUserCart)
-
 
       //---------------------------------------ACA YA ME DOY CUENTA SI TENGO UN CARRITO DEL USUARIO O NO (EL UNICO CASO SERIA QUE EL USUARIO NO TENGO UN CARRITO Y QUE EL LOCALSTORAGE A LA HORA DE LOGEARSE ESTE VACIO, ES DECIR QUE EL USUARIO NO HAYA AGREGADO NADA)
       const itemsInCart = itemsUserCart.length > 0
         ? itemsUserCart?.find((e) => e.id === newProd.id)
         : state.prodCart?.find((e) => e.id === newProd.id)
-
-      //console.log('ESTO DEVUELVE SI ENCONTRO EL MISMO ID(itemsInCart)', itemsInCart)
 
 
       if (newProd.quantity < newProd.in_Stock) {
@@ -245,8 +253,6 @@ function rootReducer(state = initialState, action) {
             ? state.prodCart.map((it) => it.id === newProd.id
               ? { ...it, quantity: it.quantity + 1 } : it)
             : [...state.prodCart, { ...newProd, quantity: 1 }];
-
-        //console.log('ASI QUEDA EL VALOR SI SE ENCONTRO', cartItems)
 
 
         if (!isLogin) {//SI ESTA LOGEADO QUE NO CARGUE EL LOCALSTORAGE SOLO VA A USAR EL ESTADO
@@ -301,6 +307,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         prodCart: [],
+        cartUser: [],
       };
     case 'GET_USER_BY_NAME':
       return {
@@ -322,25 +329,45 @@ function rootReducer(state = initialState, action) {
           rating: e.ProductId.rating,
           quantity: e.quantity,
         }))
-        console.log('SE LEVANTA EL CARRITO DEL USER Y SE DEBE DE ACTUALIZAR PRODCART')
+
+        if (state.prodCart.length > 0) {
+          let arrCart = [];
+          for (let i = 0; i < cartUserAux.length; i++) {
+            for (let j = 0; j < state.prodCart.length; j++) {
+              if (cartUserAux[i].id === state.prodCart[j].id) {
+                arrCart.push({ ...cartUserAux[i], quantity: cartUserAux[i].quantity + state.prodCart[j].quantity })
+              } else {
+                arrCart.push(cartUserAux[i]);
+                arrCart.push(state.prodCart[j]);
+              }
+            }
+          }
+          localStorage.removeItem('prodCart')
+          return {//SI EL CARRITO DEL USER ESTA LLENO Y EL LOCALSTORAGE ESTA LLENO
+            ...state,
+            cartUser: arrCart,
+            prodCart: arrCart,
+          }
+        }
+
         localStorage.removeItem('prodCart')
-        return {
+        return {//CARRITO LLENO PERO LOCALSTORAGE ESTA VACIO
           ...state,
-          cartUserPRUEBA: cartUserAux,
+          cartUser: itemsUserCart,
           prodCart: itemsUserCart,
         }
+
+
       } else {
         return {
           ...state,
-          cartUserPRUEBA: action.payload,
         };
-
       }
-
     case 'CLEAR_CART_USER':
       return {
         ...state,
-        cartUserPRUEBA: [],
+        cartUser: [],
+
       };
     case 'POST_REVIEW':
       return {
@@ -351,6 +378,29 @@ function rootReducer(state = initialState, action) {
         ...state,
         review: action.payload
       };
+    case 'POST_ORDER':
+      return {
+        ...state,
+      };
+    case 'PUT_FOOTER_SUBSCRIPTION':
+      return {
+        ...state,
+      };
+    case "GET_ORDER_BY_USER1":
+      return {
+        ...state,
+        orderByUser: action.payload
+      };
+      case 'GET_ORDER_BY_USER':
+        return {
+          ...state,
+          users: action.payload
+        };
+        case 'GET_ORDER_BY_ID':
+          return {
+            ...state,
+            users: action.payload
+          };
     // case "GET_CART_USER":
     //   return {
     //     ...state,

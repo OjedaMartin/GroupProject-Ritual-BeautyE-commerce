@@ -4,10 +4,14 @@ const {Order,CartProduct,User,Product} = require('../../../db')
 async function getById(req,res) {
     let {id} = req.params
 
+<<<<<<< HEAD
     let resp= await Order.findOne({where:{id}/* ,include:[{
         model: CartProduct,
         attributes:["ProductId","quantity"]
     }] */})
+=======
+    let resp= await Order.findOne({where:{id}})
+>>>>>>> RITUAL
     if(!resp){res.send("No existe esta orden")}
     else{
     let result = []
@@ -26,11 +30,19 @@ async function getById(req,res) {
 
    async function data(a) {
      let info =  (await CartProduct.findAll({attributes:["ProductId","quantity"],where:{CartId:a}}))
+<<<<<<< HEAD
      
         let b = []
         let c= {}
         for (let j = 0; j < info.length; j++) {
             // console.log("detalle info!!!",info[i]) 
+=======
+
+        let b = []
+        let c= {}
+        for (let j = 0; j < info.length; j++) {
+
+>>>>>>> RITUAL
             c={
                product :(await Product.findOne({where: {id:info[j].ProductId}})),
                quantity : info[j].quantity

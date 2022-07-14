@@ -6,7 +6,7 @@
 
 }
 .todo{
-    margin: 15px;
+    margin: .9em;
     justify-content: flex-start;
     align-items: flex-start;
     display: flex;
@@ -18,14 +18,14 @@
     flex-direction: column;
     /* padding: 20px 100px; */
     justify-content: flex-start;
-    margin-right: 50px;
+    margin-right: 3.12em;
     
 }
 .select{
     display: flex;
     flex-direction: column;
     font-family: 'Red Hat Display', sans-serif ;
-    width: 250px;
+    width: 15em;
     font-weight: bold;
     
 }
@@ -53,27 +53,27 @@
     justify-content: center;
     align-items: center;
     display:flex;
-    left: 130px;
-    top: 50px;
+    left: 8em;
+    top: 3em;
 
 }
 .noFindName{
     display: flex;
-    margin-bottom: 35px;
+    margin-bottom: 2.18em;
     
 }
 .container3{
    text-align: center;
 }
 .container3 h1{
-    margin-top: 15px;
+    margin-top: .9em;
 }
 .container3 h4{
-    margin-top: 15px;
+    margin-top: .9em;
 }
 .params {
     font-family: 'Source Sans Pro', sans-serif;
-    height: 200px;
-    width: 200px;
+    height: 12em;
+    width: 12em;
     word-wrap: break-word;    
 }

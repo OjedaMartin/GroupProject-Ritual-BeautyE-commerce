@@ -13,11 +13,13 @@ import Classes from './CartCard.module.css';
 import trashIcon from '../images/trash.png';
 import swal from 'sweetalert'
 //------------------------pasarela de pagos
-import PaymentGateways from './PaymentGateways';
+import CheckoutForm from '../Stripe/StripeForm'
 //------------------------AUTH0
 import { useAuth0 } from '@auth0/auth0-react';
 
+
 export default function CartCard() {
+
     const allProd = useSelector((state) => state.allProducts);
     const prodCart = useSelector((state) => state.prodCart);
     const navigate = useNavigate();
@@ -25,7 +27,7 @@ export default function CartCard() {
 
     //--------------------------------------------------
     const { isAuthenticated, user } = useAuth0();
-    const [updateStateToADD, setUpdateStateToADD] = useState(false);
+    //const [updateStateToADD, setUpdateStateToADD] = useState(false);
     //--------------------------------------------------
 
     var totalAmount = 0;
@@ -58,7 +60,7 @@ export default function CartCard() {
                 }, isAuthenticated
             ));
             if (isAuthenticated) {
-                setUpdateStateToADD(true)
+             //   setUpdateStateToADD(true)
             }
         } else {
             swal(`Insufficient stock in: ${filter.name}`);
@@ -66,7 +68,7 @@ export default function CartCard() {
     }
     const handleRemoveCart = (e) => {
         e.preventDefault();
-        const filter = prodCart.find((item) => item.id === e.target.value); 
+        const filter = prodCart.find((item) => item.id === e.target.value);
         dispatch(removeProdFromCart({
             id: filter.id,
             name: filter.name,
@@ -79,37 +81,23 @@ export default function CartCard() {
             quantity: filter.quantity,
         }));
         if (isAuthenticated) {
-            setUpdateStateToADD(true)
+           // setUpdateStateToADD(true)
         }
 
     }
     const handleBuy = (e) => {
         e.preventDefault();
-        // if (isAuthenticated) {
-        //     //dispatch(getUser())
-        //     const dataBody = [];
-        //     prodCart?.map((prod) => {
-        //         return (
-        //             dataBody.push({
-        //                 id: prod.id,
-        //                 cant: prod.quantity,
-        //             })
-        //         )
-        //     });
-        //     console.log('dataBody', dataBody)
-        //     const bodyFinsh = { productsId: dataBody, email: user.email }
-        //     console.log('Informacion para el back-->', bodyFinsh)
-        //     dispatch(addCartToBack(bodyFinsh));
-        //     swal('¡Succes! Your cart is ready.');
-        //     // navigate('/');
-        //     dispatch(clearCart());
-        //     return (
-        //         <PaymentGateways />
-        //     )
-        // } else {
-        //     swal('You need login, to finish your cart!');
-        //     navigate("/login");
-        // }
+        if (isAuthenticated) {
+            navigate(`/stripe/`);
+          
+            //swal('¡Succes! Your cart is ready.');
+            //dispatch(clearCart());name={product.name}
+            
+
+        } else {
+            swal('You need login, to finish your cart!');
+            window.location.href = "https://dev-ea4kaqw0.us.auth0.com/u/login/identifier?state=hKFo2SBRUVZGcktfeWwwTGU4RU1XLXY5aWVaUnQxdVNaamtaOaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIENoSEdGSFR5NFZjQ0JnQmtIVWg5cGdRbU1nQWpMYXI4o2NpZNkgMkxJa2JFanM1S0xEc1Z6T0YxUHVlNWZab202S29zU2w";
+        }
     }
     const handleDelete = (e) => {
         e.preventDefault();
@@ -178,6 +166,7 @@ export default function CartCard() {
                 </div>
                 <div className={Classes.buttonContainer}>
                     {prodCart.length > 0 ? <button className={Classes.buyCart} onClick={handleBuy}><h4>Buy 🛒</h4></button> : ""}
+                    
                     {prodCart.length > 0 ? <button className={Classes.vaciarCarrito} onClick={handleDelete} ><h4>Clear Cart</h4></button> : ""}
                 </div>
             </div >
@@ -186,7 +175,7 @@ export default function CartCard() {
     } else {
         return (
             <div className={Classes.container}>
-                <h1 className={Classes.title}>Shopping Cart (<FaRegSadCry></FaRegSadCry>)</h1>
+                <h1 className={Classes.title}>Shopping Cart ()</h1>
             </div>
         )
     }

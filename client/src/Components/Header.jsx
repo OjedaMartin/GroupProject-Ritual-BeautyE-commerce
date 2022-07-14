@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import { Link,NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -12,33 +12,35 @@ import { Logout } from "../Users/LogOut";
 //--------------CART-USER--------------
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartToBack, getCartbyUser } from '../redux/actions'
+import Admin from "../Admin/Admin";
 
 
 export default function Header() {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated,user} = useAuth0();
   //console.log("header", isAuthenticated);
 
-  //-----------------------------------------MANTIENE ACTUALIZADO EL CART DEL USER EN TEORIA xD----------------------------------------
+  //----------------------------------------MANTIENE ACTUALIZADO EL CART DEL USER EN TEORIA xD----------------------------------------
+  const [confirmCondition, setConfirmCondition] = useState(false);
   const dispatch = useDispatch();
   const prodCart = useSelector((state) => state.prodCart);
   const userCart = useSelector((state) => state.cartUserPRUEBA);
 
-  if (isAuthenticated && userCart.length === 0) {
-    if (prodCart.length > 0) {
+  if (isAuthenticated && !confirmCondition && userCart?.length === 0) {
+    if (prodCart?.length > 0) {
+      setConfirmCondition(true)
       const porductsOfLocalStorage = [];
       prodCart.map((e) => porductsOfLocalStorage.push({ id: e.id, cant: e.quantity }));
-      //dispatch(addCartToBack({ productsId: porductsOfLocalStorage, email: user.email }));
+      dispatch(addCartToBack({ productsId: porductsOfLocalStorage, email: user.email }));
       localStorage.removeItem('prodCart')
     }
   }
-
   useEffect(() => {
     console.log('ENTRE AL USEEFFECT(1)')
     if (isAuthenticated) {
       console.log('ENTRE AL DISPATCH')
       dispatch(getCartbyUser(user.email))
     }
-  }, []);
+  },[]);
 
   const Cats = useSelector((state) => state.category);
   console.log("cats", Cats)
@@ -57,6 +59,13 @@ export default function Header() {
           </Link>
         </h1>
         <div className={Style.contIcons}>
+        {isAuthenticated && (user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com"||user.email==="rechavarria2@gmail.com")?<div> 
+        <Link to="/admin">
+                <button className={Style.admin}>
+                  Admin
+                </button>
+              </Link>
+</div>: null}
           {isAuthenticated ? (
             <>
               <Logout />

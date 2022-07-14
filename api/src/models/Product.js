@@ -37,10 +37,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue: 100,
     },
-    discount: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
-    },
+    // discount: {
+    //   type: DataTypes.INTEGER,
+    //   defaultValue: 0
+    // },
   },{
     timestamps: false
   });
